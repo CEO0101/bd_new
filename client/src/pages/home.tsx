@@ -2,17 +2,18 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white text-foreground selection:bg-foreground selection:text-white">
+    <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
       <Navbar />
       
-      <main>
+      <main className="bg-black">
         <Hero />
-        <div className="h-[1px] w-full bg-border" />
+        <div className="h-[1px] w-full bg-white/10" />
         <Philosophy />
-        <div className="h-[1px] w-full bg-border" />
+        <div className="h-[1px] w-full bg-white/10" />
         <Process />
-        <div className="h-[1px] w-full bg-border" />
+        <div className="h-[1px] w-full bg-white/10" />
         <Impact />
+        <div className="h-[1px] w-full bg-white/10" />
         <Products />
         
         <footer className="py-40 bg-foreground text-white overflow-hidden relative">
