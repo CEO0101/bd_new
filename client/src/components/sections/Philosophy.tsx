@@ -2,46 +2,61 @@ import { motion } from "framer-motion";
 
 export default function Philosophy() {
   return (
-    <section id="philosophy" className="py-24 bg-white">
+    <section id="philosophy" className="py-32 bg-white">
       <div className="container px-6 mx-auto">
-        <div className="grid lg:grid-cols-12 gap-16">
-          <div className="lg:col-span-5 border-r border-border pr-12">
-            <motion.h2 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              className="text-4xl font-display font-bold leading-tight mb-8"
+        <div className="grid lg:grid-cols-12 gap-24">
+          <div className="lg:col-span-6">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-12"
             >
-              India is building <br/> <span className="text-primary italic">faster than ever.</span>
-            </motion.h2>
-            <p className="text-muted-foreground leading-relaxed">
-              As India expands, its cities rise higher and its infrastructure stretches wider. Homes, hospitals, institutions, and industries are being created at an unprecedented pace.
-            </p>
+              <span className="text-[10px] font-mono uppercase tracking-[0.3em] font-bold">Industrial Context</span>
+              <h2 className="text-6xl md:text-7xl font-display font-black leading-[0.9] tracking-tighter">
+                INDIA IS BUILDING <br/> <span className="text-muted-foreground italic">FASTER THAN EVER.</span>
+              </h2>
+              <div className="h-[1px] w-24 bg-foreground" />
+              <p className="text-2xl font-light leading-tight text-foreground max-w-xl">
+                As India expands, its cities rise higher and its infrastructure stretches wider. Homes, hospitals, institutions, and industries are being created at an unprecedented pace.
+              </p>
+            </motion.div>
           </div>
-          <div className="lg:col-span-7 space-y-12">
-            <p className="text-2xl font-light text-foreground leading-snug">
+          
+          <div className="lg:col-span-6 flex flex-col justify-end space-y-12">
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-xl text-muted-foreground leading-relaxed"
+            >
               Every structure rests on materials that are rarely questioned. For decades, construction depended on what was available—not because it was ideal, but because it was necessary.
-            </p>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="p-6 bg-muted">
-                <span className="text-xs font-mono text-primary mb-2 block tracking-widest">CONTEXT</span>
-                <p className="text-sm text-muted-foreground">The consequences of this approach were not immediate. They moved slowly, dispersing beyond their point of origin.</p>
+            </motion.p>
+            
+            <div className="grid md:grid-cols-2 gap-12 pt-12 border-t border-border">
+              <div className="space-y-4">
+                <span className="text-[10px] font-mono uppercase tracking-widest font-black">History</span>
+                <p className="text-sm text-muted-foreground leading-relaxed">The consequences of this approach were not immediate. They moved slowly, dispersing beyond their point of origin.</p>
               </div>
-              <div className="p-6 bg-muted">
-                <span className="text-xs font-mono text-primary mb-2 block tracking-widest">REALITY</span>
-                <p className="text-sm text-muted-foreground">Over time, this became the background of growth. Familiar. Unexamined. Accepted.</p>
+              <div className="space-y-4">
+                <span className="text-[10px] font-mono uppercase tracking-widest font-black">Transition</span>
+                <p className="text-sm text-muted-foreground leading-relaxed">Development was never the issue. The absence of alternatives was. India could not slow down.</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-24 p-12 bg-foreground text-background relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-[100px]" />
-          <div className="relative z-10 max-w-3xl">
-            <h3 className="text-3xl md:text-4xl font-display font-bold mb-6">Development was never the issue. <br/> <span className="text-primary">The absence of alternatives was.</span></h3>
-            <p className="text-background/70 text-lg leading-relaxed">
-              India could not slow down. Infrastructure had to be built. Materials had to come from somewhere. The question was never whether construction should happen—but whether it could happen differently.
-            </p>
+        <div className="mt-40 p-20 bg-zinc-50 border border-border relative group overflow-hidden">
+          <div className="relative z-10 max-w-4xl">
+            <h3 className="text-4xl md:text-5xl font-display font-black mb-8 tracking-tighter uppercase">
+              The question was never whether construction should happen—but whether it could happen <span className="text-zinc-400">differently.</span>
+            </h3>
+            <div className="flex items-center gap-6">
+              <div className="w-12 h-[1px] bg-foreground" />
+              <span className="text-[10px] font-mono uppercase tracking-[0.3em] font-bold">Strategic Redesign</span>
+            </div>
           </div>
+          <div className="absolute top-0 right-0 w-1/3 h-full bg-white border-l border-border transition-transform duration-1000 group-hover:translate-x-full" />
         </div>
       </div>
     </section>

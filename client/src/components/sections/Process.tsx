@@ -4,102 +4,96 @@ export default function Process() {
   const steps = [
     { 
       id: "01", 
-      title: "Material Intake", 
-      desc: "Granite waste is collected and assessed for recovery potential using high-precision sorting systems.",
-      details: "Stage 1: Bulk screening and initial categorization."
+      title: "Intake", 
+      desc: "Granite waste collection and digital assessment.",
+      details: "Stage 1: Bulk screening"
     },
     { 
       id: "02", 
-      title: "Precision Recovery", 
-      desc: "Waste is processed through controlled multi-stage systems to maximize material recovery.",
-      details: "Stage 2: Advanced crushing and washing cycles."
+      title: "Recovery", 
+      desc: "Multi-stage crushing and washing cycles.",
+      details: "Stage 2: Precision breaking"
     },
     { 
       id: "03", 
-      title: "Closed-Loop Washing", 
-      desc: "Internal water management systems ensure zero liquid discharge and maximum purity.",
-      details: "Stage 3: High-pressure filtration and recycling."
+      title: "Washing", 
+      desc: "Zero liquid discharge filtration systems.",
+      details: "Stage 3: High-pressure purification"
     },
     { 
       id: "04", 
-      title: "Output Calibration", 
-      desc: "Final materials are graded to industry-specific construction standards (M-Sand, P-Sand).",
-      details: "Stage 4: Automated sizing and quality certification."
+      title: "Grading", 
+      desc: "Industry-standard material certification.",
+      details: "Stage 4: Quality grading"
     }
   ];
 
   return (
-    <section id="process" className="py-24 bg-white relative overflow-hidden">
+    <section id="process" className="py-32 bg-white relative">
       <div className="container px-6 mx-auto">
-        <div className="max-w-3xl mb-16">
-          <motion.span 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="text-primary font-mono text-sm uppercase tracking-widest block mb-4"
-          >
-            Operational Flow
-          </motion.span>
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-6">
-            Closed-Loop <span className="text-primary">Recycling System</span>
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            Our recovery system transforms granite waste into usable construction materials through a tightly controlled, multi-stage process.
+        <div className="flex flex-col lg:flex-row justify-between items-end mb-24 gap-12">
+          <div className="max-w-2xl">
+            <span className="text-[10px] font-mono uppercase tracking-[0.3em] font-bold mb-6 block">System Architecture</span>
+            <h2 className="text-6xl md:text-8xl font-display font-black tracking-tighter">
+              CLOSED-LOOP <br/> <span className="text-muted-foreground">RECYCLING.</span>
+            </h2>
+          </div>
+          <p className="text-xl font-light text-muted-foreground max-w-sm border-l border-border pl-8 py-4">
+            Our recovery system transforms granite waste into usable construction materials through engineering discipline.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-l border-border">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border">
           {steps.map((step, idx) => (
             <motion.div 
               key={step.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               transition={{ delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="p-8 border-r border-b border-border hover:bg-muted group transition-colors duration-500 min-h-[400px] flex flex-col"
+              className="p-12 bg-white hover:bg-zinc-50 transition-colors duration-500 group relative overflow-hidden"
             >
-              <div className="mb-8">
-                <span className="text-6xl font-display font-black text-border group-hover:text-primary/20 transition-colors">
+              <div className="mb-12 flex justify-between items-center">
+                <span className="text-4xl font-display font-black text-border group-hover:text-foreground transition-colors">
                   {step.id}
                 </span>
+                <div className="w-8 h-8 rounded-full border border-border group-hover:border-foreground flex items-center justify-center transition-colors">
+                  <div className="w-1.5 h-1.5 bg-foreground scale-0 group-hover:scale-100 transition-transform" />
+                </div>
               </div>
               
-              <h3 className="text-xl font-display font-bold mb-4 group-hover:text-primary transition-colors">
+              <h3 className="text-2xl font-display font-bold mb-6 tracking-tight">
                 {step.title}
               </h3>
               
-              <p className="text-muted-foreground mb-8 flex-grow leading-relaxed">
+              <p className="text-sm text-muted-foreground mb-12 leading-relaxed">
                 {step.desc}
               </p>
               
-              <div className="pt-6 border-t border-border mt-auto">
-                <span className="text-xs font-mono uppercase tracking-widest text-primary font-bold">
+              <div className="mt-auto">
+                <span className="text-[10px] font-mono uppercase tracking-widest font-bold opacity-40 group-hover:opacity-100 transition-opacity">
                   {step.details}
                 </span>
               </div>
-
-              {/* Animated motion graphic element */}
-              <motion.div 
-                animate={{ 
-                  scale: [1, 1.2, 1],
-                  opacity: [0.1, 0.3, 0.1]
-                }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="absolute top-4 right-4 w-12 h-12 bg-primary/10 rounded-full blur-xl group-hover:bg-primary/30 transition-colors"
-              />
             </motion.div>
           ))}
         </div>
 
-        <div className="mt-20 p-8 bg-foreground text-background flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="flex items-center gap-6">
-            <div className="w-12 h-12 border-2 border-primary animate-spin" style={{ animationDuration: '10s' }} />
-            <p className="text-sm font-mono tracking-wide uppercase">
-              System Health: Optimal • Precision Recovery Active
+        <div className="mt-20 flex flex-col md:flex-row items-center justify-between gap-12 border-b border-border pb-12">
+          <div className="flex items-center gap-8">
+            <div className="w-16 h-16 border border-border flex items-center justify-center">
+              <div className="w-2 h-2 bg-foreground animate-ping" />
+            </div>
+            <div>
+              <p className="text-xs font-mono uppercase tracking-widest font-bold">System Status</p>
+              <p className="text-xl font-display font-bold">OPTIMAL RECOVERY ACTIVE</p>
+            </div>
+          </div>
+          <div className="max-w-md text-right">
+            <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground leading-relaxed">
+              OPERATING WITHIN CONTROLLED PARAMETERS TO ENSURE MAXIMUM MATERIAL CONSISTENCY AND ENVIRONMENTAL INTEGRITY.
             </p>
           </div>
-          <p className="text-xs text-background/60 max-w-md text-right">
-            Each phase is designed to minimise disturbance, maximise recovery, and maintain material consistency.
-          </p>
         </div>
       </div>
     </section>

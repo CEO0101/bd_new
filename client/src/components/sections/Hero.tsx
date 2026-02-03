@@ -2,87 +2,79 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="relative h-screen min-h-[800px] flex items-center bg-white overflow-hidden">
-      {/* Structural Background Lines */}
-      <div className="absolute inset-0 z-0 opacity-5">
-        <div className="absolute top-0 left-1/4 w-[1px] h-full bg-foreground" />
-        <div className="absolute top-0 left-2/4 w-[1px] h-full bg-foreground" />
-        <div className="absolute top-0 left-3/4 w-[1px] h-full bg-foreground" />
-        <div className="absolute top-1/3 left-0 w-full h-[1px] bg-foreground" />
-        <div className="absolute top-2/3 left-0 w-full h-[1px] bg-foreground" />
-      </div>
+    <section className="relative h-screen min-h-[850px] flex items-center bg-white overflow-hidden pt-20">
+      <div className="absolute inset-0 grid-pattern pointer-events-none" />
+      
+      <div className="container relative z-10 px-6 mx-auto">
+        <div className="max-w-6xl">
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-4 mb-12"
+          >
+            <div className="h-[1px] w-16 bg-foreground" />
+            <span className="text-[10px] font-mono uppercase tracking-[0.4em] font-bold">
+              Precision Granite Recovery
+            </span>
+          </motion.div>
 
-      <div className="container relative z-10 px-6">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-8 space-y-10">
+          <motion.h1 
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.8 }}
+            className="text-7xl md:text-9xl lg:text-[11rem] font-display font-black leading-[0.8] mb-12 tracking-[-0.04em]"
+          >
+            PRECISION <br />
+            RECOVERY.
+          </motion.h1>
+
+          <div className="grid lg:grid-cols-2 gap-20 items-end">
             <motion.div 
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-4"
+              transition={{ delay: 0.3 }}
+              className="space-y-8"
             >
-              <div className="h-[2px] w-12 bg-primary" />
-              <span className="text-primary text-xs font-mono uppercase tracking-[0.3em] font-bold">
-                Precision Granite Recovery
-              </span>
+              <p className="text-2xl md:text-3xl text-foreground font-light leading-tight max-w-xl">
+                Transforming granite waste into high-quality construction materials through controlled, closed-loop recovery systems.
+              </p>
+              
+              <div className="flex gap-12 pt-8 border-t border-border">
+                {['Compliant', 'Scalable', 'Future-ready'].map((item) => (
+                  <div key={item} className="space-y-2">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground block">Standard</span>
+                    <span className="text-sm font-bold uppercase">{item}</span>
+                  </div>
+                ))}
+              </div>
             </motion.div>
 
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-6xl md:text-8xl lg:text-9xl font-display font-bold leading-[0.85] text-foreground tracking-tighter"
-            >
-              TRANSFORM <br />
-              <span className="text-primary">WASTE</span> <br />
-              TO VALUE
-            </motion.h1>
-
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-xl md:text-2xl text-muted-foreground max-w-2xl leading-tight font-light"
-            >
-              Transforming granite waste into high-quality construction materials through controlled, closed-loop recovery systems.
-            </motion.p>
-
             <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="flex flex-wrap gap-x-12 gap-y-6 pt-8"
-            >
-              {['Compliant', 'Scalable', 'Future-ready'].map((item) => (
-                <div key={item} className="group cursor-default">
-                  <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground group-hover:text-primary transition-colors">
-                    {item}
-                  </span>
-                  <div className="h-[1px] w-0 group-hover:w-full bg-primary transition-all duration-300" />
-                </div>
-              ))}
-            </motion.div>
-          </div>
-
-          <div className="lg:col-span-4 relative hidden lg:block">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1 }}
-              className="aspect-[3/4] bg-muted border border-border relative group overflow-hidden"
+              transition={{ delay: 0.5, duration: 1 }}
+              className="relative group"
             >
-              <img 
-                src="/hero-bg.png" 
-                alt="Granite Texture" 
-                className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000"
-              />
-              <div className="absolute inset-0 bg-primary/10 mix-blend-overlay" />
-              <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/90 backdrop-blur border border-border">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-primary block mb-2">Core Statement</span>
-                <p className="text-sm font-bold text-foreground">Built for scale. Designed for responsibility.</p>
+              <div className="aspect-[16/9] bg-muted grayscale overflow-hidden">
+                <img 
+                  src="/hero-bg.png" 
+                  alt="Granite Texture" 
+                  className="w-full h-full object-cover opacity-90 transition-transform duration-2000 group-hover:scale-105"
+                />
+              </div>
+              <div className="absolute -bottom-8 -left-8 p-10 bg-white border border-border shadow-2xl max-w-xs">
+                <p className="text-sm font-bold leading-relaxed italic">
+                  "Built for scale. Designed for responsibility."
+                </p>
               </div>
             </motion.div>
           </div>
         </div>
+      </div>
+
+      <div className="absolute bottom-12 right-12 flex items-center gap-4">
+        <span className="text-[10px] font-mono uppercase tracking-widest rotate-90 origin-right translate-x-12 translate-y-4">Scroll to explore</span>
+        <div className="w-[1px] h-32 bg-border" />
       </div>
     </section>
   );
