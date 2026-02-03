@@ -1,83 +1,105 @@
 import { motion } from "framer-motion";
 
 export default function Process() {
+  const steps = [
+    { 
+      id: "01", 
+      title: "Material Intake", 
+      desc: "Granite waste is collected and assessed for recovery potential using high-precision sorting systems.",
+      details: "Stage 1: Bulk screening and initial categorization."
+    },
+    { 
+      id: "02", 
+      title: "Precision Recovery", 
+      desc: "Waste is processed through controlled multi-stage systems to maximize material recovery.",
+      details: "Stage 2: Advanced crushing and washing cycles."
+    },
+    { 
+      id: "03", 
+      title: "Closed-Loop Washing", 
+      desc: "Internal water management systems ensure zero liquid discharge and maximum purity.",
+      details: "Stage 3: High-pressure filtration and recycling."
+    },
+    { 
+      id: "04", 
+      title: "Output Calibration", 
+      desc: "Final materials are graded to industry-specific construction standards (M-Sand, P-Sand).",
+      details: "Stage 4: Automated sizing and quality certification."
+    }
+  ];
+
   return (
-    <section id="process" className="py-24 bg-black relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
-
-      <div className="container px-6 mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="order-2 lg:order-1"
+    <section id="process" className="py-24 bg-white relative overflow-hidden">
+      <div className="container px-6 mx-auto">
+        <div className="max-w-3xl mb-16">
+          <motion.span 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="text-primary font-mono text-sm uppercase tracking-widest block mb-4"
           >
-            <div className="relative aspect-square max-w-lg mx-auto lg:mx-0">
-              <div className="absolute inset-0 border border-primary/20 rounded-full animate-[spin_60s_linear_infinite]" />
-              <div className="absolute inset-8 border border-white/5 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
-              <img 
-                src="/process-loop.png" 
-                alt="Closed Loop Process" 
-                className="w-full h-full object-contain relative z-10 drop-shadow-2xl"
-              />
+            Operational Flow
+          </motion.span>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-6">
+            Closed-Loop <span className="text-primary">Recycling System</span>
+          </h2>
+          <p className="text-lg text-muted-foreground">
+            Our recovery system transforms granite waste into usable construction materials through a tightly controlled, multi-stage process.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-l border-border">
+          {steps.map((step, idx) => (
+            <motion.div 
+              key={step.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.1 }}
+              viewport={{ once: true }}
+              className="p-8 border-r border-b border-border hover:bg-muted group transition-colors duration-500 min-h-[400px] flex flex-col"
+            >
+              <div className="mb-8">
+                <span className="text-6xl font-display font-black text-border group-hover:text-primary/20 transition-colors">
+                  {step.id}
+                </span>
+              </div>
               
-              {/* Floating tech badges */}
-              <div className="absolute top-0 right-10 bg-card border border-white/10 px-3 py-1 text-xs font-mono text-primary backdrop-blur-md">
-                RECOVERY: 98%
+              <h3 className="text-xl font-display font-bold mb-4 group-hover:text-primary transition-colors">
+                {step.title}
+              </h3>
+              
+              <p className="text-muted-foreground mb-8 flex-grow leading-relaxed">
+                {step.desc}
+              </p>
+              
+              <div className="pt-6 border-t border-border mt-auto">
+                <span className="text-xs font-mono uppercase tracking-widest text-primary font-bold">
+                  {step.details}
+                </span>
               </div>
-              <div className="absolute bottom-10 left-0 bg-card border border-white/10 px-3 py-1 text-xs font-mono text-primary backdrop-blur-md">
-                WASTE: 0%
-              </div>
-            </div>
-          </motion.div>
 
-          <motion.div 
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="order-1 lg:order-2 space-y-8"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 border border-white/10 rounded-full bg-white/5">
-              <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              <span className="text-xs font-mono uppercase tracking-widest text-white/70">
-                System Architecture
-              </span>
-            </div>
+              {/* Animated motion graphic element */}
+              <motion.div 
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [0.1, 0.3, 0.1]
+                }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="absolute top-4 right-4 w-12 h-12 bg-primary/10 rounded-full blur-xl group-hover:bg-primary/30 transition-colors"
+              />
+            </motion.div>
+          ))}
+        </div>
 
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-white leading-tight">
-              Closed-Loop <br/>
-              <span className="text-gray-500">Recycling Process</span>
-            </h2>
-
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Our recovery system transforms granite waste into usable construction materials through a tightly controlled, multi-stage process.
+        <div className="mt-20 p-8 bg-foreground text-background flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="flex items-center gap-6">
+            <div className="w-12 h-12 border-2 border-primary animate-spin" style={{ animationDuration: '10s' }} />
+            <p className="text-sm font-mono tracking-wide uppercase">
+              System Health: Optimal • Precision Recovery Active
             </p>
-
-            <div className="space-y-6 pt-4">
-              {[
-                { title: "Intake & Assessment", desc: "Rigorous quality check of raw granite waste." },
-                { title: "Precision Crushing", desc: "Multi-stage breakdown to exact specifications." },
-                { title: "Washing & Screening", desc: "Removing impurities for construction-grade purity." },
-                { title: "Recovery & Reuse", desc: "100% material utilization with zero discharge." }
-              ].map((step, idx) => (
-                <div key={idx} className="flex gap-4 group">
-                  <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-sm bg-white/5 border border-white/10 font-mono text-xs text-primary group-hover:bg-primary group-hover:text-black transition-colors">
-                    0{idx + 1}
-                  </div>
-                  <div>
-                    <h4 className="text-white font-medium mb-1 group-hover:text-primary transition-colors">{step.title}</h4>
-                    <p className="text-sm text-muted-foreground">{step.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
+          </div>
+          <p className="text-xs text-background/60 max-w-md text-right">
+            Each phase is designed to minimise disturbance, maximise recovery, and maintain material consistency.
+          </p>
         </div>
       </div>
     </section>
