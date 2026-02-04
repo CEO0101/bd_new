@@ -34,10 +34,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.8 }}
-            className="text-7xl md:text-9xl lg:text-[11rem] font-display font-black leading-[0.8] mb-12 tracking-[-0.04em] text-white"
+            className="text-4xl md:text-6xl lg:text-8xl font-display font-black leading-[1.1] mb-12 tracking-[-0.04em] text-white"
           >
-            PRECISION <br />
-            RECOVERY.
+            India can now build without <br className="hidden md:block" /> destroying its land.
           </motion.h1>
 
           <div className="grid lg:grid-cols-2 gap-20 items-end">
@@ -47,8 +46,8 @@ export default function Hero() {
               transition={{ delay: 0.3 }}
               className="space-y-8"
             >
-              <p className="text-2xl md:text-3xl text-white font-light leading-tight max-w-xl">
-                Transforming granite waste into high-quality construction materials through controlled, closed-loop recovery systems.
+              <p className="text-xl md:text-2xl text-white font-light leading-relaxed max-w-2xl">
+                South India’s only super primary granite processing unit (800+ TPH total capacity) on a 6-acre integrated site. Built for a circular economy, it converts granite waste into high-quality construction materials through a closed-loop process. Reducing landfill impact, conserving natural resources, and meeting environmental standards.
               </p>
               
               <div className="flex gap-12 pt-8 border-t border-white/20">

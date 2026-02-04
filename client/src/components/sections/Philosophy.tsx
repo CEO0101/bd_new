@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export default function Philosophy() {
   return (
-    <section id="philosophy" className="py-32 bg-black text-white">
+    <section id="about" className="py-32 bg-black text-white">
       <div className="container px-6 mx-auto">
         <div className="grid lg:grid-cols-12 gap-24">
           <div className="lg:col-span-6">

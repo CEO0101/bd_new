@@ -11,17 +11,18 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-6 h-20 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-primary rounded-sm transform rotate-45" />
-          <span className="font-display font-bold text-xl tracking-tight text-white">
-            BLACKDIAMOND
+          <div className="w-8 h-8 bg-white rounded-sm transform rotate-45" />
+          <span className="font-display font-bold text-xl tracking-tight text-white uppercase">
+            BLACK DIAMOND
           </span>
         </div>
         
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
-          <a href="#philosophy" className="hover:text-primary transition-colors">Philosophy</a>
-          <a href="#process" className="hover:text-primary transition-colors">Process</a>
-          <a href="#products" className="hover:text-primary transition-colors">Products</a>
-          <a href="#impact" className="hover:text-primary transition-colors">Impact</a>
+        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-white/60">
+          <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <a href="#about" className="hover:text-white transition-colors">About</a>
+          <a href="#technology" className="hover:text-white transition-colors">Technology</a>
+          <a href="#products" className="hover:text-white transition-colors">Products</a>
+          <Link href="/impact-calculator" className="hover:text-white transition-colors">Impact Calculator</Link>
         </div>
 
         <button className="px-6 py-2 bg-white/5 hover:bg-primary hover:text-black border border-white/10 rounded-sm text-sm font-medium transition-all duration-300">
