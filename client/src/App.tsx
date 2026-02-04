@@ -5,11 +5,19 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
+import About from "@/pages/About";
+import Technology from "@/pages/Technology";
+import ProductsPage from "@/pages/Products";
+import ImpactCalculator from "@/pages/ImpactCalculator";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/about" component={About} />
+      <Route path="/technology" component={Technology} />
+      <Route path="/products" component={ProductsPage} />
+      <Route path="/impact-calculator" component={ImpactCalculator} />
       <Route component={NotFound} />
     </Switch>
   );
