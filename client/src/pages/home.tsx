@@ -14,7 +14,6 @@ export default function Home() {
         <div className="h-[1px] w-full bg-white/10" />
         <Impact />
         <div className="h-[1px] w-full bg-white/10" />
-        <Products />
         
         <footer className="py-40 bg-foreground text-white overflow-hidden relative">
           <div className="absolute top-0 left-0 w-full h-1 bg-white/10" />
