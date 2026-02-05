@@ -1,4 +1,11 @@
 import { motion } from "framer-motion";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/layout/Footer";
+import Hero from "@/components/sections/Hero";
+import Philosophy from "@/components/sections/Philosophy";
+import Process from "@/components/sections/Process";
+import Impact from "@/components/sections/Impact";
+import Products from "@/components/sections/Products";
 
 export default function Home() {
   return (
@@ -14,6 +21,7 @@ export default function Home() {
         <div className="h-[1px] w-full bg-white/10" />
         <Impact />
         <div className="h-[1px] w-full bg-white/10" />
+<<<<<<< HEAD
         
         <footer className="py-40 bg-foreground text-white overflow-hidden relative">
           <div className="absolute top-0 left-0 w-full h-1 bg-white/10" />
@@ -54,14 +62,12 @@ export default function Home() {
             BDG
           </div>
         </footer>
+=======
+        <Products />
+>>>>>>> 8443b20 (pushed worksing)
       </main>
+      
+      <Footer />
     </div>
   );
 }
-
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/sections/Hero";
-import Philosophy from "@/components/sections/Philosophy";
-import Process from "@/components/sections/Process";
-import Impact from "@/components/sections/Impact";
-import Products from "@/components/sections/Products";

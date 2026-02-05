@@ -1,10 +1,14 @@
 import { motion } from "framer-motion";
+import Navbar from "@/components/Navbar";
 
 export default function About() {
   return (
-    <div className="pt-32 pb-20 bg-black text-white min-h-screen">
-      <div className="container px-6 mx-auto">
-        <motion.div 
+    <div className="bg-black text-white min-h-screen">
+      <Navbar />
+      
+      <main className="pt-32 pb-20">
+        <div className="container px-6 mx-auto">
+          <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="max-w-4xl"
@@ -39,6 +43,7 @@ export default function About() {
           </div>
         </motion.div>
       </div>
+      </main>
     </div>
   );
 }

@@ -109,9 +109,9 @@ export default function Products() {
               
               <div className="grid grid-cols-2 gap-4">
                 {stats.map((stat, i) => (
-                  <div key={i} className="p-6 bg-zinc-900/50 rounded-xl border border-white/5">
-                    <p className="text-2xl font-bold mb-1">{stat.value}</p>
-                    <p className="text-xs text-white/40 uppercase tracking-widest">{stat.label}</p>
+                  <div key={i} className="p-6 bg-gradient-to-br from-zinc-900/60 via-zinc-800/40 to-zinc-900/60 border border-emerald-400/30 rounded-xl hover:border-emerald-400/60 transition-all duration-500 group">
+                    <p className="text-2xl font-bold mb-1 text-white group-hover:text-emerald-200 transition-colors">{stat.value}</p>
+                    <p className="text-xs text-emerald-300 uppercase tracking-widest font-bold">{stat.label}</p>
                   </div>
                 ))}
               </div>

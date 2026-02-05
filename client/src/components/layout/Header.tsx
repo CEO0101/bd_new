@@ -1,9 +1,9 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 
-export default function Navbar() {
+export default function Header() {
   return (
-    <motion.nav 
+    <motion.header 
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -27,10 +27,10 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <button className="px-6 py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-black border border-emerald-400/50 rounded-sm text-sm font-medium transition-all duration-300 shadow-lg hover:shadow-emerald-500/20">
+        <button className="px-6 py-2 bg-white/5 hover:bg-primary hover:text-black border border-white/10 rounded-sm text-sm font-medium transition-all duration-300">
           Contact Us
         </button>
       </div>
-    </motion.nav>
+    </motion.header>
   );
 }

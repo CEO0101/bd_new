@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Monochrome Premium Dark Palette */
+  /* Enhanced Dark Palette with Emerald Accents */
   --background: 0 0% 0%;
   --foreground: 0 0% 100%;
   
@@ -23,7 +23,7 @@
   --muted: 0 0% 10%;
   --muted-foreground: 0 0% 60%;
   
-  --accent: 0 0% 15%;       
+  --accent: 142 61% 37%;       /* Emerald Green */
   --accent-foreground: 0 0% 100%; 
   
   --destructive: 0 0% 20%;
@@ -31,7 +31,7 @@
   
   --border: 0 0% 15%;
   --input: 0 0% 15%;
-  --ring: 0 0% 100%;
+  --ring: 142 61% 37%;         /* Emerald Green Ring */
   
   --radius: 0.25rem;
 }
