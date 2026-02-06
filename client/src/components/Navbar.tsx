@@ -1,7 +1,11 @@
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
 
 export default function Navbar() {
+  const [location] = useLocation();
+
+  const isImpact = location === "/impact-calculator";
+
   return (
     <motion.nav 
       initial={{ y: -100 }}
@@ -22,12 +26,37 @@ export default function Navbar() {
           <Link href="/about" className="hover:text-white transition-colors">About</Link>
           <Link href="/technology" className="hover:text-white transition-colors">Technology</Link>
           <Link href="/products" className="hover:text-white transition-colors">Products</Link>
-          <Link href="/impact-calculator" className="hover:text-white transition-colors">Impact Calculator</Link>
+
+          {/* Make Impact Calculator the primary, high-visibility CTA in the sticky header */}
+          <Link
+            href="/impact-calculator"
+            className={
+              "relative px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 " +
+              (isImpact
+                ? "bg-[#A8C3B1] text-black"
+                : "bg-[#A8C3B1]/15 text-[#A8C3B1] border border-[#A8C3B1]/35 hover:bg-[#A8C3B1] hover:text-black")
+            }
+          >
+            Impact Calculator
+            {!isImpact && (
+              <span className="ml-2 inline-flex items-center rounded-full bg-black/40 px-2 py-0.5 text-[10px] font-mono font-black tracking-wider text-white/70 border border-white/10">
+                Try it
+              </span>
+            )}
+          </Link>
         </div>
 
-        <button className="px-6 py-2 bg-white/5 hover:bg-primary hover:text-black border border-white/10 rounded-sm text-sm font-medium transition-all duration-300">
-          Contact Us
-        </button>
+        <Link
+          href="/impact-calculator"
+          className={
+            "px-6 py-2 rounded-sm text-sm font-medium transition-all duration-300 " +
+            (isImpact
+              ? "bg-[#A8C3B1] text-black"
+              : "bg-white/5 hover:bg-[#A8C3B1] hover:text-black border border-white/10")
+          }
+        >
+          Calculate Impact
+        </Link>
       </div>
     </motion.nav>
   );
