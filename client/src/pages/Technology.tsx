@@ -42,7 +42,7 @@ export default function Technology() {
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload="none"
               >
                 <source src={industryProductionVideo} type="video/quicktime" />
                 <source src={industryProductionVideo} />
@@ -67,7 +67,7 @@ export default function Technology() {
           {/* Features Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-32">
             {features.map((feature, i) => (
-              <div key={i} className="p-8 bg-[#F4F6F7] rounded-2xl border border-[#6B6B6B]/20 hover:border-[#2F4858]/40 transition-all duration-500 group">
+              <div key={i} className="p-8 premium-blur-light bg-[#F4F6F7] rounded-2xl border border-[#6B6B6B]/20 hover:border-[#2F4858]/40 transition-all duration-500 group">
                 <div className="w-12 h-12 bg-white border border-[#6B6B6B]/30 rounded-xl flex items-center justify-center mb-8 group-hover:border-[#2F4858]/50 transition-colors">
                   <feature.icon className="w-6 h-6 text-[#2F4858]/70 group-hover:text-[#2F4858] transition-colors" />
                 </div>
@@ -109,7 +109,7 @@ export default function Technology() {
                 { label: "Dust Capture", value: "99.9%" },
                 { label: "Automated Operation", value: "24/7" }
               ].map((stat, i) => (
-                <div key={i} className="p-8 bg-white rounded-2xl border border-[#6B6B6B]/20">
+                <div key={i} className="p-8 premium-blur-light bg-white rounded-2xl border border-[#6B6B6B]/20">
                   <p
                     className={
                       "text-2xl font-bold mb-2 " +
@@ -139,7 +139,7 @@ export default function Technology() {
                 { title: "AI Optimization", desc: "Machine learning for process efficiency", icon: Target },
                 { title: "Remote Management", desc: "Cloud-based system control and analytics", icon: Layers }
               ].map((item, i) => (
-                <div key={i} className="p-8 bg-[#F4F6F7] rounded-2xl border border-[#6B6B6B]/20 flex flex-col items-center">
+                <div key={i} className="p-8 premium-blur-light bg-[#F4F6F7] rounded-2xl border border-[#6B6B6B]/20 flex flex-col items-center">
                   <h4 className="text-sm font-bold mb-2 uppercase tracking-widest text-[#2F4858]">{item.title}</h4>
                   <p className="text-xs text-[#6B6B6B]">{item.desc}</p>
                 </div>

@@ -68,6 +68,8 @@ export default function Invest() {
                   <img
                     src={investorStock}
                     alt="Investor Site Visit"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-72 md:h-80 object-cover opacity-90 grayscale"
                   />
                   <div className="p-6 border-t border-white/10">
@@ -82,7 +84,7 @@ export default function Invest() {
                   construction materials.
                 </p>
 
-                <div className="p-6 bg-zinc-900/40 border border-white/10 rounded-xl">
+                <div className="p-6 premium-blur-dark bg-zinc-900/40 border border-white/10 rounded-xl">
                   <p className="text-sm text-white/60 leading-relaxed">
                     With regional infrastructure growth accelerating and regulations tightening, recycled outputs
                     become a defensible, compliant, and high-demand supply layer.
@@ -100,7 +102,7 @@ export default function Invest() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.05 }}
-                      className="bg-zinc-900/40 border border-white/10 p-6 rounded-xl flex flex-col gap-4 hover:border-white/30 transition-colors"
+                      className="premium-blur-dark bg-zinc-900/40 border border-white/10 p-6 rounded-xl flex flex-col gap-4 hover:border-white/30 transition-colors"
                     >
                       <div
                         className="w-12 h-12 rounded-xl flex items-center justify-center border"
@@ -129,7 +131,7 @@ export default function Invest() {
                   </h2>
 
                   <div className="grid gap-6">
-                    <div className="bg-zinc-900/40 p-8 rounded-2xl border border-white/10 space-y-4">
+                    <div className="premium-blur-dark bg-zinc-900/40 p-8 rounded-2xl border border-white/10 space-y-4">
                       <h3 className="font-mono font-bold uppercase tracking-widest text-xs" style={{ color: ACCENT }}>
                         Resource Efficiency & Scale
                       </h3>
@@ -141,7 +143,7 @@ export default function Invest() {
                       </p>
                     </div>
 
-                    <div className="bg-zinc-900/40 p-8 rounded-2xl border border-white/10 space-y-4">
+                    <div className="premium-blur-dark bg-zinc-900/40 p-8 rounded-2xl border border-white/10 space-y-4">
                       <h3 className="font-mono font-bold uppercase tracking-widest text-xs" style={{ color: ACCENT }}>
                         Regulatory Advantage & Market Gap
                       </h3>
@@ -153,7 +155,7 @@ export default function Invest() {
                       </p>
                     </div>
 
-                    <div className="bg-zinc-900/40 p-8 rounded-2xl border border-white/10">
+                    <div className="premium-blur-dark bg-zinc-900/40 p-8 rounded-2xl border border-white/10">
                       <div className="grid md:grid-cols-2 gap-8">
                         <div className="space-y-2">
                           <h4 className="text-white font-mono font-bold text-[10px] uppercase tracking-widest">

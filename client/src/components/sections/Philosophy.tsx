@@ -12,7 +12,7 @@ export default function Philosophy() {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
         >
           <source src={roadJunctionVideo} type="video/quicktime" />
           <source src={roadJunctionVideo} />

@@ -109,7 +109,7 @@ export default function Products() {
               
               <div className="grid grid-cols-2 gap-4">
                 {stats.map((stat, i) => (
-                  <div key={i} className="p-6 bg-zinc-900/50 rounded-xl border border-white/5">
+                  <div key={i} className="p-6 premium-blur-dark bg-zinc-900/50 rounded-xl border border-white/5">
                     <p className="text-2xl font-bold mb-1">{stat.value}</p>
                     <p className="text-xs text-white/40 uppercase tracking-widest">{stat.label}</p>
                   </div>
@@ -119,7 +119,7 @@ export default function Products() {
 
             <div className="grid grid-cols-2 gap-4">
               {facilityStats.map((stat, i) => (
-                <div key={i} className="p-8 bg-zinc-900/50 rounded-2xl border border-white/5 flex flex-col justify-center">
+                <div key={i} className="p-8 premium-blur-dark bg-zinc-900/50 rounded-2xl border border-white/5 flex flex-col justify-center">
                   <p className="text-3xl font-bold mb-2">{stat.value}</p>
                   <p className="text-sm text-white/40">{stat.label}</p>
                 </div>
@@ -130,7 +130,7 @@ export default function Products() {
           {/* Products Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-32">
             {products.map((product, i) => (
-              <div key={i} className="bg-zinc-900/40 rounded-2xl border border-white/5 overflow-hidden group hover:border-white/20 transition-all duration-500">
+              <div key={i} className="premium-blur-dark bg-zinc-900/40 rounded-2xl border border-white/5 overflow-hidden group hover:border-white/20 transition-all duration-500">
                 <div className="aspect-[4/3] bg-black relative p-6">
                   <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/5">
                     <span className="text-[10px] font-mono font-bold text-white/60">{product.badge}</span>
@@ -187,10 +187,16 @@ export default function Products() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
                   viewport={{ once: true }}
-                  className="group bg-zinc-900/50 p-12 flex flex-col md:flex-row items-center gap-12 border border-white/5 hover:border-white/20 transition-all duration-500 rounded-2xl"
+                  className="group premium-blur-dark bg-zinc-900/50 p-12 flex flex-col md:flex-row items-center gap-12 border border-white/5 hover:border-white/20 transition-all duration-500 rounded-2xl"
                 >
                   <div className="w-full md:w-1/3 aspect-square bg-black grayscale transition-all duration-700 group-hover:grayscale-0 overflow-hidden border border-white/5 rounded-xl">
-                    <img src="/materials.png" alt={product.name} className="w-full h-full object-cover opacity-60" />
+                    <img
+                      src="/materials.png"
+                      alt={product.name}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover opacity-60"
+                    />
                   </div>
                   
                   <div className="flex-1 space-y-6">
@@ -223,7 +229,7 @@ export default function Products() {
                 { title: "Bulk Packaging", desc: "Flexible packaging options for any volume" },
                 { title: "Just-in-Time Delivery", desc: "Optimized logistics for project efficiency" }
               ].map((item, i) => (
-                <div key={i} className="p-8 bg-zinc-900/50 rounded-2xl border border-white/5">
+                <div key={i} className="p-8 premium-blur-dark bg-zinc-900/50 rounded-2xl border border-white/5">
                   <h4 className="text-sm font-bold mb-2 uppercase tracking-widest">{item.title}</h4>
                   <p className="text-xs text-white/40">{item.desc}</p>
                 </div>
@@ -328,4 +334,3 @@ export default function Products() {
     </div>
   );
 }
-

@@ -131,7 +131,7 @@ function ProcessStepCard({
   return (
     <motion.div
       style={{ scale, opacity, filter: brightnessFilter }}
-      className="relative shrink-0 w-[min(520px,85vw)] min-h-[320px] overflow-hidden rounded-2xl border border-white/10 bg-black/40 transition-colors"
+      className="relative shrink-0 w-[min(520px,85vw)] min-h-[320px] overflow-hidden rounded-2xl border border-white/10 premium-blur-dark bg-black/40 transition-colors"
       aria-label={`Step ${index + 1}: ${step.title}`}
     >
       {/* Decorative glow, stronger on active */}
@@ -437,7 +437,7 @@ export default function Process() {
               {steps.map((step, i) => (
                 <div key={step.title} className="snap-center">
                   {/* In fallback mode, render the same card design without scroll-lock logic */}
-                  <div className="relative shrink-0 w-[min(520px,85vw)] overflow-hidden rounded-2xl border border-white/10 bg-black/40">
+                  <div className="relative shrink-0 w-[min(520px,85vw)] overflow-hidden rounded-2xl border border-white/10 premium-blur-dark bg-black/40">
                     <div className="absolute inset-0 pointer-events-none">
                       <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-white/5 blur-3xl" />
                       <div className="absolute -bottom-24 -left-24 w-64 h-64 rounded-full bg-white/5 blur-3xl" />

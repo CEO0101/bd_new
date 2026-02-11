@@ -10,6 +10,7 @@ export default function Hero() {
           loop 
           muted 
           playsInline
+          preload="metadata"
           className="w-full h-full object-cover opacity-40 grayscale"
         >
           <source src={miningVideo} type="video/mp4" />

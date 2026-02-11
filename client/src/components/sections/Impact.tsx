@@ -24,7 +24,7 @@ export default function Impact() {
                   { label: "Recovery Rate", value: "MAX" },
                   { label: "Disruption", value: "MIN" }
                 ].map((stat) => (
-                  <div key={stat.label} className="bg-zinc-900/50 p-10">
+                  <div key={stat.label} className="premium-blur-dark bg-zinc-900/50 p-10">
                     <p className="text-[10px] font-mono uppercase tracking-widest text-white/40 mb-4">{stat.label}</p>
                     <p className="text-5xl font-display font-black tracking-tighter text-white">{stat.value}</p>
                   </div>

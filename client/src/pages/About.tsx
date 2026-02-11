@@ -41,7 +41,7 @@ export default function About() {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
         >
           <source src={aboutBackgroundVideo} type="video/mp4" />
         </video>
@@ -118,7 +118,7 @@ export default function About() {
             </p>
 
             <div className="pt-6">
-              <div className="rounded-2xl border border-[#6B6B6B]/25 bg-[#EFEAE3]/72 p-8 md:p-10">
+              <div className="rounded-2xl border border-[#6B6B6B]/25 premium-blur-light bg-[#EFEAE3]/72 p-8 md:p-10">
                 <div className="flex items-center justify-between gap-6 flex-wrap">
                   <div>
                     <h2 className="text-2xl md:text-3xl font-display font-bold text-[#2E6F57]">
@@ -216,7 +216,7 @@ export default function About() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="bg-[#EFEAE3]/66 border border-[#6B6B6B]/30 rounded-2xl p-8 hover:border-[#2E6F57]/40 transition-all duration-300 group"
+                className="premium-blur-light bg-[#EFEAE3]/66 border border-[#6B6B6B]/30 rounded-2xl p-8 hover:border-[#2E6F57]/40 transition-all duration-300 group"
               >
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-12 bg-white/70 border border-[#6B6B6B]/40 rounded-xl flex items-center justify-center group-hover:border-[#2E6F57]/50 transition-colors">
@@ -258,7 +258,7 @@ export default function About() {
             </div>
 
               <div className="pt-20">
-                 <div className="rounded-2xl border border-[#6B6B6B]/25 bg-[#EFEAE3]/68 p-12">
+                 <div className="rounded-2xl border border-[#6B6B6B]/25 premium-blur-light bg-[#EFEAE3]/68 p-12">
                    <h2 className="text-3xl font-display font-bold mb-6 italic text-[#2E6F57]">"Waste is only waste if we fail to see its potential."</h2>
                    <p className="text-sm font-mono uppercase tracking-widest text-[#343434]">— Precision Granite Recovery Leadership</p>
                  </div>
@@ -274,11 +274,12 @@ export default function About() {
             transition={{ duration: 0.45, delay: 0.15 }}
           >
             <div className="space-y-5">
-              <div className="rounded-2xl border border-[#6B6B6B]/25 bg-[#EFEAE3]/68 p-6">
-                <p className="text-[10px] font-mono uppercase tracking-[0.32em] text-[#343434]">
+              <div className="relative overflow-hidden rounded-2xl border border-white/55 bg-white/30 p-6 backdrop-blur-2xl shadow-[0_14px_38px_rgba(17,24,39,0.18),inset_0_1px_0_rgba(255,255,255,0.82)]">
+                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(130deg,rgba(255,255,255,0.52)_0%,rgba(255,255,255,0.18)_42%,rgba(255,255,255,0.04)_100%)]" />
+                <p className="relative text-[10px] font-mono uppercase tracking-[0.32em] text-[#343434]">
                   Scroll Assistant
                 </p>
-                <div className="mt-5 flex items-center gap-5">
+                <div className="relative mt-5 flex items-center gap-5">
                   <div className="relative h-44 w-[7px] overflow-hidden rounded-full bg-[#6B6B6B]/20">
                     <motion.div
                       className="absolute inset-x-0 bottom-0 h-full origin-bottom rounded-full bg-gradient-to-t from-[#2E6F57] via-[#2E6F57]/80 to-[#2E6F57]/30"
@@ -290,9 +291,9 @@ export default function About() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <p className="text-sm font-semibold text-[#2E6F57]">Reading Progress</p>
+                    <p className="text-sm font-semibold text-[#2E6F57]">Scroll Down</p>
                     <p className="text-sm text-[#343434] leading-relaxed">
-                      Smoothly tracks your movement through this page.
+                      Follow your progress as you explore Black Diamond's identity and mission.
                     </p>
                   </div>
                 </div>

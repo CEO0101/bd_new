@@ -1,4 +1,44 @@
+import { Suspense, lazy, useEffect, useRef, useState, type ReactNode } from "react";
 import { motion } from "framer-motion";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/sections/Hero";
+
+const Philosophy = lazy(() => import("@/components/sections/Philosophy"));
+const Process = lazy(() => import("@/components/sections/Process"));
+const Impact = lazy(() => import("@/components/sections/Impact"));
+
+function DeferredSection({ children }: { children: ReactNode }) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || isVisible) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px 0px" },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [isVisible]);
+
+  return (
+    <div ref={ref}>
+      {isVisible ? (
+        <Suspense fallback={<div className="h-40 bg-black" />}>{children}</Suspense>
+      ) : (
+        <div className="h-40 bg-black" />
+      )}
+    </div>
+  );
+}
 
 export default function Home() {
   return (
@@ -8,11 +48,17 @@ export default function Home() {
       <main className="bg-black pt-20">
         <Hero />
         <div className="h-[1px] w-full bg-white/10" />
-        <Philosophy />
+        <DeferredSection>
+          <Philosophy />
+        </DeferredSection>
         <div className="h-[1px] w-full bg-white/10" />
-        <Process />
+        <DeferredSection>
+          <Process />
+        </DeferredSection>
         <div className="h-[1px] w-full bg-white/10" />
-        <Impact />
+        <DeferredSection>
+          <Impact />
+        </DeferredSection>
         <div className="h-[1px] w-full bg-white/10" />
         
         <footer className="py-32 bg-black text-white border-t border-white/10">
@@ -107,10 +153,3 @@ export default function Home() {
     </div>
   );
 }
-
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/sections/Hero";
-import Philosophy from "@/components/sections/Philosophy";
-import Process from "@/components/sections/Process";
-import Impact from "@/components/sections/Impact";
-import Products from "@/components/sections/Products";

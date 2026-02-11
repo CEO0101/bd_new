@@ -173,7 +173,7 @@ export default function ImpactCalculator() {
           <div className="grid lg:grid-cols-3 gap-8 items-start">
             {/* Input Section */}
             <div className="lg:col-span-1 space-y-6">
-              <div className="bg-zinc-900/40 border border-white/10 p-6 rounded-xl space-y-4 shadow-xl">
+              <div className="premium-blur-dark bg-zinc-900/40 border border-white/10 p-6 rounded-xl space-y-4 shadow-xl">
                 <div>
                   <label htmlFor="tons" className="block text-sm font-mono font-bold text-white uppercase tracking-widest mb-3">
                     Granite Waste Processed
