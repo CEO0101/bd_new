@@ -112,7 +112,7 @@ const Footer = () => (
 );
 
 export default function ImpactCalculator() {
-  const [tons, setTons] = useState<number>(1000);
+  const [tons, setTons] = useState<number>(0);
   const [results, setResults] = useState({
     sandSaved: 0,
     wasteDiverted: 0,
@@ -183,13 +183,13 @@ export default function ImpactCalculator() {
                       id="tons"
                       type="text"
                       inputMode="numeric"
-                      value={tons === 0 ? "" : tons.toString()}
+                      value={tons.toString()}
                       onChange={(e) => {
                         const val = e.target.value.replace(/[^0-9]/g, "");
                         setTons(val === "" ? 0 : parseInt(val));
                       }}
                       className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white text-xl font-black focus:outline-none focus:border-white/30 transition-colors"
-                      placeholder="e.g., 1000"
+                      placeholder="e.g., 0"
                     />
                     <span className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 font-mono font-bold text-xs tracking-widest">TONS</span>
                   </div>

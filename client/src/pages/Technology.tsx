@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Cpu, Zap, Wind, BarChart3, Target, Leaf, RefreshCw, Layers } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import industryProductionVideo from "@assets/6000286_Industry_Production_1280x720.mov";
 
 export default function Technology() {
   const features = [
@@ -33,17 +34,34 @@ export default function Technology() {
       <main className="pt-32 pb-20">
         <div className="container px-6 mx-auto">
           {/* Hero Section */}
-          <div className="mb-24">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-7xl font-display font-black mb-6 text-[#2F4858]"
-            >
-              Advanced <br /> Processing <br /> Technology
-            </motion.h1>
-            <p className="text-[#6B6B6B] text-lg max-w-2xl">
-              Cutting-edge systems designed for maximum efficiency and minimal environmental impact.
-            </p>
+          <div className="relative mb-24 overflow-hidden rounded-3xl border border-[#6B6B6B]/20 min-h-[360px] md:min-h-[420px]">
+            <div className="absolute inset-0 z-0">
+              <video
+                className="h-full w-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+              >
+                <source src={industryProductionVideo} type="video/quicktime" />
+                <source src={industryProductionVideo} />
+              </video>
+            </div>
+            <div className="absolute inset-0 z-10 bg-[#EEF1F2]/72" />
+
+            <div className="relative z-20 p-8 md:p-12">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-5xl md:text-7xl font-display font-black mb-6 text-[#2F4858]"
+              >
+                Advanced <br /> Processing <br /> Technology
+              </motion.h1>
+              <p className="text-[#4E4E4E] text-lg max-w-2xl">
+                Cutting-edge systems designed for maximum efficiency and minimal environmental impact.
+              </p>
+            </div>
           </div>
 
           {/* Features Grid */}
