@@ -17,39 +17,76 @@ export default function Products() {
     { label: "Landfill Waste", value: "0%" },
   ];
 
-  const products = [
+  const engineeredOutputs = [
     {
-      name: "Granite Aggregates",
-      badge: "Premium",
-      size: "10-20mm",
-      features: ["Precise Sizing", "Moisture Control"],
-      uses: ["Construction", "Road Building", "Railway Ballast"],
-      img: "/products/aggregates.png"
-    },
-    {
-      name: "Granite Sand",
-      badge: "Fine",
+      id: "01",
+      name: "M-Sand",
+      subtitle: "Manufactured Sand",
       size: "0.5-2mm",
-      features: ["Precise Sizing", "Moisture Control"],
-      uses: ["Concrete Mix", "Mortar", "Plastering"],
-      img: "/products/sand.png"
+      keyAttributes: [
+        "Fine fraction engineered for mix performance",
+        "Consistent grading and shape",
+        "Designed for concrete, mortars, plaster",
+      ],
+      useCases: ["Ready-mix concrete", "Masonry mortars", "Plaster & finishing"],
     },
     {
+      id: "02",
+      name: "G-Sand",
+      subtitle: "Graded Aggregates",
+      size: "10-20mm (controlled fractions)",
+      keyAttributes: [
+        "Controlled size fractions (e.g., 10-20mm)",
+        "Engineered shape",
+        "Consistent interlock performance",
+      ],
+      useCases: ["Heavy construction", "Road bases", "Railway ballast"],
+    },
+    {
+      id: "03",
       name: "Granite Fines",
-      badge: "Ultra-Fine",
+      subtitle: "Specialised Fine Fractions",
       size: "0.075-0.5mm",
-      features: ["Precise Sizing", "Moisture Control"],
-      uses: ["Filler Material", "Asphalt", "Industrial Applications"],
-      img: "/products/fines.png"
+      keyAttributes: [
+        "Ultrafinely controlled fractions",
+        "Designed for fillers and specialised mixes",
+      ],
+      useCases: ["Asphalt fillers", "Industrial blocks", "High-density layers"],
     },
     {
-      name: "Granite Dust",
-      badge: "Micro",
+      id: "04",
+      name: "Granite Dust / Micro",
+      subtitle: "Micro Fraction Output",
       size: "<0.075mm",
-      features: ["Precise Sizing", "Moisture Control"],
-      uses: ["Soil Stabilization", "Agriculture", "Manufacturing"],
-      img: "/products/dust.png"
-    }
+      keyAttributes: [
+        "Micro fractions",
+        "Applied where fine particle integration improves stability",
+      ],
+      useCases: ["Soil stabilisation", "Specialised manufacturing inputs"],
+    },
+  ];
+
+  const useCaseMatrix = [
+    {
+      product: "Manufactured Sand",
+      primaryUse: "Concrete",
+      secondaryUse: "Plaster mortar",
+    },
+    {
+      product: "Graded Aggregates",
+      primaryUse: "Roads & foundations",
+      secondaryUse: "Railway & heavy civils",
+    },
+    {
+      product: "Granite Fines",
+      primaryUse: "Asphalt filler",
+      secondaryUse: "Industrial blends",
+    },
+    {
+      product: "Granite Dust",
+      primaryUse: "Soil stabilisation",
+      secondaryUse: "Secondary mixes",
+    },
   ];
 
   const catalogueProducts = [
@@ -127,45 +164,119 @@ export default function Products() {
             </div>
           </div>
 
-          {/* Products Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-32">
-            {products.map((product, i) => (
-              <div key={i} className="premium-blur-dark bg-zinc-900/40 rounded-2xl border border-white/5 overflow-hidden group hover:border-white/20 transition-all duration-500">
-                <div className="aspect-[4/3] bg-black relative p-6">
-                  <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/5">
-                    <span className="text-[10px] font-mono font-bold text-white/60">{product.badge}</span>
-                  </div>
-                  <div className="w-full h-full flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-700">
-                    <div className="w-24 h-24 bg-white/5 rounded-full animate-pulse" />
-                  </div>
-                </div>
-                
-                <div className="p-8 space-y-6">
-                  <div>
-                    <h3 className="text-xl font-bold mb-1">{product.name}</h3>
-                    <p className="text-xs text-white/40 font-mono">Size: {product.size}</p>
-                  </div>
-                  
-                  <div className="flex gap-4">
-                    {product.features.map((f, idx) => (
-                      <div key={idx} className="flex items-center gap-2">
-                         <div className="w-1 h-1 bg-white/40 rounded-full" />
-                         <span className="text-[10px] text-white/60 font-mono">{f}</span>
-                      </div>
-                    ))}
+          {/* Engineered Outputs */}
+          <div className="mb-32">
+            <div className="mb-12 max-w-3xl">
+              <span className="mb-5 block text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-white/40">
+                Engineered Outputs
+              </span>
+              <h2 className="text-5xl font-display font-black tracking-tighter text-white md:text-7xl">
+                USE-CASE BASED <br /> <span className="text-white/25">MATERIALS.</span>
+              </h2>
+              <p className="mt-6 text-sm leading-relaxed text-white/60 md:text-base">
+                Use-case based outputs, not a generic product catalog. Each material profile is engineered
+                for repeatable field performance.
+              </p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              {engineeredOutputs.map((output, i) => (
+                <motion.article
+                  key={output.name}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.08 }}
+                  viewport={{ once: true }}
+                  className="rounded-2xl border border-white/10 bg-zinc-900/45 p-8 premium-blur-dark"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/40">
+                        {output.id}
+                      </span>
+                      <h3 className="mt-2 text-3xl font-display font-black tracking-tight text-white">
+                        {output.name}
+                      </h3>
+                      <p className="mt-2 text-xs font-mono uppercase tracking-[0.18em] text-[#A8C3B1]">
+                        {output.subtitle}
+                      </p>
+                    </div>
+                    <span className="rounded-full border border-white/15 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.18em] text-white/50">
+                      {output.size}
+                    </span>
                   </div>
 
-                  <ul className="space-y-2">
-                    {product.uses.map((use, idx) => (
-                      <li key={idx} className="flex items-center gap-3 text-xs text-white/40">
-                        <div className="w-1 h-1 bg-white/20 rounded-full" />
-                        {use}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                  <div className="mt-7 grid gap-6 lg:grid-cols-2">
+                    <div>
+                      <p className="mb-3 text-[10px] font-mono uppercase tracking-[0.22em] text-white/40">
+                        Key attributes
+                      </p>
+                      <ul className="space-y-2">
+                        {output.keyAttributes.map((item) => (
+                          <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-white/70">
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A8C3B1]" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div>
+                      <p className="mb-3 text-[10px] font-mono uppercase tracking-[0.22em] text-white/40">
+                        Use-cases
+                      </p>
+                      <ul className="space-y-2">
+                        {output.useCases.map((item) => (
+                          <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-white/70">
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-white/45" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+
+            <div className="mt-10 rounded-2xl border border-white/10 bg-zinc-900/35 p-8 premium-blur-dark">
+              <h3 className="text-2xl font-display font-black text-white">Why These Outputs Matter</h3>
+              <p className="mt-4 max-w-5xl text-sm leading-relaxed text-white/65 md:text-base">
+                The BlackDiamond system does more than crush stone. It manages fragmentation, flow
+                behaviour, fines control, and sizing precision so each product performs exactly as intended
+                in its application. This is how engineering logic translates into real infrastructure reliability.
+              </p>
+            </div>
+
+            <div className="mt-8 rounded-2xl border border-white/10 bg-zinc-900/35 p-8 premium-blur-dark">
+              <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+                <h3 className="text-2xl font-display font-black text-white">Material & Use-Case Matrix</h3>
+                <p className="text-[10px] font-mono uppercase tracking-[0.24em] text-white/40">
+                  Primary vs Secondary Fit
+                </p>
               </div>
-            ))}
+
+              <div className="mt-6 overflow-x-auto">
+                <table className="w-full min-w-[640px] border-collapse">
+                  <thead>
+                    <tr className="border-b border-white/10 text-left">
+                      <th className="pb-3 pr-4 text-[10px] font-mono uppercase tracking-[0.22em] text-white/40">Product</th>
+                      <th className="pb-3 pr-4 text-[10px] font-mono uppercase tracking-[0.22em] text-white/40">Primary Use</th>
+                      <th className="pb-3 text-[10px] font-mono uppercase tracking-[0.22em] text-white/40">Secondary Use</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {useCaseMatrix.map((row) => (
+                      <tr key={row.product} className="border-b border-white/5 last:border-0">
+                        <td className="py-4 pr-4 text-sm font-semibold text-white">{row.product}</td>
+                        <td className="py-4 pr-4 text-sm text-white/70">{row.primaryUse}</td>
+                        <td className="py-4 text-sm text-white/70">{row.secondaryUse}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
 
           {/* Output Catalogue Section (Moved from Landing Page) */}

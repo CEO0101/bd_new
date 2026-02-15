@@ -37,7 +37,7 @@ export default function Hero() {
             transition={{ delay: 0.1, duration: 0.8 }}
             className="text-4xl md:text-6xl lg:text-8xl font-display font-black leading-[1.1] mb-12 tracking-[-0.04em] text-white"
           >
-            India can now build without <br className="hidden md:block" /> destroying its land.
+            India is building at an unprecedented scale.
           </motion.h1>
 
           <div className="grid lg:grid-cols-2 gap-20 items-end">
@@ -48,7 +48,7 @@ export default function Hero() {
               className="space-y-8"
             >
               <p className="text-xl md:text-2xl text-white font-light leading-relaxed max-w-2xl">
-                
+                The question is not whether we build — but how.
               </p>
               
               <div className="flex gap-12 pt-8 border-t border-white/20">

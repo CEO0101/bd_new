@@ -1,9 +1,187 @@
-import { useEffect } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { motion, useInView, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import aboutBackgroundVideo from "@assets/6010532_Nature_Rock_1280x720compresseddamed.mp4";
 
+type StoryStep = {
+  id: string;
+  section: string;
+  title: string;
+  paragraphs: string[];
+  blocks?: string[];
+  bullets?: string[];
+};
+
+type MilestoneStep = {
+  period: string;
+  title: string;
+  paragraphs: string[];
+  question?: string;
+  lead?: string;
+  bullets?: string[];
+  emphasis?: string;
+};
+
+type ValuePoint = {
+  title: string;
+  detail: string;
+};
+
+const aboutStory: StoryStep[] = [
+  {
+    id: "1",
+    section: "How It Started",
+    title: "A System Built Before It Was Scaled",
+    paragraphs: [
+      "Begur Sands Private Limited did not begin as a company trying to grow quickly. It began as work that needed to be done properly.",
+      "India's construction materials sector has long relied on availability over reliability. Materials arrive, projects move forward - but the systems behind them are inconsistent, opaque, and hard on land and water.",
+      "This platform was built to take a different approach: slow first, correct first, then scale.",
+    ],
+  },
+  {
+    id: "2.2",
+    section: "What We Chose to Do Differently",
+    title: "A New Operating Logic",
+    blocks: ["Compliance-first", "System-led operations", "Centralised expertise", "No shortcuts"],
+    paragraphs: [
+      "The problem was not demand. The problem was how that demand was being served.",
+      "Across the industry, the same patterns repeated: material behaviour that changed batch to batch, processes that depended on operator intuition, and systems that worked locally but broke under scale.",
+      "Incremental fixes could not solve structural weakness. A new operating logic was required.",
+    ],
+  },
+  {
+    id: "2.3",
+    section: "How We Built the System",
+    title: "Research Before Revenue (2016)",
+    paragraphs: [
+      "The earliest work began in 2016, without factories, branding, or commercial pressure. The focus was basic and technical.",
+      "This phase produced no output worth selling. What it produced was clarity about what would not work if consistency and accountability were taken seriously.",
+    ],
+    bullets: [
+      "how weathered, already-disturbed stone behaves under crushing",
+      "why conventional flows struggle to control gradation",
+      "where variability enters the system and compounds downstream",
+    ],
+  },
+];
+
+const growthMilestones: MilestoneStep[] = [
+  {
+    period: "2018",
+    title: "When Reality Removed All Doubt",
+    paragraphs: [
+      "In August 2018, Kerala faced catastrophic flooding, widely described as the disaster of the century.",
+      "483 lives were lost, along with farmland, homes, infrastructure, and ecological balance.",
+      "For a farmer from Wayanad, this was not a statistic. It was soil that could no longer hold water, fields that had fed families for generations buried overnight, and land that had been weakened long before the rain arrived.",
+      "The flooding did not feel sudden. It felt accumulated.",
+    ],
+    emphasis:
+      "When land systems are pushed beyond recovery, development stops being progress and starts becoming risk. From this point on, the work stopped being exploratory. It became deliberate.",
+  },
+  {
+    period: "2018-2023",
+    title: "Engineering by Elimination",
+    paragraphs: [
+      "An experimental facility was set up, not to produce material, but to reject systems honestly.",
+      "Most could not.",
+      "Some delivered volume but drifted in quality. Others held consistency briefly, then collapsed under longer runs.",
+    ],
+    question: "Can this repeat under constraint?",
+    lead: "Focus areas included:",
+    bullets: [
+      "super-primary crushing behaviour",
+      "simultaneous size segregation",
+      "fines control as an engineered outcome",
+      "stability across variable inputs",
+    ],
+    emphasis: "Anything that depended on adjustment instead of design was removed.",
+  },
+  {
+    period: "2020-2023",
+    title: "From Machines to Discipline",
+    paragraphs: [
+      "As the system matured, attention moved away from equipment and toward operating discipline.",
+    ],
+    lead: "This phase focused on:",
+    bullets: [
+      "writing SOPs that could survive operator change",
+      "embedding traceability into material flow, not paperwork",
+      "integrating water reuse and dust control as core layers",
+      "preparing the system to be copied without dilution",
+    ],
+    emphasis: "If a process could not be governed, audited, and taught, it did not move forward.",
+  },
+  {
+    period: "2024",
+    title: "Formalising the Backbone",
+    paragraphs: [
+      "By 2024, the system had reached stability.",
+      "Only then was Begur Sands Private Limited formalised, deliberately structured to hold:",
+    ],
+    bullets: ["operational knowledge", "process ownership", "governance and control"],
+    emphasis: "The order mattered. The system came first. The company followed.",
+  },
+  {
+    period: "2025",
+    title: "First Commercial Validation",
+    paragraphs: [
+      "In 2025, the platform entered its first operational pilot under commercial conditions.",
+    ],
+    bullets: ["~400,000 tonnes produced", "full SOP execution", "consistency validated under load"],
+    lead: "This phase confirmed something important:",
+    emphasis: "the system worked not just on paper, but under pressure.",
+  },
+  {
+    period: "Structure",
+    title: "Brand Architecture",
+    paragraphs: [
+      "The operating structure is intentionally simple.",
+      "Begur Sands Private Limited owns the system, the discipline, and the operating logic.",
+      "BlackDiamond Granites is the execution and expansion brand, carrying that system into the market.",
+    ],
+    emphasis: "Scale is allowed. Compromise is not.",
+  },
+];
+
+const coreValues: ValuePoint[] = [
+  {
+    title: "Systems over shortcuts",
+    detail: "We design processes that work consistently, independent of individuals.",
+  },
+  {
+    title: "Discipline before scale",
+    detail: "We scale only what can be governed, audited, and repeated.",
+  },
+  {
+    title: "Data for improvement",
+    detail: "We use data to reduce variance and improve performance - not for optics.",
+  },
+  {
+    title: "Accountability as standard",
+    detail: "Traceability and compliance are treated as operating infrastructure.",
+  },
+  {
+    title: "Respect for land and water",
+    detail: "Land and water stability are essential to long-term infrastructure.",
+  },
+];
+
 export default function About() {
+  const storyRef = useRef<HTMLElement | null>(null);
+  const isStoryInView = useInView(storyRef, { once: true, margin: "-100px" });
+  const { scrollYProgress: storyProgress } = useScroll({
+    target: storyRef,
+    offset: ["start end", "end start"],
+  });
+  const storyLineHeight = useTransform(storyProgress, [0.1, 0.9], ["0%", "100%"]);
+  const growthRef = useRef<HTMLElement | null>(null);
+  const isGrowthInView = useInView(growthRef, { once: true, margin: "-120px" });
+  const { scrollYProgress: growthProgress } = useScroll({
+    target: growthRef,
+    offset: ["start end", "end start"],
+  });
+  const growthLineHeight = useTransform(growthProgress, [0.08, 0.92], ["0%", "100%"]);
+
   const rawProgress = useMotionValue(0);
   const smoothProgress = useSpring(rawProgress, {
     stiffness: 110,
@@ -50,28 +228,6 @@ export default function About() {
 
       <Navbar />
       <style>{`
-        @keyframes blockFade {
-          0% { opacity: 1; transform: translateY(0); }
-          40% { opacity: 1; transform: translateY(0); }
-          70% { opacity: 0.25; transform: translateY(6px); }
-          100% { opacity: 0; transform: translateY(10px); }
-        }
-        @keyframes sandRise {
-          0% { opacity: 0; transform: translateY(14px); }
-          35% { opacity: 0; transform: translateY(14px); }
-          65% { opacity: 0.8; transform: translateY(0); }
-          100% { opacity: 1; transform: translateY(-2px); }
-        }
-        @keyframes aggregateRise {
-          0% { opacity: 0; transform: translateY(20px); }
-          55% { opacity: 0; transform: translateY(20px); }
-          85% { opacity: 0.9; transform: translateY(2px); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes conveyor {
-          0% { background-position: 0% 50%; }
-          100% { background-position: 100% 50%; }
-        }
         @keyframes scrollNudge {
           0%, 100% { transform: translateY(0); opacity: 0.8; }
           50% { transform: translateY(10px); opacity: 0.25; }
@@ -107,163 +263,297 @@ export default function About() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-4xl xl:max-w-none"
           >
-            <span className="text-[10px] font-mono uppercase tracking-[0.4em] font-bold text-[#343434] mb-8 block">Our Identity</span>
-            <h1 className="text-6xl md:text-8xl font-display font-black tracking-tighter mb-12 text-[#2E6F57]">
-              BLACK <br/> <span className="text-[#2E6F57]/30">DIAMOND.</span>
+            <span className="mb-8 block text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-[#343434]">
+              About The Platform
+            </span>
+            <h1 className="mb-12 text-5xl font-display font-black tracking-tighter text-[#2E6F57] md:text-7xl xl:text-8xl">
+              A SYSTEM BUILT <br /> <span className="text-[#2E6F57]/35">BEFORE IT WAS SCALED.</span>
             </h1>
-            
-            <div className="space-y-12 text-xl md:text-2xl font-normal text-[#343434] leading-relaxed">
-            <p>
-              BlackDiamond Granites operates as an industrial mineral recycling platform under Begur Sands Private Limited. The company works within the construction materials sector, producing manufactured sand and construction aggregates for infrastructure and building applications across Karnataka. Operations are carried out within a fully regulated framework. Statutory compliance governs sourcing, processing, and dispatch, with traceability integrated directly into daily operations rather than treated as a secondary control. The platform was developed to address a long-standing structural gap in the construction materials ecosystem. As infrastructure demand continues to grow, conventional sourcing practices have historically caused environmental and agricultural impact. BlackDiamond Granites was established to help correct this imbalance through controlled, recycling-based material processing.
+
+            <p className="max-w-3xl text-lg font-normal leading-relaxed text-[#343434] md:text-2xl">
+              BlackDiamond Granites operates under Begur Sands Private Limited as an industrial mineral
+              recycling platform for manufactured sand and aggregates. The operating system was designed
+              to prioritise compliance, consistency, and traceability before scale.
             </p>
 
-            <div className="pt-6">
-              <div className="rounded-2xl border border-[#6B6B6B]/25 premium-blur-light bg-[#EFEAE3]/72 p-8 md:p-10">
-                <div className="flex items-center justify-between gap-6 flex-wrap">
-                  <div>
-                    <h2 className="text-2xl md:text-3xl font-display font-bold text-[#2E6F57]">
-                      Material Transformation
-                    </h2>
-                    <p className="mt-3 text-base md:text-lg text-[#343434] max-w-2xl">
-                      A controlled, industrial conversion from recovered granite to high-grade construction sand and aggregates.
-                    </p>
-                  </div>
-                  <div className="text-xs font-mono uppercase tracking-[0.35em] text-[#343434]">
-                    Process Flow
-                  </div>
-                </div>
+            <section ref={storyRef} className="relative mt-16">
+              <div className="absolute bottom-0 left-7 top-0 w-px bg-[#6B6B6B]/30 md:left-1/2 md:-translate-x-1/2">
+                <motion.div
+                  style={{ height: storyLineHeight }}
+                  className="w-full bg-gradient-to-b from-[#2E6F57] via-[#2E6F57]/80 to-[#6B6B6B]"
+                />
+              </div>
 
-                <div className="mt-8 grid lg:grid-cols-[1.1fr_1.3fr] gap-10 items-center">
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3 text-sm font-mono uppercase tracking-widest text-[#343434]">
-                      <span className="w-2 h-2 bg-[#2E6F57] rounded-full" />
-                      Granite Recovery
-                    </div>
-                    <div className="flex items-center gap-3 text-sm font-mono uppercase tracking-widest text-[#343434]">
-                      <span className="w-2 h-2 bg-[#6B6B6B] rounded-full" />
-                      Controlled Processing
-                    </div>
-                    <div className="flex items-center gap-3 text-sm font-mono uppercase tracking-widest text-[#343434]">
-                      <span className="w-2 h-2 bg-[#2E6F57] rounded-full" />
-                      Sand + Aggregates
-                    </div>
-                  </div>
+              <div className="space-y-16 md:space-y-24">
+                {aboutStory.map((step, index) => {
+                  const isEven = index % 2 === 0;
 
-                  <div className="relative h-56 md:h-64 rounded-2xl border border-[#6B6B6B]/20 bg-[#F7F7F7] overflow-hidden">
-                    <div
-                      className="absolute inset-0 opacity-60"
-                      style={{
-                        backgroundImage:
-                          "linear-gradient(120deg, rgba(46,111,87,0.12), rgba(107,107,107,0.08), rgba(46,111,87,0.12))",
-                        backgroundSize: "200% 100%",
-                        animation: "conveyor 14s linear infinite",
+                  return (
+                    <motion.article
+                      key={step.id}
+                      initial={{ opacity: 0, x: isEven ? -30 : 30 }}
+                      animate={isStoryInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{
+                        duration: 0.8,
+                        delay: 0.2 + index * 0.14,
+                        ease: [0.16, 1, 0.3, 1],
                       }}
-                    />
-
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="relative w-[72%] max-w-md h-36 md:h-40">
-                        <div
-                          className="absolute inset-0 rounded-xl border border-[#6B6B6B]/30 bg-[#6E6A63]"
-                          style={{ animation: "blockFade 16s ease-in-out infinite" }}
+                      className={`relative flex items-start gap-8 ${isEven ? "md:flex-row" : "md:flex-row-reverse"}`}
+                    >
+                      <div className="absolute left-7 top-2 h-4 w-4 -translate-x-1/2 md:left-1/2">
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={isStoryInView ? { scale: 1 } : {}}
+                          transition={{ delay: 0.4 + index * 0.15, duration: 0.45, type: "spring" }}
+                          className="h-4 w-4 rounded-full border-4 border-[#EFEAE3] bg-[#2E6F57]"
                         />
-                        <div
-                          className="absolute inset-0 rounded-xl border border-[#6B6B6B]/30"
-                          style={{
-                            backgroundImage:
-                              "radial-gradient(circle at 12% 30%, rgba(46,111,87,0.18), transparent 40%), radial-gradient(circle at 80% 70%, rgba(107,107,107,0.22), transparent 45%), linear-gradient(180deg, rgba(255,255,255,0.05), rgba(0,0,0,0.05))",
-                            animation: "blockFade 16s ease-in-out infinite",
-                          }}
-                        />
-
-                        <div
-                          className="absolute inset-x-6 bottom-8 h-16 rounded-lg border border-[#6B6B6B]/25"
-                          style={{
-                            backgroundImage:
-                              "radial-gradient(circle, rgba(107,107,107,0.25) 1px, transparent 1.5px), radial-gradient(circle, rgba(46,111,87,0.18) 1.2px, transparent 1.6px)",
-                            backgroundSize: "10px 10px, 14px 14px",
-                            backgroundPosition: "0 0, 6px 4px",
-                            backgroundColor: "rgba(239,234,227,0.9)",
-                            animation: "sandRise 16s ease-in-out infinite",
-                          }}
-                        />
-
-                        <div
-                          className="absolute inset-x-10 bottom-2 h-12 rounded-lg border border-[#6B6B6B]/25"
-                          style={{
-                            backgroundImage:
-                              "radial-gradient(circle, rgba(107,107,107,0.35) 2.5px, transparent 3px), radial-gradient(circle, rgba(46,111,87,0.22) 2px, transparent 2.8px)",
-                            backgroundSize: "18px 18px, 22px 22px",
-                            backgroundPosition: "0 0, 8px 6px",
-                            backgroundColor: "rgba(247,247,247,0.95)",
-                            animation: "aggregateRise 16s ease-in-out infinite",
-                          }}
+                        <motion.div
+                          animate={isStoryInView ? { scale: [1, 1.6, 1], opacity: [0.45, 0, 0.45] } : {}}
+                          transition={{ duration: 2.2, repeat: Number.POSITIVE_INFINITY, delay: index * 0.25 }}
+                          className="absolute inset-0 rounded-full bg-[#2E6F57]/40"
                         />
                       </div>
-                    </div>
 
-                    <div className="absolute inset-x-0 bottom-4 flex items-center justify-between px-6 text-[10px] font-mono uppercase tracking-[0.35em] text-[#343434]">
-                      <span>Granite</span>
-                      <span>Sand</span>
-                      <span>Aggregate</span>
-                    </div>
-                  </div>
-                </div>
+                      <div className={`flex-1 pl-16 md:pl-0 ${isEven ? "md:pr-16" : "md:pl-16"}`}>
+                        <div
+                          className={`inline-block max-w-xl rounded-2xl border border-[#6B6B6B]/25 bg-[#EFEAE3]/68 p-6 shadow-[0_14px_32px_rgba(17,24,39,0.12)] md:p-8 ${
+                            isEven ? "md:ml-auto" : ""
+                          }`}
+                        >
+                          <span className="text-[10px] font-mono uppercase tracking-[0.28em] text-[#2E6F57]">
+                            {step.id} {step.section}
+                          </span>
+                          <h2 className="mt-3 text-2xl font-display font-black tracking-tight text-[#1b1b1b] md:text-3xl">
+                            {step.title}
+                          </h2>
+
+                          {step.blocks ? (
+                            <div className="mt-5">
+                              <p className="mb-2 text-[10px] font-mono uppercase tracking-[0.24em] text-[#343434]/80">
+                                Narrative blocks:
+                              </p>
+                              <div className="flex flex-wrap gap-2">
+                              {step.blocks.map((block) => (
+                                <span
+                                  key={block}
+                                  className="rounded-full border border-[#2E6F57]/30 bg-[#2E6F57]/10 px-3 py-1.5 text-[10px] font-mono uppercase tracking-[0.18em] text-[#2E6F57]"
+                                >
+                                  {block}
+                                </span>
+                              ))}
+                              </div>
+                            </div>
+                          ) : null}
+
+                          <div className="mt-5 space-y-4">
+                            {step.paragraphs.map((paragraph, paragraphIndex) => (
+                              <p key={`${step.id}-${paragraphIndex}`} className="text-sm leading-relaxed text-[#343434] md:text-base">
+                                {paragraph}
+                              </p>
+                            ))}
+                          </div>
+
+                          {step.bullets ? (
+                            <ul className="mt-5 space-y-2">
+                              {step.bullets.map((bullet) => (
+                                <li
+                                  key={bullet}
+                                  className="flex items-start gap-3 text-sm leading-relaxed text-[#343434] md:text-base"
+                                >
+                                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#2E6F57]" />
+                                  <span>{bullet}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          ) : null}
+                        </div>
+                      </div>
+
+                      <div className="hidden flex-1 md:block" />
+                    </motion.article>
+                  );
+                })}
               </div>
-            </div>
+            </section>
 
-            <div className="grid md:grid-cols-2 gap-8 pt-16">
+            <section
+              ref={growthRef}
+              className="relative mt-24 overflow-hidden rounded-[28px] border border-[#244636]/60 bg-[#112118]/92 text-[#F2EEE6]"
+            >
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(46,111,87,0.24),transparent_44%),linear-gradient(140deg,rgba(255,255,255,0.06),rgba(255,255,255,0)_38%)]" />
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/20" />
+
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="premium-blur-light bg-[#EFEAE3]/66 border border-[#6B6B6B]/30 rounded-2xl p-8 hover:border-[#2E6F57]/40 transition-all duration-300 group"
+                initial={{ opacity: 0, y: 24 }}
+                animate={isGrowthInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                className="relative z-10 px-6 py-14 md:px-10 md:py-16"
               >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 bg-white/70 border border-[#6B6B6B]/40 rounded-xl flex items-center justify-center group-hover:border-[#2E6F57]/50 transition-colors">
-                    <svg className="w-6 h-6 text-[#343434]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
+                <span className="text-[10px] font-mono uppercase tracking-[0.34em] text-[#9DD9B8]/90">
+                  SYSTEM EVOLUTION
+                </span>
+                <h2 className="mt-3 max-w-3xl text-4xl font-display font-black tracking-tight text-[#F8F5EE] md:text-5xl">
+                  2018 TO COMMERCIAL VALIDATION
+                </h2>
+                <p className="mt-4 max-w-3xl text-sm leading-relaxed text-[#DDD7CA]/90 md:text-base">
+                  After the initial research phase, the platform moved through failure, discipline, and then governed scale.
+                </p>
+
+                <div className="relative mt-12">
+                  <div className="absolute bottom-0 left-5 top-0 w-px bg-white/20 md:left-[11rem]">
+                    <motion.div
+                      style={{ height: growthLineHeight }}
+                      className="w-full bg-gradient-to-b from-[#9DD9B8] via-[#2E6F57] to-[#9DD9B8]/30"
+                    />
                   </div>
-                  <div>
-                    <h3 className="text-sm font-mono font-bold uppercase tracking-widest text-[#343434]">Our Mission</h3>
-                    <div className="w-16 h-px bg-gradient-to-r from-[#2E6F57] to-transparent" />
+
+                  <div className="space-y-8 md:space-y-10">
+                    {growthMilestones.map((step, index) => (
+                      <motion.article
+                        key={`${step.period}-${step.title}`}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={isGrowthInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{
+                          duration: 0.7,
+                          delay: 0.18 + index * 0.1,
+                          ease: [0.16, 1, 0.3, 1],
+                        }}
+                        className="relative md:grid md:grid-cols-[9rem_minmax(0,1fr)] md:gap-8"
+                      >
+                        <div className="pb-3 pl-12 md:pb-0 md:pl-0 md:pt-1">
+                          <p className="text-xs font-mono uppercase tracking-[0.24em] text-[#9DD9B8]">
+                            {step.period}
+                          </p>
+                        </div>
+
+                        <div className="relative pl-12 md:pl-8">
+                          <div className="absolute left-5 top-2 h-3.5 w-3.5 -translate-x-1/2 rounded-full border border-[#9DD9B8]/55 bg-[#9DD9B8] md:left-0" />
+
+                          <div className="rounded-2xl border border-white/12 bg-[#0B150F]/72 p-5 shadow-[0_18px_32px_rgba(0,0,0,0.28)] md:p-6">
+                            <h3 className="text-2xl font-display font-black tracking-tight text-[#F8F5EE] md:text-3xl">
+                              {step.title}
+                            </h3>
+
+                            <div className="mt-4 space-y-3">
+                              {step.paragraphs.map((paragraph, paragraphIndex) => (
+                                <p
+                                  key={`${step.period}-${paragraphIndex}`}
+                                  className="text-sm leading-relaxed text-[#DDD7CA]/92 md:text-base"
+                                >
+                                  {paragraph}
+                                </p>
+                              ))}
+                            </div>
+
+                            {step.question ? (
+                              <p className="mt-4 rounded-xl border border-[#9DD9B8]/30 bg-[#9DD9B8]/8 px-4 py-3 text-sm font-semibold text-[#D8F3E3] md:text-base">
+                                Each configuration was tested against one question: {step.question}
+                              </p>
+                            ) : null}
+
+                            {step.lead ? (
+                              <p className="mt-4 text-[10px] font-mono uppercase tracking-[0.24em] text-[#9DD9B8]/92">
+                                {step.lead}
+                              </p>
+                            ) : null}
+
+                            {step.bullets ? (
+                              <ul className="mt-3 space-y-2">
+                                {step.bullets.map((bullet) => (
+                                  <li
+                                    key={bullet}
+                                    className="flex items-start gap-3 text-sm leading-relaxed text-[#DDD7CA]/92 md:text-base"
+                                  >
+                                    <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-[2px] bg-[#9DD9B8]" />
+                                    <span>{bullet}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            ) : null}
+
+                            {step.emphasis ? (
+                              <p className="mt-4 border-l border-[#9DD9B8]/45 pl-4 text-sm font-semibold leading-relaxed text-[#E9E4D8] md:text-base">
+                                {step.emphasis}
+                              </p>
+                            ) : null}
+                          </div>
+                        </div>
+                      </motion.article>
+                    ))}
                   </div>
                 </div>
-                <p className="text-base text-[#343434] leading-relaxed">
-                  To eliminate granite waste by converting it into high-value construction materials, fostering a true circular economy in the building industry through sustainable resource recovery and environmental stewardship.
-                </p>
+              </motion.div>
+            </section>
+
+            <section className="mt-20">
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <span className="text-[10px] font-mono uppercase tracking-[0.32em] text-[#343434]">
+                  Mission / Vision / Values
+                </span>
+                <h2 className="mt-3 text-4xl font-display font-black tracking-tight text-[#1b1b1b] md:text-5xl">
+                  Operating Principles In Practice
+                </h2>
               </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="bg-[#F7F7F7]/64 border border-[#6B6B6B]/30 rounded-2xl p-8 hover:border-[#2E6F57]/40 transition-all duration-300 group"
-              >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 bg-white/70 border border-[#6B6B6B]/40 rounded-xl flex items-center justify-center group-hover:border-[#2E6F57]/50 transition-colors">
-                    <svg className="w-6 h-6 text-[#343434]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-mono font-bold uppercase tracking-widest text-[#343434]">Our Vision</h3>
-                    <div className="w-16 h-px bg-gradient-to-r from-[#2E6F57] to-transparent" />
-                  </div>
-                </div>
-                <p className="text-base text-[#343434] leading-relaxed">
-                  To set the gold standard for resource recovery in India, ensuring that growth does not come at the cost of environmental integrity by pioneering sustainable construction material solutions nationwide.
-                </p>
-              </motion.div>
-            </div>
+              <div className="mt-8 grid gap-6 md:grid-cols-2">
+                <motion.article
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.55 }}
+                  className="rounded-2xl border border-[#6B6B6B]/25 bg-[#EFEAE3]/74 p-7 shadow-[0_14px_30px_rgba(17,24,39,0.12)] md:p-8"
+                >
+                  <p className="text-[10px] font-mono uppercase tracking-[0.28em] text-[#2E6F57]">Mission</p>
+                  <p className="mt-4 text-sm leading-relaxed text-[#343434] md:text-base">
+                    Build India's infrastructure using system-driven, circular construction materials that deliver
+                    reliability at scale while protecting land and water systems.
+                  </p>
+                </motion.article>
 
-              <div className="pt-20">
-                 <div className="rounded-2xl border border-[#6B6B6B]/25 premium-blur-light bg-[#EFEAE3]/68 p-12">
-                   <h2 className="text-3xl font-display font-bold mb-6 italic text-[#2E6F57]">"Waste is only waste if we fail to see its potential."</h2>
-                   <p className="text-sm font-mono uppercase tracking-widest text-[#343434]">— Precision Granite Recovery Leadership</p>
-                 </div>
+                <motion.article
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.55, delay: 0.08 }}
+                  className="rounded-2xl border border-[#6B6B6B]/25 bg-[#F7F7F7]/70 p-7 shadow-[0_14px_30px_rgba(17,24,39,0.1)] md:p-8"
+                >
+                  <p className="text-[10px] font-mono uppercase tracking-[0.28em] text-[#2E6F57]">Vision</p>
+                  <p className="mt-4 text-sm leading-relaxed text-[#343434] md:text-base">
+                    A construction materials ecosystem where quality, compliance, and environmental balance are
+                    built into the system, not managed as exceptions.
+                  </p>
+                </motion.article>
               </div>
-            </div>
+
+              <motion.article
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-120px" }}
+                transition={{ duration: 0.6, delay: 0.06 }}
+                className="mt-6 rounded-2xl border border-[#6B6B6B]/25 bg-[#EFEAE3]/72 p-7 shadow-[0_14px_34px_rgba(17,24,39,0.13)] md:p-8"
+              >
+                <p className="text-[10px] font-mono uppercase tracking-[0.28em] text-[#2E6F57]">Values</p>
+
+                <div className="mt-5 grid gap-4 md:grid-cols-2">
+                  {coreValues.map((value) => (
+                    <div
+                      key={value.title}
+                      className="rounded-xl border border-[#6B6B6B]/20 bg-white/55 p-4"
+                    >
+                      <h3 className="text-lg font-display font-black tracking-tight text-[#1b1b1b]">
+                        {value.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-[#343434]">{value.detail}</p>
+                    </div>
+                  ))}
+                </div>
+              </motion.article>
+            </section>
           </motion.div>
 
           <motion.aside
@@ -293,7 +583,7 @@ export default function About() {
                   <div className="space-y-2">
                     <p className="text-sm font-semibold text-[#2E6F57]">Scroll Down</p>
                     <p className="text-sm text-[#343434] leading-relaxed">
-                      Follow your progress as you explore Black Diamond's identity and mission.
+                      Follow your progress as you move through the platform's build journey.
                     </p>
                   </div>
                 </div>

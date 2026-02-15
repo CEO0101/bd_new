@@ -237,21 +237,6 @@ export default function Navbar() {
             </Sheet>
           </div>
 
-          {/* Primary CTA */}
-          <Link
-            href="/impact-calculator"
-            className={
-              "px-6 py-2 rounded-sm text-sm font-medium transition-all duration-300 " +
-              (isImpact ? "text-black" : "text-white hover:text-black border border-white/10")
-            }
-            style={
-              isImpact
-                ? { backgroundColor: "var(--glass-accent)" }
-                : { backgroundColor: "color-mix(in srgb, var(--glass-accent) 10%, transparent)" }
-            }
-          >
-            Calculate Impact
-          </Link>
         </div>
       </div>
     </motion.nav>
