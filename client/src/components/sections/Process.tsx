@@ -3,7 +3,6 @@ import {
   AnimatePresence,
   motion,
   useMotionValueEvent,
-  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
@@ -115,62 +114,75 @@ function ProcessStepCard({
   position: import("framer-motion").MotionValue<number>;
 }) {
   const dist = useTransform(position, (p) => Math.abs(p - index));
-
-  const scale = useTransform(dist, [0, 1], [1.03, 1]);
-  // Keep cards visible at all times (never fade to 0).
-  const opacity = useTransform(dist, [0, 0.9, 2.2], [1, 0.75, 0.45]);
-  const brightness = useTransform(dist, [0, 1.2], [1.05, 0.95]);
-  const brightnessFilter = useTransform(brightness, (b: number) =>
-    `brightness(${b})`,
-  );
-
-  const iconOpacity = useTransform(dist, [0, 0.8, 2], [1, 0.55, 0.25]);
-
-  const descOpacity = useTransform(dist, [0, 0.8, 2], [1, 0.6, 0.25]);
+  const isActive = useTransform(dist, (d) => d < 0.5);
+  const scale = useTransform(dist, [0, 1], [1.03, 0.97]);
+  const opacity = useTransform(dist, [0, 0.9, 2.5], [1, 0.6, 0.3]);
+  const borderOpacity = useTransform(dist, [0, 0.6], [1, 0]);
+  const numY = useTransform(dist, [0, 1], ["0%", "8%"]);
 
   return (
     <motion.div
-      style={{ scale, opacity, filter: brightnessFilter }}
-      className="relative shrink-0 w-[min(520px,85vw)] min-h-[320px] overflow-hidden rounded-2xl border border-white/10 premium-blur-dark bg-black/40 transition-colors"
+      style={{ scale, opacity }}
+      className="relative shrink-0 w-[min(460px,82vw)] min-h-[360px] overflow-hidden"
       aria-label={`Step ${index + 1}: ${step.title}`}
     >
-      {/* Decorative glow, stronger on active */}
+      {/* amber top border — only on active */}
       <motion.div
-        aria-hidden
-        style={{ opacity: useTransform(dist, [0, 1.4], [1, 0]) }}
-        className="absolute inset-0 pointer-events-none transition-opacity duration-500"
+        className="absolute top-0 left-0 right-0 h-[2px]"
+        style={{ background: "var(--stone)", opacity: borderOpacity }}
+      />
+
+      {/* background giant number */}
+      <motion.div
+        className="absolute bottom-0 right-4 pointer-events-none select-none"
+        style={{ y: numY }}
       >
-        <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-white/5 blur-3xl" />
-        <div className="absolute -bottom-24 -left-24 w-64 h-64 rounded-full bg-white/5 blur-3xl" />
+        <span
+          className="font-display font-black text-[10rem] leading-none"
+          style={{ color: "transparent", WebkitTextStroke: "1px rgba(255,255,255,0.04)" }}
+        >
+          0{index + 1}
+        </span>
       </motion.div>
 
-      <div className="relative p-8 flex flex-col h-full">
-        <div className="flex items-start justify-between gap-4">
-          <motion.div
-            style={{ opacity: iconOpacity }}
-            className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60"
+      <div className="relative h-full flex flex-col p-8 border border-white/8 bg-[#0A0A0A]">
+        {/* tag */}
+        <div className="flex items-center justify-between mb-8">
+          <span
+            className="text-[8px] font-mono uppercase tracking-[0.4em] px-3 py-1 border"
+            style={{ borderColor: "var(--stone)", color: "var(--stone)" }}
           >
-            <step.Icon className="w-6 h-6" />
-          </motion.div>
-          <div className="text-[10px] uppercase tracking-[0.25em] text-white/40 font-bold">
             {step.tag}
-          </div>
+          </span>
+          <motion.div
+            style={{ opacity: useTransform(dist, [0, 0.8], [1, 0.3]) }}
+            className="w-8 h-8 flex items-center justify-center text-white/40"
+          >
+            <step.Icon className="w-5 h-5" />
+          </motion.div>
         </div>
 
-        <h3 className="mt-6 text-xl font-bold text-white leading-tight">
-          <span className="text-white/50 mr-2">0{index + 1}</span>
+        {/* step number inline */}
+        <div className="flex items-baseline gap-3 mb-3">
+          <span className="font-mono text-[9px] tracking-widest" style={{ color: "var(--stone)" }}>
+            —&nbsp;0{index + 1}
+          </span>
+        </div>
+
+        <h3 className="text-2xl font-display font-black uppercase text-white leading-tight tracking-tight mb-4">
           {step.title}
         </h3>
+
         <motion.p
-          style={{ opacity: descOpacity }}
-          className="mt-3 text-sm text-white/60 leading-relaxed"
+          style={{ opacity: useTransform(dist, [0, 1], [1, 0.5]) }}
+          className="text-sm text-white/50 leading-relaxed flex-1"
         >
           {step.desc}
         </motion.p>
 
-        <div className="mt-8 pt-8 border-t border-white/10">
-          <p className="text-[11px] text-white/40">
-            Designed for operational stability, quality consistency, and regulatory audit readiness.
+        <div className="mt-8 pt-6 border-t border-white/8">
+          <p className="text-[10px] font-mono uppercase tracking-widest text-white/25">
+            Audit-ready · Traceable · Certified
           </p>
         </div>
       </div>
@@ -179,7 +191,6 @@ function ProcessStepCard({
 }
 
 export default function Process() {
-  const shouldReduceMotion = useReducedMotion();
   const pinRef = useRef<HTMLDivElement | null>(null);
   const trackViewportRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
@@ -321,7 +332,7 @@ export default function Process() {
       {/* Desktop cinematic scroll-driven narrative (pinned until the horizontal travel completes) */}
       <div
         ref={pinRef}
-        className={shouldReduceMotion ? "hidden" : "hidden md:block"}
+        className="hidden md:block"
         style={{ height: `${pinHeightPx}px` }}
       >
         <div className="sticky top-0 h-screen overflow-hidden">
@@ -336,29 +347,44 @@ export default function Process() {
 
           <div className="container mx-auto px-6 h-full flex flex-col">
             <div className="pt-24 max-w-3xl">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">
-                Process Architecture
+              <p className="text-[9px] font-mono uppercase tracking-[0.5em] text-white/25 mb-6">
+                Process Architecture — 03
+              </p>
+              <div className="overflow-hidden mb-2">
+                <h2
+                  className="font-display font-black uppercase leading-[0.85] tracking-[-0.03em] text-white"
+                  style={{ fontSize: "clamp(2.8rem, 7vw, 7rem)" }}
+                >
+                  Closed-Loop
+                </h2>
               </div>
-              <h2 className="mt-6 text-4xl font-display font-black text-white">
-                CLOSED-LOOP <br />
-                <span className="text-white/20">RECYCLING.</span>
-              </h2>
-              <p className="mt-6 text-lg text-white/60 leading-relaxed">
-                A controlled, enclosed, and traceable workflow engineered to prevent environmental damage—eliminating
-                slurry dumping, reducing river sand mining dependency, and protecting groundwater through closed-loop
-                recovery systems.
+              <div className="overflow-hidden mb-8">
+                <h2
+                  className="font-display font-black uppercase leading-[0.85] tracking-[-0.03em]"
+                  style={{
+                    fontSize: "clamp(2.8rem, 7vw, 7rem)",
+                    color: "transparent",
+                    WebkitTextStroke: "1.5px rgba(255,255,255,0.7)",
+                  }}
+                >
+                  Recycling.
+                </h2>
+              </div>
+              <div className="h-[1px] w-20 mb-6" style={{ background: "var(--stone)" }} />
+              <p className="text-base text-white/45 leading-relaxed max-w-xl">
+                A controlled, enclosed, and traceable workflow engineered to prevent
+                environmental damage—eliminating slurry dumping, reducing river sand
+                dependency, protecting groundwater.
               </p>
 
-              <div className="mt-8 flex items-center gap-4">
+              <div className="mt-8 flex items-center gap-5">
                 <a
                   href="#process-outcome"
-                  className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 py-2 text-[11px] font-black uppercase tracking-widest text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+                  className="text-[10px] font-mono uppercase tracking-widest text-white/35 hover:text-white transition-colors border-b border-white/15 pb-1"
                 >
-                  Skip process
+                  Skip to outcome ↓
                 </a>
-                <div className="text-[11px] text-white/40">
-                  Scroll to advance steps
-                </div>
+                <span className="text-[10px] text-white/20">· Scroll to advance</span>
               </div>
             </div>
 
@@ -414,8 +440,8 @@ export default function Process() {
         </div>
       </div>
 
-      {/* Reduced-motion and mobile fallback (swipe/drag horizontal carousel) */}
-      <div className={shouldReduceMotion ? "block" : "block md:hidden"}>
+      {/* Mobile fallback (swipe/drag horizontal carousel) */}
+      <div className="block md:hidden">
         <div className="container mx-auto px-6 py-24">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">

@@ -1,295 +1,693 @@
 import { motion } from "framer-motion";
-import type { LucideIcon } from "lucide-react";
-import { ArrowRight, CircleDot, SlidersHorizontal, Waves, Workflow } from "lucide-react";
 import Navbar from "@/components/Navbar";
-import industryProductionVideo from "@assets/6000286_Industry_Production_1280x720.mov";
+import Process from "@/components/sections/Process";
+import miningVideo from "@/assets/videos/mining-extraction.mp4";
+import processVideo from "@/assets/videos/process-equipment.mp4";
 
-type ProcessingStep = {
-  title: string;
-  detail: string;
-  icon: LucideIcon;
-};
+/* ─── Page palette ────────────────────────────────────────────────────
+   Distinct from the homepage's pure black. Deep slate-blue base
+   with a muted sky-blue accent. Cream typography is preserved.
+─────────────────────────────────────────────────────────────────────── */
+const PAGE_BG = "#0B141A";
+const PAGE_BG_RGB = "11,20,26";
+const ACCENT = "143,182,204"; // sky-blue, used as rgba()
+const CREAM = "237,232,223";
+
+/* ─── Equipment & control spec ───────────────────────────────────────── */
+const EQUIPMENT = [
+  {
+    n: "01",
+    stage: "Primary · Intake",
+    name: "Super-primary Jaw Crusher",
+    desc: "Hydraulic-toggle jaw with reinforced manganese liners. First-stage compression of weathered rock and quarry-waste boulders — break behaviour is stabilised at intake, before screening sees it.",
+  },
+  {
+    n: "02",
+    stage: "Segregation",
+    name: "Multi-deck Vibrating Screen",
+    desc: "Triple-deck elliptical-motion screen. Three size fractions are resolved in parallel — throughput and sizing accuracy are held simultaneously, never traded for each other.",
+  },
+  {
+    n: "03",
+    stage: "Shaping",
+    name: "Vertical Shaft Impactor",
+    desc: "Rock-on-rock crushing chamber. Engineers cubical, low-flake particle form for M-sand and aggregate. Fines ratio is a designed output, not a back-end correction.",
+  },
+  {
+    n: "04",
+    stage: "Classification · Water",
+    name: "Closed-loop Hydrocyclone Array",
+    desc: "Density-driven cyclones with thickener feedback. Fines recovered, silt rejected, process water clarified and reused. Zero liquid discharge to ground or surface.",
+  },
+  {
+    n: "05",
+    stage: "Control",
+    name: "Auto-feeder & PLC Governance",
+    desc: "VFD apron and pan feeders under PLC/SCADA supervision. Throughput is metered, batches are stamped, every load is traceable from intake to dispatch.",
+  },
+  {
+    n: "06",
+    stage: "Output",
+    name: "High-frequency Dewatering Screen",
+    desc: "Final dewatering to spec moisture. Sand exits stockpile-ready — no slurry pond, no thermal dryer, no concession on grade.",
+  },
+];
 
 export default function Technology() {
-  const systemOutputs = ["Manufactured sand", "Graded aggregates", "Controlled secondary materials"];
-
-  const processingSteps: ProcessingStep[] = [
-    {
-      title: "super-primary control",
-      detail: "Stabilises break behaviour early so downstream variability is reduced.",
-      icon: CircleDot,
-    },
-    {
-      title: "simultaneous size segregation",
-      detail: "Separates size bands in parallel to keep throughput and sizing control aligned.",
-      icon: Workflow,
-    },
-    {
-      title: "fines and shape management",
-      detail: "Manages fines ratio and particle form as engineered outcomes, not manual correction.",
-      icon: SlidersHorizontal,
-    },
-    {
-      title: "environmental control layers (water & dust)",
-      detail: "Integrates water reuse and dust control as core process layers.",
-      icon: Waves,
-    },
-  ];
-
   return (
-    <div className="min-h-screen bg-[#EEF1F2] text-[#1b1b1b]">
+    <div
+      className="min-h-screen"
+      style={{ background: PAGE_BG, color: `rgb(${CREAM})` }}
+    >
       <Navbar />
 
-      <main className="pb-20 pt-32">
-        <div className="container mx-auto px-6">
-          <section className="relative mb-20 min-h-[360px] overflow-hidden rounded-3xl border border-[#6B6B6B]/20 md:min-h-[430px]">
-            <div className="absolute inset-0 z-0">
-              <video
-                className="h-full w-full object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="none"
-              >
-                <source src={industryProductionVideo} type="video/quicktime" />
-                <source src={industryProductionVideo} />
-              </video>
-            </div>
-            <div className="absolute inset-0 z-10 bg-[#EEF1F2]/75" />
+      {/* ── Hero ───────────────────────────────────────────────────────── */}
+      <section
+        className="relative w-full overflow-hidden"
+        style={{ height: "calc(100dvh - 56px)", marginTop: "56px" }}
+      >
+        {/* Video */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ opacity: 0.34, mixBlendMode: "luminosity" }}
+          >
+            <source src={miningVideo} type="video/mp4" />
+          </video>
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(130deg, rgba(${PAGE_BG_RGB},0.94) 0%, rgba(${PAGE_BG_RGB},0.62) 48%, rgba(${PAGE_BG_RGB},0.2) 100%)`,
+            }}
+          />
+          {/* Bottom fade into the page bg so the next section blends seamlessly */}
+          <div
+            className="absolute inset-x-0 bottom-0 h-44"
+            style={{
+              background: `linear-gradient(to top, ${PAGE_BG}, transparent)`,
+            }}
+          />
+        </div>
 
-            <div className="relative z-20 p-8 md:p-12">
-              <motion.h1
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-6 text-4xl font-display font-black tracking-tight text-[#2F4858] md:text-6xl"
-              >
-                Engineered Materials from a Designed System
-              </motion.h1>
-              <p className="max-w-3xl text-base leading-relaxed text-[#4E4E4E] md:text-lg">
-                Materials produced by a disciplined, traceable system - not sourced by extraction, but engineered
-                from already-disturbed stone.
-              </p>
-            </div>
-          </section>
+        {/* Sky-blue ambient glow — quiet differentiator from the homepage */}
+        <div
+          aria-hidden
+          className="absolute z-[1] pointer-events-none"
+          style={{
+            top: "30%",
+            right: "-10%",
+            width: "55%",
+            height: "70%",
+            background: `radial-gradient(ellipse at center, rgba(${ACCENT},0.10), transparent 65%)`,
+            filter: "blur(40px)",
+          }}
+        />
 
-          <section className="mb-16 grid gap-10 lg:grid-cols-12">
-            <div className="lg:col-span-5">
-              <span className="text-[10px] font-mono font-bold uppercase tracking-[0.28em] text-[#2F4858]/70">
-                3.1 System Overview
+        {/* Grid overlay */}
+        <div
+          className="absolute inset-0 z-[1] pointer-events-none"
+          style={{
+            background:
+              `repeating-linear-gradient(90deg,rgba(${CREAM},0.012) 0,rgba(${CREAM},0.012) 1px,transparent 1px,transparent 80px),repeating-linear-gradient(0deg,rgba(${CREAM},0.012) 0,rgba(${CREAM},0.012) 1px,transparent 1px,transparent 80px)`,
+          }}
+        />
+
+        {/* Side label */}
+        <div
+          className="absolute left-3 top-1/2 z-20 pointer-events-none hidden lg:block"
+          style={{
+            transform: "translateY(-50%) rotate(180deg)",
+            fontFamily: "'DM Mono',monospace",
+            fontSize: "6px",
+            color: `rgba(${CREAM},0.08)`,
+            letterSpacing: "0.28em",
+            textTransform: "uppercase",
+            writingMode: "vertical-rl",
+          }}
+        >
+          Engineered Recovery · Karnataka · India
+        </div>
+
+        {/* 3-zone layout — same rhythm as Hero */}
+        <div
+          className="absolute inset-0 z-20 flex flex-col"
+          style={{ padding: "22px 52px 24px" }}
+        >
+          {/* Kicker */}
+          <motion.div
+            className="flex items-center justify-between"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1, duration: 0.8 }}
+          >
+            <div className="flex items-center gap-3">
+              <div
+                className="h-[1px] w-3"
+                style={{ background: `rgba(${ACCENT},0.4)` }}
+              />
+              <span
+                style={{
+                  fontFamily: "'DM Mono',monospace",
+                  fontSize: "6.5px",
+                  letterSpacing: "0.28em",
+                  textTransform: "uppercase" as const,
+                  color: `rgba(${CREAM},0.18)`,
+                }}
+              >
+                Six Systems
+                <span style={{ color: `rgba(${ACCENT},0.45)`, margin: "0 7px" }}>·</span>
+                Closed Loop
+                <span style={{ color: `rgba(${ACCENT},0.45)`, margin: "0 7px" }}>·</span>
+                PLC-Governed
               </span>
-              <h2 className="mt-4 text-4xl font-display font-black tracking-tight text-[#2F4858] md:text-5xl">
-                Integrated Flow,
+            </div>
+            <span
+              style={{
+                fontFamily: "'DM Mono',monospace",
+                fontSize: "6.5px",
+                color: `rgba(${CREAM},0.1)`,
+                letterSpacing: "0.1em",
+              }}
+            >
+              002 / 006
+            </span>
+          </motion.div>
+
+          {/* Headline + body */}
+          <div className="flex-1 flex flex-col justify-center">
+            {[
+              { text: "Engineered hardware.",  delay: 0.25, opacity: 1.0,  italic: false },
+              { text: "Designed control.",     delay: 0.39, opacity: 0.68, italic: false },
+              { text: "no extraction.",        delay: 0.52, opacity: 0.10, italic: true  },
+            ].map((line, li) => (
+              <div key={li} className="overflow-hidden">
+                <motion.div
+                  initial={{ y: "106%" }}
+                  animate={{ y: "0%" }}
+                  transition={{ delay: line.delay, duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <p
+                    style={{
+                      fontFamily: "'DM Serif Display',serif",
+                      fontStyle: line.italic ? "italic" : "normal",
+                      fontWeight: 400,
+                      fontSize: "clamp(32px, 5.2vw, 74px)",
+                      lineHeight: 0.93,
+                      letterSpacing: "-0.035em",
+                      color: `rgba(${CREAM},${line.opacity})`,
+                    }}
+                  >
+                    {line.text}
+                  </p>
+                </motion.div>
+              </div>
+            ))}
+
+            <motion.div
+              style={{ marginTop: "22px", maxWidth: "520px" }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.78, duration: 0.9 }}
+            >
+              <p
+                style={{
+                  fontFamily: "'DM Sans',sans-serif",
+                  fontSize: "13px",
+                  fontWeight: 400,
+                  color: `rgba(${CREAM},0.55)`,
+                  lineHeight: 1.62,
+                  letterSpacing: "0.005em",
+                }}
+              >
+                Six purpose-built systems running in a single closed loop — super-primary crushing,
+                multi-deck segregation, VSI shaping, hydrocyclone classification, PLC-governed feeders.
+              </p>
+              <p
+                style={{
+                  fontFamily: "'DM Sans',sans-serif",
+                  fontSize: "11.5px",
+                  fontWeight: 300,
+                  color: `rgba(${CREAM},0.32)`,
+                  lineHeight: 1.65,
+                  marginTop: "6px",
+                }}
+              >
+                Input: weathered rock, legacy quarry waste.
                 <br />
-                Defined Outputs
-              </h2>
-              <p className="mt-6 text-sm leading-relaxed text-[#6B6B6B] md:text-base">
-                BlackDiamond's platform integrates sourcing, processing, control, and output into one engineered
-                flow. Inputs are stabilised early, processing behaviour is managed via design, and outputs are
-                defined by performance by use-case.
+                Output: BIS-graded M-sand, P-sand, aggregates.
               </p>
+            </motion.div>
 
-              <p className="mt-7 text-xs font-mono uppercase tracking-[0.2em] text-[#2F4858]/70">This system produces:</p>
-              <ul className="mt-3 space-y-2">
-                {systemOutputs.map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-sm text-[#6B6B6B] md:text-base">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#2F4858]" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <motion.div
+              className="flex items-center gap-3 flex-wrap"
+              style={{ marginTop: "24px" }}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.92, duration: 0.8 }}
+            >
+              <motion.button
+                onClick={() =>
+                  document
+                    .getElementById("equipment")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                style={{
+                  fontFamily: "'DM Mono',monospace",
+                  fontSize: "8px",
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase" as const,
+                  color: PAGE_BG,
+                  background: `rgba(${CREAM},0.88)`,
+                  border: `1px solid rgba(${CREAM},0.15)`,
+                  backdropFilter: "blur(16px)",
+                  WebkitBackdropFilter: "blur(16px)",
+                  padding: "12px 26px",
+                  borderRadius: "3px",
+                  cursor: "pointer",
+                  boxShadow:
+                    "0 2px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.3)",
+                }}
+                whileHover={{ background: `rgba(${CREAM},1)`, scale: 1.02 }}
+                transition={{ duration: 0.15 }}
+              >
+                See the equipment
+              </motion.button>
 
-            <div className="lg:col-span-7">
-              <div className="rounded-2xl border border-[#6B6B6B]/20 bg-white/80 p-6 premium-blur-light">
-                <p className="text-[10px] font-mono uppercase tracking-[0.24em] text-[#6B6B6B]">
-                  Abstract Flow Graphic
-                </p>
-                <p className="mt-2 text-xs font-mono uppercase tracking-[0.22em] text-[#2F4858]/70">
-                  Input - Processing - Outputs
-                </p>
+              <motion.button
+                onClick={() =>
+                  document
+                    .getElementById("process")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                style={{
+                  fontFamily: "'DM Mono',monospace",
+                  fontSize: "8px",
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase" as const,
+                  color: `rgba(${ACCENT},0.85)`,
+                  background: `rgba(${ACCENT},0.05)`,
+                  border: `1px solid rgba(${ACCENT},0.18)`,
+                  backdropFilter: "blur(16px)",
+                  WebkitBackdropFilter: "blur(16px)",
+                  padding: "11px 24px",
+                  borderRadius: "3px",
+                  cursor: "pointer",
+                }}
+                whileHover={{
+                  color: `rgba(${ACCENT},1)`,
+                  borderColor: `rgba(${ACCENT},0.35)`,
+                }}
+                transition={{ duration: 0.2 }}
+              >
+                Process flow →
+              </motion.button>
+            </motion.div>
+          </div>
 
-                <div className="mt-6 flex flex-col gap-4 md:flex-row md:items-center">
-                  <div className="flex-1 rounded-xl border border-[#6B6B6B]/20 bg-[#F4F6F7] p-4">
-                    <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#6B6B6B]">Input</p>
-                    <p className="mt-2 text-sm font-semibold text-[#2F4858]">Already-disturbed stone feed</p>
-                  </div>
-
-                  <ArrowRight className="mx-auto h-5 w-5 text-[#2F4858]/60 md:mx-0" />
-
-                  <div className="flex-1 rounded-xl border border-[#6B6B6B]/20 bg-[#F4F6F7] p-4">
-                    <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#6B6B6B]">Processing</p>
-                    <p className="mt-2 text-sm font-semibold text-[#2F4858]">Designed control architecture</p>
-                  </div>
-
-                  <ArrowRight className="mx-auto h-5 w-5 text-[#2F4858]/60 md:mx-0" />
-
-                  <div className="flex-1 rounded-xl border border-[#6B6B6B]/20 bg-[#F4F6F7] p-4">
-                    <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#6B6B6B]">Outputs</p>
-                    <p className="mt-2 text-sm font-semibold text-[#2F4858]">Use-case engineered materials</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="mb-16 rounded-2xl border border-[#6B6B6B]/20 bg-[#F4F6F7] p-8 premium-blur-light md:p-10">
-            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.28em] text-[#2F4858]/70">
-              3.2 Circular, Controlled Inputs
+          {/* Scroll cue */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.15, duration: 0.9 }}
+            className="flex items-center justify-between"
+          >
+            <span
+              style={{
+                fontFamily: "'DM Mono',monospace",
+                fontSize: "6.5px",
+                letterSpacing: "0.28em",
+                textTransform: "uppercase" as const,
+                color: `rgba(${CREAM},0.22)`,
+              }}
+            >
+              Scroll · Hardware · Process · In-operation
             </span>
-            <p className="mt-5 max-w-5xl text-sm leading-relaxed text-[#6B6B6B] md:text-base">
-              The system begins with already-disturbed stone, including weathered material and legacy quarry waste.
-              This stabilises input behaviour and avoids fresh extraction. Inputs are recorded and calibrated before
-              entering the processing flow to ensure consistency from the start.
-            </p>
-
-            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                "Already-disturbed stone",
-                "Weathered material",
-                "Legacy quarry waste",
-                "Recorded and calibrated intake",
-              ].map((item) => (
-                <div key={item} className="rounded-xl border border-[#6B6B6B]/20 bg-white p-4">
-                  <p className="text-xs font-mono uppercase tracking-[0.16em] text-[#2F4858]">{item}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section className="mb-28">
-            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.28em] text-[#2F4858]/70">
-              3.3 Core Processing Architecture
-            </span>
-            <p className="mt-5 text-sm leading-relaxed text-[#6B6B6B] md:text-base">Processing is divided into:</p>
-            <ul className="mt-3 space-y-2">
-              {processingSteps.map((step) => (
-                <li key={step.title} className="flex items-center gap-3 text-sm text-[#6B6B6B] md:text-base">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#2F4858]" />
-                  {step.title}
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-8 grid gap-4 md:grid-cols-2">
-              {processingSteps.map((step, index) => (
-                <motion.article
-                  key={step.title}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.06 }}
-                  className="rounded-2xl border border-[#6B6B6B]/20 bg-white p-6 premium-blur-light"
-                >
-                  <div className="mb-4 flex items-center justify-between">
-                    <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#6B6B6B]">
-                      Step {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#6B6B6B]/20 bg-[#F4F6F7] text-[#2F4858]">
-                      <step.icon className="h-4 w-4" />
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-display font-black tracking-tight text-[#2F4858]">{step.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-[#6B6B6B]">{step.detail}</p>
-                </motion.article>
-              ))}
-            </div>
-
-            <p className="mt-8 rounded-xl border border-[#6B6B6B]/20 bg-[#F4F6F7] p-5 text-sm font-semibold leading-relaxed text-[#2F4858]">
-              Each stage is governed by SOPs that guarantee repeatability.
-            </p>
-          </section>
+            <motion.span
+              animate={{ y: [0, 4, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              style={{
+                fontFamily: "'DM Mono',monospace",
+                fontSize: "10px",
+                color: `rgba(${ACCENT},0.45)`,
+              }}
+            >
+              ↓
+            </motion.span>
+          </motion.div>
         </div>
-      </main>
+      </section>
 
-      <footer className="border-t border-[#6B6B6B]/20 bg-[#F4F6F7] py-32 text-[#1b1b1b]">
-        <div className="container mx-auto px-6">
-          <div className="grid gap-12 lg:grid-cols-4">
-            {/* Brand Section */}
-            <div className="lg:col-span-1">
-              <div className="mb-8 flex items-center gap-3">
-                <div className="h-8 w-8 rotate-45 transform rounded-sm bg-[#2F4858]" />
-                <span className="font-display text-lg font-bold tracking-tight text-[#2F4858] uppercase">
-                  BLACK DIAMOND
+      {/* ── B.01  Equipment & Control Architecture ─────────────────────── */}
+      <section
+        id="equipment"
+        style={{ padding: "140px 52px 100px", position: "relative" }}
+      >
+        {/* Quiet sky-blue ambient at the seam */}
+        <div
+          aria-hidden
+          className="pointer-events-none"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: "20%",
+            width: "60%",
+            height: "320px",
+            background: `radial-gradient(ellipse at center, rgba(${ACCENT},0.06), transparent 70%)`,
+          }}
+        />
+
+        <div className="max-w-7xl mx-auto relative">
+          <div className="flex items-end justify-between mb-16 flex-wrap gap-6">
+            <div>
+              <span
+                style={{
+                  fontFamily: "'DM Mono',monospace",
+                  fontSize: "6.5px",
+                  letterSpacing: "0.32em",
+                  textTransform: "uppercase" as const,
+                  color: `rgba(${ACCENT},0.62)`,
+                }}
+              >
+                B.01 — Equipment & control architecture
+              </span>
+              <h2
+                style={{
+                  fontFamily: "'DM Serif Display',serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(28px, 4vw, 52px)",
+                  lineHeight: 1.05,
+                  letterSpacing: "-0.03em",
+                  color: `rgba(${CREAM},0.95)`,
+                  marginTop: "12px",
+                  maxWidth: "680px",
+                }}
+              >
+                Six systems.{" "}
+                <span style={{ color: `rgba(${CREAM},0.34)`, fontStyle: "italic" }}>
+                  One closed loop.
                 </span>
-              </div>
-              <p className="max-w-sm text-sm leading-relaxed text-[#6B6B6B]">
-                Building without borrowing from its future. A cleaner way for India to grow.
-              </p>
-              <div className="mt-8 flex gap-4">
-                <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full border border-[#6B6B6B]/30 transition-colors hover:bg-[#2F4858]/10">
-                  <span className="sr-only">LinkedIn</span>
-                  <svg className="h-4 w-4 text-[#6B6B6B]" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                  </svg>
-                </a>
-                <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full border border-[#6B6B6B]/30 transition-colors hover:bg-[#2F4858]/10">
-                  <span className="sr-only">Twitter</span>
-                  <svg className="h-4 w-4 text-[#6B6B6B]" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
-                  </svg>
-                </a>
-              </div>
+              </h2>
             </div>
-
-            {/* Solutions Section */}
-            <div className="lg:col-span-1">
-              <h3 className="mb-6 text-sm font-mono font-bold uppercase tracking-widest text-[#6B6B6B]">Solutions</h3>
-              <ul className="space-y-3">
-                <li><a href="#" className="text-sm text-[#6B6B6B] transition-colors hover:text-[#2F4858]">M-Sand</a></li>
-                <li><a href="#" className="text-sm text-[#6B6B6B] transition-colors hover:text-[#2F4858]">P-Sand</a></li>
-                <li><a href="#" className="text-sm text-[#6B6B6B] transition-colors hover:text-[#2F4858]">Aggregates</a></li>
-                <li><a href="#" className="text-sm text-[#6B6B6B] transition-colors hover:text-[#2F4858]">Pavers</a></li>
-              </ul>
-            </div>
-
-            {/* Company Section */}
-            <div className="lg:col-span-1">
-              <h3 className="mb-6 text-sm font-mono font-bold uppercase tracking-widest text-[#6B6B6B]">Company</h3>
-              <ul className="space-y-3">
-                <li><a href="#" className="text-sm text-[#6B6B6B] transition-colors hover:text-[#2F4858]">About</a></li>
-                <li><a href="#" className="text-sm text-[#6B6B6B] transition-colors hover:text-[#2F4858]">Technology</a></li>
-                <li><a href="#" className="text-sm text-[#6B6B6B] transition-colors hover:text-[#2F4858]">Impact</a></li>
-                <li><a href="#" className="text-sm text-[#6B6B6B] transition-colors hover:text-[#2F4858]">Contact</a></li>
-              </ul>
-            </div>
-
-            {/* Newsletter Section */}
-            <div className="lg:col-span-1">
-              <h3 className="mb-6 text-sm font-mono font-bold uppercase tracking-widest text-[#6B6B6B]">Stay Updated</h3>
-              <p className="mb-4 text-sm text-[#6B6B6B]">Subscribe to our newsletter for the latest updates on sustainable construction.</p>
-              <form className="space-y-3">
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  className="w-full rounded-sm border border-[#6B6B6B]/30 bg-white px-4 py-3 text-sm text-[#1b1b1b] placeholder-[#6B6B6B]/70 transition-colors focus:border-[#2F4858] focus:outline-none"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="w-full rounded-sm border-2 border-[#2F4858] px-4 py-3 text-sm font-bold tracking-widest text-[#2F4858] uppercase transition-colors hover:bg-[#2F4858] hover:text-white"
-                >
-                  Subscribe
-                </button>
-              </form>
-            </div>
+            <p
+              style={{
+                fontFamily: "'DM Sans',sans-serif",
+                fontSize: "13px",
+                color: `rgba(${CREAM},0.45)`,
+                lineHeight: 1.62,
+                maxWidth: "340px",
+              }}
+            >
+              Spec'd for stability, traceability, and zero-discharge operation. Each unit performs one job
+              without compromising another — that is the architecture.
+            </p>
           </div>
 
-          {/* Divider */}
-          <div className="mt-16 border-t border-[#6B6B6B]/20 pt-8">
-            <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-              <p className="text-xs font-mono uppercase tracking-widest text-[#6B6B6B]">
-                © {new Date().getFullYear()} Precision Granite Recovery
-              </p>
-              <div className="flex gap-8 text-xs font-mono uppercase tracking-widest text-[#6B6B6B]">
-                <a href="#" className="transition-colors hover:text-[#2F4858]">Privacy Policy</a>
-                <a href="#" className="transition-colors hover:text-[#2F4858]">Terms of Service</a>
-                <a href="#" className="transition-colors hover:text-[#2F4858]">Cookie Policy</a>
-              </div>
-            </div>
+          {/* Equipment grid — 3 × 2 */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {EQUIPMENT.map((eq, ei) => (
+              <motion.article
+                key={eq.n}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{
+                  duration: 0.7,
+                  delay: (ei % 3) * 0.06,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                whileHover={{ borderColor: `rgba(${ACCENT},0.32)` }}
+                style={{
+                  border: `1px solid rgba(${ACCENT},0.10)`,
+                  background: `rgba(${ACCENT},0.025)`,
+                  padding: "30px 28px 32px",
+                  position: "relative",
+                  transition: "border-color 0.25s ease",
+                }}
+              >
+                <div className="flex items-start justify-between mb-7">
+                  <span
+                    style={{
+                      fontFamily: "'DM Mono',monospace",
+                      fontSize: "7px",
+                      letterSpacing: "0.3em",
+                      textTransform: "uppercase" as const,
+                      color: `rgba(${ACCENT},0.78)`,
+                      paddingTop: "6px",
+                    }}
+                  >
+                    {eq.stage}
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "'DM Serif Display',serif",
+                      fontSize: "32px",
+                      color: `rgba(${ACCENT},0.18)`,
+                      letterSpacing: "-0.02em",
+                      lineHeight: 1,
+                    }}
+                  >
+                    {eq.n}
+                  </span>
+                </div>
+
+                <h3
+                  style={{
+                    fontFamily: "'DM Serif Display',serif",
+                    fontWeight: 400,
+                    fontSize: "22px",
+                    lineHeight: 1.18,
+                    letterSpacing: "-0.022em",
+                    color: `rgba(${CREAM},0.94)`,
+                    marginBottom: "14px",
+                  }}
+                >
+                  {eq.name}
+                </h3>
+
+                <div
+                  style={{
+                    height: "1px",
+                    width: "32px",
+                    background: `rgba(${ACCENT},0.4)`,
+                    marginBottom: "16px",
+                  }}
+                />
+
+                <p
+                  style={{
+                    fontFamily: "'DM Sans',sans-serif",
+                    fontSize: "12.5px",
+                    color: `rgba(${CREAM},0.55)`,
+                    lineHeight: 1.65,
+                    fontWeight: 400,
+                  }}
+                >
+                  {eq.desc}
+                </p>
+              </motion.article>
+            ))}
+          </div>
+
+          {/* Footnote */}
+          <div className="mt-12 flex items-center gap-3">
+            <div
+              style={{
+                width: "20px",
+                height: "1px",
+                background: `rgba(${ACCENT},0.4)`,
+              }}
+            />
+            <p
+              style={{
+                fontFamily: "'DM Mono',monospace",
+                fontSize: "8.5px",
+                letterSpacing: "0.28em",
+                textTransform: "uppercase" as const,
+                color: `rgba(${CREAM},0.4)`,
+              }}
+            >
+              Every stage governed by SOP · Every batch stamped · Audit-ready by design
+            </p>
           </div>
         </div>
-      </footer>
+      </section>
+
+      {/* ── B.02  Process — horizontal scroll ──────────────────────────── */}
+      <div id="process">
+        <Process />
+      </div>
+
+      {/* ── B.03  In operation — video showcase ────────────────────────── */}
+      <section style={{ padding: "120px 52px 140px", position: "relative" }}>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-end justify-between mb-12 flex-wrap gap-6">
+            <div>
+              <span
+                style={{
+                  fontFamily: "'DM Mono',monospace",
+                  fontSize: "6.5px",
+                  letterSpacing: "0.32em",
+                  textTransform: "uppercase" as const,
+                  color: `rgba(${ACCENT},0.62)`,
+                }}
+              >
+                B.03 — In operation
+              </span>
+              <h2
+                style={{
+                  fontFamily: "'DM Serif Display',serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(26px, 3.6vw, 46px)",
+                  lineHeight: 1.05,
+                  letterSpacing: "-0.03em",
+                  color: `rgba(${CREAM},0.94)`,
+                  marginTop: "12px",
+                  maxWidth: "640px",
+                }}
+              >
+                The line, running.{" "}
+                <span style={{ color: `rgba(${CREAM},0.32)`, fontStyle: "italic" }}>
+                  Unstaged.
+                </span>
+              </h2>
+            </div>
+            <p
+              style={{
+                fontFamily: "'DM Sans',sans-serif",
+                fontSize: "13px",
+                color: `rgba(${CREAM},0.45)`,
+                lineHeight: 1.62,
+                maxWidth: "320px",
+              }}
+            >
+              Filmed on the Gundlupet line — equipment-driven footage, no re-cuts. What you see is the
+              system doing its job.
+            </p>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            style={{
+              position: "relative",
+              border: `1px solid rgba(${ACCENT},0.14)`,
+              background: `rgba(${ACCENT},0.025)`,
+              padding: "12px",
+            }}
+          >
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              className="w-full h-auto block"
+              style={{ display: "block" }}
+            >
+              <source src={processVideo} type="video/mp4" />
+            </video>
+
+            {/* Top corner stamp */}
+            <div
+              className="absolute flex items-center gap-2"
+              style={{ top: "26px", left: "30px", zIndex: 2 }}
+            >
+              <div
+                style={{
+                  width: "6px",
+                  height: "6px",
+                  borderRadius: "50%",
+                  background: `rgba(${ACCENT},0.9)`,
+                  boxShadow: `0 0 8px rgba(${ACCENT},0.6)`,
+                }}
+              />
+              <span
+                style={{
+                  fontFamily: "'DM Mono',monospace",
+                  fontSize: "7.5px",
+                  letterSpacing: "0.32em",
+                  textTransform: "uppercase" as const,
+                  color: `rgba(${CREAM},0.85)`,
+                  textShadow: "0 1px 4px rgba(0,0,0,0.6)",
+                }}
+              >
+                Live · Gundlupet line
+              </span>
+            </div>
+          </motion.div>
+
+          {/* Caption row */}
+          <div className="mt-8 grid md:grid-cols-3 gap-8">
+            {[
+              {
+                k: "Throughput",
+                v: "Continuous",
+                d: "Closed-loop, uninterrupted by manual handling.",
+              },
+              {
+                k: "Water",
+                v: "Recirculated",
+                d: "Hydrocyclones return process water to the line — no slurry pond.",
+              },
+              {
+                k: "Output",
+                v: "BIS-graded",
+                d: "Sand and aggregate exit stockpile-ready, batch-stamped.",
+              },
+            ].map((c) => (
+              <div
+                key={c.k}
+                style={{
+                  borderTop: `1px solid rgba(${ACCENT},0.18)`,
+                  paddingTop: "16px",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "'DM Mono',monospace",
+                    fontSize: "7px",
+                    letterSpacing: "0.32em",
+                    textTransform: "uppercase" as const,
+                    color: `rgba(${ACCENT},0.7)`,
+                  }}
+                >
+                  {c.k}
+                </span>
+                <p
+                  style={{
+                    fontFamily: "'DM Serif Display',serif",
+                    fontSize: "22px",
+                    lineHeight: 1.1,
+                    letterSpacing: "-0.02em",
+                    color: `rgba(${CREAM},0.92)`,
+                    marginTop: "8px",
+                  }}
+                >
+                  {c.v}
+                </p>
+                <p
+                  style={{
+                    fontFamily: "'DM Sans',sans-serif",
+                    fontSize: "12px",
+                    color: `rgba(${CREAM},0.5)`,
+                    lineHeight: 1.6,
+                    marginTop: "8px",
+                  }}
+                >
+                  {c.d}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

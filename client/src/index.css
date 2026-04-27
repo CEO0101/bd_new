@@ -4,36 +4,30 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Monochrome Premium Dark Palette */
-  --background: 0 0% 0%;
-  --foreground: 0 0% 100%;
-  
+  --background: 220 10% 4%;   /* #09080A */
+  --foreground: 36 27% 93%;  /* #EDE8DF cream */
   --card: 0 0% 5%;
   --card-foreground: 0 0% 100%;
-  
   --popover: 0 0% 3%;
   --popover-foreground: 0 0% 100%;
-  
   --primary: 0 0% 100%;
   --primary-foreground: 0 0% 0%;
-  
-  --secondary: 0 0% 12%;    
+  --secondary: 0 0% 12%;
   --secondary-foreground: 0 0% 100%;
-  
   --muted: 0 0% 10%;
   --muted-foreground: 0 0% 60%;
-  
-  --accent: 0 0% 15%;       
-  --accent-foreground: 0 0% 100%; 
-  
+  --accent: 0 0% 15%;
+  --accent-foreground: 0 0% 100%;
   --destructive: 0 0% 20%;
   --destructive-foreground: 0 0% 98%;
-  
   --border: 0 0% 15%;
   --input: 0 0% 15%;
   --ring: 0 0% 100%;
-  
   --radius: 0.25rem;
+
+  /* Stone amber — the single accent colour */
+  --stone: #C49A4A;
+  --stone-dim: rgba(196, 154, 74, 0.18);
 }
 
 @theme inline {
@@ -62,9 +56,9 @@
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
   
-  --font-sans: 'Inter', sans-serif;
-  --font-display: 'Clash Display', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'DM Sans', sans-serif;
+  --font-display: 'DM Serif Display', serif;
+  --font-mono: 'DM Mono', monospace;
 }
 
 @layer base {
@@ -113,4 +107,26 @@
                       linear-gradient(to bottom, hsl(var(--border) / 0.2) 1px, transparent 1px);
     background-size: 60px 60px;
   }
+
+  /* Grain texture overlay */
+  .grain {
+    position: relative;
+  }
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    opacity: 0.06;
+    mix-blend-mode: overlay;
+    z-index: 1;
+  }
+
+  /* Stone amber utilities */
+  .text-stone { color: var(--stone); }
+  .border-stone { border-color: var(--stone); }
+  .bg-stone { background-color: var(--stone); }
+  .bg-stone-dim { background-color: var(--stone-dim); }
 }
