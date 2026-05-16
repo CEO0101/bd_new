@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import heroBg from "@assets/6010532_Nature_Rock_1280x720compresseddamed.mp4";
 import CustomerLogos from "@/components/CustomerLogos";
 
 /* ─── Custom cursor ─────────────────────────────────────────────────── */
@@ -87,7 +86,7 @@ export default function Hero() {
             className="absolute inset-0 w-full h-full object-cover"
             style={{ opacity: 0.42, mixBlendMode: "luminosity" }}
           >
-            <source src={heroBg} type="video/mp4" />
+            <source src="/161071-822582138-web.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0" style={{
             background: "linear-gradient(130deg, rgba(9,8,10,0.94) 0%, rgba(9,8,10,0.6) 46%, rgba(9,8,10,0.15) 100%)"

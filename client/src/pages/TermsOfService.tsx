@@ -6,7 +6,7 @@ export default function TermsOfService() {
       eyebrow="Terms of Service"
       title="Terms governing access to the Black Diamond website, materials information, and digital tools."
       summary="These terms are intended to set a clear and commercially sensible framework for website use. They apply to informational content, product pages, calculators, and any materials made available through the site."
-      effectiveDate="16 May 2026"
+      effectiveDate="14 February 2026"
       sections={[
         {
           title: "Acceptance and Purpose",

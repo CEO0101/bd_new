@@ -6,7 +6,7 @@ export default function CookiePolicy() {
       eyebrow="Cookie Policy"
       title="How the Black Diamond website uses cookies and similar technologies."
       summary="This policy explains the role of cookies, local storage, and related technologies in supporting site delivery, performance, measurement, and user experience."
-      effectiveDate="16 May 2026"
+      effectiveDate="18 February 2026"
       sections={[
         {
           title: "What Cookies Are",

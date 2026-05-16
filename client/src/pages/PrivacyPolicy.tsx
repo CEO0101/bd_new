@@ -6,7 +6,7 @@ export default function PrivacyPolicy() {
       eyebrow="Privacy Policy"
       title="How Black Diamond handles information shared through its website and commercial channels."
       summary="This policy explains what information we collect, why we collect it, how we use it, and the standards we apply when handling enquiries, subscriptions, and commercial communications relating to our materials platform."
-      effectiveDate="16 May 2026"
+      effectiveDate="11 February 2026"
       sections={[
         {
           title: "Scope",
