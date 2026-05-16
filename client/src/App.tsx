@@ -13,6 +13,9 @@ const ProductsPage = lazy(() => import("@/pages/Products"));
 const ImpactCalculator = lazy(() => import("@/pages/ImpactCalculator"));
 const Invest = lazy(() => import("@/pages/Invest"));
 const InvestorStats = lazy(() => import("@/pages/InvestorStats"));
+const PrivacyPolicy = lazy(() => import("@/pages/PrivacyPolicy"));
+const TermsOfService = lazy(() => import("@/pages/TermsOfService"));
+const CookiePolicy = lazy(() => import("@/pages/CookiePolicy"));
 
 function Router() {
   return (
@@ -24,6 +27,9 @@ function Router() {
       <Route path="/invest" component={Invest} />
       <Route path="/impact-calculator" component={ImpactCalculator} />
       <Route path="/investor-stats" component={InvestorStats} />
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/terms-of-service" component={TermsOfService} />
+      <Route path="/cookie-policy" component={CookiePolicy} />
       <Route component={NotFound} />
     </Switch>
   );

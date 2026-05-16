@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import heroBg from "@/assets/videos/hero-bg.mp4";
+import heroBg from "@assets/6010532_Nature_Rock_1280x720compresseddamed.mp4";
 import CustomerLogos from "@/components/CustomerLogos";
 
 /* ─── Custom cursor ─────────────────────────────────────────────────── */
@@ -83,7 +83,7 @@ export default function Hero() {
         {/* ── Video ── */}
         <div className="absolute inset-0 z-0">
           <video
-            autoPlay loop muted playsInline preload="auto"
+            autoPlay loop muted playsInline preload="metadata"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ opacity: 0.42, mixBlendMode: "luminosity" }}
           >
