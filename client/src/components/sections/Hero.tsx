@@ -1,6 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import CustomerLogos from "@/components/CustomerLogos";
+
+const HERO_VIDEO = {
+  forward: "/161071-822582138-web.mp4",
+  reverse: "/161071-822582138-web-reverse.mp4",
+} as const;
 
 /* ─── Custom cursor ─────────────────────────────────────────────────── */
 export function CustomCursor() {
@@ -72,6 +77,27 @@ export function CredentialTicker() {
 
 /* ─── Hero ──────────────────────────────────────────────────────────── */
 export default function Hero() {
+  const [videoDirection, setVideoDirection] = useState<keyof typeof HERO_VIDEO>("forward");
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+
+    if (!video) return;
+
+    video.load();
+
+    const playVideo = async () => {
+      try {
+        await video.play();
+      } catch {
+        // Autoplay can be delayed by the browser; the element remains ready.
+      }
+    };
+
+    void playVideo();
+  }, [videoDirection]);
+
   return (
     <>
       <CredentialTicker />
@@ -82,12 +108,18 @@ export default function Hero() {
         {/* ── Video ── */}
         <div className="absolute inset-0 z-0">
           <video
-            autoPlay loop muted playsInline preload="metadata"
+            ref={videoRef}
+            autoPlay
+            muted
+            playsInline
+            preload="metadata"
+            onEnded={() =>
+              setVideoDirection((current) => (current === "forward" ? "reverse" : "forward"))
+            }
             className="absolute inset-0 w-full h-full object-cover"
             style={{ opacity: 0.42, mixBlendMode: "luminosity" }}
-          >
-            <source src="/161071-822582138-web.mp4" type="video/mp4" />
-          </video>
+            src={HERO_VIDEO[videoDirection]}
+          />
           <div className="absolute inset-0" style={{
             background: "linear-gradient(130deg, rgba(9,8,10,0.94) 0%, rgba(9,8,10,0.6) 46%, rgba(9,8,10,0.15) 100%)"
           }} />
