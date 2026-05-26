@@ -37,10 +37,10 @@ const TECH_FAQS = [
    Distinct from the homepage's pure black. Deep slate-blue base
    with a muted sky-blue accent. Cream typography is preserved.
 ─────────────────────────────────────────────────────────────────────── */
-const PAGE_BG = "#0B141A";
-const PAGE_BG_RGB = "11,20,26";
-const ACCENT = "143,182,204"; // sky-blue, used as rgba()
-const CREAM = "237,232,223";
+const PAGE_BG = "#FFFFFF";
+const PAGE_BG_RGB = "255,255,255";
+const ACCENT = "85,85,85"; // sky-blue, used as rgba()
+const CREAM = "20,19,15";
 
 /* ─── Equipment & control spec ───────────────────────────────────────── */
 const EQUIPMENT = [

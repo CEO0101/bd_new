@@ -36,9 +36,9 @@ const PRODUCT_FAQS = [
 ];
 
 /* ─── Page palette (matches Technology) ─────────────────────────────── */
-const PAGE_BG = "#0B141A";
-const CREAM = "237,232,223";
-const ACCENT = "143,182,204";
+const PAGE_BG = "#FFFFFF";
+const CREAM = "20,19,15";
+const ACCENT = "85,85,85";
 
 /* ─── Engineered output catalogue ───────────────────────────────────── */
 type Output = {
@@ -531,7 +531,7 @@ export default function Products() {
         </div>
       </main>
 
-      <SiteFooter tone="dark" />
+      <SiteFooter tone="light" />
     </div>
   );
 }

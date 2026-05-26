@@ -31,6 +31,13 @@ export default function Navbar() {
   const isActive = (href: string) => location === href;
   const isImpact = location === "/impact-calculator";
 
+  // Light pages (white background) need dark nav text instead of cream.
+  const light =
+    location === "/products" ||
+    location === "/technology" ||
+    location.startsWith("/journal");
+  const TXT = light ? "20,19,15" : "237,232,223";
+
   return (
     <motion.nav
       className="fixed top-0 left-0 right-0 z-50"
@@ -50,7 +57,7 @@ export default function Navbar() {
             fontSize: "11.5px",
             fontWeight: 500,
             letterSpacing: "0.14em",
-            color: "rgba(237,232,223,0.92)",
+            color: `rgba(${TXT},0.92)`,
             textTransform: "uppercase",
           }}>
             Greenrock<span style={{ color: "#2E6F57", marginLeft: "5px" }}>Innovations</span>
@@ -69,18 +76,18 @@ export default function Navbar() {
                 fontWeight: isActive(item.href) ? 500 : 400,
                 letterSpacing: "0.01em",
                 color: isActive(item.href)
-                  ? "rgba(237,232,223,0.9)"
-                  : "rgba(237,232,223,0.38)",
+                  ? `rgba(${TXT},0.9)`
+                  : `rgba(${TXT},0.45)`,
                 textDecoration: "none",
                 transition: "color 0.15s",
               }}
               onMouseEnter={(e) => {
                 if (!isActive(item.href))
-                  (e.target as HTMLElement).style.color = "rgba(237,232,223,0.7)";
+                  (e.target as HTMLElement).style.color = `rgba(${TXT},0.7)`;
               }}
               onMouseLeave={(e) => {
                 if (!isActive(item.href))
-                  (e.target as HTMLElement).style.color = "rgba(237,232,223,0.38)";
+                  (e.target as HTMLElement).style.color = `rgba(${TXT},0.45)`;
               }}
             >
               {item.label}
@@ -112,8 +119,8 @@ export default function Navbar() {
         <div className="md:hidden">
           <Sheet>
             <SheetTrigger className="inline-flex h-9 w-9 items-center justify-center"
-              style={{ background: "rgba(237,232,223,0.05)", border: "1px solid rgba(237,232,223,0.08)" }}>
-              <Menu className="h-4 w-4" style={{ color: "rgba(237,232,223,0.6)" }} />
+              style={{ background: `rgba(${TXT},0.05)`, border: `1px solid rgba(${TXT},0.12)` }}>
+              <Menu className="h-4 w-4" style={{ color: `rgba(${TXT},0.6)` }} />
             </SheetTrigger>
             <SheetContent style={{ background: "rgba(9,8,10,0.97)", borderColor: "rgba(237,232,223,0.07)" }}>
               <div className="flex flex-col gap-4 pt-10">
