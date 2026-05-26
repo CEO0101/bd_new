@@ -33,8 +33,12 @@ export default function Navbar() {
 
   // Light pages (white background) need dark nav text instead of cream.
   const light =
+    location === "/about" ||
     location === "/products" ||
     location === "/technology" ||
+    location === "/privacy-policy" ||
+    location === "/terms-of-service" ||
+    location === "/cookie-policy" ||
     location.startsWith("/journal");
   const TXT = light ? "20,19,15" : "237,232,223";
 
