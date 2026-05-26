@@ -593,34 +593,6 @@ export default function Technology() {
             >
               <source src={processVideo} type="video/mp4" />
             </video>
-
-            {/* Top corner stamp */}
-            <div
-              className="absolute flex items-center gap-2"
-              style={{ top: "26px", left: "30px", zIndex: 2 }}
-            >
-              <div
-                style={{
-                  width: "6px",
-                  height: "6px",
-                  borderRadius: "50%",
-                  background: `rgba(${ACCENT},0.9)`,
-                  boxShadow: `0 0 8px rgba(${ACCENT},0.6)`,
-                }}
-              />
-              <span
-                style={{
-                  fontFamily: "'DM Mono',monospace",
-                  fontSize: "7.5px",
-                  letterSpacing: "0.32em",
-                  textTransform: "uppercase" as const,
-                  color: `rgba(${CREAM},0.85)`,
-                  textShadow: "0 1px 4px rgba(0,0,0,0.6)",
-                }}
-              >
-                Live · Gundlupet line
-              </span>
-            </div>
           </motion.div>
 
           {/* Caption row */}

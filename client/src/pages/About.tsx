@@ -34,8 +34,8 @@ const aboutStory: StoryStep[] = [
     section: "How It Started",
     title: "A System Built Before It Was Scaled",
     paragraphs: [
-      "Begur Sands Private Limited did not begin as a company trying to grow quickly. It began as work that needed to be done properly.",
-      "India's construction materials sector has long relied on availability over reliability. Materials arrive, projects move forward - but the systems behind them are inconsistent, opaque, and hard on land and water.",
+      "Greenrock Innovations did not begin as a company trying to grow quickly. It began as work that needed to be done properly — at a single facility, Begur Sands, in Karnataka.",
+      "India's construction materials sector has long relied on availability over reliability. Materials arrive, projects move forward — but the systems behind them are inconsistent, opaque, and hard on land and water.",
       "This platform was built to take a different approach: slow first, correct first, then scale.",
     ],
   },
@@ -117,7 +117,7 @@ const growthMilestones: MilestoneStep[] = [
     title: "Formalising the Backbone",
     paragraphs: [
       "By 2024, the system had reached stability.",
-      "Only then was Begur Sands Private Limited formalised, deliberately structured to hold:",
+      "Begur Sands Pvt. Ltd. was formalised as the first operating facility under what would become Greenrock Innovations — deliberately structured to hold:",
     ],
     bullets: ["operational knowledge", "process ownership", "governance and control"],
     emphasis: "The order mattered. The system came first. The company followed.",
@@ -134,11 +134,11 @@ const growthMilestones: MilestoneStep[] = [
   },
   {
     period: "Structure",
-    title: "Brand Architecture",
+    title: "Operating Architecture",
     paragraphs: [
       "The operating structure is intentionally simple.",
-      "Begur Sands Private Limited owns the system, the discipline, and the operating logic.",
-      "BlackDiamond Granites is the execution and expansion brand, carrying that system into the market.",
+      "Greenrock Innovations holds the system, the discipline, and the operating logic — and operates a growing network of manufacturing facilities under it.",
+      "Begur Sands Pvt. Ltd. is the largest of those facilities and the original site where the system was engineered. Additional sites are added only after they can meet the same operating standard.",
     ],
     emphasis: "Scale is allowed. Compromise is not.",
   },
@@ -272,9 +272,10 @@ export default function About() {
             </h1>
 
             <p className="max-w-3xl text-lg font-normal leading-relaxed text-[#343434] md:text-2xl">
-              BlackDiamond Granites operates under Begur Sands Private Limited as an industrial mineral
-              recycling platform for manufactured sand and aggregates. The operating system was designed
-              to prioritise compliance, consistency, and traceability before scale.
+              Greenrock Innovations operates a network of manufacturing facilities producing
+              engineered sand and aggregates from reclaimed, weathered rock — the largest being
+              Begur Sands Pvt. Ltd. in Karnataka. The operating system was designed to prioritise
+              compliance, consistency, and traceability before scale.
             </p>
 
             <section ref={storyRef} className="relative mt-16">

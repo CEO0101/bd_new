@@ -11,14 +11,16 @@ const NAV_ITEMS = [
   { href: "/invest", label: "Invest" },
 ];
 
-/* Diamond SVG logo mark */
-function DiamondMark() {
+/* Greenrock mark — faceted gem with regeneration arrow */
+function GreenrockMark() {
   return (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-      <polygon points="11,1 21,9 11,21 1,9"
-        fill="rgba(46,111,87,0.15)" stroke="#2E6F57" strokeWidth="1.2"/>
-      <polygon points="11,5 17,10 11,18 5,10"
-        fill="rgba(46,111,87,0.2)" stroke="rgba(46,111,87,0.5)" strokeWidth="0.6"/>
+    <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <polygon points="16,3 28,16 16,29 4,16"
+        fill="rgba(46,111,87,0.18)" stroke="#2E6F57" strokeWidth="1.5" strokeLinejoin="round" />
+      <polygon points="16,7 24,16 16,25 8,16"
+        fill="none" stroke="#2E6F57" strokeWidth="0.7" strokeOpacity="0.55" />
+      <path d="M16 21 L16 12 M12 16 L16 12 L20 16"
+        fill="none" stroke="#2E6F57" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -41,16 +43,16 @@ export default function Navbar() {
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-[10px] no-underline">
-          <DiamondMark />
+          <GreenrockMark />
           <span style={{
             fontFamily: "'DM Mono', monospace",
-            fontSize: "12px",
+            fontSize: "11.5px",
             fontWeight: 500,
-            letterSpacing: "0.12em",
-            color: "rgba(237,232,223,0.9)",
+            letterSpacing: "0.14em",
+            color: "rgba(237,232,223,0.92)",
             textTransform: "uppercase",
           }}>
-            Black Diamond
+            Greenrock<span style={{ color: "#2E6F57", marginLeft: "5px" }}>Innovations</span>
           </span>
         </Link>
 

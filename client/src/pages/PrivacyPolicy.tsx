@@ -4,14 +4,14 @@ export default function PrivacyPolicy() {
   return (
     <LegalDocumentPage
       eyebrow="Privacy Policy"
-      title="How Black Diamond handles information shared through its website and commercial channels."
+      title="How Greenrock Innovations handles information shared through its website and commercial channels."
       summary="This policy explains what information we collect, why we collect it, how we use it, and the standards we apply when handling enquiries, subscriptions, and commercial communications relating to our materials platform."
       effectiveDate="11 February 2026"
       sections={[
         {
           title: "Scope",
           paragraphs: [
-            "This policy applies to information collected through the Black Diamond website, product enquiry channels, newsletter forms, and related commercial communications. It is intended to describe our current operating position in a clear and practical way.",
+            "This policy applies to information collected through the Greenrock Innovations website, product enquiry channels, newsletter forms, and related commercial communications. It is intended to describe our current operating position in a clear and practical way.",
             "The policy covers personal information that can identify an individual directly or indirectly, as well as technical data associated with website usage, device access, and form submissions.",
           ],
         },
@@ -54,7 +54,7 @@ export default function PrivacyPolicy() {
           title: "Your Choices",
           paragraphs: [
             "Subject to applicable law, you may request access to, correction of, or deletion of personal information held by us, or ask questions about how that information is handled.",
-            "Requests may be sent to hello@blackdiamondgranites.com. We may need to verify identity and the scope of the request before acting on it.",
+            "Requests may be sent to hello@greenrockinnovations.earth. We may need to verify identity and the scope of the request before acting on it.",
           ],
         },
       ]}

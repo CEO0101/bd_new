@@ -4,7 +4,7 @@ export default function CookiePolicy() {
   return (
     <LegalDocumentPage
       eyebrow="Cookie Policy"
-      title="How the Black Diamond website uses cookies and similar technologies."
+      title="How the Greenrock Innovations website uses cookies and similar technologies."
       summary="This policy explains the role of cookies, local storage, and related technologies in supporting site delivery, performance, measurement, and user experience."
       effectiveDate="18 February 2026"
       sections={[
@@ -46,7 +46,7 @@ export default function CookiePolicy() {
         {
           title: "Further Information",
           paragraphs: [
-            "Questions about this policy or about website data practices more generally may be directed to hello@blackdiamondgranites.com.",
+            "Questions about this policy or about website data practices more generally may be directed to hello@greenrockinnovations.earth.",
           ],
         },
       ]}

@@ -6,7 +6,23 @@ type SiteFooterProps = {
   tone?: FooterTone;
 };
 
-const EMAIL = "hello@blackdiamondgranites.com";
+const EMAIL = "hello@greenrockinnovations.earth";
+
+/* Greenrock mark — faceted gem with regeneration arrow */
+function GreenrockMark({ tone }: { tone: FooterTone }) {
+  const stroke = tone === "dark" ? "#9DD9B8" : "#2E6F57";
+  const fill = tone === "dark" ? "rgba(157,217,184,0.16)" : "rgba(46,111,87,0.16)";
+  return (
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <polygon points="16,3 28,16 16,29 4,16"
+        fill={fill} stroke={stroke} strokeWidth="1.5" strokeLinejoin="round" />
+      <polygon points="16,7 24,16 16,25 8,16"
+        fill="none" stroke={stroke} strokeWidth="0.7" strokeOpacity="0.55" />
+      <path d="M16 21 L16 12 M12 16 L16 12 L20 16"
+        fill="none" stroke={stroke} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
 const toneStyles = {
   dark: {
@@ -67,13 +83,14 @@ export default function SiteFooter({ tone = "dark" }: SiteFooterProps) {
         <div className="grid gap-12 lg:grid-cols-4">
           <div className="lg:col-span-1">
             <div className="mb-8 flex items-center gap-3">
-              <div className={`h-8 w-8 rotate-45 transform rounded-sm ${style.brandMark}`} />
+              <GreenrockMark tone={tone} />
               <span className={`font-display text-lg font-bold tracking-tight uppercase ${style.brandText}`}>
-                BLACK DIAMOND
+                GREENROCK
+                <span className="opacity-60 ml-2 text-sm font-mono tracking-[0.18em]">Innovations</span>
               </span>
             </div>
             <p className={`max-w-sm text-sm leading-relaxed ${style.bodyText}`}>
-              Building without borrowing from its future. A cleaner, more disciplined way for India to grow.
+              Engineered construction materials from reclaimed, weathered rock. Built without borrowing from the river, the forest, or the future.
             </p>
             <div className="mt-8 flex gap-4">
               <SocialIcon
@@ -138,8 +155,10 @@ export default function SiteFooter({ tone = "dark" }: SiteFooterProps) {
 
         <div className={`mt-16 border-t pt-8 ${style.divider}`}>
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <p className={`text-center text-xs font-mono uppercase tracking-widest ${style.legalText}`}>
-              © {new Date().getFullYear()} Precision Granite Recovery
+            <p className={`text-center text-xs font-mono uppercase tracking-[0.22em] ${style.legalText}`}>
+              © {new Date().getFullYear()} Greenrock Innovations
+              <span className="opacity-50 mx-3">·</span>
+              <span className="opacity-70">Operating Begur Sands Pvt. Ltd. & affiliated facilities</span>
             </p>
             <div className={`flex flex-wrap justify-center gap-4 text-xs font-mono uppercase tracking-widest md:gap-8 ${style.legalText}`}>
               <Link href="/privacy-policy" className={`transition-colors ${style.legalHover}`}>Privacy Policy</Link>

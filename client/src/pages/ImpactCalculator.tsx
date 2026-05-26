@@ -123,7 +123,7 @@ export default function ImpactCalculator() {
       value: `~${Math.round(results.waterReuseLitres).toLocaleString()} litres`,
       gauge: results.waterReuseRatePct,
       context:
-        "Calculated from BlackDiamond system design logic, where water reuse is an engineered outcome (60-70% reuse simulated across cycles). Displayed with intuitive gauges.",
+        "Calculated from Greenrock system design logic, where water reuse is an engineered outcome (60-70% reuse simulated across cycles). Displayed with intuitive gauges.",
     },
     {
       id: "land",

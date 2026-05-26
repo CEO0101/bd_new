@@ -4,7 +4,7 @@ export default function TermsOfService() {
   return (
     <LegalDocumentPage
       eyebrow="Terms of Service"
-      title="Terms governing access to the Black Diamond website, materials information, and digital tools."
+      title="Terms governing access to the Greenrock Innovations website, materials information, and digital tools."
       summary="These terms are intended to set a clear and commercially sensible framework for website use. They apply to informational content, product pages, calculators, and any materials made available through the site."
       effectiveDate="14 February 2026"
       sections={[
@@ -12,14 +12,14 @@ export default function TermsOfService() {
           title: "Acceptance and Purpose",
           paragraphs: [
             "By accessing or using this website, you agree to these terms. If you do not agree, you should not use the site.",
-            "The website is intended to provide information about Black Diamond, its operating model, product categories, technical positioning, and related commercial opportunities. Nothing on the site is intended to create a binding supply commitment unless expressly confirmed in writing.",
+            "The website is intended to provide information about Greenrock Innovations, its operating model, product categories, technical positioning, and related commercial opportunities. Nothing on the site is intended to create a binding supply commitment unless expressly confirmed in writing.",
           ],
         },
         {
           title: "Use of Site Content",
           paragraphs: [
             "You may use the website for legitimate business, research, procurement, technical review, or investor evaluation purposes. You may not misuse the site, interfere with its operation, attempt unauthorised access, or use its content in a misleading, unlawful, or defamatory manner.",
-            "All text, design, graphics, layouts, marks, product descriptions, process representations, and supporting media remain the property of Black Diamond or its licensors unless stated otherwise.",
+            "All text, design, graphics, layouts, marks, product descriptions, process representations, and supporting media remain the property of Greenrock Innovations or its licensors unless stated otherwise.",
           ],
         },
         {
@@ -47,13 +47,13 @@ export default function TermsOfService() {
           title: "Liability Position",
           paragraphs: [
             "To the maximum extent permitted by law, the website is provided on an as-available basis. We do not warrant uninterrupted availability, absolute accuracy, or fitness for every intended purpose.",
-            "Black Diamond will not be liable for indirect, incidental, consequential, or business interruption losses arising from use of the website or reliance on general informational content, except where liability cannot lawfully be excluded.",
+            "Greenrock Innovations will not be liable for indirect, incidental, consequential, or business interruption losses arising from use of the website or reliance on general informational content, except where liability cannot lawfully be excluded.",
           ],
         },
         {
           title: "Contact",
           paragraphs: [
-            "Questions regarding these terms, website use, or commercial reliance on site materials may be directed to hello@blackdiamondgranites.com.",
+            "Questions regarding these terms, website use, or commercial reliance on site materials may be directed to hello@greenrockinnovations.earth.",
           ],
         },
       ]}
