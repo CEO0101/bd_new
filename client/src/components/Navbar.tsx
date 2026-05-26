@@ -8,6 +8,7 @@ const NAV_ITEMS = [
   { href: "/about", label: "About" },
   { href: "/technology", label: "Technology" },
   { href: "/products", label: "Products" },
+  { href: "/journal", label: "Journal" },
   { href: "/invest", label: "Invest" },
 ];
 

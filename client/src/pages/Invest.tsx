@@ -1,7 +1,20 @@
 import Navbar from "@/components/Navbar";
 import miningVideo from "@/assets/videos/mining-extraction.mp4";
+import { useSeo, breadcrumbJsonLd } from "@/lib/useSeo";
 
 export default function Invest() {
+  useSeo({
+    title: "Invest — Greenrock Innovations",
+    description:
+      "Investment thesis: a circular climate-aligned construction materials platform built on Karnataka's first Waste Rock Royalty Recycle Permit. ~70% lower-carbon engineered aggregate at IS 383:2016 spec, governed by SOPs and PLC traceability.",
+    canonical: "/invest",
+    jsonLd: [
+      breadcrumbJsonLd([
+        { name: "Home", path: "/" },
+        { name: "Invest", path: "/invest" },
+      ]),
+    ],
+  });
   return (
     <div className="min-h-screen overflow-x-hidden bg-black text-white">
       <Navbar />

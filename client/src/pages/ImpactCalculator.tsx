@@ -3,6 +3,7 @@ import type { LucideIcon } from "lucide-react";
 import { ArrowRight, Droplets, Info, Landmark, Leaf, Minus, Plus, Recycle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
+import { useSeo, breadcrumbJsonLd } from "@/lib/useSeo";
 
 type CalculatorCardProps = {
   icon: LucideIcon;
@@ -43,6 +44,18 @@ const CalculatorCard = ({ icon: Icon, title, value, unit, subtitle }: Calculator
 );
 
 export default function ImpactCalculator() {
+  useSeo({
+    title: "Impact Calculator — Carbon, Water, Land",
+    description:
+      "Estimate the carbon, water, and land-pressure impact of using Greenrock's reclaimed-rock manufactured sand and aggregates for your project. Designed against published lifecycle reference data.",
+    canonical: "/impact-calculator",
+    jsonLd: [
+      breadcrumbJsonLd([
+        { name: "Home", path: "/" },
+        { name: "Impact Calculator", path: "/impact-calculator" },
+      ]),
+    ],
+  });
   const [tons, setTons] = useState<number>(0);
   const [openLogicId, setOpenLogicId] = useState<LogicItem["id"] | null>("carbon");
 

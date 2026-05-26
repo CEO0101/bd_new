@@ -2,7 +2,36 @@ import { useEffect, useRef } from "react";
 import { motion, useInView, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
+import FaqSection from "@/components/FaqSection";
+import { useSeo, faqJsonLd, breadcrumbJsonLd, SITE_ORIGIN } from "@/lib/useSeo";
 import aboutBackgroundVideo from "@assets/6010532_Nature_Rock_1280x720compresseddamed.mp4";
+
+const ABOUT_FAQS = [
+  {
+    q: "Who is Greenrock Innovations?",
+    a: "Greenrock Innovations is a climate technology company that processes waste rock and weathered rock from Karnataka's quarrying sector into IS 383:2016 compliant manufactured sand and construction aggregates. The company operates a network of manufacturing facilities, the largest being Begur Sands Pvt. Ltd. in Gundlupet, Karnataka — the original site where the closed-loop processing system was engineered.",
+  },
+  {
+    q: "What is the relationship between Greenrock Innovations and Begur Sands Pvt. Ltd.?",
+    a: "Greenrock Innovations is the operating platform that holds the system, the discipline, and the operating logic. Begur Sands Pvt. Ltd. is its largest manufacturing facility and the original engineering site, located in Gundlupet, Karnataka. Additional facilities are added under the Greenrock platform only after they can meet the same operating standard.",
+  },
+  {
+    q: "When did Greenrock Innovations begin operations?",
+    a: "Engineering work began in 2016 at what would become Begur Sands — focused on the technical questions of how weathered rock behaves under crushing and why conventional flows struggle to control gradation. The system reached operational stability in 2024. First commercial validation (~400,000 tonnes produced under full SOP execution) took place in 2025.",
+  },
+  {
+    q: "Where are Greenrock's facilities located?",
+    a: "The flagship facility is in Gundlupet, Chamarajanagar district, Karnataka — the southern corridor of the Western Ghats. The location is deliberate: it sits within the quarrying geography that has supplied South India's construction material for decades, putting Greenrock at the point where the residual waste streams of primary quarrying can be converted into engineered output.",
+  },
+  {
+    q: "What certifications and permits does Greenrock operate under?",
+    a: "Karnataka state Waste Rock Royalty Recycle Permit (first of its kind in the state), Bureau Veritas certified, BIS-hallmarked output, IS 383:2016 / IS 1542:1992 compliant, Zero Liquid Discharge operations, DPIIT Startup India recognised.",
+  },
+  {
+    q: "What does Greenrock produce?",
+    a: "Four engineered output classes: M-Sand (manufactured sand for structural concrete, IS 383 Zone II), P-Sand (plastering sand, IS 1542), Graded Aggregates (coarse, IS 383 — 6/10/20 mm fractions), and Granite Fines (sub-grade stabiliser and asphalt filler).",
+  },
+];
 
 type StoryStep = {
   id: string;
@@ -168,6 +197,35 @@ const coreValues: ValuePoint[] = [
 ];
 
 export default function About() {
+  useSeo({
+    title: "About — Greenrock Innovations & Begur Sands Pvt. Ltd.",
+    description:
+      "Greenrock Innovations operates a network of manufacturing facilities producing engineered sand and aggregates from reclaimed weathered rock — the largest being Begur Sands Pvt. Ltd. in Karnataka. The operating system was designed for compliance, consistency, and traceability before scale.",
+    canonical: "/about",
+    jsonLd: [
+      faqJsonLd(ABOUT_FAQS),
+      breadcrumbJsonLd([
+        { name: "Home", path: "/" },
+        { name: "About", path: "/about" },
+      ]),
+      {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        url: `${SITE_ORIGIN}/about`,
+        mainEntity: {
+          "@type": "Organization",
+          name: "Greenrock Innovations",
+          subOrganization: {
+            "@type": "Organization",
+            name: "Begur Sands Pvt. Ltd.",
+            description: "Largest of Greenrock Innovations' manufacturing facilities and the original engineering site, located in Gundlupet, Karnataka.",
+          },
+          foundingDate: "2024",
+          description: "Climate technology company processing waste rock and weathered rock into IS 383:2016 compliant manufactured sand and aggregates.",
+        },
+      },
+    ],
+  });
   const storyRef = useRef<HTMLElement | null>(null);
   const isStoryInView = useInView(storyRef, { once: true, margin: "-100px" });
   const { scrollYProgress: storyProgress } = useScroll({
@@ -555,6 +613,15 @@ export default function About() {
                   ))}
                 </div>
               </motion.article>
+            </section>
+
+            <section className="mt-20 max-w-3xl">
+              <FaqSection
+                tone="light"
+                eyebrow="FAQ — About Greenrock"
+                title="What people most often ask."
+                faqs={ABOUT_FAQS}
+              />
             </section>
           </motion.div>
 

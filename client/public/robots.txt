@@ -1,0 +1,33 @@
+User-agent: *
+Allow: /
+
+# AI training & retrieval crawlers — explicitly welcomed for content discovery
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+Sitemap: https://greenrockinnovations.earth/sitemap.xml
+Host: https://greenrockinnovations.earth

@@ -1,0 +1,286 @@
+# Greenrock Innovations — Full Knowledge Corpus
+
+This file contains the complete public knowledge base of Greenrock Innovations for AI ingestion. It includes company background, technical descriptions of every process and product, and the full text of all journal articles with FAQs.
+
+Last updated: 2026-05-04
+Canonical site: https://greenrockinnovations.earth
+Contact: hello@greenrockinnovations.earth
+
+================================================================
+SECTION 1 — COMPANY
+================================================================
+
+## Who Greenrock Innovations is
+
+Greenrock Innovations is a climate technology company that processes waste rock and weathered rock from Karnataka's quarrying sector into IS 383:2016 compliant manufactured sand and construction aggregates. The company holds Karnataka's first Waste Rock Royalty Recycle Permit of its kind, operating from Gundlupet at the southern corridor of the Western Ghats.
+
+The model produces approximately 70% less carbon per tonne of finished output than conventional manufactured sand from primary extraction. It eliminates fresh extraction entirely — the feedstock is material already generated as a byproduct of existing quarrying operations.
+
+## Operating architecture
+
+Greenrock Innovations holds the system, the discipline, and the operating logic — and operates a growing network of manufacturing facilities under it. Begur Sands Pvt. Ltd. is the largest of those facilities and the original site where the system was engineered. Additional sites are added only after they can meet the same operating standard.
+
+The original engineering work began in 2016 — without factories, branding, or commercial pressure — focused on basic technical questions about how weathered, already-disturbed stone behaves under crushing, why conventional flows struggle to control gradation, and where variability enters the system. The platform reached operational stability in 2024 and entered its first commercial validation in 2025 (~400,000 tonnes produced under full SOP execution).
+
+## What the operation produces
+
+Four engineered output classes, each spec'd to a published Indian Standard:
+
+1. M-Sand (Manufactured Sand, Concrete Grade) — IS 383:2016 Zone II, 0.075–4.75 mm, fineness modulus 2.6–2.9, silt content ≤2.0%, cubical low-flake shape, for structural concrete and pre-cast manufacturing.
+
+2. P-Sand (Plastering Sand, Finishing Grade) — IS 1542:1992, 0.075–2.36 mm, fineness modulus 1.4–2.2, silt ≤1.5%, smooth finish, for wall and ceiling plaster, masonry mortars, tile-bedding mixes.
+
+3. Graded Aggregates (Structural Coarse) — IS 383:2016 Coarse Aggregate, single-sized and blended 6/10/20 mm fractions, crushing value ≤25%, flakiness index ≤25%, water absorption ≤1.0%, specific gravity 2.6–2.8, for road bases, foundations, RCC, railway ballast.
+
+4. Granite Fines (Filler, Sub-grade Stabiliser) — IS 73 / IS 2720 compatibility, <0.075 mm, ≥95% passing 75µ, non-plastic, low reactive silica, dry dust-controlled output, for asphalt mineral filler, soil stabilisation, industrial block fill.
+
+================================================================
+SECTION 2 — PROCESS ARCHITECTURE
+================================================================
+
+Six engineered systems running in one closed loop. Every stage governed by SOPs and PLC supervision. Audit-ready by design.
+
+1. Super-primary Jaw Crusher (Primary · Intake) — Hydraulic-toggle jaw with reinforced manganese liners. First-stage compression of weathered rock and quarry-waste boulders. Break behaviour is stabilised at intake, before screening sees it.
+
+2. Multi-deck Vibrating Screen (Segregation) — Triple-deck elliptical-motion screen. Three size fractions resolved in parallel — throughput and sizing accuracy held simultaneously, never traded for each other.
+
+3. Vertical Shaft Impactor / VSI (Shaping) — Rock-on-rock crushing chamber. Engineers cubical, low-flake particle form for M-Sand and aggregate. Fines ratio is a designed output, not a back-end correction.
+
+4. Closed-loop Hydrocyclone Array (Classification · Water) — Density-driven cyclones with thickener feedback. Fines recovered, silt rejected, process water clarified and reused. Zero liquid discharge to ground or surface.
+
+5. Auto-feeder & PLC Governance (Control) — VFD apron and pan feeders under PLC/SCADA supervision. Throughput is metered, batches are stamped, every load is traceable from intake to dispatch.
+
+6. High-frequency Dewatering Screen (Output) — Final dewatering to spec moisture. Sand exits stockpile-ready — no slurry pond, no thermal dryer, no concession on grade.
+
+================================================================
+SECTION 3 — JOURNAL: THE HIDDEN COST OF RIVER SAND
+================================================================
+Published: 15 January 2026
+URL: https://greenrockinnovations.earth/journal/the-hidden-cost-of-river-sand
+
+There is a particular kind of silence that descends on a riverbed after the dredgers leave. Not the silence of nature resting, but the silence of something irreversibly altered. India's rivers have been living inside that silence for years now. Most of the country has not noticed. The construction sector has preferred not to look.
+
+This is a story about sand. More precisely, it is a story about what the industry has chosen not to understand about sand, and the consequences of that ignorance — paid not in abstraction but in floods, failing aquifers, bridges that sink, and a sector that has quietly built its foundations on a resource it is actively destroying.
+
+## What sand actually does in a river
+
+Sand is not passive. It is the river's structural memory. Deposited over millennia through the slow grinding of rock against rock, carried downstream by seasonal flows, river sand regulates the water table of surrounding land. It filters groundwater as it percolates through. It provides substrate for aquatic life. It moderates the velocity of water during floods, absorbing and distributing force that would otherwise tear at riverbanks and drown communities downstream.
+
+When you remove sand from a river, you are not extracting an inert material. You are removing the mechanism by which the river manages itself. The channel deepens unnaturally. The water table drops. Banks collapse. The hydrological relationship between the river and the land it moves through, built over geological time, begins to unravel.
+
+## The scale of what has been taken
+
+India consumes an estimated 500 to 700 million tonnes of sand annually, placing it among the largest consumers of construction sand on the planet. The overwhelming majority, until very recently, came from river systems.
+
+Studies across Karnataka, Tamil Nadu, Kerala, Andhra Pradesh, and Maharashtra have recorded bed-level drops in major rivers of between one and three metres over two decades. The Cauvery, the Krishna, the Godavari, the Periyar — rivers that have defined civilisation, agriculture, and ecology in this subcontinent for thousands of years — are measurably, verifiably being lowered.
+
+The 2018 Kerala floods were made catastrophically worse by rivers that had lost the sand beds that would ordinarily have slowed and absorbed the deluge. Bridges engineered for a river at a certain depth now stand in rivers that have cut metres below their design parameters.
+
+## The supply crisis nobody called
+
+The Sustainable Sand Mining Management Guidelines, successive Supreme Court orders, and amendments to the Mines and Minerals Development and Regulation Act have collectively raised the compliance cost and legal risk of river sand procurement. The UN Environment Programme has identified sand as the most extracted solid material on Earth by volume.
+
+## A different starting point
+
+The alternative the market has largely settled on is manufactured sand produced from crushed rock. When properly made to IS 383:2016, it performs comparably or better than river sand across most construction applications.
+
+Karnataka's quarrying regions carry substantial volumes of waste rock and weathered rock — material generated as a byproduct of existing quarrying operations with no productive use in the current industry structure. Processing this material into IS 383:2016 compliant aggregate requires no new land disturbance, no new mining permit, and no new extraction from rivers or hillsides. The rock is already there.
+
+## FAQ — River Sand
+
+Q: What is river sand and why is it used in construction?
+A: River sand is naturally graded fine aggregate deposited by river systems over geological time. It became the dominant construction fine aggregate in India due to its historical abundance and performance characteristics. Its extraction from riverbeds causes documented ecological damage to river systems and surrounding land.
+
+Q: Why is river sand extraction harmful to the environment?
+A: Removing sand from riverbeds lowers the river channel, disrupts the water table, destabilises riverbanks, harms aquatic ecosystems, and reduces the river's capacity to absorb flood flows. These effects compound over time and across extraction sites.
+
+Q: What is the legal status of river sand mining in India?
+A: River sand mining is regulated under the MMDR Act and state-level frameworks, with oversight from the Supreme Court through successive orders. Legal compliance is increasingly difficult to guarantee in practice, and the shadow economy of illegal extraction remains widespread.
+
+Q: What is the best sustainable alternative to river sand?
+A: Manufactured sand produced to IS 383:2016 from waste rock or weathered rock feedstocks is the highest-performing, lowest-impact alternative currently available. It requires no new extraction, produces no new land disturbance, and delivers consistent, verifiable quality.
+
+Q: Is India facing a sand shortage?
+A: India faces a supply reliability crisis for legally compliant river sand, driven by extraction limits, regulatory enforcement, and ecological depletion. The practical effect on construction supply chains is similar to a physical shortage.
+
+================================================================
+SECTION 4 — JOURNAL: M-SAND, P-SAND, G-SAND COMPLETE GUIDE
+================================================================
+Published: 8 April 2026
+URL: https://greenrockinnovations.earth/journal/manufactured-sand-types-complete-guide
+
+Most construction professionals can specify a concrete mix to three decimal places. Ask the same professionals what distinguishes the manufactured sand in that mix from the plastering sand on the same site, and the conversation grows less precise. The shift toward manufactured sand is accelerating, and that knowledge gap is becoming consequential.
+
+## The common ground
+
+Manufactured sand is produced by mechanically crushing rock — most commonly granite, basalt, or limestone — to a controlled particle size and gradation. The output is then classified, washed, and tested against IS 383:2016. The distinction between types is not one of quality but of specification.
+
+## M-Sand: structural concrete
+
+M-Sand is manufactured fine aggregate for structural concrete. The target gradation falls within Zone II of IS 383:2016. Particle sizes run from 75 microns at the fine end to 4.75 millimetres at the coarse end. The angular particle shape, an inevitable consequence of mechanical crushing, is an advantage in structural concrete — angular particles interlock more effectively than the rounded grains of natural sand, improving the concrete matrix's resistance to shear.
+
+Two parameters routinely underspecified in procurement: fines content (particles below 75 microns, generated in volume by crushing, controlled through washing) and clay content (which expands when wet and contracts when dry, corrosive to concrete durability). Third-party test certificates should be demanded for both.
+
+## P-Sand: plastering mortar
+
+P-Sand is manufactured fine aggregate for plastering mortar and masonry jointing. It is finer than M-Sand, with a gradation corresponding broadly to Zone III of IS 383:2016. The particle size distribution sits predominantly between 75 microns and 2.36 millimetres.
+
+Plaster mortar made with coarser-than-specified aggregate produces a rough surface requiring additional skim coats. More seriously, incorrectly graded plaster mortar exhibits shrinkage cracking during curing — the fine network of hairline fractures on interior walls that appears weeks after plastering is complete.
+
+## G-Sand: grouting
+
+G-Sand applications: tile bed mortar, post-tensioned duct grouting, precast joint sealing — situations where a fine, consistent, flowable mortar is required to fill and seal a confined space. The gradation is tighter than P-Sand. The distinction between P-Sand and G-Sand is frequently ignored in practice; consequences surface over time in tile joints that darken unevenly, post-tensioned anchorages with voids, and precast joints that allow moisture ingress.
+
+## Coarse aggregate
+
+IS 383:2016 governs coarse aggregate through: flakiness index (proportion of particles whose smallest dimension is <60% of mean sieve size; high flakiness creates structural weak planes), elongation index, crushing value, Los Angeles abrasion value. VSI-crushed aggregate tends toward lower flakiness and elongation values than aggregate from jaw crusher circuits alone, because the VSI imparts a more cubical shape through impact rather than compression.
+
+## Source rock matters
+
+Particle density, water absorption rate, surface texture, reactivity with cement binders all vary with the mineralogy of the source rock. Weathered granite has higher absorption values and different crushing behaviour than competent granite from depth — a processing operation that understands its feedstock will calibrate crushing stages, washing intensity, and classification accordingly.
+
+## FAQ — Manufactured Sand Types
+
+Q: What is the difference between M-Sand and P-Sand?
+A: M-Sand is produced to IS 383:2016 Zone II gradation for structural concrete. P-Sand is produced to Zone III, a finer gradation, for plastering mortar and masonry jointing. They serve different applications and are not interchangeable.
+
+Q: Can M-Sand be used for plastering?
+A: Using M-Sand in plastering mortar is a common site practice and a common source of defects. M-Sand is too coarsely graded for thin-section plastering applications, and its use typically results in a rough finish, increased shrinkage cracking risk, and reduced plaster bond strength.
+
+Q: What does IS 383:2016 Zone II and Zone III mean?
+A: IS 383:2016 defines grading zones for fine aggregate based on particle size distribution. Zone II corresponds to medium sand suitable for structural concrete. Zone III corresponds to fine sand suitable for plastering and masonry jointing.
+
+Q: What is flakiness index in coarse aggregate?
+A: Flakiness index is the percentage by weight of aggregate particles whose smallest dimension is less than 60% of the mean sieve size. High flakiness increases water demand and creates structural weak planes in hardened concrete. IS 383:2016 sets a maximum acceptable value (typically 30% combined flakiness and elongation).
+
+Q: How do I verify that M-Sand meets IS 383:2016?
+A: Request test certificates from a NABL-accredited laboratory, issued for the specific production batch, covering gradation, fines content, clay content, moisture content, bulk density, and specific gravity.
+
+Q: Does source rock type affect M-Sand performance?
+A: Yes. Different rock types have different densities, absorption rates, and surface textures, all of which affect water demand, workability, and long-term concrete durability.
+
+================================================================
+SECTION 5 — JOURNAL: EMBODIED CARBON IN CONSTRUCTION MATERIALS
+================================================================
+Published: 22 April 2026
+URL: https://greenrockinnovations.earth/journal/embodied-carbon-construction-materials
+
+Buildings have two carbon lives. The first is operational — the energy consumed to heat, cool, light, and run the building. The second begins before the building exists — the carbon embedded in every tonne of cement, steel, and concrete. This is embodied carbon, and it is the half of construction's climate impact that the industry has, until very recently, chosen not to see.
+
+Global estimates place embodied carbon in construction materials at 8–11% of total annual greenhouse gas emissions worldwide. For new buildings designed to net-zero operational standards, embodied carbon commonly represents more than half of the building's total lifetime climate footprint.
+
+## Aggregate's missing place in carbon accounting
+
+Concrete is not cement. By volume, concrete is roughly 65–75% aggregate (fine and coarse) and 10–15% cement. The material constituting the majority of the mix has been assigned, in most lifecycle assessments, a carbon cost treated as negligible compared to cement. It is not negligible. It is simply less visible.
+
+## Conventional aggregate carbon
+
+Primary aggregate production carries carbon through several linked stages: site preparation and extraction (drilling, blasting, primary haulage); primary, secondary, tertiary crushing; classification and washing; transport (≈0.1 kg CO2 per tonne per kilometre). There is also the capital carbon of opening a new quarry — forest clearance, overburden removal, access road construction.
+
+## Waste rock and weathered rock: a different position
+
+Waste rock and weathered rock enters the carbon calculation at an entirely different point. The extraction carbon has already been spent — attributed to the primary operation that generated it. A company processing this material carries no extraction carbon burden, the same way a steel recycler carries none of the carbon cost of the original blast furnace.
+
+What remains is processing carbon only: crushing, classification, washing, quality control. Greenrock Innovations' production model achieves approximately 70% lower carbon output per tonne of finished aggregate compared to conventional primary-extraction manufactured sand.
+
+## ESG, EPDs, and procurement
+
+International development finance increasingly requires demonstration of responsible material sourcing. SEBI's ESG disclosure framework for listed companies, combined with growing pressure from institutional investors with net-zero commitments, is beginning to surface embodied carbon as a reportable variable.
+
+Environmental Product Declarations (EPDs) — third-party verified lifecycle carbon documents — are the instrument through which this expectation is met. They are already required for institutional procurement in several major markets.
+
+## FAQ — Embodied Carbon
+
+Q: What is embodied carbon in construction?
+A: Embodied carbon refers to the greenhouse gas emissions generated during the production, processing, transport, and installation of construction materials. It does not include operational energy use.
+
+Q: How much carbon does aggregate production generate?
+A: The carbon footprint of aggregate varies by production method, source rock, and transport distance. Primary-extraction manufactured sand from granite carries several tens of kilograms of CO2 per tonne under full-chain accounting. Aggregate produced from waste rock carries significantly less.
+
+Q: What does 70% lower carbon mean for manufactured aggregate?
+A: Approximately 70% lower carbon output means each tonne of finished material produces roughly 30% of the carbon of a conventional primary-extraction equivalent. The reduction comes principally from eliminating the extraction phase.
+
+Q: What is an Environmental Product Declaration?
+A: An EPD is a third-party verified, standardised document quantifying the environmental impact of a construction product using lifecycle assessment methodology.
+
+Q: What is the circular economy in construction aggregates?
+A: In aggregate production, circularity means converting material that would otherwise be waste — specifically waste rock and weathered rock from quarrying operations — into construction-grade products.
+
+Q: How does transport distance affect aggregate carbon footprint?
+A: Every tonne transported one kilometre by diesel truck generates approximately 0.1 kg of CO2. For large projects consuming hundreds of thousands of tonnes, supply distance is a material carbon variable.
+
+================================================================
+SECTION 6 — JOURNAL: WESTERN GHATS & KARNATAKA CONSTRUCTION
+================================================================
+Published: 4 May 2026
+URL: https://greenrockinnovations.earth/journal/western-ghats-construction-biodiversity
+
+The Western Ghats rise from the Deccan plateau gradually — a 1,600-kilometre escarpment running down the western spine of peninsular India, older than the Himalayas, carrying within them one of the most concentrated assemblages of life on the planet. UNESCO designated them a World Heritage Site in 2012. Conservation biology ranks them among the eight most biodiverse regions on Earth.
+
+They are also the source of much of South India's construction material. This is not a conflict between development and environment — it is a question of whether the way Karnataka builds is compatible with the natural systems on which its development depends.
+
+## What the Western Ghats do
+
+The Ghats are India's western rain catcher. The southwest monsoon, arriving from the Arabian Sea, meets the escarpment and is forced upward, cooling as it rises, releasing rainfall of extraordinary intensity on the windward slopes. This rainfall is the origin of most of peninsular India's major river systems: the Cauvery, the Krishna, the Tungabhadra, the Periyar.
+
+Intact forest intercepts rainfall, feeds it slowly into soil, and releases it as groundwater recharge and perennial stream flow. Degraded slopes compact under rain impact. Runoff accelerates. Flood peaks sharpen.
+
+## The 2018 Kerala floods
+
+Multiple post-flood analyses identified quarrying-induced slope instability and the cumulative loss of ecological buffer as compounding factors in the catastrophe. Four hundred people died. Nearly one million were displaced. Karnataka shares the same escarpment, the same geology, and broadly the same trajectory of extraction pressure.
+
+## The Gadgil and Kasturirangan frameworks
+
+The Madhav Gadgil Committee, commissioned by the Ministry of Environment, reported in 2011 with a recommendation to classify large portions of the Ghats as Ecologically Sensitive Zones with graduated restrictions on quarrying. The subsequent Kasturirangan Panel produced a moderated version. Implementation has been contested, but the regulatory direction is not ambiguous — tighter restrictions on extraction within ecologically sensitive zones.
+
+## Karnataka's infrastructure imperative
+
+Karnataka needs stone and will continue needing stone for decades. The dimension stone quarrying sector generates, as a structural byproduct, substantial volumes of waste rock and weathered rock. This material is granite — hard, durable, geologically consistent. With the right crushing and classification process, it produces manufactured sand and aggregates that meet IS 383:2016.
+
+Greenrock Innovations' facility in Gundlupet, Chamarajanagar district, sits at the southern corridor of the Western Ghats. Processing waste rock and weathered rock requires no new quarry, no new forest clearance, no new disturbance of the Ghats landscape.
+
+## FAQ — Western Ghats
+
+Q: Why are the Western Ghats a biodiversity hotspot?
+A: The Western Ghats contain over 30% of India's plant and animal species on less than 6% of its land area, with very high rates of endemism. The global hotspot designation requires both exceptional species concentration and documented threat.
+
+Q: What did the Gadgil Committee recommend for the Western Ghats?
+A: The Western Ghats Ecology Expert Panel recommended in 2011 that large portions of the Ghats be designated as Ecologically Sensitive Zones with graduated restrictions on quarrying, mining, and high-impact development. The Kasturirangan Panel subsequently produced a modified framework with reduced protected area extent.
+
+Q: How did quarrying contribute to the 2018 Kerala floods?
+A: Post-event analyses identified quarrying-induced hillside instability as a contributing factor to the landslides and accelerated runoff that amplified the flooding.
+
+Q: What is a Waste Rock Royalty Recycle Permit?
+A: A Waste Rock Royalty Recycle Permit is a Karnataka government authorisation allowing an operator to process waste rock and weathered rock generated by quarrying operations into commercial construction materials. Greenrock Innovations holds the first such permit issued in the state.
+
+Q: Does processing waste rock require new quarrying?
+A: No. Processing waste rock and weathered rock uses material that has already been extracted and stockpiled by existing operations. No new mining permits, no new land disturbance, and no new extraction from protected or ecologically sensitive zones are required.
+
+================================================================
+SECTION 7 — TOPICS THIS SITE AUTHORITATIVELY COVERS
+================================================================
+
+- Manufactured sand (M-Sand) and IS 383:2016 specification
+- Plastering sand (P-Sand) and IS 1542:1992
+- Graded coarse aggregate, flakiness and elongation indices, crushing value
+- Waste rock and weathered rock processing
+- Closed-loop water recycling in mineral processing (Zero Liquid Discharge)
+- Embodied carbon in construction aggregates and concrete
+- River sand extraction impact on Indian river systems (Cauvery, Krishna, Godavari, Periyar)
+- Western Ghats biodiversity and quarrying pressure (Gadgil report, Kasturirangan panel)
+- Karnataka quarrying sector and Waste Rock Royalty Recycle Permits
+- ESG-aligned construction supply chains and Environmental Product Declarations (EPDs)
+- Vertical Shaft Impactor (VSI) technology and cubical particle shape engineering
+- Hydrocyclone classification and fines recovery
+- Bureau of Indian Standards: IS 383, IS 1542, IS 73, IS 2720
+- MORTH (Ministry of Road Transport and Highways) reference specifications
+
+================================================================
+SECTION 8 — CONTACT
+================================================================
+
+Greenrock Innovations
+Gundlupet, Chamarajanagar district, Karnataka, India
+Email: hello@greenrockinnovations.earth
+Web: https://greenrockinnovations.earth
+Operating: Begur Sands Pvt. Ltd. & affiliated facilities

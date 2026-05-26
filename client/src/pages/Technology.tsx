@@ -1,8 +1,37 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Process from "@/components/sections/Process";
+import FaqSection from "@/components/FaqSection";
+import { useSeo, faqJsonLd, breadcrumbJsonLd } from "@/lib/useSeo";
 import miningVideo from "@/assets/videos/mining-extraction.mp4";
 import processVideo from "@/assets/videos/process-equipment.mp4";
+
+const TECH_FAQS = [
+  {
+    q: "How does Greenrock's closed-loop process work?",
+    a: "Six engineered systems running in a single closed loop: super-primary jaw crushing (intake), multi-deck vibrating screen segregation, vertical shaft impactor (VSI) shaping, closed-loop hydrocyclone classification with water reuse, PLC-governed auto-feeders for traceability, and a high-frequency dewatering screen for spec-moisture output. Every stage is governed by SOPs and PLC supervision, making the line audit-ready by design.",
+  },
+  {
+    q: "What is a Vertical Shaft Impactor (VSI) and why does it matter?",
+    a: "A VSI is a rock-on-rock crushing chamber that engineers cubical, low-flake particle shape — critical for M-Sand performance in structural concrete and for graded aggregate meeting IS 383:2016 flakiness and elongation limits. Aggregate from VSI circuits consistently shows lower flakiness than aggregate from jaw-crusher-only circuits because impact (rather than compression) produces a more cubical particle.",
+  },
+  {
+    q: "Is the production line zero liquid discharge (ZLD)?",
+    a: "Yes. Process water is clarified and recirculated through a closed-loop hydrocyclone array with thickener feedback. No slurry pond, no discharge to ground or surface water. The fines recovered from the water stream become a saleable output (granite fines), not a disposal liability.",
+  },
+  {
+    q: "What is a Waste Rock Royalty Recycle Permit?",
+    a: "A Karnataka government authorisation that allows an operator to process waste rock and weathered rock from existing quarrying operations into commercial construction materials. Greenrock Innovations operates under the first such permit issued in the state. It legally distinguishes the material as a resource to be processed rather than a disposal liability — and removes the need for any new mining permit.",
+  },
+  {
+    q: "Why use weathered rock instead of fresh quarried stone?",
+    a: "Weathered rock is granite that has already been broken down by time and partially extracted by existing quarrying operations. Processing it requires no new drilling, no blasting, no new land disturbance, and no permit for fresh extraction. Calibrated correctly, the output meets the same IS 383:2016 specifications as primary-extraction manufactured sand — at roughly 70% lower carbon per tonne.",
+  },
+  {
+    q: "How is each batch traced?",
+    a: "Every load is stamped at intake through the PLC/SCADA-supervised feeder system, with VFD-controlled apron and pan feeders metering throughput. The batch ID flows through processing, classification, dewatering, and dispatch — so any tonne delivered to site can be traced back to its intake record and the laboratory tests that accompanied it.",
+  },
+];
 
 /* ─── Page palette ────────────────────────────────────────────────────
    Distinct from the homepage's pure black. Deep slate-blue base
@@ -54,6 +83,33 @@ const EQUIPMENT = [
 ];
 
 export default function Technology() {
+  useSeo({
+    title: "Technology — Closed-Loop Process & Equipment",
+    description:
+      "Six engineered systems in one closed loop: super-primary jaw, multi-deck screen, VSI shaping, hydrocyclone classification, PLC governance, dewatering. Zero liquid discharge. Batch-stamped, audit-ready.",
+    canonical: "/technology",
+    jsonLd: [
+      faqJsonLd(TECH_FAQS),
+      breadcrumbJsonLd([
+        { name: "Home", path: "/" },
+        { name: "Technology", path: "/technology" },
+      ]),
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        name: "Greenrock Innovations closed-loop processing architecture",
+        description:
+          "Six-stage process converting waste rock and weathered rock into IS 383:2016 compliant manufactured sand and aggregates with closed-loop water reuse.",
+        step: EQUIPMENT.map((e, i) => ({
+          "@type": "HowToStep",
+          position: i + 1,
+          name: e.name,
+          text: e.desc,
+        })),
+      },
+    ],
+  });
+
   return (
     <div
       className="min-h-screen"
@@ -658,6 +714,18 @@ export default function Technology() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── B.04  FAQ ──────────────────────────────────────────────── */}
+      <section style={{ padding: "0 52px 140px" }}>
+        <div className="max-w-3xl mx-auto">
+          <FaqSection
+            tone="dark-slate"
+            eyebrow="B.04 — Frequently asked"
+            title="Process, equipment, governance."
+            faqs={TECH_FAQS}
+          />
         </div>
       </section>
     </div>
