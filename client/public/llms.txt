@@ -19,7 +19,7 @@ Every batch is independently tested at NABL-accredited laboratories. Process wat
 
 ## Core pages
 
-- [Home](https://greenrockinnovations.earth/): 82% lower carbon construction materials, MORTH-certified, reclaimed weathered rock.
+- [Home](https://greenrockinnovations.earth/): ~70% lower carbon construction materials, MORTH-certified, reclaimed weathered rock.
 - [About](https://greenrockinnovations.earth/about): Operating architecture, 2016–2025 build history, mission, values.
 - [Technology](https://greenrockinnovations.earth/technology): Six engineered systems, closed-loop process, in-operation video.
 - [Products](https://greenrockinnovations.earth/products): M-Sand / P-Sand / Graded Aggregates / Granite Fines spec sheet, BIS/MORTH references, use-case fit matrix.
