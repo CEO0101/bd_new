@@ -14,7 +14,7 @@ SECTION 1 — COMPANY
 
 Greenrock Innovations is a climate technology company that processes waste rock and weathered rock from Karnataka's quarrying sector into IS 383:2016 compliant manufactured sand and construction aggregates. The company holds Karnataka's first Waste Rock Royalty Recycle Permit of its kind, operating from Gundlupet at the southern corridor of the Western Ghats.
 
-The model produces approximately 70% less carbon per tonne of finished output than conventional manufactured sand from primary extraction. It eliminates fresh extraction entirely — the feedstock is material already generated as a byproduct of existing quarrying operations.
+The model produces approximately 70–82% less carbon per tonne of finished output than conventional manufactured sand from primary extraction. It eliminates fresh extraction entirely — the feedstock is material already generated as a byproduct of existing quarrying operations.
 
 ## Operating architecture
 
@@ -181,7 +181,7 @@ Primary aggregate production carries carbon through several linked stages: site 
 
 Waste rock and weathered rock enters the carbon calculation at an entirely different point. The extraction carbon has already been spent — attributed to the primary operation that generated it. A company processing this material carries no extraction carbon burden, the same way a steel recycler carries none of the carbon cost of the original blast furnace.
 
-What remains is processing carbon only: crushing, classification, washing, quality control. Greenrock Innovations' production model achieves approximately 70% lower carbon output per tonne of finished aggregate compared to conventional primary-extraction manufactured sand.
+What remains is processing carbon only: crushing, classification, washing, quality control. Greenrock Innovations' production model achieves approximately 70–82% lower carbon output per tonne of finished aggregate compared to conventional primary-extraction manufactured sand.
 
 ## ESG, EPDs, and procurement
 
@@ -197,8 +197,8 @@ A: Embodied carbon refers to the greenhouse gas emissions generated during the p
 Q: How much carbon does aggregate production generate?
 A: The carbon footprint of aggregate varies by production method, source rock, and transport distance. Primary-extraction manufactured sand from granite carries several tens of kilograms of CO2 per tonne under full-chain accounting. Aggregate produced from waste rock carries significantly less.
 
-Q: What does 70% lower carbon mean for manufactured aggregate?
-A: Approximately 70% lower carbon output means each tonne of finished material produces roughly 30% of the carbon of a conventional primary-extraction equivalent. The reduction comes principally from eliminating the extraction phase.
+Q: What does 70–82% lower carbon mean for manufactured aggregate?
+A: Approximately 70–82% lower carbon output means each tonne of finished material produces roughly 18–30% of the carbon of a conventional primary-extraction equivalent. The reduction comes principally from eliminating the extraction phase.
 
 Q: What is an Environmental Product Declaration?
 A: An EPD is a third-party verified, standardised document quantifying the environmental impact of a construction product using lifecycle assessment methodology.

@@ -139,7 +139,7 @@ export default function Hero() {
 
             {/* Headline — all cream, no colour on display text */}
             {[
-              { text: "82% lower carbon.",            delay: 0.25, opacity: 1.0,   italic: false },
+              { text: "70–82% lower carbon.",         delay: 0.25, opacity: 1.0,   italic: false },
               { text: "MORTH certified construction.", delay: 0.39, opacity: 0.68,  italic: false },
               { text: "ancient rocks.",                delay: 0.52, opacity: 0.10,  italic: true  },
             ].map((line, li) => (

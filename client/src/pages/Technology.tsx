@@ -25,7 +25,7 @@ const TECH_FAQS = [
   },
   {
     q: "Why use weathered rock instead of fresh quarried stone?",
-    a: "Weathered rock is granite that has already been broken down by time and partially extracted by existing quarrying operations. Processing it requires no new drilling, no blasting, no new land disturbance, and no permit for fresh extraction. Calibrated correctly, the output meets the same IS 383:2016 specifications as primary-extraction manufactured sand — at roughly 70% lower carbon per tonne.",
+    a: "Weathered rock is granite that has already been broken down by time and partially extracted by existing quarrying operations. Processing it requires no new drilling, no blasting, no new land disturbance, and no permit for fresh extraction. Calibrated correctly, the output meets the same IS 383:2016 specifications as primary-extraction manufactured sand — at roughly 70–82% lower carbon per tonne.",
   },
   {
     q: "How is each batch traced?",

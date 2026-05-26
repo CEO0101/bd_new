@@ -6,7 +6,7 @@ export default function Home() {
   useSeo({
     title: "Greenrock Innovations — Engineered Materials from Reclaimed Weathered Rock",
     description:
-      "IS 383:2016 compliant manufactured sand and aggregates engineered from reclaimed, weathered rock. ~70% lower carbon than primary extraction. Operating Begur Sands Pvt. Ltd. and affiliated facilities in Karnataka under the state's first Waste Rock Royalty Recycle Permit.",
+      "IS 383:2016 compliant manufactured sand and aggregates engineered from reclaimed, weathered rock. ~70–82% lower carbon than primary extraction. Operating Begur Sands Pvt. Ltd. and affiliated facilities in Karnataka under the state's first Waste Rock Royalty Recycle Permit.",
     canonical: "/",
     jsonLd: [
       {

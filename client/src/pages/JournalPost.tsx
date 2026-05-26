@@ -348,7 +348,7 @@ function Article({ post }: { post: Post }) {
               marginTop: "12px",
               maxWidth: "640px",
             }}>
-              Greenrock Innovations processes waste rock and weathered rock into IS 383:2016 compliant manufactured sand and aggregates from its facility in Gundlupet, Karnataka, under the state's first Waste Rock Royalty Recycle Permit of its kind. Production generates approximately 70% less carbon than conventional manufactured sand from primary extraction.
+              Greenrock Innovations processes waste rock and weathered rock into IS 383:2016 compliant manufactured sand and aggregates from its facility in Gundlupet, Karnataka, under the state's first Waste Rock Royalty Recycle Permit of its kind. Production generates approximately 70–82% less carbon than conventional manufactured sand from primary extraction.
             </p>
             <div className="mt-8 flex items-center gap-6 flex-wrap">
               <Link href="/journal">

@@ -6,7 +6,7 @@ export default function Invest() {
   useSeo({
     title: "Invest — Greenrock Innovations",
     description:
-      "Investment thesis: a circular climate-aligned construction materials platform built on Karnataka's first Waste Rock Royalty Recycle Permit. ~70% lower-carbon engineered aggregate at IS 383:2016 spec, governed by SOPs and PLC traceability.",
+      "Investment thesis: a circular climate-aligned construction materials platform built on Karnataka's first Waste Rock Royalty Recycle Permit. ~70–82% lower-carbon engineered aggregate at IS 383:2016 spec, governed by SOPs and PLC traceability.",
     canonical: "/invest",
     jsonLd: [
       breadcrumbJsonLd([
