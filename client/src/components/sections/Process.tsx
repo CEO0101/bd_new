@@ -169,13 +169,13 @@ function ProcessStepCard({
           </span>
         </div>
 
-        <h3 className="text-2xl font-display font-black uppercase text-white leading-tight tracking-tight mb-4">
+        <h3 className="text-2xl font-display font-normal uppercase text-white/90 leading-tight tracking-tight mb-4">
           {step.title}
         </h3>
 
         <motion.p
           style={{ opacity: useTransform(dist, [0, 1], [1, 0.5]) }}
-          className="text-sm text-white/50 leading-relaxed flex-1"
+          className="text-sm text-white/60 leading-relaxed flex-1"
         >
           {step.desc}
         </motion.p>
@@ -350,28 +350,28 @@ export default function Process() {
               <p className="text-[9px] font-mono uppercase tracking-[0.5em] text-white/25 mb-6">
                 Process Architecture — 03
               </p>
-              <div className="overflow-hidden mb-2">
+              <div className="overflow-hidden mb-1">
                 <h2
-                  className="font-display font-black uppercase leading-[0.85] tracking-[-0.03em] text-white"
-                  style={{ fontSize: "clamp(2.8rem, 7vw, 7rem)" }}
+                  className="font-display uppercase leading-[0.95] tracking-[-0.01em] text-white/90"
+                  style={{ fontSize: "clamp(2.4rem, 6vw, 6rem)", fontWeight: 400 }}
                 >
                   Closed-Loop
                 </h2>
               </div>
               <div className="overflow-hidden mb-8">
                 <h2
-                  className="font-display font-black uppercase leading-[0.85] tracking-[-0.03em]"
+                  className="font-display uppercase leading-[0.95] tracking-[-0.01em]"
                   style={{
-                    fontSize: "clamp(2.8rem, 7vw, 7rem)",
-                    color: "transparent",
-                    WebkitTextStroke: "1.5px rgba(255,255,255,0.7)",
+                    fontSize: "clamp(2.4rem, 6vw, 6rem)",
+                    fontWeight: 400,
+                    color: "rgba(255,255,255,0.3)",
                   }}
                 >
                   Recycling.
                 </h2>
               </div>
               <div className="h-[1px] w-20 mb-6" style={{ background: "var(--stone)" }} />
-              <p className="text-base text-white/45 leading-relaxed max-w-xl">
+              <p className="text-base text-white/65 leading-relaxed max-w-xl">
                 A controlled, enclosed, and traceable workflow engineered to prevent
                 environmental damage—eliminating slurry dumping, reducing river sand
                 dependency, protecting groundwater.
@@ -402,7 +402,7 @@ export default function Process() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.25 }}
-                      className="text-4xl font-display font-black text-white tracking-tighter"
+                      className="text-4xl font-display font-normal text-white tracking-tight"
                     >
                       0{activeIndex + 1}
                     </motion.div>
@@ -447,11 +447,11 @@ export default function Process() {
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">
               Process Architecture
             </div>
-            <h2 className="mt-6 text-4xl font-display font-black text-white">
+            <h2 className="mt-6 text-4xl font-display font-normal text-white/90">
               CLOSED-LOOP <br />
-              <span className="text-white/20">RECYCLING.</span>
+              <span className="text-white/30">RECYCLING.</span>
             </h2>
-            <p className="mt-6 text-lg text-white/60 leading-relaxed">
+            <p className="mt-6 text-lg text-white/70 leading-relaxed">
               A controlled, enclosed, and traceable workflow engineered to prevent environmental damage—eliminating
               slurry dumping, reducing river sand mining dependency, and protecting groundwater through closed-loop
               recovery systems.

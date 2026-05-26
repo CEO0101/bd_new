@@ -30,7 +30,7 @@ Four engineered output classes, each spec'd to a published Indian Standard:
 
 2. P-Sand (Plastering Sand, Finishing Grade) — IS 1542:1992, 0.075–2.36 mm, fineness modulus 1.4–2.2, silt ≤1.5%, smooth finish, for wall and ceiling plaster, masonry mortars, tile-bedding mixes.
 
-3. Graded Aggregates (Structural Coarse) — IS 383:2016 Coarse Aggregate, single-sized and blended 6/10/20 mm fractions, crushing value ≤25%, flakiness index ≤25%, water absorption ≤1.0%, specific gravity 2.6–2.8, for road bases, foundations, RCC, railway ballast.
+3. Graded Aggregates (Structural Coarse) — IS 383:2016 Coarse Aggregate, single-sized and blended 6/12/20/40 mm fractions, crushing value ≤25%, flakiness index ≤25%, water absorption ≤1.0%, specific gravity 2.6–2.8, for road bases, foundations, RCC, railway ballast.
 
 4. Granite Fines (Filler, Sub-grade Stabiliser) — IS 73 / IS 2720 compatibility, <0.075 mm, ≥95% passing 75µ, non-plastic, low reactive silica, dry dust-controlled output, for asphalt mineral filler, soil stabilisation, industrial block fill.
 

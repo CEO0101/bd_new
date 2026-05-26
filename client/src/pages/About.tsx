@@ -29,7 +29,7 @@ const ABOUT_FAQS = [
   },
   {
     q: "What does Greenrock produce?",
-    a: "Four engineered output classes: M-Sand (manufactured sand for structural concrete, IS 383 Zone II), P-Sand (plastering sand, IS 1542), Graded Aggregates (coarse, IS 383 — 6/10/20 mm fractions), and Granite Fines (sub-grade stabiliser and asphalt filler).",
+    a: "Four engineered output classes: M-Sand (manufactured sand for structural concrete, IS 383 Zone II), P-Sand (plastering sand, IS 1542), Graded Aggregates (coarse, IS 383 — 6/12/20/40 mm fractions), and Granite Fines (sub-grade stabiliser and asphalt filler).",
   },
 ];
 
