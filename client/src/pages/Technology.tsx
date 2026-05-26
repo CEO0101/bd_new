@@ -216,9 +216,9 @@ export default function Technology() {
                 }}
               >
                 Six Systems
-                <span style={{ color: `rgba(${ACCENT},0.45)`, margin: "0 7px" }}>·</span>
+                <span style={{ color: `rgba(${ACCENT},0.68)`, margin: "0 7px" }}>·</span>
                 Closed Loop
-                <span style={{ color: `rgba(${ACCENT},0.45)`, margin: "0 7px" }}>·</span>
+                <span style={{ color: `rgba(${ACCENT},0.68)`, margin: "0 7px" }}>·</span>
                 PLC-Governed
               </span>
             </div>
@@ -275,7 +275,7 @@ export default function Technology() {
                   fontFamily: "'DM Sans',sans-serif",
                   fontSize: "13px",
                   fontWeight: 400,
-                  color: `rgba(${CREAM},0.55)`,
+                  color: `rgba(${CREAM},0.74)`,
                   lineHeight: 1.62,
                   letterSpacing: "0.005em",
                 }}
@@ -288,7 +288,7 @@ export default function Technology() {
                   fontFamily: "'DM Sans',sans-serif",
                   fontSize: "11.5px",
                   fontWeight: 300,
-                  color: `rgba(${CREAM},0.32)`,
+                  color: `rgba(${CREAM},0.56)`,
                   lineHeight: 1.65,
                   marginTop: "6px",
                 }}
@@ -389,7 +389,7 @@ export default function Technology() {
               style={{
                 fontFamily: "'DM Mono',monospace",
                 fontSize: "10px",
-                color: `rgba(${ACCENT},0.45)`,
+                color: `rgba(${ACCENT},0.68)`,
               }}
             >
               ↓
@@ -426,7 +426,7 @@ export default function Technology() {
                   fontSize: "6.5px",
                   letterSpacing: "0.32em",
                   textTransform: "uppercase" as const,
-                  color: `rgba(${ACCENT},0.62)`,
+                  color: `rgba(${ACCENT},0.8)`,
                 }}
               >
                 B.01 — Equipment & control architecture
@@ -453,7 +453,7 @@ export default function Technology() {
               style={{
                 fontFamily: "'DM Sans',sans-serif",
                 fontSize: "13px",
-                color: `rgba(${CREAM},0.45)`,
+                color: `rgba(${CREAM},0.68)`,
                 lineHeight: 1.62,
                 maxWidth: "340px",
               }}
@@ -538,7 +538,7 @@ export default function Technology() {
                   style={{
                     fontFamily: "'DM Sans',sans-serif",
                     fontSize: "12.5px",
-                    color: `rgba(${CREAM},0.55)`,
+                    color: `rgba(${CREAM},0.74)`,
                     lineHeight: 1.65,
                     fontWeight: 400,
                   }}
@@ -564,7 +564,7 @@ export default function Technology() {
                 fontSize: "8.5px",
                 letterSpacing: "0.28em",
                 textTransform: "uppercase" as const,
-                color: `rgba(${CREAM},0.4)`,
+                color: `rgba(${CREAM},0.64)`,
               }}
             >
               Every stage governed by SOP · Every batch stamped · Audit-ready by design
@@ -589,7 +589,7 @@ export default function Technology() {
                   fontSize: "6.5px",
                   letterSpacing: "0.32em",
                   textTransform: "uppercase" as const,
-                  color: `rgba(${ACCENT},0.62)`,
+                  color: `rgba(${ACCENT},0.8)`,
                 }}
               >
                 B.03 — In operation
@@ -607,7 +607,7 @@ export default function Technology() {
                 }}
               >
                 The line, running.{" "}
-                <span style={{ color: `rgba(${CREAM},0.32)`, fontStyle: "italic" }}>
+                <span style={{ color: `rgba(${CREAM},0.56)`, fontStyle: "italic" }}>
                   Unstaged.
                 </span>
               </h2>
@@ -616,7 +616,7 @@ export default function Technology() {
               style={{
                 fontFamily: "'DM Sans',sans-serif",
                 fontSize: "13px",
-                color: `rgba(${CREAM},0.45)`,
+                color: `rgba(${CREAM},0.68)`,
                 lineHeight: 1.62,
                 maxWidth: "320px",
               }}
@@ -683,7 +683,7 @@ export default function Technology() {
                     fontSize: "7px",
                     letterSpacing: "0.32em",
                     textTransform: "uppercase" as const,
-                    color: `rgba(${ACCENT},0.7)`,
+                    color: `rgba(${ACCENT},0.85)`,
                   }}
                 >
                   {c.k}
@@ -704,7 +704,7 @@ export default function Technology() {
                   style={{
                     fontFamily: "'DM Sans',sans-serif",
                     fontSize: "12px",
-                    color: `rgba(${CREAM},0.5)`,
+                    color: `rgba(${CREAM},0.7)`,
                     lineHeight: 1.6,
                     marginTop: "8px",
                   }}

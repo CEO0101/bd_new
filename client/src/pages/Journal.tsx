@@ -53,7 +53,7 @@ export default function Journal() {
               <span style={{
                 fontFamily: "'DM Mono',monospace", fontSize: "6.5px",
                 letterSpacing: "0.32em", textTransform: "uppercase",
-                color: `rgba(${ACCENT},0.7)`,
+                color: `rgba(${ACCENT},0.85)`,
               }}>
                 Journal · Sustainable Construction Intelligence · Greenrock
               </span>
@@ -95,7 +95,7 @@ export default function Journal() {
               transition={{ delay: 0.5, duration: 0.9 }}
               style={{
                 fontFamily: "'DM Sans',sans-serif", fontSize: "15px",
-                color: `rgba(${CREAM},0.55)`, lineHeight: 1.6,
+                color: `rgba(${CREAM},0.74)`, lineHeight: 1.6,
                 marginTop: "28px", maxWidth: "620px",
               }}>
               Long-form analysis on the questions the construction industry has not yet learned to ask out loud — material provenance, hidden carbon, riverine collapse, the slow tightening of regulation around extraction.
@@ -131,7 +131,7 @@ export default function Journal() {
                         <p style={{
                           fontFamily: "'DM Mono',monospace", fontSize: "8px",
                           letterSpacing: "0.28em", textTransform: "uppercase" as const,
-                          color: `rgba(${CREAM},0.32)`,
+                          color: `rgba(${CREAM},0.56)`,
                           marginTop: "8px",
                         }}>
                           {p.readTime}
@@ -143,7 +143,7 @@ export default function Journal() {
                         <p style={{
                           fontFamily: "'DM Mono',monospace", fontSize: "9px",
                           letterSpacing: "0.28em", textTransform: "uppercase" as const,
-                          color: `rgba(${ACCENT},0.6)`,
+                          color: `rgba(${ACCENT},0.78)`,
                           marginBottom: "10px",
                         }}>
                           {p.eyebrow}
@@ -160,7 +160,7 @@ export default function Journal() {
                         </h2>
                         <p style={{
                           fontFamily: "'DM Sans',sans-serif", fontSize: "14px",
-                          color: `rgba(${CREAM},0.55)`, lineHeight: 1.6,
+                          color: `rgba(${CREAM},0.74)`, lineHeight: 1.6,
                           marginTop: "10px",
                           maxWidth: "640px",
                         }}>
@@ -172,7 +172,7 @@ export default function Journal() {
                       <div className="hidden md:block">
                         <span style={{
                           fontFamily: "'DM Mono',monospace", fontSize: "11px",
-                          color: `rgba(${ACCENT},0.7)`,
+                          color: `rgba(${ACCENT},0.85)`,
                           letterSpacing: "0.1em",
                         }}>
                           Read →

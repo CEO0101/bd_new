@@ -177,7 +177,7 @@ export default function Products() {
               <span style={{
                 fontFamily: "'DM Mono',monospace", fontSize: "6.5px",
                 letterSpacing: "0.32em", textTransform: "uppercase",
-                color: `rgba(${ACCENT},0.7)`,
+                color: `rgba(${ACCENT},0.85)`,
               }}>
                 Section 003 / 006 · Engineered outputs · BIS / MORTH referenced
               </span>
@@ -218,7 +218,7 @@ export default function Products() {
               transition={{ delay: 0.5, duration: 0.9 }}
               style={{
                 fontFamily: "'DM Sans',sans-serif", fontSize: "15px",
-                color: `rgba(${CREAM},0.55)`, lineHeight: 1.6,
+                color: `rgba(${CREAM},0.74)`, lineHeight: 1.6,
                 marginTop: "28px", maxWidth: "640px",
               }}
             >
@@ -234,14 +234,14 @@ export default function Products() {
               <span style={{
                 fontFamily: "'DM Mono',monospace", fontSize: "6.5px",
                 letterSpacing: "0.32em", textTransform: "uppercase",
-                color: `rgba(${ACCENT},0.7)`,
+                color: `rgba(${ACCENT},0.85)`,
               }}>
                 B.01 — Output spec sheet
               </span>
               <span style={{
                 fontFamily: "'DM Mono',monospace", fontSize: "7px",
                 letterSpacing: "0.24em", textTransform: "uppercase",
-                color: `rgba(${CREAM},0.32)`,
+                color: `rgba(${CREAM},0.56)`,
               }}>
                 Four output classes · Single closed loop
               </span>
@@ -280,7 +280,7 @@ export default function Products() {
                     <span style={{
                       fontFamily: "'DM Mono',monospace", fontSize: "9px",
                       letterSpacing: "0.22em", textTransform: "uppercase" as const,
-                      color: `rgba(${CREAM},0.55)`,
+                      color: `rgba(${CREAM},0.74)`,
                       borderBottom: `1px solid rgba(${ACCENT},0.3)`,
                       paddingBottom: "2px",
                     }}>
@@ -291,7 +291,7 @@ export default function Products() {
                   <p style={{
                     fontFamily: "'DM Mono',monospace", fontSize: "9px",
                     letterSpacing: "0.22em", textTransform: "uppercase" as const,
-                    color: `rgba(${ACCENT},0.7)`,
+                    color: `rgba(${ACCENT},0.85)`,
                     marginBottom: "20px",
                   }}>
                     {o.subtitle} · {o.standard}
@@ -312,7 +312,7 @@ export default function Products() {
                       >
                         <dt style={{
                           fontFamily: "'DM Sans',sans-serif", fontSize: "12px",
-                          color: `rgba(${CREAM},0.5)`,
+                          color: `rgba(${CREAM},0.7)`,
                         }}>
                           {k.label}
                         </dt>
@@ -334,7 +334,7 @@ export default function Products() {
                     <p style={{
                       fontFamily: "'DM Mono',monospace", fontSize: "8px",
                       letterSpacing: "0.32em", textTransform: "uppercase" as const,
-                      color: `rgba(${ACCENT},0.6)`,
+                      color: `rgba(${ACCENT},0.78)`,
                       marginBottom: "8px",
                     }}>
                       Applications
@@ -343,7 +343,7 @@ export default function Products() {
                       {o.apps.map((app) => (
                         <li key={app} style={{
                           fontFamily: "'DM Sans',sans-serif", fontSize: "12.5px",
-                          color: `rgba(${CREAM},0.7)`, lineHeight: 1.7,
+                          color: `rgba(${CREAM},0.85)`, lineHeight: 1.7,
                         }}>
                           — {app}
                         </li>
@@ -361,14 +361,14 @@ export default function Products() {
               <span style={{
                 fontFamily: "'DM Mono',monospace", fontSize: "6.5px",
                 letterSpacing: "0.32em", textTransform: "uppercase",
-                color: `rgba(${ACCENT},0.7)`,
+                color: `rgba(${ACCENT},0.85)`,
               }}>
                 B.02 — Use-case fit
               </span>
               <span style={{
                 fontFamily: "'DM Mono',monospace", fontSize: "7px",
                 letterSpacing: "0.24em", textTransform: "uppercase",
-                color: `rgba(${CREAM},0.32)`,
+                color: `rgba(${CREAM},0.56)`,
               }}>
                 Primary · Secondary · Reference standard
               </span>
@@ -388,7 +388,7 @@ export default function Products() {
                           fontSize: "9px",
                           letterSpacing: "0.28em",
                           textTransform: "uppercase",
-                          color: `rgba(${ACCENT},0.7)`,
+                          color: `rgba(${ACCENT},0.85)`,
                         }}
                       >
                         {h}
@@ -409,13 +409,13 @@ export default function Products() {
                         padding: "16px 16px 16px 0",
                         fontFamily: "'DM Sans',sans-serif",
                         fontSize: "13px",
-                        color: `rgba(${CREAM},0.72)`,
+                        color: `rgba(${CREAM},0.86)`,
                       }}>{row.primary}</td>
                       <td style={{
                         padding: "16px 16px 16px 0",
                         fontFamily: "'DM Sans',sans-serif",
                         fontSize: "13px",
-                        color: `rgba(${CREAM},0.55)`,
+                        color: `rgba(${CREAM},0.74)`,
                       }}>{row.secondary}</td>
                       <td style={{
                         padding: "16px 0",
@@ -437,7 +437,7 @@ export default function Products() {
               <span style={{
                 fontFamily: "'DM Mono',monospace", fontSize: "6.5px",
                 letterSpacing: "0.32em", textTransform: "uppercase",
-                color: `rgba(${ACCENT},0.7)`,
+                color: `rgba(${ACCENT},0.85)`,
               }}>
                 B.03 — Operating signals
               </span>
@@ -455,7 +455,7 @@ export default function Products() {
                   <span style={{
                     fontFamily: "'DM Mono',monospace", fontSize: "8px",
                     letterSpacing: "0.32em", textTransform: "uppercase" as const,
-                    color: `rgba(${ACCENT},0.7)`,
+                    color: `rgba(${ACCENT},0.85)`,
                   }}>
                     {s.k}
                   </span>
@@ -468,7 +468,7 @@ export default function Products() {
                   </p>
                   <p style={{
                     fontFamily: "'DM Sans',sans-serif", fontSize: "12px",
-                    color: `rgba(${CREAM},0.5)`, lineHeight: 1.6,
+                    color: `rgba(${CREAM},0.7)`, lineHeight: 1.6,
                     marginTop: "8px",
                   }}>
                     {s.d}
@@ -495,7 +495,7 @@ export default function Products() {
             <span style={{
               fontFamily: "'DM Mono',monospace", fontSize: "7px",
               letterSpacing: "0.36em", textTransform: "uppercase",
-              color: `rgba(${ACCENT},0.7)`,
+              color: `rgba(${ACCENT},0.85)`,
             }}>
               Enquiries
             </span>

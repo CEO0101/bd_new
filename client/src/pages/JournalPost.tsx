@@ -62,7 +62,7 @@ function renderSection(s: Section, i: number) {
             fontSize: "16px",
             fontWeight: 400,
             lineHeight: 1.7,
-            color: `rgba(${CREAM},0.7)`,
+            color: `rgba(${CREAM},0.85)`,
             marginBottom: "18px",
           }}
         >
@@ -172,7 +172,7 @@ function Article({ post }: { post: Post }) {
                 fontSize: "9px",
                 letterSpacing: "0.28em",
                 textTransform: "uppercase" as const,
-                color: `rgba(${ACCENT},0.7)`,
+                color: `rgba(${ACCENT},0.85)`,
                 textDecoration: "none",
               }}>
                 ← Journal
@@ -195,23 +195,23 @@ function Article({ post }: { post: Post }) {
             }}>
               {post.eyebrow}
             </span>
-            <span style={{ color: `rgba(${ACCENT},0.4)` }}>·</span>
+            <span style={{ color: `rgba(${ACCENT},0.64)` }}>·</span>
             <span style={{
               fontFamily: "'DM Mono',monospace",
               fontSize: "9px",
               letterSpacing: "0.22em",
               textTransform: "uppercase" as const,
-              color: `rgba(${CREAM},0.5)`,
+              color: `rgba(${CREAM},0.7)`,
             }}>
               <time dateTime={post.datePublished}>{post.dateDisplay}</time>
             </span>
-            <span style={{ color: `rgba(${ACCENT},0.4)` }}>·</span>
+            <span style={{ color: `rgba(${ACCENT},0.64)` }}>·</span>
             <span style={{
               fontFamily: "'DM Mono',monospace",
               fontSize: "9px",
               letterSpacing: "0.22em",
               textTransform: "uppercase" as const,
-              color: `rgba(${CREAM},0.4)`,
+              color: `rgba(${CREAM},0.64)`,
             }}>
               {post.readTime}
             </span>
@@ -244,7 +244,7 @@ function Article({ post }: { post: Post }) {
               fontSize: "20px",
               lineHeight: 1.5,
               letterSpacing: "-0.012em",
-              color: `rgba(${CREAM},0.6)`,
+              color: `rgba(${CREAM},0.78)`,
               marginBottom: "48px",
               paddingBottom: "32px",
               borderBottom: `1px solid rgba(${ACCENT},0.18)`,
@@ -312,14 +312,14 @@ function Article({ post }: { post: Post }) {
                   <span style={{
                     fontFamily: "'DM Mono',monospace",
                     fontSize: "14px",
-                    color: `rgba(${ACCENT},0.7)`,
+                    color: `rgba(${ACCENT},0.85)`,
                   }}>+</span>
                 </summary>
                 <p style={{
                   fontFamily: "'DM Sans',sans-serif",
                   fontSize: "15px",
                   lineHeight: 1.65,
-                  color: `rgba(${CREAM},0.62)`,
+                  color: `rgba(${CREAM},0.8)`,
                   marginTop: "12px",
                 }}>
                   {f.a}
@@ -335,7 +335,7 @@ function Article({ post }: { post: Post }) {
               fontSize: "9px",
               letterSpacing: "0.32em",
               textTransform: "uppercase" as const,
-              color: `rgba(${ACCENT},0.7)`,
+              color: `rgba(${ACCENT},0.85)`,
             }}>
               Greenrock Innovations · Sustainable Construction Intelligence
             </p>
@@ -343,7 +343,7 @@ function Article({ post }: { post: Post }) {
               fontFamily: "'DM Sans',sans-serif",
               fontSize: "13px",
               fontStyle: "italic",
-              color: `rgba(${CREAM},0.5)`,
+              color: `rgba(${CREAM},0.7)`,
               lineHeight: 1.65,
               marginTop: "12px",
               maxWidth: "640px",
@@ -373,7 +373,7 @@ function Article({ post }: { post: Post }) {
                   fontSize: "10px",
                   letterSpacing: "0.24em",
                   textTransform: "uppercase" as const,
-                  color: `rgba(${CREAM},0.5)`,
+                  color: `rgba(${CREAM},0.7)`,
                   textDecoration: "none",
                 }}
               >
