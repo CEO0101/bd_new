@@ -36,6 +36,7 @@ export default function Navbar() {
     location === "/about" ||
     location === "/products" ||
     location === "/technology" ||
+    location === "/impact-calculator" ||
     location === "/privacy-policy" ||
     location === "/terms-of-service" ||
     location === "/cookie-policy" ||

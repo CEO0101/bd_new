@@ -30,16 +30,16 @@ type ContextualCard = {
 };
 
 const CalculatorCard = ({ icon: Icon, title, value, unit, subtitle }: CalculatorCardProps) => (
-  <div className="rounded-xl border border-white/10 bg-gradient-to-br from-zinc-900/40 to-black p-6 shadow-xl transition-all duration-500 hover:border-white/30 hover:shadow-[0_15px_30px_rgba(255,255,255,0.1)]">
-    <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-white/20 bg-gradient-to-br from-white/5 to-transparent text-white/40 transition-colors">
+  <div className="rounded-xl border border-[#2E6F57]/15 bg-white/65 p-6 shadow-xl transition-all duration-500 hover:border-[#2E6F57]/40 hover:shadow-[0_15px_30px_rgba(46,111,87,0.12)]">
+    <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-[#2E6F57]/25 bg-gradient-to-br from-white/70 to-white/30 text-[#16261C]/40 transition-colors">
       <Icon className="h-5 w-5" />
     </div>
-    <h3 className="mb-1 text-xs font-mono font-bold uppercase tracking-widest text-white/40">{title}</h3>
+    <h3 className="mb-1 text-xs font-mono font-bold uppercase tracking-widest text-[#16261C]/40">{title}</h3>
     <div className="flex items-baseline gap-2">
-      <span className="text-3xl font-display font-black tracking-tighter text-white">{value}</span>
-      <span className="text-xs font-mono text-white/40">{unit}</span>
+      <span className="text-3xl font-display font-black tracking-tighter text-[#16261C]">{value}</span>
+      <span className="text-xs font-mono text-[#16261C]/40">{unit}</span>
     </div>
-    <p className="mt-4 border-t border-white/10 pt-3 text-xs leading-relaxed text-white/40">{subtitle}</p>
+    <p className="mt-4 border-t border-[#2E6F57]/15 pt-3 text-xs leading-relaxed text-[#16261C]/40">{subtitle}</p>
   </div>
 );
 
@@ -150,25 +150,25 @@ export default function ImpactCalculator() {
   ];
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-black text-white">
+    <div className="min-h-screen overflow-x-hidden bg-[#D3E3D7] text-[#16261C]">
       <Navbar />
 
       <main className="pb-16 pt-20">
         <div className="container mx-auto px-6">
           <div className="mx-auto mb-12 max-w-4xl text-center">
-            <h1 className="mb-6 text-4xl font-display font-black tracking-tighter text-white uppercase md:text-6xl">
-              Environmental <br /> <span className="font-light italic text-white/20">Impact Calculator</span>
+            <h1 className="mb-6 text-4xl font-display font-black tracking-tighter text-[#16261C] uppercase md:text-6xl">
+              Environmental <br /> <span className="font-light italic text-[#16261C]/20">Impact Calculator</span>
             </h1>
-            <p className="text-lg leading-relaxed font-light text-white/60">
+            <p className="text-lg leading-relaxed font-light text-[#16261C]/60">
               Measure the contextual impact of material supplied — translated into meaningful environmental equivalences.
             </p>
           </div>
 
           <div className="grid items-start gap-8 lg:grid-cols-3">
             <div className="space-y-6 lg:col-span-1">
-              <div className="space-y-4 rounded-xl border border-white/10 bg-zinc-900/40 p-6 shadow-xl premium-blur-dark">
+              <div className="space-y-4 rounded-xl border border-[#2E6F57]/15 bg-white/55 p-6 shadow-xl">
                 <div>
-                  <label htmlFor="tons" className="mb-3 block text-sm font-mono font-bold tracking-widest text-white uppercase">
+                  <label htmlFor="tons" className="mb-3 block text-sm font-mono font-bold tracking-widest text-[#16261C] uppercase">
                     Material Supplied
                   </label>
                   <div className="relative">
@@ -181,31 +181,31 @@ export default function ImpactCalculator() {
                         const val = e.target.value.replace(/[^0-9]/g, "");
                         setTons(val === "" ? 0 : parseInt(val, 10));
                       }}
-                      className="w-full rounded-lg border border-white/10 bg-black px-4 py-3 text-xl font-black text-white transition-colors focus:border-white/30 focus:outline-none"
+                      className="w-full rounded-lg border border-[#2E6F57]/15 bg-white px-4 py-3 text-xl font-black text-[#16261C] transition-colors focus:border-[#2E6F57]/40 focus:outline-none"
                       placeholder="e.g., 0"
                     />
-                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-mono font-bold tracking-widest text-white/40">TONS</span>
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-mono font-bold tracking-widest text-[#16261C]/40">TONS</span>
                   </div>
                 </div>
 
-                <div className="flex gap-3 rounded-lg border border-white/10 bg-zinc-800/50 p-3">
-                  <Info className="mt-0.5 h-4 w-4 shrink-0 text-white/40" />
-                  <p className="text-xs leading-relaxed text-white/35">
+                <div className="flex gap-3 rounded-lg border border-[#2E6F57]/15 bg-white/60 p-3">
+                  <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#16261C]/40" />
+                  <p className="text-xs leading-relaxed text-[#16261C]/35">
                     Benchmarks use conservative system modelling assumptions and calibrated operating ranges.
                   </p>
                 </div>
               </div>
 
               <div className="space-y-3">
-                <h3 className="text-xs font-mono font-bold tracking-wider text-white uppercase">Environmental Indicators</h3>
+                <h3 className="text-xs font-mono font-bold tracking-wider text-[#16261C] uppercase">Environmental Indicators</h3>
                 <div className="space-y-2">
                   {[
                     "Reduced river sand mining",
                     "Reduced slurry dumping and groundwater contamination",
                     "Reduced dependency on virgin aggregates",
                   ].map((indicator) => (
-                    <div key={indicator} className="flex items-center gap-2 text-xs text-white/35">
-                      <ArrowRight className="h-2 w-2 text-white/45" />
+                    <div key={indicator} className="flex items-center gap-2 text-xs text-[#16261C]/35">
+                      <ArrowRight className="h-2 w-2 text-[#16261C]/45" />
                       {indicator}
                     </div>
                   ))}
@@ -247,10 +247,10 @@ export default function ImpactCalculator() {
 
           <section className="mt-14">
             <div className="mb-6">
-              <h2 className="text-3xl font-display font-black tracking-tight text-white md:text-4xl">
+              <h2 className="text-3xl font-display font-black tracking-tight text-[#16261C] md:text-4xl">
                 Contextual Environmental Equivalences
               </h2>
-              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-white/55 md:text-base">
+              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[#16261C]/55 md:text-base">
                 Equivalent indicators are displayed below the calculator to connect production outcomes with intuitive environmental context.
               </p>
             </div>
@@ -259,37 +259,37 @@ export default function ImpactCalculator() {
               {contextualCards.map((card) => {
                 const Icon = card.icon;
                 return (
-                  <article key={card.id} className="rounded-2xl border border-white/12 bg-zinc-900/45 p-6 premium-blur-dark">
-                    <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-white/70">
+                  <article key={card.id} className="rounded-2xl border border-[#2E6F57]/15 bg-white/55 p-6">
+                    <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-[#2E6F57]/20 bg-white/55 text-[#16261C]/70">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <p className="text-[10px] font-mono uppercase tracking-[0.22em] text-white/40">{card.title}</p>
-                    <p className="mt-2 text-2xl font-display font-black tracking-tight text-white md:text-3xl">{card.value}</p>
+                    <p className="text-[10px] font-mono uppercase tracking-[0.22em] text-[#16261C]/40">{card.title}</p>
+                    <p className="mt-2 text-2xl font-display font-black tracking-tight text-[#16261C] md:text-3xl">{card.value}</p>
 
                     <div className="mt-4">
-                      <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
+                      <div className="h-2 w-full overflow-hidden rounded-full bg-[#2E6F57]/12">
                         <div
-                          className="h-full rounded-full bg-gradient-to-r from-[#A8C3B1] via-[#cfe2d6] to-[#f1f5f2]"
+                          className="h-full rounded-full bg-gradient-to-r from-[#2E6F57] via-[#5a9b7d] to-[#9cc4ad]"
                           style={{ width: `${Math.max(0, Math.min(card.gauge, 100))}%` }}
                         />
                       </div>
-                      <p className="mt-1 text-[10px] font-mono uppercase tracking-[0.18em] text-white/35">
+                      <p className="mt-1 text-[10px] font-mono uppercase tracking-[0.18em] text-[#16261C]/35">
                         Gauge: {card.gauge.toFixed(0)}%
                       </p>
                     </div>
 
-                    <p className="mt-4 text-xs leading-relaxed text-white/55">Context: {card.context}</p>
+                    <p className="mt-4 text-xs leading-relaxed text-[#16261C]/55">Context: {card.context}</p>
                   </article>
                 );
               })}
             </div>
           </section>
 
-          <section className="mt-8 rounded-2xl border border-white/10 bg-zinc-900/35 p-6 premium-blur-dark">
-            <h3 className="text-2xl font-display font-black text-white">Method Logic</h3>
-            <p className="mt-2 text-sm text-white/55">Expandable reference notes for each contextual indicator.</p>
+          <section className="mt-8 rounded-2xl border border-[#2E6F57]/15 bg-white/50 p-6">
+            <h3 className="text-2xl font-display font-black text-[#16261C]">Method Logic</h3>
+            <p className="mt-2 text-sm text-[#16261C]/55">Expandable reference notes for each contextual indicator.</p>
 
-            <div className="mt-5 divide-y divide-white/10">
+            <div className="mt-5 divide-y divide-[#2E6F57]/12">
               {logicItems.map((item) => {
                 const isOpen = openLogicId === item.id;
                 return (
@@ -300,16 +300,16 @@ export default function ImpactCalculator() {
                       className="flex w-full items-center justify-between gap-4 py-4 text-left"
                     >
                       <div>
-                        <p className="text-base font-display font-black tracking-tight text-white">{item.title}</p>
-                        <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/45">{item.label}</p>
+                        <p className="text-base font-display font-black tracking-tight text-[#16261C]">{item.title}</p>
+                        <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#16261C]/45">{item.label}</p>
                       </div>
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/70">
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#2E6F57]/20 bg-white/55 text-[#16261C]/70">
                         {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
                       </span>
                     </button>
 
                     {isOpen ? (
-                      <div className="pb-4 pr-12 text-sm leading-relaxed text-white/60">
+                      <div className="pb-4 pr-12 text-sm leading-relaxed text-[#16261C]/60">
                         {item.content}
                       </div>
                     ) : null}
@@ -320,18 +320,18 @@ export default function ImpactCalculator() {
           </section>
 
           <section className="mt-8 rounded-2xl border border-[#A8C3B1]/25 bg-gradient-to-br from-[#A8C3B1]/10 to-transparent p-7">
-            <p className="text-[10px] font-mono uppercase tracking-[0.24em] text-[#c9dacd]">Research Framing</p>
-            <p className="mt-4 text-sm leading-relaxed text-white/75 md:text-base">
+            <p className="text-[10px] font-mono uppercase tracking-[0.24em] text-[#2E6F57]">Research Framing</p>
+            <p className="mt-4 text-sm leading-relaxed text-[#16261C]/75 md:text-base">
               These outputs are derived from in-house research and calibrated system models built through years of engineering R&D. They have been fine-tuned using conservative industry benchmarks and systems data from operational testing.
             </p>
-            <p className="mt-3 text-sm font-semibold text-[#dce8e0] md:text-base">
+            <p className="mt-3 text-sm font-semibold text-[#2E6F57] md:text-base">
               This framing gives credibility without self-doubt.
             </p>
           </section>
         </div>
       </main>
 
-      <SiteFooter tone="dark" />
+      <SiteFooter tone="light" />
     </div>
   );
 }
