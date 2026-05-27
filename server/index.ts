@@ -10,6 +10,14 @@ import { createServer } from "http";
 const app = express();
 const httpServer = createServer(app);
 
+// 301 redirect: greenrockinnovations.com → greenrockinnovations.earth
+app.use((req: Request, res: Response, next: NextFunction) => {
+  if (req.hostname === "greenrockinnovations.com" || req.hostname === "www.greenrockinnovations.com") {
+    return res.redirect(301, `https://greenrockinnovations.earth${req.originalUrl}`);
+  }
+  next();
+});
+
 // ---------------------------------------------------------------------------
 // Session
 // ---------------------------------------------------------------------------
