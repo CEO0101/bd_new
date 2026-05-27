@@ -1,15 +1,49 @@
 import type { Express } from "express";
 import { type Server } from "http";
+import { POST_META } from "@shared/journal-posts";
+
+const ORIGIN = "https://greenrockinnovations.earth";
+const TODAY = new Date().toISOString().split("T")[0];
+
+const STATIC_PAGES = [
+  { path: "/",                  priority: "1.0", changefreq: "weekly",  lastmod: TODAY },
+  { path: "/about",             priority: "0.9", changefreq: "monthly", lastmod: TODAY },
+  { path: "/technology",        priority: "0.9", changefreq: "monthly", lastmod: TODAY },
+  { path: "/products",          priority: "0.9", changefreq: "monthly", lastmod: TODAY },
+  { path: "/invest",            priority: "0.7", changefreq: "monthly", lastmod: TODAY },
+  { path: "/impact-calculator", priority: "0.7", changefreq: "monthly", lastmod: TODAY },
+  { path: "/journal",           priority: "0.95",changefreq: "weekly",  lastmod: TODAY },
+  { path: "/privacy-policy",    priority: "0.3", changefreq: "yearly",  lastmod: "2026-02-11" },
+  { path: "/terms-of-service",  priority: "0.3", changefreq: "yearly",  lastmod: "2026-02-14" },
+  { path: "/cookie-policy",     priority: "0.3", changefreq: "yearly",  lastmod: "2026-02-18" },
+];
+
+function buildSitemap(): string {
+  const urls = [
+    ...STATIC_PAGES.map(
+      (p) =>
+        `  <url>\n    <loc>${ORIGIN}${p.path}</loc>\n    <lastmod>${p.lastmod}</lastmod>\n    <changefreq>${p.changefreq}</changefreq>\n    <priority>${p.priority}</priority>\n  </url>`
+    ),
+    ...POST_META.map(
+      (p) =>
+        `  <url>\n    <loc>${ORIGIN}/journal/${p.slug}</loc>\n    <lastmod>${p.datePublished}</lastmod>\n    <changefreq>yearly</changefreq>\n    <priority>0.85</priority>\n  </url>`
+    ),
+  ];
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>`;
+}
 
 export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
-  // put application routes here
-  // prefix all routes with /api
-
-  // use storage to perform CRUD operations on the storage interface
-  // e.g. storage.insertUser(user) or storage.getUserByUsername(username)
+  // ---------------------------------------------------------------------------
+  // SEO — dynamic sitemap (auto-updates when new journal posts are added)
+  // ---------------------------------------------------------------------------
+  app.get("/sitemap.xml", (_req: any, res: any) => {
+    res.setHeader("Content-Type", "application/xml; charset=utf-8");
+    res.setHeader("Cache-Control", "public, max-age=3600");
+    res.send(buildSitemap());
+  });
 
   // ---------------------------------------------------------------------------
   // Investor access (server-side session auth)

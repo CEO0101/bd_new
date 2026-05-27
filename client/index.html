@@ -12,7 +12,12 @@
     <link rel="canonical" href="https://greenrockinnovations.earth/" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%2309080A' width='32' height='32'/%3E%3Cpolygon points='16,3 28,16 16,29 4,16' fill='rgba(46,111,87,0.18)' stroke='%232E6F57' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpolygon points='16,7 24,16 16,25 8,16' fill='none' stroke='%232E6F57' stroke-width='0.7' stroke-opacity='0.55'/%3E%3Cpath d='M16 21 L16 12 M12 16 L16 12 L20 16' fill='none' stroke='%232E6F57' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="msapplication-TileImage" content="/favicon.png" />
+    <meta name="msapplication-TileColor" content="#09080A" />
+    <meta name="theme-color" content="#09080A" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="Greenrock Innovations — Engineered Materials. Closed Loop." />
@@ -39,26 +44,78 @@
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "Greenrock Innovations",
-      "alternateName": ["Greenrock", "Green Rock Innovations"],
+      "alternateName": ["Greenrock", "Green Rock Innovations", "Begur Sands"],
       "url": "https://greenrockinnovations.earth/",
-      "logo": "https://greenrockinnovations.earth/favicon.png",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://greenrockinnovations.earth/favicon.png",
+        "width": 512,
+        "height": 512
+      },
       "email": "hello@greenrockinnovations.earth",
       "description": "Climate technology company processing waste rock and weathered rock into IS 383:2016 compliant manufactured sand and aggregates, ~82% lower carbon than primary-extraction equivalents. Operating Karnataka's first Waste Rock Royalty Recycle Permit.",
       "foundingDate": "2024",
       "industry": "Construction Materials, Climate Technology, Mineral Processing",
+      "areaServed": [
+        { "@type": "Country", "name": "India" },
+        { "@type": "State", "name": "Karnataka" },
+        { "@type": "State", "name": "Tamil Nadu" },
+        { "@type": "State", "name": "Kerala" },
+        { "@type": "State", "name": "Andhra Pradesh" },
+        { "@type": "State", "name": "Telangana" },
+        { "@type": "State", "name": "Maharashtra" },
+        { "@type": "State", "name": "Goa" }
+      ],
       "knowsAbout": [
         "Manufactured sand (M-Sand)",
         "Plastering sand (P-Sand)",
-        "IS 383:2016",
+        "Construction aggregates",
+        "IS 383:2016 compliant aggregates",
         "IS 1542:1992",
         "Closed-loop water recycling",
         "Zero Liquid Discharge",
         "Embodied carbon in construction",
         "Western Ghats biodiversity",
         "Waste rock recycling",
+        "River sand alternatives",
         "Vertical Shaft Impactor (VSI) processing",
-        "Hydrocyclone classification"
+        "Hydrocyclone classification",
+        "Sustainable construction materials",
+        "Low-carbon aggregates"
       ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Engineered Construction Materials",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Manufactured Sand (M-Sand)",
+              "description": "IS 383:2016 Zone II & III compliant manufactured sand from waste rock. ~82% lower embodied carbon than river sand.",
+              "brand": { "@type": "Brand", "name": "Greenrock Innovations" }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Plastering Sand (P-Sand)",
+              "description": "IS 1542:1992 compliant fine plastering sand. Consistent grading, zero silt.",
+              "brand": { "@type": "Brand", "name": "Greenrock Innovations" }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Coarse Aggregates",
+              "description": "20mm and 12mm IS 383:2016 compliant coarse aggregates for structural concrete.",
+              "brand": { "@type": "Brand", "name": "Greenrock Innovations" }
+            }
+          }
+        ]
+      },
       "subOrganization": {
         "@type": "Organization",
         "name": "Begur Sands Pvt. Ltd.",
@@ -68,13 +125,54 @@
         "@type": "PostalAddress",
         "addressLocality": "Gundlupet",
         "addressRegion": "Karnataka",
+        "postalCode": "571111",
         "addressCountry": "IN"
       },
-      "sameAs": ["https://greenrockinnovations.earth/"]
+      "sameAs": [
+        "https://greenrockinnovations.earth/",
+        "https://greenrockinnovations.com/"
+      ]
     }
     </script>
 
-    <!-- WebSite JSON-LD -->
+    <!-- LocalBusiness JSON-LD (boosts geographic ranking) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Greenrock Innovations — Manufactured Sand & Aggregates",
+      "image": "https://greenrockinnovations.earth/favicon.png",
+      "url": "https://greenrockinnovations.earth/",
+      "email": "hello@greenrockinnovations.earth",
+      "description": "Manufacturer of IS 383:2016 compliant M-Sand, P-Sand, and coarse aggregates from reclaimed weathered rock. Supplying sustainable construction materials across South India.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Gundlupet",
+        "addressLocality": "Gundlupet",
+        "addressRegion": "Karnataka",
+        "postalCode": "571111",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 11.8087,
+        "longitude": 76.6908
+      },
+      "areaServed": [
+        "Karnataka", "Tamil Nadu", "Kerala", "Andhra Pradesh",
+        "Telangana", "Maharashtra", "Goa", "India"
+      ],
+      "priceRange": "Contact for bulk pricing",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    }
+    </script>
+
+    <!-- WebSite JSON-LD with SearchAction -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -82,7 +180,89 @@
       "name": "Greenrock Innovations",
       "url": "https://greenrockinnovations.earth/",
       "description": "Engineered construction materials from reclaimed weathered rock. IS 383:2016 compliant. Karnataka.",
-      "inLanguage": "en"
+      "inLanguage": "en-IN",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://greenrockinnovations.earth/journal?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- FAQPage JSON-LD (AEO: AI search engines pull these as direct answers) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is manufactured sand (M-Sand)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Manufactured sand (M-Sand) is produced by crushing hard rock through a Vertical Shaft Impactor (VSI), then classifying particles by size using hydrocyclones. Unlike river sand, M-Sand has consistent grading, zero organic impurities, and ~82% lower embodied carbon. Greenrock Innovations produces IS 383:2016 Zone II and Zone III compliant M-Sand from waste and weathered rock at its Gundlupet, Karnataka facility."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is M-Sand better than river sand for construction?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. M-Sand offers several advantages over river sand: consistent IS 383:2016 grading (unlike variable river sand), zero silt or organic contamination, stronger concrete bond due to angular particle shape, and significantly lower embodied carbon (~82% less than primary-extraction river sand). It is also legal, as river sand extraction is restricted or banned across most Indian states."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between M-Sand and P-Sand?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "M-Sand (Manufactured Sand) meets IS 383:2016 for concrete work — it has coarser grading (Zone II/III) suitable for structural concrete mixes. P-Sand (Plastering Sand) meets IS 1542:1992 — it has finer particle size (below 2.36mm) and a smoother texture ideal for plastering, tiling, and wall finishes. Both are produced from crushed rock and are compliant alternatives to river sand."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is river sand extraction banned in Karnataka and other Indian states?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "River sand extraction causes irreversible riverbed erosion, lowers water tables, destabilises bridges and river banks, and destroys aquatic habitats. The Western Ghats rivers — including the Cauvery, Kabini, and their tributaries — are especially sensitive. Karnataka, Tamil Nadu, Kerala, and several other states have imposed strict extraction bans or quotas under the Sustainable Sand Mining Management Guidelines 2016 and subsequent state-level orders."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does IS 383:2016 compliant mean for aggregates?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "IS 383:2016 is the Bureau of Indian Standards specification for coarse and fine aggregates used in concrete. Compliance means the aggregate meets defined grading zones (Zone I to Zone IV for fine aggregates), limits on harmful substances (clay, silt, organic impurities), and physical requirements (flakiness index, crushing value, water absorption). Greenrock Innovations' M-Sand is independently tested to IS 383:2016 Zone II and Zone III."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is embodied carbon in construction materials?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Embodied carbon is the total CO₂ equivalent emitted during extraction, processing, transportation, and manufacturing of a construction material — before it is ever installed. Sand and aggregates account for a significant share of a building's embodied carbon through dredging, washing, and long-haul transport. Greenrock Innovations' process uses reclaimed waste rock (no new extraction), closed-loop water recycling, and local sourcing to achieve ~82% lower embodied carbon compared to primary-extraction alternatives."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where does Greenrock Innovations supply M-Sand and aggregates?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Greenrock Innovations manufactures at its Gundlupet, Karnataka facility and supplies across South India including Karnataka, Tamil Nadu, Kerala, Andhra Pradesh, Telangana, and Goa. The company also operates affiliated facilities that extend supply reach across India for bulk construction and infrastructure projects."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a Waste Rock Royalty Recycle Permit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Waste Rock Royalty Recycle Permit is a government-issued license in Karnataka allowing companies to process existing waste rock and overburden from quarry sites without paying primary extraction royalties. Greenrock Innovations operates under Karnataka's first such permit, enabling it to reclaim material that would otherwise be discarded, eliminating the need for new rock extraction and dramatically reducing environmental impact."
+          }
+        }
+      ]
     }
     </script>
 
