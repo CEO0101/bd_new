@@ -1,5 +1,18 @@
+/* Self-hosted fonts — eliminates Google Fonts blocking chain (~1.6s savings) */
+@import "@fontsource-variable/dm-sans";
+@import "@fontsource/dm-mono/400.css";
+@import "@fontsource/dm-mono/500.css";
+@import "@fontsource/dm-serif-display/400.css";
+@import "@fontsource/dm-serif-display/400-italic.css";
+
 @import "tailwindcss";
 @import "tw-animate-css";
+
+/* Nav hover via CSS — avoids JS forced reflow */
+.nav-link:hover:not([data-active="true"]) {
+  opacity: 0.7 !important;
+  filter: brightness(1.4);
+}
 
 @custom-variant dark (&:is(.dark *));
 

@@ -1,6 +1,7 @@
 import "dotenv/config";
 
 import express, { type Request, Response, NextFunction } from "express";
+import compression from "compression";
 import session from "express-session";
 import createMemoryStore from "memorystore";
 import { registerRoutes } from "./routes";
@@ -9,6 +10,9 @@ import { createServer } from "http";
 
 const app = express();
 const httpServer = createServer(app);
+
+// Gzip all responses — reduces 126 KiB CSS to ~30 KiB, JS bundles by ~70%
+app.use(compression());
 
 // 301 redirect: greenrockinnovations.com → greenrockinnovations.earth
 app.use((req: Request, res: Response, next: NextFunction) => {

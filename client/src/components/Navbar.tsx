@@ -75,6 +75,7 @@ export default function Navbar() {
             <Link
               key={item.href}
               href={item.href}
+              data-active={isActive(item.href) ? "true" : undefined}
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "13px",
@@ -86,14 +87,7 @@ export default function Navbar() {
                 textDecoration: "none",
                 transition: "color 0.15s",
               }}
-              onMouseEnter={(e) => {
-                if (!isActive(item.href))
-                  (e.target as HTMLElement).style.color = `rgba(${TXT},0.7)`;
-              }}
-              onMouseLeave={(e) => {
-                if (!isActive(item.href))
-                  (e.target as HTMLElement).style.color = `rgba(${TXT},0.45)`;
-              }}
+              className="nav-link"
             >
               {item.label}
             </Link>
