@@ -87,7 +87,6 @@ export default function Hero() {
             muted
             playsInline
             preload="none"
-            poster="/hero-bg.png"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ opacity: 0.42, mixBlendMode: "luminosity" }}
             ref={(el: HTMLVideoElement | null) => {
