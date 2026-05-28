@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import CustomerLogos from "@/components/CustomerLogos";
 
@@ -79,17 +79,26 @@ export default function Hero() {
       <div className="relative w-full overflow-hidden"
         style={{ height: "calc(100dvh - 56px)", marginTop: "56px" }}>
 
-        {/* ── Video ── */}
+        {/* ── Video — deferred to avoid blocking LCP ── */}
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
             loop
             muted
             playsInline
-            preload="metadata"
+            preload="none"
+            poster="/hero-bg.png"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ opacity: 0.42, mixBlendMode: "luminosity" }}
-            src="/161071-822582138-loop.mp4"
+            ref={(el: HTMLVideoElement | null) => {
+              if (!el) return;
+              // Load video only after page is interactive — doesn't block LCP
+              if ("requestIdleCallback" in window) {
+                requestIdleCallback(() => { el.src = "/161071-822582138-loop.mp4"; el.load(); });
+              } else {
+                setTimeout(() => { el.src = "/161071-822582138-loop.mp4"; el.load(); }, 2000);
+              }
+            }}
           />
           <div className="absolute inset-0" style={{
             background: "linear-gradient(130deg, rgba(9,8,10,0.94) 0%, rgba(9,8,10,0.6) 46%, rgba(9,8,10,0.15) 100%)"

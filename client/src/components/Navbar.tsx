@@ -124,6 +124,7 @@ export default function Navbar() {
         <div className="md:hidden">
           <Sheet>
             <SheetTrigger className="inline-flex h-9 w-9 items-center justify-center"
+              aria-label="Open navigation menu"
               style={{ background: `rgba(${TXT},0.05)`, border: `1px solid rgba(${TXT},0.12)` }}>
               <Menu className="h-4 w-4" style={{ color: `rgba(${TXT},0.6)` }} />
             </SheetTrigger>
