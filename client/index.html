@@ -94,7 +94,22 @@
               "@type": "Product",
               "name": "Manufactured Sand (M-Sand)",
               "description": "IS 383:2016 Zone II & III compliant manufactured sand from waste rock. ~82% lower embodied carbon than river sand.",
-              "brand": { "@type": "Brand", "name": "Greenrock Innovations" }
+              "brand": { "@type": "Brand", "name": "Greenrock Innovations" },
+              "offers": {
+                "@type": "Offer",
+                "availability": "https://schema.org/InStock",
+                "priceCurrency": "INR",
+                "priceSpecification": { "@type": "PriceSpecification", "description": "Contact for bulk pricing" },
+                "areaServed": [
+                  { "@type": "State", "name": "Karnataka" },
+                  { "@type": "State", "name": "Tamil Nadu" },
+                  { "@type": "State", "name": "Kerala" },
+                  { "@type": "State", "name": "Andhra Pradesh" },
+                  { "@type": "State", "name": "Telangana" },
+                  { "@type": "State", "name": "Goa" }
+                ],
+                "seller": { "@type": "Organization", "name": "Greenrock Innovations" }
+              }
             }
           },
           {
@@ -103,7 +118,22 @@
               "@type": "Product",
               "name": "Plastering Sand (P-Sand)",
               "description": "IS 1542:1992 compliant fine plastering sand. Consistent grading, zero silt.",
-              "brand": { "@type": "Brand", "name": "Greenrock Innovations" }
+              "brand": { "@type": "Brand", "name": "Greenrock Innovations" },
+              "offers": {
+                "@type": "Offer",
+                "availability": "https://schema.org/InStock",
+                "priceCurrency": "INR",
+                "priceSpecification": { "@type": "PriceSpecification", "description": "Contact for bulk pricing" },
+                "areaServed": [
+                  { "@type": "State", "name": "Karnataka" },
+                  { "@type": "State", "name": "Tamil Nadu" },
+                  { "@type": "State", "name": "Kerala" },
+                  { "@type": "State", "name": "Andhra Pradesh" },
+                  { "@type": "State", "name": "Telangana" },
+                  { "@type": "State", "name": "Goa" }
+                ],
+                "seller": { "@type": "Organization", "name": "Greenrock Innovations" }
+              }
             }
           },
           {
@@ -112,7 +142,22 @@
               "@type": "Product",
               "name": "Coarse Aggregates",
               "description": "20mm and 12mm IS 383:2016 compliant coarse aggregates for structural concrete.",
-              "brand": { "@type": "Brand", "name": "Greenrock Innovations" }
+              "brand": { "@type": "Brand", "name": "Greenrock Innovations" },
+              "offers": {
+                "@type": "Offer",
+                "availability": "https://schema.org/InStock",
+                "priceCurrency": "INR",
+                "priceSpecification": { "@type": "PriceSpecification", "description": "Contact for bulk pricing" },
+                "areaServed": [
+                  { "@type": "State", "name": "Karnataka" },
+                  { "@type": "State", "name": "Tamil Nadu" },
+                  { "@type": "State", "name": "Kerala" },
+                  { "@type": "State", "name": "Andhra Pradesh" },
+                  { "@type": "State", "name": "Telangana" },
+                  { "@type": "State", "name": "Goa" }
+                ],
+                "seller": { "@type": "Organization", "name": "Greenrock Innovations" }
+              }
             }
           }
         ]
@@ -261,6 +306,105 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "A Waste Rock Royalty Recycle Permit is a government-issued license in Karnataka allowing companies to process existing waste rock and overburden from quarry sites without paying primary extraction royalties. Greenrock Innovations operates under Karnataka's first such permit, enabling it to reclaim material that would otherwise be discarded, eliminating the need for new rock extraction and dramatically reducing environmental impact."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Product ItemList JSON-LD — standalone product schema so Google can surface
+         product rich snippets independently of the Organization entity above. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Engineered Construction Materials by Greenrock Innovations",
+      "description": "IS-certified manufactured sand, plastering sand, and coarse aggregates from reclaimed weathered rock. ~82% lower carbon than primary-extraction alternatives.",
+      "url": "https://greenrockinnovations.earth/products",
+      "numberOfItems": 3,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "Product",
+            "@id": "https://greenrockinnovations.earth/products#msand",
+            "name": "Manufactured Sand (M-Sand)",
+            "description": "IS 383:2016 Zone II & III compliant manufactured sand from reclaimed waste rock. Consistent angular grading, zero silt, ~82% lower embodied carbon than river sand. Suitable for all grades of structural concrete.",
+            "image": "https://greenrockinnovations.earth/favicon.png",
+            "brand": { "@type": "Brand", "name": "Greenrock Innovations" },
+            "manufacturer": { "@type": "Organization", "name": "Greenrock Innovations", "url": "https://greenrockinnovations.earth/" },
+            "category": "Construction Materials / Fine Aggregates",
+            "additionalProperty": [
+              { "@type": "PropertyValue", "name": "Standard", "value": "IS 383:2016 Zone II & III" },
+              { "@type": "PropertyValue", "name": "Embodied Carbon Reduction", "value": "~82% vs river sand" },
+              { "@type": "PropertyValue", "name": "Certification", "value": "Bureau Veritas / BIS" }
+            ],
+            "offers": {
+              "@type": "Offer",
+              "availability": "https://schema.org/InStock",
+              "priceCurrency": "INR",
+              "url": "https://greenrockinnovations.earth/products",
+              "priceSpecification": { "@type": "PriceSpecification", "description": "Contact for bulk pricing" },
+              "areaServed": ["Karnataka", "Tamil Nadu", "Kerala", "Andhra Pradesh", "Telangana", "Goa", "Maharashtra"],
+              "seller": { "@type": "Organization", "name": "Greenrock Innovations", "url": "https://greenrockinnovations.earth/" }
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "Product",
+            "@id": "https://greenrockinnovations.earth/products#psand",
+            "name": "Plastering Sand (P-Sand)",
+            "description": "IS 1542:1992 compliant fine plastering sand from crushed rock. Sub-2.36mm particle size, zero silt, smooth consistent texture for plastering, tiling, and wall finishes.",
+            "image": "https://greenrockinnovations.earth/favicon.png",
+            "brand": { "@type": "Brand", "name": "Greenrock Innovations" },
+            "manufacturer": { "@type": "Organization", "name": "Greenrock Innovations", "url": "https://greenrockinnovations.earth/" },
+            "category": "Construction Materials / Plastering Sand",
+            "additionalProperty": [
+              { "@type": "PropertyValue", "name": "Standard", "value": "IS 1542:1992" },
+              { "@type": "PropertyValue", "name": "Particle Size", "value": "< 2.36mm" },
+              { "@type": "PropertyValue", "name": "Silt Content", "value": "Zero" }
+            ],
+            "offers": {
+              "@type": "Offer",
+              "availability": "https://schema.org/InStock",
+              "priceCurrency": "INR",
+              "url": "https://greenrockinnovations.earth/products",
+              "priceSpecification": { "@type": "PriceSpecification", "description": "Contact for bulk pricing" },
+              "areaServed": ["Karnataka", "Tamil Nadu", "Kerala", "Andhra Pradesh", "Telangana", "Goa", "Maharashtra"],
+              "seller": { "@type": "Organization", "name": "Greenrock Innovations", "url": "https://greenrockinnovations.earth/" }
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "Product",
+            "@id": "https://greenrockinnovations.earth/products#coarseaggregates",
+            "name": "Coarse Aggregates (20mm & 12mm)",
+            "description": "IS 383:2016 compliant 20mm and 12mm coarse aggregates for structural concrete, road base, and infrastructure projects. Produced from reclaimed rock at Gundlupet, Karnataka.",
+            "image": "https://greenrockinnovations.earth/favicon.png",
+            "brand": { "@type": "Brand", "name": "Greenrock Innovations" },
+            "manufacturer": { "@type": "Organization", "name": "Greenrock Innovations", "url": "https://greenrockinnovations.earth/" },
+            "category": "Construction Materials / Coarse Aggregates",
+            "additionalProperty": [
+              { "@type": "PropertyValue", "name": "Standard", "value": "IS 383:2016" },
+              { "@type": "PropertyValue", "name": "Sizes Available", "value": "20mm, 12mm" },
+              { "@type": "PropertyValue", "name": "Application", "value": "Structural concrete, road base, infrastructure" }
+            ],
+            "offers": {
+              "@type": "Offer",
+              "availability": "https://schema.org/InStock",
+              "priceCurrency": "INR",
+              "url": "https://greenrockinnovations.earth/products",
+              "priceSpecification": { "@type": "PriceSpecification", "description": "Contact for bulk pricing" },
+              "areaServed": ["Karnataka", "Tamil Nadu", "Kerala", "Andhra Pradesh", "Telangana", "Goa", "Maharashtra"],
+              "seller": { "@type": "Organization", "name": "Greenrock Innovations", "url": "https://greenrockinnovations.earth/" }
+            }
           }
         }
       ]
