@@ -96,7 +96,7 @@ const OUTPUTS: Output[] = [
   },
   {
     code: "F-04",
-    name: "Granite Fines",
+    name: "Crusher Dust",
     subtitle: "Filler · Sub-grade Stabiliser",
     size: "< 0.075 mm",
     standard: "IS 73 · IS 2720 compatibility",
@@ -115,7 +115,7 @@ const FIT_MATRIX = [
   { product: "M-Sand",            primary: "Structural concrete",      secondary: "Plaster mortar",        ref: "IS 456 · IS 383" },
   { product: "P-Sand",            primary: "Plaster & finish",          secondary: "Tile-bedding",          ref: "IS 1542" },
   { product: "Graded Aggregates", primary: "Roads & foundations",       secondary: "Railway & heavy civils", ref: "IS 383 · MORTH" },
-  { product: "Granite Fines",     primary: "Asphalt filler",            secondary: "Soil stabilisation",     ref: "MORTH 5th rev." },
+  { product: "Crusher Dust",      primary: "Asphalt filler",            secondary: "Soil stabilisation",     ref: "MORTH 5th rev." },
 ];
 
 /* ─── Operating signals ─────────────────────────────────────────────── */
@@ -130,7 +130,7 @@ export default function Products() {
   useSeo({
     title: "Products — M-Sand, P-Sand, Graded Aggregates",
     description:
-      "IS 383:2016 / IS 1542 compliant M-Sand, P-Sand, graded aggregates and granite fines — engineered from reclaimed weathered rock at ~82% lower carbon. Batch-stamped, NABL-tested, MORTH-referenced.",
+      "IS 383:2016 / IS 1542 compliant M-Sand, P-Sand, graded aggregates and crusher dust — engineered from reclaimed weathered rock at ~82% lower carbon. Batch-stamped, NABL-tested, MORTH-referenced.",
     canonical: "/products",
     jsonLd: [
       faqJsonLd(PRODUCT_FAQS),
@@ -146,12 +146,17 @@ export default function Products() {
           "@type": "ListItem",
           position: i + 1,
           item: {
-            "@type": "Product",
+            // Service (not Product) — Greenrock supplies bulk materials at
+            // contract pricing, not fixed-price SKUs. Service schema avoids
+            // Google's "offers/review/aggregateRating required" validation
+            // errors while keeping all the spec data intact.
+            "@type": "Service",
             name: o.name,
             description: `${o.subtitle}. Particle size: ${o.size}. Standard: ${o.standard}.`,
-            category: o.subtitle,
+            serviceType: o.subtitle,
             url: `${SITE_ORIGIN}/products`,
-            brand: { "@type": "Brand", name: "Greenrock Innovations" },
+            provider: { "@type": "Organization", name: "Greenrock Innovations", url: SITE_ORIGIN },
+            areaServed: ["Karnataka", "Tamil Nadu", "Kerala", "Andhra Pradesh", "Telangana", "Goa"],
             additionalProperty: o.key.map((k) => ({
               "@type": "PropertyValue",
               name: k.label,

@@ -17,7 +17,7 @@ const TECH_FAQS = [
   },
   {
     q: "Is the production line zero liquid discharge (ZLD)?",
-    a: "Yes. Process water is clarified and recirculated through a closed-loop hydrocyclone array with thickener feedback. No slurry pond, no discharge to ground or surface water. The fines recovered from the water stream become a saleable output (granite fines), not a disposal liability.",
+    a: "Yes. Process water is clarified and recirculated through a closed-loop hydrocyclone array with thickener feedback. No slurry pond, no discharge to ground or surface water. The fines recovered from the water stream become a saleable output (crusher dust), not a disposal liability.",
   },
   {
     q: "What is a Waste Rock Royalty Recycle Permit?",
