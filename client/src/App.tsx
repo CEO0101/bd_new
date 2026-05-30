@@ -5,8 +5,12 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
+// Home is eager — it's the landing page, lazy-loading it adds an
+// unnecessary chunk fetch and causes a visible "Loading..." flash on
+// first paint. All secondary pages stay lazy to keep initial JS small.
+import Home from "@/pages/home";
+
 const NotFound = lazy(() => import("@/pages/not-found"));
-const Home = lazy(() => import("@/pages/home"));
 const About = lazy(() => import("@/pages/About"));
 const Technology = lazy(() => import("@/pages/Technology"));
 const ProductsPage = lazy(() => import("@/pages/Products"));
@@ -47,9 +51,9 @@ function App() {
           <Toaster />
           <Suspense
             fallback={
-              <div className="flex min-h-screen items-center justify-center bg-black text-white/60">
-                Loading...
-              </div>
+              // Invisible dark fallback — matches page bg so route-change
+              // chunk fetches don't flash a "Loading..." screen.
+              <div style={{ minHeight: "100vh", background: "#09080A" }} />
             }
           >
             <Router />
