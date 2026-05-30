@@ -179,15 +179,17 @@
     }
     </script>
 
-    <!-- WebSite JSON-LD with SearchAction -->
+    <!-- WebSite JSON-LD with SearchAction + hasPart (sitelinks signal) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Greenrock Innovations",
+      "alternateName": ["Greenrock", "Green Rock Innovations", "Greenrock Innovations India"],
       "url": "https://greenrockinnovations.earth/",
       "description": "Engineered construction materials from reclaimed weathered rock. IS 383:2016 compliant. Karnataka.",
       "inLanguage": "en-IN",
+      "publisher": { "@type": "Organization", "name": "Greenrock Innovations", "url": "https://greenrockinnovations.earth/" },
       "potentialAction": {
         "@type": "SearchAction",
         "target": {
@@ -195,7 +197,32 @@
           "urlTemplate": "https://greenrockinnovations.earth/journal?q={search_term_string}"
         },
         "query-input": "required name=search_term_string"
-      }
+      },
+      "hasPart": [
+        { "@type": "WebPage", "name": "About",      "url": "https://greenrockinnovations.earth/about",              "description": "About Greenrock Innovations — engineering reclaimed rock into IS-certified construction materials." },
+        { "@type": "WebPage", "name": "Technology", "url": "https://greenrockinnovations.earth/technology",         "description": "Greenrock's VSI + hydrocyclone processing technology and closed-loop water system." },
+        { "@type": "WebPage", "name": "Products",   "url": "https://greenrockinnovations.earth/products",            "description": "M-Sand, P-Sand, and coarse aggregates — IS 383:2016 and IS 1542:1992 compliant." },
+        { "@type": "WebPage", "name": "Journal",    "url": "https://greenrockinnovations.earth/journal",             "description": "Greenrock Journal — research and reporting on low-carbon construction materials." },
+        { "@type": "WebPage", "name": "Invest",     "url": "https://greenrockinnovations.earth/invest",              "description": "Investor information for Greenrock Innovations." },
+        { "@type": "WebPage", "name": "Impact Calculator", "url": "https://greenrockinnovations.earth/impact-calculator", "description": "Calculate the carbon savings of using Greenrock M-Sand vs river sand." }
+      ]
+    }
+    </script>
+
+    <!-- SiteNavigationElement JSON-LD — explicit nav signal that helps Google
+         choose which pages to surface as sitelinks under the brand result. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "SiteNavigationElement", "position": 1, "name": "Home",               "url": "https://greenrockinnovations.earth/" },
+        { "@type": "SiteNavigationElement", "position": 2, "name": "About",              "url": "https://greenrockinnovations.earth/about" },
+        { "@type": "SiteNavigationElement", "position": 3, "name": "Technology",         "url": "https://greenrockinnovations.earth/technology" },
+        { "@type": "SiteNavigationElement", "position": 4, "name": "Products",           "url": "https://greenrockinnovations.earth/products" },
+        { "@type": "SiteNavigationElement", "position": 5, "name": "Journal",            "url": "https://greenrockinnovations.earth/journal" },
+        { "@type": "SiteNavigationElement", "position": 6, "name": "Invest",             "url": "https://greenrockinnovations.earth/invest" },
+        { "@type": "SiteNavigationElement", "position": 7, "name": "Impact Calculator",  "url": "https://greenrockinnovations.earth/impact-calculator" }
+      ]
     }
     </script>
 
