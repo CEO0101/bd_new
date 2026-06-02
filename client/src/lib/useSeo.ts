@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 export const SITE_ORIGIN = "https://greenrockinnovations.earth";
 export const SITE_NAME = "Greenrock Innovations";
-export const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/opengraph.jpg`;
+export const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/opengraph-v2.jpg`;
 
 export type Faq = { q: string; a: string };
 

@@ -53,7 +53,7 @@ export default function Home() {
         url: SITE_ORIGIN + "/",
         name: "Greenrock Innovations",
         description: "Engineered construction materials from reclaimed weathered rock.",
-        primaryImageOfPage: `${SITE_ORIGIN}/opengraph.jpg`,
+        primaryImageOfPage: `${SITE_ORIGIN}/opengraph-v2.jpg`,
         isPartOf: { "@type": "WebSite", name: "Greenrock Innovations", url: SITE_ORIGIN },
       },
       faqJsonLd(HOME_FAQS),
