@@ -32,6 +32,7 @@ Every batch is independently tested at NABL-accredited laboratories. Process wat
 - [M-Sand, P-Sand, G-Sand: Every Type of Manufactured Sand Explained](https://greenrockinnovations.earth/journal/manufactured-sand-types-complete-guide) (Apr 2026): IS 383:2016 gradation zones, applications, source rock effects, why specification matters.
 - [Sand, Aggregates, Cement: What the Embodied Carbon Data Says](https://greenrockinnovations.earth/journal/embodied-carbon-construction-materials) (Apr 2026): Aggregate's missing place in carbon accounting; circular feedstock economics; EPD readiness.
 - [Why Karnataka's Infrastructure Growth Cannot Afford to Ignore Its Biodiversity Footprint](https://greenrockinnovations.earth/journal/western-ghats-construction-biodiversity) (May 2026): Western Ghats hydrology, Gadgil/Kasturirangan frameworks, the waste-rock alternative.
+- [Recycled Construction Materials: A 2026 Specifier's Manual](https://greenrockinnovations.earth/journal/recycled-construction-materials-2026-manual) (Jun 2026): The eight categories that work at scale (M-Sand, RCA, reclaimed steel, timber, stone, glass, gypsum, fly ash / GGBS), IS/ASTM/BS/EN code coverage, cost vs virgin, embodied-carbon and ecosystem-impact math, the five-step sourcing protocol, and the four sourcing failures specifiers keep making.
 
 ## Topics this site authoritatively covers
 
