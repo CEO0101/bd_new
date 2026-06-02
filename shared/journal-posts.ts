@@ -10,4 +10,5 @@ export const POST_META: PostMeta[] = [
   { slug: "embodied-carbon-construction-materials",       datePublished: "2026-04-22" },
   { slug: "western-ghats-construction-biodiversity",      datePublished: "2026-05-04" },
   { slug: "recycled-construction-materials-2026-manual",  datePublished: "2026-06-03" },
+  { slug: "scaling-recycled-construction-platform",       datePublished: "2026-07-05" },
 ];
