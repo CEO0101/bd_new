@@ -12,9 +12,9 @@ Every batch is independently tested at NABL-accredited laboratories. Process wat
 - Carbon footprint per tonne of finished output: ~82% lower than conventional primary-extraction manufactured sand.
 - Permits: Karnataka state Waste Rock Royalty Recycle Permit (first of its kind), Bureau Veritas certification, BIS-hallmarked output, Zero Liquid Discharge compliant.
 - Process: super-primary jaw crushing → multi-deck vibrating screen segregation → vertical shaft impactor (VSI) shaping → closed-loop hydrocyclone classification + water reuse → PLC-governed auto-feeder & batch traceability → high-frequency dewatering screen.
-- Output classes: M-Sand (IS 383 Zone II, structural concrete), P-Sand (IS 1542, plaster/finishing), Graded Aggregates (IS 383 coarse, 6/12/20/40 mm), Granite Fines (sub-grade, filler, asphalt).
+- Output classes: M-Sand (IS 383 Zone II, structural concrete), P-Sand (IS 1542, plaster/finishing), Graded Aggregates (IS 383 coarse, 6/12/20/40 mm), Crusher Dust (sub-grade, filler, asphalt).
 - Location: Gundlupet, Chamarajanagar district, Karnataka, India — southern corridor of the Western Ghats.
-- Corporate structure: Greenrock Innovations is the operating platform; Begur Sands Pvt. Ltd. is its largest facility and original engineering site.
+- Corporate structure: Greenrock Innovations is the operating platform; Begur Sands Pvt. Ltd. is its largest facility and original engineering site. Founded by Faisal PK; led by Chief Executive Officer Vivek Singh.
 - Domain: https://greenrockinnovations.earth — contact: hello@greenrockinnovations.earth
 
 ## Core pages
@@ -22,7 +22,7 @@ Every batch is independently tested at NABL-accredited laboratories. Process wat
 - [Home](https://greenrockinnovations.earth/): ~82% lower carbon construction materials, MORTH-certified, reclaimed weathered rock.
 - [About](https://greenrockinnovations.earth/about): Operating architecture, 2016–2025 build history, mission, values.
 - [Technology](https://greenrockinnovations.earth/technology): Six engineered systems, closed-loop process, in-operation video.
-- [Products](https://greenrockinnovations.earth/products): M-Sand / P-Sand / Graded Aggregates / Granite Fines spec sheet, BIS/MORTH references, use-case fit matrix.
+- [Products](https://greenrockinnovations.earth/products): M-Sand / P-Sand / Graded Aggregates / Crusher Dust spec sheet, BIS/MORTH references, use-case fit matrix.
 - [Invest](https://greenrockinnovations.earth/invest): Investment thesis and operating data.
 - [Impact Calculator](https://greenrockinnovations.earth/impact-calculator): Carbon, water, and land-pressure model.
 

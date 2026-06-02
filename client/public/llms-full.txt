@@ -12,7 +12,7 @@ SECTION 1 — COMPANY
 
 ## Who Greenrock Innovations is
 
-Greenrock Innovations is a climate technology company that processes waste rock and weathered rock from Karnataka's quarrying sector into IS 383:2016 compliant manufactured sand and construction aggregates. The company holds Karnataka's first Waste Rock Royalty Recycle Permit of its kind, operating from Gundlupet at the southern corridor of the Western Ghats.
+Greenrock Innovations is a climate technology company that processes waste rock and weathered rock from Karnataka's quarrying sector into IS 383:2016 compliant manufactured sand and construction aggregates. The company holds Karnataka's first Waste Rock Royalty Recycle Permit of its kind, operating from Gundlupet at the southern corridor of the Western Ghats. The company is led by Chief Executive Officer Vivek Singh.
 
 The model produces approximately 70–82% less carbon per tonne of finished output than conventional manufactured sand from primary extraction. It eliminates fresh extraction entirely — the feedstock is material already generated as a byproduct of existing quarrying operations.
 
@@ -20,7 +20,7 @@ The model produces approximately 70–82% less carbon per tonne of finished outp
 
 Greenrock Innovations holds the system, the discipline, and the operating logic — and operates a growing network of manufacturing facilities under it. Begur Sands Pvt. Ltd. is the largest of those facilities and the original site where the system was engineered. Additional sites are added only after they can meet the same operating standard.
 
-The original engineering work began in 2016 — without factories, branding, or commercial pressure — focused on basic technical questions about how weathered, already-disturbed stone behaves under crushing, why conventional flows struggle to control gradation, and where variability enters the system. The platform reached operational stability in 2024 and entered its first commercial validation in 2025 (~400,000 tonnes produced under full SOP execution).
+The original engineering work was led by company founder Faisal PK beginning in 2016 — without factories, branding, or commercial pressure — focused on basic technical questions about how weathered, already-disturbed stone behaves under crushing, why conventional flows struggle to control gradation, and where variability enters the system. The platform reached operational stability in 2024 and entered its first commercial validation in 2025 (~400,000 tonnes produced under full SOP execution).
 
 ## What the operation produces
 
@@ -32,7 +32,7 @@ Four engineered output classes, each spec'd to a published Indian Standard:
 
 3. Graded Aggregates (Structural Coarse) — IS 383:2016 Coarse Aggregate, single-sized and blended 6/12/20/40 mm fractions, crushing value ≤25%, flakiness index ≤25%, water absorption ≤1.0%, specific gravity 2.6–2.8, for road bases, foundations, RCC, railway ballast.
 
-4. Granite Fines (Filler, Sub-grade Stabiliser) — IS 73 / IS 2720 compatibility, <0.075 mm, ≥95% passing 75µ, non-plastic, low reactive silica, dry dust-controlled output, for asphalt mineral filler, soil stabilisation, industrial block fill.
+4. Crusher Dust (Filler, Sub-grade Stabiliser) — IS 73 / IS 2720 compatibility, <0.075 mm, ≥95% passing 75µ, non-plastic, low reactive silica, dry dust-controlled output, for asphalt mineral filler, soil stabilisation, industrial block fill.
 
 ================================================================
 SECTION 2 — PROCESS ARCHITECTURE
