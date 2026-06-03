@@ -12,7 +12,10 @@ export function serveStatic(app: Express) {
     );
   }
 
-  app.use(express.static(distPath));
+  // index: false — disable auto-serving of index.html for /, so our
+  // catch-all below handles ALL routes including the homepage and
+  // injects the correct canonical everywhere.
+  app.use(express.static(distPath, { index: false }));
 
   // Serve index.html for all SPA routes, injecting the correct canonical URL
   // so crawlers (SE Ranking, AhrefBot, etc.) that don't execute JS still see
@@ -20,7 +23,10 @@ export function serveStatic(app: Express) {
   app.use("/{*path}", (req: Request, res: Response) => {
     const indexPath = path.resolve(distPath, "index.html");
     let html = fs.readFileSync(indexPath, "utf-8");
-    const canonicalUrl = `${ORIGIN}${req.path === "/" ? "" : req.path}` || ORIGIN;
+    // Use req.originalUrl — req.path is relative to the wildcard mount
+    // point in Express 5 and returns "/" even on /about etc.
+    const rawPath = req.originalUrl.split("?")[0];
+    const canonicalUrl = rawPath === "/" || rawPath === "" ? `${ORIGIN}/` : `${ORIGIN}${rawPath}`;
     html = html.replace(
       /<link rel="canonical" href="[^"]*"\s*\/>/,
       `<link rel="canonical" href="${canonicalUrl}" />`
