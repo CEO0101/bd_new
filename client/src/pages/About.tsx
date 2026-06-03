@@ -9,15 +9,19 @@ import aboutBackgroundVideo from "@assets/6010532_Nature_Rock_1280x720compressed
 const ABOUT_FAQS = [
   {
     q: "Who is Greenrock Innovations?",
-    a: "Greenrock Innovations is a climate technology company that processes waste rock and weathered rock from Karnataka's quarrying sector into IS 383:2016 compliant manufactured sand and construction aggregates. The company operates a network of manufacturing facilities, the largest being Begur Sands Pvt. Ltd. in Gundlupet, Karnataka — the original site where the closed-loop processing system was engineered.",
+    a: "Greenrock Innovations is a climate technology company built around the recycling of waste rock and weathered rock — feedstock that would otherwise be discarded — into engineered, IS 383:2016 compliant manufactured sand and construction aggregates. The recycling-led process is MORTH certified for use on National Highway projects, Bureau Veritas audited, and supplies top-tier industrial infrastructure, PSU construction, ready-mix concrete plants, and large-scale developer projects across South India. The company operates a network of recycling-based manufacturing facilities, the largest being Begur Sands Pvt. Ltd. in Gundlupet, Karnataka — the original site where the closed-loop recycling system was engineered under Karnataka's first Waste Rock Royalty Recycle Permit.",
+  },
+  {
+    q: "Who is the CEO of Greenrock Innovations?",
+    a: "The Chief Executive Officer of Greenrock Innovations is Vivek Singh. He leads strategy, investor relations, and institutional market expansion for the ecosystem's multi-site recycling-led scaling phase. Vivek's background is management consulting — Founder of Velaeva AI, ex-Bain M&A, and ex-Oracle Data Systems. He works alongside founder Faisal P.K., who authored the closed-loop recycling process specification and secured Karnataka's first Waste Rock Royalty Recycle Permit. Sukumaran serves as Co-Founder and Managing Director leading operational expansion, with Abdulla MK as Chairperson and Naveen S. leading institutional business relations and legal.",
   },
   {
     q: "What is the relationship between Greenrock Innovations and Begur Sands Pvt. Ltd.?",
-    a: "Greenrock Innovations is the operating platform that holds the system, the discipline, and the operating logic. Begur Sands Pvt. Ltd. is its largest manufacturing facility and the original engineering site, located in Gundlupet, Karnataka. Additional facilities are added under the Greenrock platform only after they can meet the same operating standard.",
+    a: "Greenrock Innovations is the operating ecosystem that holds the recycling system, the discipline, and the operating logic. Begur Sands Pvt. Ltd. is its largest manufacturing facility and the original engineering site, located in Gundlupet, Karnataka. Additional facilities are added under the Greenrock ecosystem only after they can meet the same recycling and operating standard.",
   },
   {
     q: "When did Greenrock Innovations begin operations?",
-    a: "Engineering work began in 2016 at what would become Begur Sands — focused on the technical questions of how weathered rock behaves under crushing and why conventional flows struggle to control gradation. The system reached operational stability in 2024. First commercial validation (~400,000 tonnes produced under full SOP execution) took place in 2025.",
+    a: "R&D work began in 2016 at what would become Begur Sands — focused on the technical questions of how weathered rock behaves under crushing and why conventional flows struggle to control gradation. The system reached operational stability and vintage in 2024. First commercial validation (above ~400,000 tonnes produced under full ESG compliant SOP execution) took place in 2025.",
   },
   {
     q: "Where are Greenrock's facilities located?",
@@ -65,7 +69,7 @@ const aboutStory: StoryStep[] = [
     paragraphs: [
       "Greenrock Innovations did not begin as a company trying to grow quickly. It began as work that needed to be done properly — at a single facility, Begur Sands, in Karnataka.",
       "India's construction materials sector has long relied on availability over reliability. Materials arrive, projects move forward — but the systems behind them are inconsistent, opaque, and hard on land and water.",
-      "This platform was built to take a different approach: slow first, correct first, then scale.",
+      "This ecosystem was built to take a different approach: slow first, correct first, then scale.",
     ],
   },
   {
@@ -155,7 +159,7 @@ const growthMilestones: MilestoneStep[] = [
     period: "2025",
     title: "First Commercial Validation",
     paragraphs: [
-      "In 2025, the platform entered its first operational pilot under commercial conditions.",
+      "In 2025, the ecosystem entered its first operational pilot under commercial conditions.",
     ],
     bullets: ["~400,000 tonnes produced", "full SOP execution", "consistency validated under load"],
     lead: "This phase confirmed something important:",
@@ -214,25 +218,25 @@ const TEAM: TeamMember[] = [
     name: "Sukumaran",
     role: "Co-Founder & Managing Director — Strategic Expansion & Operations",
     credentials: "40+ years · Mining & mineral processing · Regional projects across South India",
-    bio: "Operational anchor of the platform's multi-site expansion. Leads plant setup, feedstock control, and mineral-processing execution across every node — bringing four decades of field-built authority to deployment, yield optimisation, and regional growth.",
+    bio: "Operational anchor of the ecosystem's multi-site expansion. Leads plant setup, feedstock control, and mineral-processing execution across every node — bringing four decades of field-built authority to deployment, yield optimisation, and regional growth.",
   },
   {
     name: "Vivek Singh",
     role: "Chief Executive Officer",
-    credentials: "Founder, Velaeva AI · Ex-Bain M&A · Ex-Oracle Data Systems",
-    bio: "Leads strategy, investor relations, and institutional market expansion. Brings the operating discipline of management consulting to Greenrock's scaling phase — converting a proven engineering achievement into a replicable multi-site operating standard.",
+    credentials: "Founder, Velaeva AI (velaeva.com) · Ex-Bain M&A · Ex-Oracle Data Systems",
+    bio: "Leads strategy, investor relations, and institutional market expansion for Greenrock's recycling-led scaling phase. Concurrently founder of Velaeva AI — building enterprise voice and operations infrastructure. Brings the operating discipline of management consulting to the multi-site build, converting a proven engineering achievement into a replicable operating standard.",
   },
   {
     name: "Abdulla MK",
     role: "Chairperson",
     credentials: "35+ years · Lulu Group · ADNOC Drilling · Abu Dhabi Ports (KIZAD) · CIA & CISA Certified",
-    bio: "Provides board governance and institutional oversight. Anchors the platform's compliance posture, audit discipline, and structural integrity across the multi-site build.",
+    bio: "Provides board governance and institutional oversight. Anchors the ecosystem's compliance posture, audit discipline, and structural integrity across the multi-site build.",
   },
   {
     name: "Naveen S.",
     role: "Operations · Business Relations · Legal",
     credentials: "20 years · GCC institutional environments",
-    bio: "Leads institutional business relations, legal advisory, PSU contracting, and large-scale operational management. The platform's interface to government, large-buyer procurement, and statutory compliance.",
+    bio: "Leads institutional business relations, legal advisory, PSU contracting, and large-scale operational management. The ecosystem's interface to government, large-buyer procurement, and statutory compliance.",
   },
 ];
 
@@ -310,20 +314,20 @@ export default function About() {
   }, [rawProgress]);
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden text-[#1b1b1b]">
-      <div className="fixed inset-0 -z-30">
+    <div className="relative min-h-screen overflow-x-hidden bg-[#F7F7F7] text-[#1b1b1b]">
+      <div className="fixed inset-0 -z-30 bg-[#F7F7F7]">
         <video
           className="h-full w-full object-cover"
           autoPlay
           muted
           loop
           playsInline
-          preload="none"
+          preload="auto"
         >
           <source src={aboutBackgroundVideo} type="video/mp4" />
         </video>
       </div>
-      <div className="fixed inset-0 -z-20 bg-[#F7F7F7]/76" />
+      <div className="fixed inset-0 -z-20 bg-[#F7F7F7]/55" />
 
       <Navbar />
       <style>{`
@@ -496,7 +500,7 @@ export default function About() {
                   2018 TO COMMERCIAL VALIDATION
                 </h2>
                 <p className="mt-4 max-w-3xl text-sm leading-relaxed text-[#DDD7CA]/90 md:text-base">
-                  After the initial research phase, the platform moved through failure, discipline, and then governed scale.
+                  After the initial research phase, the ecosystem moved through failure, discipline, and then governed scale.
                 </p>
 
                 <div className="relative mt-12">
@@ -671,7 +675,7 @@ export default function About() {
                 </h2>
                 <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#343434] md:text-base">
                   Five operators with one hundred and fifty four cumulative years across cement, mining,
-                  institutional governance, and large-scale industrial deployment — building the platform
+                  institutional governance, and large-scale industrial deployment — building the ecosystem
                   with the discipline the next decade of construction procurement will be measured against.
                 </p>
               </motion.div>
@@ -740,7 +744,7 @@ export default function About() {
                   <div className="space-y-2">
                     <p className="text-sm font-semibold text-[#2E6F57]">Scroll Down</p>
                     <p className="text-sm text-[#343434] leading-relaxed">
-                      Follow your progress as you move through the platform's build journey.
+                      Follow your progress as you move through the ecosystem's build journey.
                     </p>
                   </div>
                 </div>
