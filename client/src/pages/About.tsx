@@ -196,6 +196,46 @@ const coreValues: ValuePoint[] = [
   },
 ];
 
+type TeamMember = {
+  name: string;
+  role: string;
+  credentials: string;
+  bio: string;
+};
+
+const TEAM: TeamMember[] = [
+  {
+    name: "Faisal P.K.",
+    role: "Founder & Managing Director",
+    credentials: "19 years · Cement manufacturing · Commercial real estate · Landmark infrastructure",
+    bio: "Authored the closed-loop process specification through a decade of engineering work — 2016 research to 2025 commercial validation. Secured Karnataka's first Waste Rock Royalty Recycle Permit, a regulatory outcome with no prior precedent in the state.",
+  },
+  {
+    name: "Sukumaran",
+    role: "Co-Founder & Managing Director — Strategic Expansion & Operations",
+    credentials: "40+ years · Mining & mineral processing · Regional projects across South India",
+    bio: "Operational anchor of the platform's multi-site expansion. Leads plant setup, feedstock control, and mineral-processing execution across every node — bringing four decades of field-built authority to deployment, yield optimisation, and regional growth.",
+  },
+  {
+    name: "Vivek Singh",
+    role: "Chief Executive Officer",
+    credentials: "Founder, Velaeva AI · Ex-Bain M&A · Ex-Oracle Data Systems",
+    bio: "Leads strategy, investor relations, and institutional market expansion. Brings the operating discipline of management consulting to Greenrock's scaling phase — converting a proven engineering achievement into a replicable multi-site operating standard.",
+  },
+  {
+    name: "Abdulla MK",
+    role: "Chairperson",
+    credentials: "35+ years · Lulu Group · ADNOC Drilling · Abu Dhabi Ports (KIZAD) · CIA & CISA Certified",
+    bio: "Provides board governance and institutional oversight. Anchors the platform's compliance posture, audit discipline, and structural integrity across the multi-site build.",
+  },
+  {
+    name: "Naveen S.",
+    role: "Operations · Business Relations · Legal",
+    credentials: "20 years · GCC institutional environments",
+    bio: "Leads institutional business relations, legal advisory, PSU contracting, and large-scale operational management. The platform's interface to government, large-buyer procurement, and statutory compliance.",
+  },
+];
+
 export default function About() {
   useSeo({
     title: "About — Greenrock Innovations & Begur Sands Pvt. Ltd.",
@@ -613,6 +653,54 @@ export default function About() {
                   ))}
                 </div>
               </motion.article>
+            </section>
+
+            <section className="mt-20">
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <span className="text-[10px] font-mono uppercase tracking-[0.32em] text-[#343434]">
+                  Core Team
+                </span>
+                <h2 className="mt-3 text-4xl font-display font-black tracking-tight text-[#1b1b1b] md:text-5xl">
+                  Track record built in the field.{" "}
+                  <span className="italic font-normal">Not on paper.</span>
+                </h2>
+                <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#343434] md:text-base">
+                  Five operators with one hundred and fifty four cumulative years across cement, mining,
+                  institutional governance, and large-scale industrial deployment — building the platform
+                  with the discipline the next decade of construction procurement will be measured against.
+                </p>
+              </motion.div>
+
+              <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                {TEAM.map((member, i) => (
+                  <motion.article
+                    key={member.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.55, delay: i * 0.06 }}
+                    className="rounded-2xl border border-[#6B6B6B]/25 bg-[#EFEAE3]/74 p-7 shadow-[0_14px_30px_rgba(17,24,39,0.12)] md:p-8"
+                  >
+                    <h3 className="text-xl font-display font-black tracking-tight text-[#1b1b1b] md:text-2xl">
+                      {member.name}
+                    </h3>
+                    <p className="mt-2 text-[10px] font-mono uppercase tracking-[0.28em] text-[#2E6F57]">
+                      {member.role}
+                    </p>
+                    <p className="mt-4 text-[11px] font-mono italic leading-relaxed text-[#6B6B6B]">
+                      {member.credentials}
+                    </p>
+                    <p className="mt-4 text-sm leading-relaxed text-[#343434] md:text-[15px]">
+                      {member.bio}
+                    </p>
+                  </motion.article>
+                ))}
+              </div>
             </section>
 
             <section className="mt-20 max-w-3xl">
