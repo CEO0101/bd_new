@@ -11,6 +11,42 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
     <link rel="canonical" href="https://greenrockinnovations.earth/" />
 
+    <!-- Google Analytics 4 — Consent Mode v2.
+         EU/EEA/UK visitors: analytics + ads denied by default (no banner
+         shown; we accept losing EU analytics in exchange for zero legal
+         risk + zero UX friction).
+         Everyone else (India, US, RoW): full GA4 analytics, ad tracking
+         always denied since we don't run paid ads. IP anonymisation on. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQYKRNQKTN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+
+      // EU/EEA + UK + EFTA defaults: everything denied until consent.
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'region': ['AT','BE','BG','CY','CZ','DE','DK','EE','ES','FI','FR','GR','HR','HU','IE','IS','IT','LI','LT','LU','LV','MT','NL','NO','PL','PT','RO','SE','SI','SK','GB'],
+        'wait_for_update': 500
+      });
+
+      // Default for everyone else: analytics granted, ads denied.
+      gtag('consent', 'default', {
+        'analytics_storage': 'granted',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+
+      gtag('js', new Date());
+      gtag('config', 'G-PQYKRNQKTN', {
+        'anonymize_ip': true,
+        'send_page_view': true
+      });
+    </script>
+
     <!-- Favicon — mark-only icon family at fresh paths so Google re-fetches.
          Previous favicons showed the full wordmark which was unreadable at
          16px, causing Google to fall back to the globe placeholder. -->

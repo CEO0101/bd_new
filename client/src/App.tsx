@@ -1,9 +1,34 @@
-import { Suspense, lazy } from "react";
-import { Switch, Route } from "wouter";
+import { Suspense, lazy, useEffect } from "react";
+import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
+const GA_MEASUREMENT_ID = "G-PQYKRNQKTN";
+
+// Fires a GA4 page_view event on every wouter route change. The initial
+// load is sent by gtag('config', ...) in index.html; this hook covers
+// every client-side navigation after that.
+function AnalyticsPageView() {
+  const [location] = useLocation();
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.gtag) return;
+    window.gtag("event", "page_view", {
+      page_path: location,
+      page_location: window.location.href,
+      page_title: document.title,
+      send_to: GA_MEASUREMENT_ID,
+    });
+  }, [location]);
+  return null;
+}
 
 // Home is eager — it's the landing page, lazy-loading it adds an
 // unnecessary chunk fetch and causes a visible "Loading..." flash on
@@ -49,6 +74,7 @@ function App() {
       <TooltipProvider>
         <div className="relative">
           <Toaster />
+          <AnalyticsPageView />
           <Suspense
             fallback={
               // Invisible dark fallback — matches page bg so route-change
