@@ -6,6 +6,10 @@ import { useSeo, faqJsonLd, breadcrumbJsonLd, SITE_ORIGIN } from "@/lib/useSeo";
 
 const PRODUCT_FAQS = [
   {
+    q: "Where can I source Low Carbon Construction Materials in India?",
+    a: "Greenrock Innovations supplies Low Carbon Construction Materials in bulk across South India — Karnataka, Tamil Nadu, Kerala, Andhra Pradesh, Telangana, Maharashtra, and Goa. The catalogue includes IS 383:2016 compliant M-Sand (manufactured sand), IS 1542:1992 plastering sand (P-Sand), graded coarse aggregates (6 / 12 / 20 / 40 mm), and crusher dust — all engineered from reclaimed waste and weathered rock at approximately 82% lower embodied carbon than primary-extraction equivalents. Output is MORTH certified for National Highway projects, Bureau Veritas audited, and NABL batch-tested. Contracted supply is available for PSU construction, ready-mix concrete plants, and large-scale developer projects. Bulk pricing: hello@greenrockinnovations.earth.",
+  },
+  {
     q: "What is M-Sand and what is it used for?",
     a: "M-Sand is manufactured fine aggregate produced by mechanically crushing rock to a controlled gradation. Greenrock M-Sand is spec'd to IS 383:2016 Zone II, with a 0.075–4.75 mm particle range, fineness modulus 2.6–2.9, and silt content ≤2.0%. It is used in structural concrete, RCC and PCC pours, and pre-cast manufacturing.",
   },
@@ -128,9 +132,9 @@ const SIGNALS = [
 
 export default function Products() {
   useSeo({
-    title: "Products — M-Sand, P-Sand, Graded Aggregates",
+    title: "Products — Low Carbon Construction Materials: M-Sand, P-Sand, Graded Aggregates",
     description:
-      "IS 383:2016 / IS 1542 compliant M-Sand, P-Sand, graded aggregates and crusher dust — engineered from reclaimed weathered rock at ~82% lower carbon. Batch-stamped, NABL-tested, MORTH-referenced.",
+      "Greenrock Innovations' catalogue of Low Carbon Construction Materials — IS 383:2016 / IS 1542 compliant M-Sand, P-Sand, graded aggregates and crusher dust engineered from reclaimed weathered rock at ~82% lower embodied carbon. MORTH certified for National Highway projects, Bureau Veritas audited, batch-stamped, NABL-tested. Bulk supply across South India.",
     canonical: "/products",
     jsonLd: [
       faqJsonLd(PRODUCT_FAQS),

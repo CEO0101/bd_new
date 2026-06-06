@@ -84,9 +84,9 @@ const EQUIPMENT = [
 
 export default function Technology() {
   useSeo({
-    title: "Technology — Closed-Loop Process & Equipment",
+    title: "Technology — Closed-Loop Process Engineering Low Carbon Construction Materials",
     description:
-      "Six engineered systems in one closed loop: super-primary jaw, multi-deck screen, VSI shaping, hydrocyclone classification, PLC governance, dewatering. Zero liquid discharge. Batch-stamped, audit-ready.",
+      "The closed-loop recycling process behind Greenrock's Low Carbon Construction Materials: six engineered systems — super-primary jaw, multi-deck screen, VSI shaping, hydrocyclone classification, PLC governance, dewatering. Zero liquid discharge, batch-stamped, audit-ready. The technology that delivers ~82% lower embodied carbon vs primary extraction.",
     canonical: "/technology",
     jsonLd: [
       faqJsonLd(TECH_FAQS),

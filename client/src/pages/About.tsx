@@ -246,9 +246,9 @@ const TEAM: TeamMember[] = [
 
 export default function About() {
   useSeo({
-    title: "About — Greenrock Innovations & Begur Sands Pvt. Ltd.",
+    title: "About — Greenrock Innovations | Low Carbon Construction Materials, India",
     description:
-      "Greenrock Innovations operates a network of manufacturing facilities producing engineered sand and aggregates from reclaimed weathered rock — the largest being Begur Sands Pvt. Ltd. in Karnataka. The operating system was designed for compliance, consistency, and traceability before scale.",
+      "Greenrock Innovations is India's recycling-led supplier of Low Carbon Construction Materials, headquartered in Gundlupet, Karnataka. Founded by Faisal P.K. with Vivek Singh as CEO, the company operates Begur Sands Pvt. Ltd. under Karnataka's first Waste Rock Royalty Recycle Permit. MORTH certified for National Highway projects, Bureau Veritas audited.",
     canonical: "/about",
     jsonLd: [
       faqJsonLd(ABOUT_FAQS),

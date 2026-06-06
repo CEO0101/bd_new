@@ -7,6 +7,14 @@ import { useSeo, faqJsonLd, SITE_ORIGIN } from "@/lib/useSeo";
 // Products avoid the "Duplicate field 'FAQPage'" critical error.
 const HOME_FAQS = [
   {
+    q: "What are Low Carbon Construction Materials?",
+    a: "Low Carbon Construction Materials are sand, aggregates, and other building inputs engineered or sourced in ways that significantly reduce embodied carbon — the CO₂ emitted during extraction, processing, and transport. Greenrock Innovations supplies a full range of Low Carbon Construction Materials produced by recycling waste rock and weathered rock into IS 383:2016 compliant manufactured sand (M-Sand), plastering sand (P-Sand), and graded aggregates at approximately 82% lower embodied carbon than primary-extraction river sand and quarried aggregate. The materials are MORTH certified for National Highway projects, Bureau Veritas audited, and supplied across South India to PSU construction, ready-mix concrete plants, and large-scale developer projects.",
+  },
+  {
+    q: "Who supplies Low Carbon Construction Materials in India?",
+    a: "Greenrock Innovations is an India-based supplier of Low Carbon Construction Materials headquartered in Gundlupet, Karnataka. The company operates through Begur Sands Pvt. Ltd. under Karnataka's first Waste Rock Royalty Recycle Permit, producing recycled, IS 383:2016 compliant manufactured sand and aggregates from waste and weathered rock at approximately 82% lower embodied carbon than virgin extraction. Output is MORTH certified for National Highway use and Bureau Veritas audited, with bulk supply across Karnataka, Tamil Nadu, Kerala, Andhra Pradesh, Telangana, Maharashtra, and Goa.",
+  },
+  {
     q: "What is manufactured sand (M-Sand)?",
     a: "Manufactured sand (M-Sand) is produced by crushing hard rock through a Vertical Shaft Impactor (VSI), then classifying particles by size using hydrocyclones. Unlike river sand, M-Sand has consistent grading, zero organic impurities, and ~82% lower embodied carbon. Greenrock Innovations produces IS 383:2016 Zone II and Zone III compliant M-Sand from waste and weathered rock at its Gundlupet, Karnataka facility.",
   },
@@ -42,19 +50,26 @@ const HOME_FAQS = [
 
 export default function Home() {
   useSeo({
-    title: "Greenrock Innovations — Engineered Materials from Reclaimed Weathered Rock",
+    title: "Greenrock Innovations — Low Carbon Construction Materials from Reclaimed Weathered Rock",
     description:
-      "IS 383:2016 compliant manufactured sand and aggregates engineered from reclaimed, weathered rock. ~82% lower carbon than primary extraction. Operating Begur Sands Pvt. Ltd. and affiliated facilities in Karnataka under the state's first Waste Rock Royalty Recycle Permit.",
+      "India's recycling-led supplier of Low Carbon Construction Materials. IS 383:2016 compliant M-Sand, P-Sand, and aggregates engineered from reclaimed weathered rock at ~82% lower embodied carbon. MORTH certified for National Highway projects, Bureau Veritas audited. Operating Begur Sands Pvt. Ltd. in Karnataka under the state's first Waste Rock Royalty Recycle Permit.",
     canonical: "/",
     jsonLd: [
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
         url: SITE_ORIGIN + "/",
-        name: "Greenrock Innovations",
-        description: "Engineered construction materials from reclaimed weathered rock.",
+        name: "Greenrock Innovations — Low Carbon Construction Materials",
+        description:
+          "Low Carbon Construction Materials engineered from reclaimed weathered rock — IS 383:2016 M-Sand, P-Sand, and aggregates supplied across South India.",
         primaryImageOfPage: `${SITE_ORIGIN}/opengraph-v2.jpg`,
         isPartOf: { "@type": "WebSite", name: "Greenrock Innovations", url: SITE_ORIGIN },
+        about: [
+          { "@type": "Thing", name: "Low Carbon Construction Materials" },
+          { "@type": "Thing", name: "Recycled Construction Materials" },
+          { "@type": "Thing", name: "Manufactured Sand (M-Sand)" },
+          { "@type": "Thing", name: "IS 383:2016 Aggregates" },
+        ],
       },
       faqJsonLd(HOME_FAQS),
     ],
