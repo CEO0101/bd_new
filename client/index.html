@@ -47,13 +47,16 @@
       });
     </script>
 
-    <!-- Favicon — mark-only icon family at fresh paths so Google re-fetches.
-         Previous favicons showed the full wordmark which was unreadable at
-         16px, causing Google to fall back to the globe placeholder. -->
-    <link rel="icon" href="/icon.ico" sizes="any" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/icon-16.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png" />
-    <link rel="icon" type="image/png" sizes="48x48" href="/icon-48.png" />
+    <!-- Favicon — split: wordmark (mark + "GREENROCK INNOVATIONS" text) for
+         the browser tab/URL bar at small sizes (16-64px), mark-only at
+         large sizes (192/512px) which Google's search-results favicon
+         system picks because it always selects the LARGEST declared size.
+         So browser tab shows the full brand; Google search shows the
+         clean mark icon. -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/icon-apple-180.png" />
