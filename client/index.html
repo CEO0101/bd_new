@@ -11,15 +11,17 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
     <link rel="canonical" href="https://greenrockinnovations.earth/" />
 
-    <!-- Favicon — classic /favicon.ico FIRST (Google's favicon system
-         checks this path before the rel=icon links), then 64px PNG which
-         meets Google's 48px minimum. ?v=2 on PNGs is a cache-buster. -->
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="shortcut icon" href="/favicon-64.png?v=2" />
-    <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png?v=2" />
-    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png?v=2" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
-    <meta name="msapplication-TileImage" content="/favicon.png?v=2" />
+    <!-- Favicon — mark-only icon family at fresh paths so Google re-fetches.
+         Previous favicons showed the full wordmark which was unreadable at
+         16px, causing Google to fall back to the globe placeholder. -->
+    <link rel="icon" href="/icon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/icon-48.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon-apple-180.png" />
+    <meta name="msapplication-TileImage" content="/icon-192.png" />
     <meta name="msapplication-TileColor" content="#09080A" />
     <meta name="theme-color" content="#09080A" />
 
@@ -52,7 +54,7 @@
       "url": "https://greenrockinnovations.earth/",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://greenrockinnovations.earth/favicon.png",
+        "url": "https://greenrockinnovations.earth/icon-512.png",
         "width": 512,
         "height": 512
       },
@@ -196,7 +198,7 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Greenrock Innovations — Manufactured Sand & Aggregates",
-      "image": "https://greenrockinnovations.earth/favicon.png",
+      "image": "https://greenrockinnovations.earth/icon-512.png",
       "url": "https://greenrockinnovations.earth/",
       "email": "hello@greenrockinnovations.earth",
       "description": "Manufacturer of IS 383:2016 compliant M-Sand, P-Sand, and coarse aggregates from reclaimed weathered rock. Supplying sustainable construction materials across South India.",

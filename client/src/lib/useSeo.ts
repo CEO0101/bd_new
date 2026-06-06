@@ -134,7 +134,7 @@ export function articleJsonLd(opts: {
       "@type": "Organization",
       name: SITE_NAME,
       url: SITE_ORIGIN,
-      logo: { "@type": "ImageObject", url: `${SITE_ORIGIN}/favicon.png` },
+      logo: { "@type": "ImageObject", url: `${SITE_ORIGIN}/icon-512.png` },
     },
   };
 }
