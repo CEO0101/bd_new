@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Link } from "wouter";
 import { motion, useInView, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
@@ -718,6 +719,35 @@ export default function About() {
                 title="What people most often ask."
                 faqs={ABOUT_FAQS}
               />
+            </section>
+
+            <section className="mt-20">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="rounded-2xl border border-[#2E6F57]/30 bg-[#EFEAE3]/82 p-8 shadow-[0_18px_38px_rgba(17,24,39,0.14)] md:p-10"
+              >
+                <p className="text-[10px] font-mono uppercase tracking-[0.32em] text-[#2E6F57]">
+                  Next
+                </p>
+                <h2 className="mt-3 text-3xl font-display font-black tracking-tight text-[#1b1b1b] md:text-4xl">
+                  The catalogue, the specs, the certifications.
+                </h2>
+                <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#343434] md:text-base">
+                  M-Sand, P-Sand, graded aggregates, crusher dust — IS 383:2016 and
+                  IS 1542:1992 compliant, MORTH certified for National Highway use,
+                  Bureau Veritas audited. See the full output catalogue with
+                  particle-size specs and dispatch terms.
+                </p>
+                <Link
+                  href="/products"
+                  className="mt-6 inline-flex items-center gap-2 rounded-sm border border-[#2E6F57] bg-[#2E6F57] px-6 py-3 text-[10px] font-mono uppercase tracking-[0.22em] text-[#F7F7F7] transition-colors hover:bg-[#1f5240]"
+                >
+                  Explore Products →
+                </Link>
+              </motion.div>
             </section>
           </motion.div>
 

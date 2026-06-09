@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
 import FaqSection from "@/components/FaqSection";
 import { useSeo, faqJsonLd, breadcrumbJsonLd, SITE_ORIGIN } from "@/lib/useSeo";
+import { track } from "@/lib/analytics";
 
 const PRODUCT_FAQS = [
   {
@@ -519,6 +520,7 @@ export default function Products() {
             </p>
             <a
               href="mailto:hello@greenrockinnovations.earth"
+              onClick={() => track.emailClick("products_cta")}
               style={{
                 display: "inline-block",
                 fontFamily: "'DM Mono',monospace",

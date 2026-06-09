@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Link, useRoute } from "wouter";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
@@ -11,6 +12,7 @@ import {
   breadcrumbJsonLd,
   articleJsonLd,
 } from "@/lib/useSeo";
+import { track } from "@/lib/analytics";
 
 const PAGE_BG = "#FFFFFF";
 const CREAM = "20,19,15";
@@ -135,6 +137,26 @@ function Article({ post }: { post: Post }) {
     const txt = "text" in s ? s.text : "items" in s ? s.items.join(" ") : "";
     return sum + (txt ? txt.split(/\s+/).length : 0);
   }, 0);
+
+  // Fire a journal_read event once when reader scrolls past 80% of the
+  // page. Strong engagement signal — distinguishes skim-and-bounce
+  // visitors from real readers.
+  const readReported = useRef(false);
+  useEffect(() => {
+    readReported.current = false;
+    const onScroll = () => {
+      if (readReported.current) return;
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+      const pct = (window.scrollY / scrollable) * 100;
+      if (pct >= 80) {
+        readReported.current = true;
+        track.journalRead(post.slug, 80);
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [post.slug]);
 
   useSeo({
     title: post.title,
@@ -368,6 +390,7 @@ function Article({ post }: { post: Post }) {
               </Link>
               <a
                 href="mailto:hello@greenrockinnovations.earth"
+                onClick={() => track.emailClick("journal_post")}
                 style={{
                   fontFamily: "'DM Mono',monospace",
                   fontSize: "10px",

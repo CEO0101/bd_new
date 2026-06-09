@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useLocation } from "wouter";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import CustomerLogos from "@/components/CustomerLogos";
 
@@ -72,6 +73,7 @@ export function CredentialTicker() {
 
 /* ─── Hero ──────────────────────────────────────────────────────────── */
 export default function Hero() {
+  const [, setLocation] = useLocation();
   return (
     <>
       <CredentialTicker />
@@ -210,13 +212,13 @@ export default function Hero() {
                 }}
                 whileHover={{ background: "rgba(237,232,223,1)", scale: 1.02 }}
                 transition={{ duration: 0.15 }}
-                onClick={() => (window.location.href = "/products")}>
+                onClick={() => setLocation("/products")}>
                 Explore Products
               </motion.button>
 
               {/* Secondary — ghost glass */}
               <motion.button
-                onClick={() => (window.location.href = "/about")}
+                onClick={() => setLocation("/about")}
                 style={{
                   fontFamily: "'DM Mono',monospace",
                   fontSize: "8px",

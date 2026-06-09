@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Shield } from 'lucide-react'
+import { track } from '@/lib/analytics'
 
 export default function InvestorStats() {
   const [username, setUsername] = useState('')
@@ -14,11 +15,12 @@ export default function InvestorStats() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     // Strict authentication check
     if (username === 'investor' && password === 'hG4&PYIB@pFiwz0)P/WR') {
       setIsAuthenticated(true)
       setError('')
+      track.investorAccessRequest()
     } else {
       setError('Invalid credentials')
       setIsAuthenticated(false)

@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import { ArrowRight, Droplets, Info, Landmark, Leaf, Minus, Plus, Recycle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
 import { useSeo, breadcrumbJsonLd } from "@/lib/useSeo";
+import { track } from "@/lib/analytics";
 
 type CalculatorCardProps = {
   icon: LucideIcon;
@@ -58,6 +59,17 @@ export default function ImpactCalculator() {
   });
   const [tons, setTons] = useState<number>(0);
   const [openLogicId, setOpenLogicId] = useState<LogicItem["id"] | null>("carbon");
+
+  // Fire calculator_engaged once when the user enters a non-zero value
+  // for the first time. Strong commercial-intent signal — someone
+  // modelling a real project, not just viewing the page.
+  const engagementReported = useRef(false);
+  useEffect(() => {
+    if (!engagementReported.current && tons > 0) {
+      engagementReported.current = true;
+      track.impactCalculatorEngaged(tons);
+    }
+  }, [tons]);
 
   const [results, setResults] = useState({
     sandSaved: 0,

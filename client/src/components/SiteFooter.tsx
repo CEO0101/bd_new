@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { track } from "@/lib/analytics";
 
 type FooterTone = "dark" | "light";
 
@@ -125,7 +126,11 @@ export default function SiteFooter({ tone = "dark" }: SiteFooterProps) {
             </ul>
             <div className={`mt-6 border-t pt-5 ${style.divider}`}>
               <p className={`text-[11px] font-mono uppercase tracking-[0.22em] ${style.headingText}`}>Contact</p>
-              <a href={`mailto:${EMAIL}`} className={`mt-3 block break-all text-sm transition-colors ${style.linkText}`}>
+              <a
+                href={`mailto:${EMAIL}`}
+                onClick={() => track.emailClick("footer")}
+                className={`mt-3 block break-all text-sm transition-colors ${style.linkText}`}
+              >
                 {EMAIL}
               </a>
             </div>
@@ -136,7 +141,13 @@ export default function SiteFooter({ tone = "dark" }: SiteFooterProps) {
             <p className={`mb-4 text-sm ${style.bodyText}`}>
               Subscribe to our newsletter for the latest updates on sustainable construction.
             </p>
-            <form className="space-y-3">
+            <form
+              className="space-y-3"
+              onSubmit={(e) => {
+                e.preventDefault();
+                track.newsletterSignup("footer");
+              }}
+            >
               <input
                 type="email"
                 placeholder="Your email address"
