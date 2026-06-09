@@ -27,12 +27,13 @@ function renderSection(s: Section, i: number) {
           style={{
             fontFamily: "'DM Serif Display',serif",
             fontWeight: 400,
-            fontSize: "clamp(22px, 2.6vw, 34px)",
-            lineHeight: 1.15,
-            letterSpacing: "-0.025em",
-            color: `rgba(${CREAM},0.95)`,
-            marginTop: "48px",
-            marginBottom: "16px",
+            fontSize: "clamp(20px, 1.9vw, 26px)",
+            lineHeight: 1.25,
+            letterSpacing: "-0.01em",
+            textTransform: "none",
+            color: `rgba(${CREAM},0.92)`,
+            marginTop: "44px",
+            marginBottom: "14px",
           }}
         >
           {s.text}
@@ -45,11 +46,13 @@ function renderSection(s: Section, i: number) {
           style={{
             fontFamily: "'DM Serif Display',serif",
             fontWeight: 400,
-            fontSize: "22px",
-            letterSpacing: "-0.02em",
-            color: `rgba(${CREAM},0.92)`,
-            marginTop: "32px",
-            marginBottom: "12px",
+            fontSize: "18px",
+            lineHeight: 1.3,
+            letterSpacing: "-0.005em",
+            textTransform: "none",
+            color: `rgba(${CREAM},0.88)`,
+            marginTop: "28px",
+            marginBottom: "10px",
           }}
         >
           {s.text}
@@ -370,7 +373,7 @@ function Article({ post }: { post: Post }) {
               marginTop: "12px",
               maxWidth: "640px",
             }}>
-              Greenrock Innovations processes waste rock and weathered rock into IS 383:2016 compliant manufactured sand and aggregates from its facility in Gundlupet, Karnataka, under the state's first Waste Rock Royalty Recycle Permit of its kind. Production generates approximately 70–82% less carbon than conventional manufactured sand from primary extraction.
+              Greenrock Innovations processes waste rock and weathered rock into IS 383:2016 compliant manufactured sand and aggregates. With an extensive manufacturing footprint across Southern Karnataka, we operate high-capacity processing hubs in Chamarajanagar and Mysuru, anchored by the licensed Begur Sands Pvt. Ltd. facility in Begur (Gundlupete taluk) under the state's first Waste Rock Royalty Recycle Permit of its kind. Production generates approximately 70 to 82 percent less carbon than conventional manufactured sand from primary extraction.
             </p>
             <div className="mt-8 flex items-center gap-6 flex-wrap">
               <Link href="/journal">
