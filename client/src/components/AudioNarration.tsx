@@ -10,7 +10,6 @@ const LANGS: Lang[] = [
 
 const SPEEDS = [0.75, 1, 1.25, 1.5, 1.75, 2];
 
-// Preferred voices in order: premium neural > native warm > generic
 const PREMIUM = [/neural/i, /premium/i, /enhanced/i, /natural/i];
 const WARM = [/samantha/i, /serena/i, /karen/i, /moira/i, /tessa/i, /fiona/i, /lekha/i, /veena/i, /rishi/i, /isha/i, /kanya/i];
 
@@ -24,7 +23,19 @@ export default function AudioNarration({ text }: { text: string }) {
   const [state, setState] = useState<"idle" | "playing" | "paused">("idle");
   const [progress, setProgress] = useState(0);
   const [supported, setSupported] = useState(true);
+
+  // Offset tracking — the Web Speech API does not allow rate changes on a
+  // live utterance, so we track the absolute character position and
+  // restart from there whenever speed changes.
   const utterRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const offsetRef = useRef(0);        // where the current utterance starts in the full text
+  const lastPosRef = useRef(0);       // latest absolute position from boundary events
+  const speedRef = useRef(speed);     // for use inside callbacks without re-binding
+  const voiceRef = useRef<SpeechSynthesisVoice | undefined>(undefined);
+  const langRef = useRef<Lang>(lang);
+
+  useEffect(() => { speedRef.current = speed; }, [speed]);
+  useEffect(() => { langRef.current = lang; }, [lang]);
 
   useEffect(() => {
     if (typeof window === "undefined" || !window.speechSynthesis) { setSupported(false); return; }
@@ -37,7 +48,6 @@ export default function AudioNarration({ text }: { text: string }) {
     };
   }, []);
 
-  // Find best voice for selected language. Returns voice + whether it's a true match.
   const { voice, matched } = useMemo(() => {
     if (!voices.length) return { voice: undefined as SpeechSynthesisVoice | undefined, matched: false };
     for (const code of lang.bcp47) {
@@ -51,49 +61,77 @@ export default function AudioNarration({ text }: { text: string }) {
       if (warm) return { voice: warm, matched: true };
       return { voice: pool[0], matched: true };
     }
-    // Fallback: English
     const fallback = voices.find(v => PREMIUM.some(re => re.test(v.name)) && v.lang.startsWith("en"))
                  || voices.find(v => WARM.some(re => re.test(v.name)) && v.lang.startsWith("en"))
                  || voices.find(v => v.lang.startsWith("en"));
     return { voice: fallback, matched: false };
   }, [voices, lang]);
 
-  // Update speed live during playback
-  useEffect(() => {
-    if (utterRef.current && state === "playing") {
-      utterRef.current.rate = speed * 0.9; // 1x in UI = 0.9 internal (calm reading pace)
-    }
-  }, [speed, state]);
+  useEffect(() => { voiceRef.current = voice; }, [voice]);
 
-  function speak() {
+  // Speak the text starting at a specific absolute character position
+  function speakFrom(absoluteStart: number) {
     if (!window.speechSynthesis) return;
-    if (state === "paused") { window.speechSynthesis.resume(); setState("playing"); return; }
     window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    if (voice) u.voice = voice;
-    u.lang = voice?.lang || lang.bcp47[0];
-    u.rate = speed * 0.9;
+    const remaining = text.slice(absoluteStart);
+    if (!remaining) { setState("idle"); setProgress(0); offsetRef.current = 0; lastPosRef.current = 0; return; }
+
+    offsetRef.current = absoluteStart;
+    const u = new SpeechSynthesisUtterance(remaining);
+    const v = voiceRef.current;
+    if (v) u.voice = v;
+    u.lang = v?.lang || langRef.current.bcp47[0];
+    u.rate = speedRef.current * 0.9;
     u.pitch = 0.95;
     u.volume = 1.0;
     u.onstart = () => setState("playing");
-    u.onend = () => { setState("idle"); setProgress(0); };
+    u.onend = () => { setState("idle"); setProgress(0); offsetRef.current = 0; lastPosRef.current = 0; };
     u.onerror = () => setState("idle");
-    u.onboundary = (e) => { if (e.name === "word") setProgress(Math.min(100, (e.charIndex / text.length) * 100)); };
+    u.onboundary = (e) => {
+      if (e.name === "word") {
+        const abs = offsetRef.current + e.charIndex;
+        lastPosRef.current = abs;
+        setProgress(Math.min(100, (abs / text.length) * 100));
+      }
+    };
     utterRef.current = u;
     window.speechSynthesis.speak(u);
   }
 
+  function play() {
+    if (state === "paused") { window.speechSynthesis.resume(); setState("playing"); return; }
+    lastPosRef.current = 0;
+    offsetRef.current = 0;
+    speakFrom(0);
+  }
+
   function pause() { if (window.speechSynthesis) { window.speechSynthesis.pause(); setState("paused"); } }
-  function stop()  { if (window.speechSynthesis) { window.speechSynthesis.cancel(); setState("idle"); setProgress(0); } }
+  function stop()  {
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+    setState("idle"); setProgress(0); offsetRef.current = 0; lastPosRef.current = 0;
+  }
+
+  // When speed changes during active playback, restart from the latest
+  // reported word boundary so the new rate takes effect immediately.
+  function changeSpeed(next: number) {
+    setSpeed(next);
+    speedRef.current = next;
+    if (state === "playing") {
+      // Restart from where we are
+      speakFrom(lastPosRef.current);
+    } else if (state === "paused") {
+      // Reset paused state and restart at that point
+      speakFrom(lastPosRef.current);
+    }
+  }
 
   if (!supported) return null;
   const active = state === "playing" || state === "paused";
 
-  // Status line below the controls
   let statusLine = "";
   if (state === "playing") statusLine = `Playing in ${voice?.name || lang.label} · ${speed}×`;
   else if (state === "paused") statusLine = "Paused. Tap play to resume.";
-  else if (!matched && lang.code !== "en") statusLine = `No ${lang.label} voice installed on this device. Narration will use English with the best available voice.`;
+  else if (!matched && lang.code !== "en") statusLine = `No ${lang.label} voice installed on this device. Narration will use the best available voice.`;
   else statusLine = `Tap play. ${voice?.name ? `Narrated by ${voice.name}.` : ""} Take it on a walk.`;
 
   return (
@@ -104,10 +142,9 @@ export default function AudioNarration({ text }: { text: string }) {
       borderRadius: "14px",
       marginBottom: "36px",
     }}>
-      {/* ── Top row: play / label / language ─────────────────────── */}
       <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
         <button
-          onClick={state === "playing" ? pause : speak}
+          onClick={state === "playing" ? pause : play}
           aria-label={state === "playing" ? "Pause" : "Play"}
           style={{
             width: "48px", height: "48px", borderRadius: "50%",
@@ -142,7 +179,6 @@ export default function AudioNarration({ text }: { text: string }) {
           </div>
         </div>
 
-        {/* Language switcher */}
         <select
           value={lang.code}
           onChange={(e) => {
@@ -178,7 +214,6 @@ export default function AudioNarration({ text }: { text: string }) {
         )}
       </div>
 
-      {/* ── Speed pills ──────────────────────────────────────────── */}
       <div style={{
         display: "flex", alignItems: "center", gap: "8px",
         marginTop: "16px", flexWrap: "wrap",
@@ -192,7 +227,7 @@ export default function AudioNarration({ text }: { text: string }) {
           return (
             <button
               key={s}
-              onClick={() => setSpeed(s)}
+              onClick={() => changeSpeed(s)}
               style={{
                 fontFamily: "'DM Mono',monospace", fontSize: "10px",
                 padding: "5px 10px", borderRadius: "999px", cursor: "pointer",
@@ -210,7 +245,6 @@ export default function AudioNarration({ text }: { text: string }) {
         })}
       </div>
 
-      {/* ── Progress bar ────────────────────────────────────────── */}
       {active && (
         <div style={{
           marginTop: "16px", height: "3px", background: `rgba(${SAGE},0.1)`,
@@ -223,7 +257,6 @@ export default function AudioNarration({ text }: { text: string }) {
         </div>
       )}
 
-      {/* ── Status line ─────────────────────────────────────────── */}
       <div style={{
         marginTop: "14px", fontFamily: "'DM Sans',sans-serif", fontSize: "12px",
         fontStyle: !matched && lang.code !== "en" ? "italic" : "normal",
@@ -232,22 +265,6 @@ export default function AudioNarration({ text }: { text: string }) {
       }}>
         {statusLine}
       </div>
-
-      {/* ── Voice-install help when no native voice ─────────────── */}
-      {!matched && lang.code !== "en" && (
-        <div style={{
-          marginTop: "8px", fontFamily: "'DM Sans',sans-serif", fontSize: "11px",
-          color: `rgba(${CREAM},0.45)`, lineHeight: 1.5,
-        }}>
-          To enable a true {lang.label} narrator, install the voice on your device:
-          <br />
-          <span style={{ fontFamily: "'DM Mono',monospace", fontSize: "10px" }}>
-            macOS / iOS: System Settings → Accessibility → Spoken Content → System Voice → Add {lang.label}.
-            <br />
-            Android: Settings → System → Languages → Text-to-speech → Install {lang.label} voice data.
-          </span>
-        </div>
-      )}
     </div>
   );
 }
