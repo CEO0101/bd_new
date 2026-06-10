@@ -1,18 +1,26 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 
-type Lang = { code: "en" | "hi" | "ml"; label: string; bcp47: string[]; beta?: boolean };
+type Lang = { code: "en" | "hi" | "ml"; label: string; native: string; bcp47: string[] };
 
 const LANGS: Lang[] = [
-  { code: "en", label: "English", bcp47: ["en-IN", "en-GB", "en-US", "en-AU"] },
-  { code: "hi", label: "हिन्दी · Hindi", bcp47: ["hi-IN", "hi"], beta: true },
-  { code: "ml", label: "മലയാളം · Malayalam", bcp47: ["ml-IN", "ml"], beta: true },
+  { code: "en", label: "English",   native: "English",     bcp47: ["en-IN", "en-GB", "en-US", "en-AU"] },
+  { code: "hi", label: "Hindi",     native: "हिन्दी",        bcp47: ["hi-IN", "hi"] },
+  { code: "ml", label: "Malayalam", native: "മലയാളം",     bcp47: ["ml-IN", "ml"] },
 ];
 
-const WARM = [/samantha/i, /karen/i, /moira/i, /tessa/i, /fiona/i, /serena/i, /lekha/i, /veena/i, /rishi/i, /natural/i, /neural/i, /enhanced/i, /premium/i];
+const SPEEDS = [0.75, 1, 1.25, 1.5, 1.75, 2];
+
+// Preferred voices in order: premium neural > native warm > generic
+const PREMIUM = [/neural/i, /premium/i, /enhanced/i, /natural/i];
+const WARM = [/samantha/i, /serena/i, /karen/i, /moira/i, /tessa/i, /fiona/i, /lekha/i, /veena/i, /rishi/i, /isha/i, /kanya/i];
+
+const CREAM = "20,19,15";
+const SAGE = "46,111,87";
 
 export default function AudioNarration({ text }: { text: string }) {
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [lang, setLang] = useState<Lang>(LANGS[0]);
+  const [speed, setSpeed] = useState<number>(1);
   const [state, setState] = useState<"idle" | "playing" | "paused">("idle");
   const [progress, setProgress] = useState(0);
   const [supported, setSupported] = useState(true);
@@ -29,16 +37,33 @@ export default function AudioNarration({ text }: { text: string }) {
     };
   }, []);
 
-  const voice = useMemo(() => {
-    if (!voices.length) return undefined;
+  // Find best voice for selected language. Returns voice + whether it's a true match.
+  const { voice, matched } = useMemo(() => {
+    if (!voices.length) return { voice: undefined as SpeechSynthesisVoice | undefined, matched: false };
     for (const code of lang.bcp47) {
-      const matches = voices.filter(v => v.lang === code || v.lang.startsWith(code.split("-")[0]));
-      const warm = matches.find(v => WARM.some(re => re.test(v.name)));
-      if (warm) return warm;
-      if (matches.length) return matches[0];
+      const exact = voices.filter(v => v.lang === code);
+      const prefix = voices.filter(v => v.lang.startsWith(code.split("-")[0]));
+      const pool = exact.length ? exact : prefix;
+      if (!pool.length) continue;
+      const premium = pool.find(v => PREMIUM.some(re => re.test(v.name)));
+      if (premium) return { voice: premium, matched: true };
+      const warm = pool.find(v => WARM.some(re => re.test(v.name)));
+      if (warm) return { voice: warm, matched: true };
+      return { voice: pool[0], matched: true };
     }
-    return undefined;
+    // Fallback: English
+    const fallback = voices.find(v => PREMIUM.some(re => re.test(v.name)) && v.lang.startsWith("en"))
+                 || voices.find(v => WARM.some(re => re.test(v.name)) && v.lang.startsWith("en"))
+                 || voices.find(v => v.lang.startsWith("en"));
+    return { voice: fallback, matched: false };
   }, [voices, lang]);
+
+  // Update speed live during playback
+  useEffect(() => {
+    if (utterRef.current && state === "playing") {
+      utterRef.current.rate = speed * 0.9; // 1x in UI = 0.9 internal (calm reading pace)
+    }
+  }, [speed, state]);
 
   function speak() {
     if (!window.speechSynthesis) return;
@@ -47,8 +72,8 @@ export default function AudioNarration({ text }: { text: string }) {
     const u = new SpeechSynthesisUtterance(text);
     if (voice) u.voice = voice;
     u.lang = voice?.lang || lang.bcp47[0];
-    u.rate = 0.88;
-    u.pitch = 0.92;
+    u.rate = speed * 0.9;
+    u.pitch = 0.95;
     u.volume = 1.0;
     u.onstart = () => setState("playing");
     u.onend = () => { setState("idle"); setProgress(0); };
@@ -64,23 +89,31 @@ export default function AudioNarration({ text }: { text: string }) {
   if (!supported) return null;
   const active = state === "playing" || state === "paused";
 
+  // Status line below the controls
+  let statusLine = "";
+  if (state === "playing") statusLine = `Playing in ${voice?.name || lang.label} · ${speed}×`;
+  else if (state === "paused") statusLine = "Paused. Tap play to resume.";
+  else if (!matched && lang.code !== "en") statusLine = `No ${lang.label} voice installed on this device. Narration will use English with the best available voice.`;
+  else statusLine = `Tap play. ${voice?.name ? `Narrated by ${voice.name}.` : ""} Take it on a walk.`;
+
   return (
     <div style={{
-      border: "1px solid rgba(46,111,87,0.18)",
-      background: "rgba(46,111,87,0.04)",
-      padding: "18px 20px",
-      borderRadius: "12px",
-      marginBottom: "32px",
+      border: `1px solid rgba(${SAGE},0.16)`,
+      background: `linear-gradient(180deg, rgba(${SAGE},0.04) 0%, rgba(${SAGE},0.015) 100%)`,
+      padding: "20px 22px",
+      borderRadius: "14px",
+      marginBottom: "36px",
     }}>
+      {/* ── Top row: play / label / language ─────────────────────── */}
       <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
         <button
           onClick={state === "playing" ? pause : speak}
-          aria-label={state === "playing" ? "Pause narration" : "Play narration"}
+          aria-label={state === "playing" ? "Pause" : "Play"}
           style={{
-            width: "44px", height: "44px", borderRadius: "50%",
-            background: "rgba(46,111,87,0.92)", border: "none", color: "#FFFFFF",
+            width: "48px", height: "48px", borderRadius: "50%",
+            background: `rgba(${SAGE},0.95)`, border: "none", color: "#FFFFFF",
             cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
-            flexShrink: 0,
+            flexShrink: 0, boxShadow: `0 4px 14px rgba(${SAGE},0.22)`,
           }}
         >
           {state === "playing" ? (
@@ -94,47 +127,50 @@ export default function AudioNarration({ text }: { text: string }) {
           )}
         </button>
 
-        <div style={{ flex: 1, minWidth: "180px" }}>
+        <div style={{ flex: 1, minWidth: "160px" }}>
           <div style={{
-            fontFamily: "'DM Mono',monospace", fontSize: "9px", letterSpacing: "0.22em",
-            textTransform: "uppercase", color: "rgba(46,111,87,0.85)", marginBottom: "4px",
+            fontFamily: "'DM Mono',monospace", fontSize: "9px", letterSpacing: "0.24em",
+            textTransform: "uppercase", color: `rgba(${SAGE},0.85)`, marginBottom: "5px",
           }}>
-            {state === "playing" ? "Listening" : state === "paused" ? "Paused" : "Listen instead of read"}
+            {state === "playing" ? "Now playing" : state === "paused" ? "Paused" : "Listen to this dispatch"}
           </div>
           <div style={{
-            fontFamily: "'DM Sans',sans-serif", fontSize: "13px",
-            color: "rgba(20,19,15,0.72)", lineHeight: 1.45,
+            fontFamily: "'DM Serif Display',serif", fontSize: "15px",
+            color: `rgba(${CREAM},0.85)`, lineHeight: 1.35,
           }}>
-            Tap play. Narrated in your selected language at a calm reading pace. Take it on a walk.
+            {lang.native}{lang.code !== "en" ? ` · ${lang.label}` : ""}
           </div>
         </div>
 
+        {/* Language switcher */}
         <select
           value={lang.code}
           onChange={(e) => {
             const next = LANGS.find(l => l.code === e.target.value);
             if (next) { stop(); setLang(next); }
           }}
+          aria-label="Narration language"
           style={{
-            fontFamily: "'DM Mono',monospace", fontSize: "11px", padding: "8px 12px",
-            border: "1px solid rgba(46,111,87,0.25)", background: "rgba(255,255,255,0.7)",
-            color: "rgba(20,19,15,0.8)", borderRadius: "6px", cursor: "pointer", flexShrink: 0,
+            fontFamily: "'DM Mono',monospace", fontSize: "10px", letterSpacing: "0.08em",
+            textTransform: "uppercase", padding: "9px 14px",
+            border: `1px solid rgba(${SAGE},0.25)`, background: "rgba(255,255,255,0.75)",
+            color: `rgba(${CREAM},0.78)`, borderRadius: "8px", cursor: "pointer", flexShrink: 0,
           }}
         >
           {LANGS.map((l) => (
-            <option key={l.code} value={l.code}>{l.label}{l.beta ? " · beta" : ""}</option>
+            <option key={l.code} value={l.code}>{l.label}</option>
           ))}
         </select>
 
         {active && (
           <button
             onClick={stop}
-            aria-label="Stop narration"
+            aria-label="Stop"
             style={{
-              fontFamily: "'DM Mono',monospace", fontSize: "9px", letterSpacing: "0.18em",
-              textTransform: "uppercase", padding: "8px 12px",
-              border: "1px solid rgba(20,19,15,0.2)", background: "transparent",
-              color: "rgba(20,19,15,0.6)", borderRadius: "6px", cursor: "pointer",
+              fontFamily: "'DM Mono',monospace", fontSize: "9px", letterSpacing: "0.22em",
+              textTransform: "uppercase", padding: "9px 14px",
+              border: `1px solid rgba(${CREAM},0.18)`, background: "transparent",
+              color: `rgba(${CREAM},0.6)`, borderRadius: "8px", cursor: "pointer",
             }}
           >
             Stop
@@ -142,26 +178,74 @@ export default function AudioNarration({ text }: { text: string }) {
         )}
       </div>
 
+      {/* ── Speed pills ──────────────────────────────────────────── */}
+      <div style={{
+        display: "flex", alignItems: "center", gap: "8px",
+        marginTop: "16px", flexWrap: "wrap",
+      }}>
+        <span style={{
+          fontFamily: "'DM Mono',monospace", fontSize: "9px", letterSpacing: "0.2em",
+          textTransform: "uppercase", color: `rgba(${CREAM},0.45)`, marginRight: "4px",
+        }}>Speed</span>
+        {SPEEDS.map((s) => {
+          const isOn = speed === s;
+          return (
+            <button
+              key={s}
+              onClick={() => setSpeed(s)}
+              style={{
+                fontFamily: "'DM Mono',monospace", fontSize: "10px",
+                padding: "5px 10px", borderRadius: "999px", cursor: "pointer",
+                border: isOn ? `1px solid rgba(${SAGE},0.6)` : `1px solid rgba(${CREAM},0.12)`,
+                background: isOn ? `rgba(${SAGE},0.92)` : "rgba(255,255,255,0.6)",
+                color: isOn ? "#FFFFFF" : `rgba(${CREAM},0.6)`,
+                transition: "all 0.15s",
+              }}
+              aria-pressed={isOn}
+              aria-label={`Playback speed ${s} times`}
+            >
+              {s}×
+            </button>
+          );
+        })}
+      </div>
+
+      {/* ── Progress bar ────────────────────────────────────────── */}
       {active && (
         <div style={{
-          marginTop: "14px", height: "3px", background: "rgba(46,111,87,0.1)",
+          marginTop: "16px", height: "3px", background: `rgba(${SAGE},0.1)`,
           borderRadius: "2px", overflow: "hidden",
         }}>
           <div style={{
-            width: `${progress}%`, height: "100%", background: "rgba(46,111,87,0.85)",
+            width: `${progress}%`, height: "100%", background: `rgba(${SAGE},0.85)`,
             transition: "width 0.3s ease", borderRadius: "2px",
           }} />
         </div>
       )}
 
-      {lang.beta && (
+      {/* ── Status line ─────────────────────────────────────────── */}
+      <div style={{
+        marginTop: "14px", fontFamily: "'DM Sans',sans-serif", fontSize: "12px",
+        fontStyle: !matched && lang.code !== "en" ? "italic" : "normal",
+        color: !matched && lang.code !== "en" ? `rgba(${CREAM},0.55)` : `rgba(${CREAM},0.62)`,
+        lineHeight: 1.5,
+      }}>
+        {statusLine}
+      </div>
+
+      {/* ── Voice-install help when no native voice ─────────────── */}
+      {!matched && lang.code !== "en" && (
         <div style={{
-          marginTop: "12px", fontFamily: "'DM Sans',sans-serif", fontSize: "11px",
-          fontStyle: "italic", color: "rgba(20,19,15,0.5)", lineHeight: 1.45,
+          marginTop: "8px", fontFamily: "'DM Sans',sans-serif", fontSize: "11px",
+          color: `rgba(${CREAM},0.45)`, lineHeight: 1.5,
         }}>
-          {lang.code === "hi"
-            ? "Hindi narration uses the Hindi voice installed on your device. Full Hindi translation is rolling out shortly."
-            : "Malayalam narration uses the Malayalam voice installed on your device. Full Malayalam translation is rolling out shortly."}
+          To enable a true {lang.label} narrator, install the voice on your device:
+          <br />
+          <span style={{ fontFamily: "'DM Mono',monospace", fontSize: "10px" }}>
+            macOS / iOS: System Settings → Accessibility → Spoken Content → System Voice → Add {lang.label}.
+            <br />
+            Android: Settings → System → Languages → Text-to-speech → Install {lang.label} voice data.
+          </span>
         </div>
       )}
     </div>
