@@ -1,8 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import { Link, useRoute } from "wouter";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
+import AudioNarration from "@/components/AudioNarration";
 import NotFound from "@/pages/not-found";
 import { POSTS_BY_SLUG, type Section, type Post } from "@/content/journal";
 import {
@@ -141,6 +142,17 @@ function Article({ post }: { post: Post }) {
     return sum + (txt ? txt.split(/\s+/).length : 0);
   }, 0);
 
+  // Flatten article into a single narrated text body. Headers become
+  // pause-and-emphasis points; list items are joined by short pauses.
+  const narrationText = useMemo(() => {
+    const parts: string[] = [post.title, post.dek];
+    for (const s of post.sections) {
+      if (s.type === "p" || s.type === "h2" || s.type === "h3" || s.type === "blockquote") parts.push(s.text);
+      else if (s.type === "ul") parts.push(s.items.join(". "));
+    }
+    return parts.filter(Boolean).join(". ");
+  }, [post]);
+
   // Fire a journal_read event once when reader scrolls past 80% of the
   // page. Strong engagement signal — distinguishes skim-and-bounce
   // visitors from real readers.
@@ -277,6 +289,14 @@ function Article({ post }: { post: Post }) {
           >
             {post.dek}
           </motion.p>
+
+          {/* Audio narration — calm voice, multi-language */}
+          <motion.div
+            initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+          >
+            <AudioNarration text={narrationText} />
+          </motion.div>
 
           {/* Body */}
           <motion.div
