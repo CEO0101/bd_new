@@ -749,6 +749,85 @@ export default function About() {
                 </Link>
               </motion.div>
             </section>
+
+            <section className="mt-20">
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <span className="text-[10px] font-mono uppercase tracking-[0.32em] text-[#343434]">
+                  Further reading
+                </span>
+                <h2 className="mt-3 text-3xl font-display font-black tracking-tight text-[#1b1b1b] md:text-4xl">
+                  From the Journal.
+                </h2>
+                <div className="mt-8 grid gap-5 md:grid-cols-2">
+                  <Link
+                    href="/journal/karnataka-mineral-dispatch-permit-rule-3c4"
+                    className="block rounded-2xl border border-[#6B6B6B]/25 bg-[#EFEAE3]/74 p-6 transition-colors hover:bg-[#EFEAE3]/95"
+                  >
+                    <p className="text-[10px] font-mono uppercase tracking-[0.28em] text-[#2E6F57]">
+                      Compliance · Karnataka
+                    </p>
+                    <h3 className="mt-3 text-xl font-display font-black tracking-tight text-[#1b1b1b]">
+                      Inside Karnataka's Mineral Dispatch Permit System
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-[#343434]">
+                      A working field reference on Rule 3-C(4), KMMC royalty, the Khanijadmg
+                      portal, and the dispatch discipline that audit-grade procurement now
+                      requires.
+                    </p>
+                  </Link>
+                  <Link
+                    href="/journal/recycled-construction-materials-2026-manual"
+                    className="block rounded-2xl border border-[#6B6B6B]/25 bg-[#EFEAE3]/74 p-6 transition-colors hover:bg-[#EFEAE3]/95"
+                  >
+                    <p className="text-[10px] font-mono uppercase tracking-[0.28em] text-[#2E6F57]">
+                      Specification · 2026
+                    </p>
+                    <h3 className="mt-3 text-xl font-display font-black tracking-tight text-[#1b1b1b]">
+                      Recycled Construction Materials: A 2026 Specifier's Manual
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-[#343434]">
+                      The eight categories that carry the volume, the code coverage, and the
+                      operational reality of specifying recycled materials at scale.
+                    </p>
+                  </Link>
+                  <Link
+                    href="/journal/the-hidden-cost-of-river-sand"
+                    className="block rounded-2xl border border-[#6B6B6B]/25 bg-[#EFEAE3]/74 p-6 transition-colors hover:bg-[#EFEAE3]/95"
+                  >
+                    <p className="text-[10px] font-mono uppercase tracking-[0.28em] text-[#2E6F57]">
+                      Sand · Policy
+                    </p>
+                    <h3 className="mt-3 text-xl font-display font-black tracking-tight text-[#1b1b1b]">
+                      The Hidden Cost of River Sand
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-[#343434]">
+                      What India's construction boom is doing to its riverbeds, and the
+                      manufactured-sand alternative the market has settled on.
+                    </p>
+                  </Link>
+                  <Link
+                    href="/journal/scaling-recycled-construction-platform"
+                    className="block rounded-2xl border border-[#6B6B6B]/25 bg-[#EFEAE3]/74 p-6 transition-colors hover:bg-[#EFEAE3]/95"
+                  >
+                    <p className="text-[10px] font-mono uppercase tracking-[0.28em] text-[#2E6F57]">
+                      Scale · 2026
+                    </p>
+                    <h3 className="mt-3 text-xl font-display font-black tracking-tight text-[#1b1b1b]">
+                      The Quiet Build: Notes on Scaling
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-[#343434]">
+                      Field notes from inside the operation as a recycled construction
+                      ecosystem crosses from a single proven facility to a multi-site network.
+                    </p>
+                  </Link>
+                </div>
+              </motion.div>
+            </section>
           </motion.div>
 
           <motion.aside

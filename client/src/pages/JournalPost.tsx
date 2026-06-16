@@ -295,7 +295,7 @@ function Article({ post }: { post: Post }) {
             initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
           >
-            <AudioNarration text={narrationText} />
+            <AudioNarration text={narrationText} slug={post.slug} />
           </motion.div>
 
           {/* Body */}

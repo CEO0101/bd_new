@@ -11,32 +11,47 @@ const LANGS: Lang[] = [
 const SPEEDS = [0.75, 1, 1.25, 1.5, 1.75, 2];
 
 const PREMIUM = [/neural/i, /premium/i, /enhanced/i, /natural/i];
-const WARM = [/samantha/i, /serena/i, /karen/i, /moira/i, /tessa/i, /fiona/i, /lekha/i, /veena/i, /rishi/i, /isha/i, /kanya/i];
+const WARM = [/samantha/i, /serena/i, /karen/i, /moira/i, /tessa/i, /fiona/i, /lekha/i, /veena/i, /rishi/i];
 
 const CREAM = "20,19,15";
 const SAGE = "46,111,87";
 
-export default function AudioNarration({ text }: { text: string }) {
-  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
+type Mode = "static" | "synth" | "unknown";
+
+type Props = {
+  text: string;
+  /** Slug of the post — used to look for /audio/<slug>/<lang>.mp3 */
+  slug?: string;
+};
+
+export default function AudioNarration({ text, slug }: Props) {
   const [lang, setLang] = useState<Lang>(LANGS[0]);
-  const [speed, setSpeed] = useState<number>(1);
+  const [speed, setSpeed] = useState(1);
   const [state, setState] = useState<"idle" | "playing" | "paused">("idle");
   const [progress, setProgress] = useState(0);
+  const [mode, setMode] = useState<Mode>("unknown");
+  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [supported, setSupported] = useState(true);
 
-  // Offset tracking — the Web Speech API does not allow rate changes on a
-  // live utterance, so we track the absolute character position and
-  // restart from there whenever speed changes.
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const utterRef = useRef<SpeechSynthesisUtterance | null>(null);
-  const offsetRef = useRef(0);        // where the current utterance starts in the full text
-  const lastPosRef = useRef(0);       // latest absolute position from boundary events
-  const speedRef = useRef(speed);     // for use inside callbacks without re-binding
-  const voiceRef = useRef<SpeechSynthesisVoice | undefined>(undefined);
-  const langRef = useRef<Lang>(lang);
+  const offsetRef = useRef(0);
+  const lastPosRef = useRef(0);
 
-  useEffect(() => { speedRef.current = speed; }, [speed]);
-  useEffect(() => { langRef.current = lang; }, [lang]);
+  const mp3Url = slug ? `/audio/${slug}/${lang.code}.mp3` : null;
 
+  // Probe whether a pre-generated MP3 exists for this slug+lang
+  useEffect(() => {
+    let cancelled = false;
+    setMode("unknown");
+    if (!mp3Url) { setMode("synth"); return; }
+    fetch(mp3Url, { method: "HEAD" })
+      .then((r) => { if (!cancelled) setMode(r.ok ? "static" : "synth"); })
+      .catch(() => { if (!cancelled) setMode("synth"); });
+    return () => { cancelled = true; };
+  }, [mp3Url]);
+
+  // Load Web Speech voices for fallback mode
   useEffect(() => {
     if (typeof window === "undefined" || !window.speechSynthesis) { setSupported(false); return; }
     const load = () => setVoices(window.speechSynthesis.getVoices());
@@ -45,15 +60,14 @@ export default function AudioNarration({ text }: { text: string }) {
     return () => {
       window.speechSynthesis.removeEventListener("voiceschanged", load);
       window.speechSynthesis.cancel();
+      if (audioRef.current) { audioRef.current.pause(); audioRef.current.src = ""; }
     };
   }, []);
 
   const { voice, matched } = useMemo(() => {
     if (!voices.length) return { voice: undefined as SpeechSynthesisVoice | undefined, matched: false };
     for (const code of lang.bcp47) {
-      const exact = voices.filter(v => v.lang === code);
-      const prefix = voices.filter(v => v.lang.startsWith(code.split("-")[0]));
-      const pool = exact.length ? exact : prefix;
+      const pool = voices.filter(v => v.lang === code || v.lang.startsWith(code.split("-")[0]));
       if (!pool.length) continue;
       const premium = pool.find(v => PREMIUM.some(re => re.test(v.name)));
       if (premium) return { voice: premium, matched: true };
@@ -61,27 +75,33 @@ export default function AudioNarration({ text }: { text: string }) {
       if (warm) return { voice: warm, matched: true };
       return { voice: pool[0], matched: true };
     }
-    const fallback = voices.find(v => PREMIUM.some(re => re.test(v.name)) && v.lang.startsWith("en"))
-                 || voices.find(v => WARM.some(re => re.test(v.name)) && v.lang.startsWith("en"))
-                 || voices.find(v => v.lang.startsWith("en"));
-    return { voice: fallback, matched: false };
+    const fb = voices.find(v => v.lang.startsWith("en"));
+    return { voice: fb, matched: false };
   }, [voices, lang]);
 
-  useEffect(() => { voiceRef.current = voice; }, [voice]);
+  // ── Static MP3 controls ──
+  function playStatic() {
+    if (!audioRef.current) return;
+    audioRef.current.playbackRate = speed;
+    audioRef.current.play().then(() => setState("playing")).catch(() => setState("idle"));
+  }
+  function pauseStatic() { audioRef.current?.pause(); setState("paused"); }
+  function stopStatic() {
+    if (audioRef.current) { audioRef.current.pause(); audioRef.current.currentTime = 0; }
+    setState("idle"); setProgress(0);
+  }
 
-  // Speak the text starting at a specific absolute character position
-  function speakFrom(absoluteStart: number) {
+  // ── Web Speech fallback controls ──
+  function synthSpeakFrom(absStart: number) {
     if (!window.speechSynthesis) return;
     window.speechSynthesis.cancel();
-    const remaining = text.slice(absoluteStart);
+    const remaining = text.slice(absStart);
     if (!remaining) { setState("idle"); setProgress(0); offsetRef.current = 0; lastPosRef.current = 0; return; }
-
-    offsetRef.current = absoluteStart;
+    offsetRef.current = absStart;
     const u = new SpeechSynthesisUtterance(remaining);
-    const v = voiceRef.current;
-    if (v) u.voice = v;
-    u.lang = v?.lang || langRef.current.bcp47[0];
-    u.rate = speedRef.current * 0.9;
+    if (voice) u.voice = voice;
+    u.lang = voice?.lang || lang.bcp47[0];
+    u.rate = speed * 0.9;
     u.pitch = 0.95;
     u.volume = 1.0;
     u.onstart = () => setState("playing");
@@ -97,42 +117,45 @@ export default function AudioNarration({ text }: { text: string }) {
     utterRef.current = u;
     window.speechSynthesis.speak(u);
   }
-
-  function play() {
+  function synthPlay() {
     if (state === "paused") { window.speechSynthesis.resume(); setState("playing"); return; }
-    lastPosRef.current = 0;
-    offsetRef.current = 0;
-    speakFrom(0);
+    lastPosRef.current = 0; offsetRef.current = 0; synthSpeakFrom(0);
   }
-
-  function pause() { if (window.speechSynthesis) { window.speechSynthesis.pause(); setState("paused"); } }
-  function stop()  {
+  function synthPause() { if (window.speechSynthesis) { window.speechSynthesis.pause(); setState("paused"); } }
+  function synthStop() {
     if (window.speechSynthesis) window.speechSynthesis.cancel();
     setState("idle"); setProgress(0); offsetRef.current = 0; lastPosRef.current = 0;
   }
 
-  // When speed changes during active playback, restart from the latest
-  // reported word boundary so the new rate takes effect immediately.
-  function changeSpeed(next: number) {
-    setSpeed(next);
-    speedRef.current = next;
-    if (state === "playing") {
-      // Restart from where we are
-      speakFrom(lastPosRef.current);
-    } else if (state === "paused") {
-      // Reset paused state and restart at that point
-      speakFrom(lastPosRef.current);
+  // ── Unified controls ──
+  function play() { return mode === "static" ? playStatic() : synthPlay(); }
+  function pause() { return mode === "static" ? pauseStatic() : synthPause(); }
+  function stop() { return mode === "static" ? stopStatic() : synthStop(); }
+  function changeSpeed(s: number) {
+    setSpeed(s);
+    if (mode === "static") {
+      if (audioRef.current) audioRef.current.playbackRate = s;
+    } else if (state === "playing" || state === "paused") {
+      synthSpeakFrom(lastPosRef.current);
     }
   }
+  function changeLang(next: Lang) { stop(); setLang(next); }
 
-  if (!supported) return null;
+  if (!supported && mode !== "static") return null;
   const active = state === "playing" || state === "paused";
 
-  let statusLine = "";
-  if (state === "playing") statusLine = `Playing in ${voice?.name || lang.label} · ${speed}×`;
-  else if (state === "paused") statusLine = "Paused. Tap play to resume.";
-  else if (!matched && lang.code !== "en") statusLine = `No ${lang.label} voice installed on this device. Narration will use the best available voice.`;
-  else statusLine = `Tap play. ${voice?.name ? `Narrated by ${voice.name}.` : ""} Take it on a walk.`;
+  let status = "";
+  if (mode === "static") {
+    status = state === "playing"
+      ? `Playing in ${lang.label} · ${speed}× · native voice`
+      : state === "paused" ? "Paused. Tap play to resume."
+      : `Tap play. Narrated in ${lang.native} by a native voice.`;
+  } else {
+    if (state === "playing") status = `Playing in ${voice?.name || lang.label} · ${speed}×`;
+    else if (state === "paused") status = "Paused. Tap play to resume.";
+    else if (!matched && lang.code !== "en") status = `No native ${lang.label} voice on this device. Will use the best available.`;
+    else status = `Tap play. ${voice?.name ? `Narrated by ${voice.name}.` : ""} Take it on a walk.`;
+  }
 
   return (
     <div style={{
@@ -142,6 +165,21 @@ export default function AudioNarration({ text }: { text: string }) {
       borderRadius: "14px",
       marginBottom: "36px",
     }}>
+      {mp3Url && (
+        <audio
+          ref={audioRef}
+          src={mode === "static" ? mp3Url : undefined}
+          preload="none"
+          onPlay={() => setState("playing")}
+          onPause={() => { if (audioRef.current && !audioRef.current.ended) setState("paused"); }}
+          onEnded={() => { setState("idle"); setProgress(0); }}
+          onTimeUpdate={() => {
+            const a = audioRef.current;
+            if (a && a.duration) setProgress(Math.min(100, (a.currentTime / a.duration) * 100));
+          }}
+        />
+      )}
+
       <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
         <button
           onClick={state === "playing" ? pause : play}
@@ -170,6 +208,7 @@ export default function AudioNarration({ text }: { text: string }) {
             textTransform: "uppercase", color: `rgba(${SAGE},0.85)`, marginBottom: "5px",
           }}>
             {state === "playing" ? "Now playing" : state === "paused" ? "Paused" : "Listen to this dispatch"}
+            {mode === "static" && " · native"}
           </div>
           <div style={{
             fontFamily: "'DM Serif Display',serif", fontSize: "15px",
@@ -183,7 +222,7 @@ export default function AudioNarration({ text }: { text: string }) {
           value={lang.code}
           onChange={(e) => {
             const next = LANGS.find(l => l.code === e.target.value);
-            if (next) { stop(); setLang(next); }
+            if (next) changeLang(next);
           }}
           aria-label="Narration language"
           style={{
@@ -214,10 +253,7 @@ export default function AudioNarration({ text }: { text: string }) {
         )}
       </div>
 
-      <div style={{
-        display: "flex", alignItems: "center", gap: "8px",
-        marginTop: "16px", flexWrap: "wrap",
-      }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "16px", flexWrap: "wrap" }}>
         <span style={{
           fontFamily: "'DM Mono',monospace", fontSize: "9px", letterSpacing: "0.2em",
           textTransform: "uppercase", color: `rgba(${CREAM},0.45)`, marginRight: "4px",
@@ -234,10 +270,8 @@ export default function AudioNarration({ text }: { text: string }) {
                 border: isOn ? `1px solid rgba(${SAGE},0.6)` : `1px solid rgba(${CREAM},0.12)`,
                 background: isOn ? `rgba(${SAGE},0.92)` : "rgba(255,255,255,0.6)",
                 color: isOn ? "#FFFFFF" : `rgba(${CREAM},0.6)`,
-                transition: "all 0.15s",
               }}
               aria-pressed={isOn}
-              aria-label={`Playback speed ${s} times`}
             >
               {s}×
             </button>
@@ -259,11 +293,9 @@ export default function AudioNarration({ text }: { text: string }) {
 
       <div style={{
         marginTop: "14px", fontFamily: "'DM Sans',sans-serif", fontSize: "12px",
-        fontStyle: !matched && lang.code !== "en" ? "italic" : "normal",
-        color: !matched && lang.code !== "en" ? `rgba(${CREAM},0.55)` : `rgba(${CREAM},0.62)`,
-        lineHeight: 1.5,
+        color: `rgba(${CREAM},0.62)`, lineHeight: 1.5,
       }}>
-        {statusLine}
+        {status}
       </div>
     </div>
   );

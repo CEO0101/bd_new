@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
 import FaqSection from "@/components/FaqSection";
@@ -497,6 +498,109 @@ export default function Products() {
                 title="Specification, sourcing, dispatch."
                 faqs={PRODUCT_FAQS}
               />
+            </div>
+          </section>
+
+          {/* ── B.04a  Related dispatches — internal link cluster ─────── */}
+          <section style={{ marginBottom: "120px" }}>
+            <div className="max-w-3xl">
+              <p style={{
+                fontFamily: "'DM Mono',monospace", fontSize: "10px",
+                letterSpacing: "0.28em", textTransform: "uppercase",
+                color: `rgba(${CREAM},0.55)`, marginBottom: "16px",
+              }}>
+                B.05 — Related dispatches
+              </p>
+              <Link
+                href="/journal/karnataka-mineral-dispatch-permit-rule-3c4"
+                style={{
+                  display: "block", padding: "20px 24px", marginBottom: "12px",
+                  border: `1px solid rgba(${CREAM},0.16)`,
+                  background: `rgba(${CREAM},0.03)`,
+                  borderRadius: "6px", textDecoration: "none",
+                }}
+              >
+                <p style={{
+                  fontFamily: "'DM Mono',monospace", fontSize: "9px",
+                  letterSpacing: "0.22em", textTransform: "uppercase",
+                  color: `rgba(${ACCENT},0.95)`, marginBottom: "8px",
+                }}>
+                  Compliance · Karnataka
+                </p>
+                <h3 style={{
+                  fontFamily: "'DM Serif Display',serif", fontSize: "20px",
+                  color: `rgba(${CREAM},0.92)`, marginBottom: "8px", lineHeight: 1.3,
+                }}>
+                  Inside Karnataka's Mineral Dispatch Permit System
+                </h3>
+                <p style={{
+                  fontFamily: "'DM Sans',sans-serif", fontSize: "14px",
+                  lineHeight: 1.6, color: `rgba(${CREAM},0.7)`,
+                }}>
+                  Rule 3-C(4), KMMC royalty, the Khanijadmg portal, and the dispatch
+                  discipline that audit-grade procurement now requires.
+                </p>
+              </Link>
+              <Link
+                href="/journal/manufactured-sand-types-complete-guide"
+                style={{
+                  display: "block", padding: "20px 24px", marginBottom: "12px",
+                  border: `1px solid rgba(${CREAM},0.16)`,
+                  background: `rgba(${CREAM},0.03)`,
+                  borderRadius: "6px", textDecoration: "none",
+                }}
+              >
+                <p style={{
+                  fontFamily: "'DM Mono',monospace", fontSize: "9px",
+                  letterSpacing: "0.22em", textTransform: "uppercase",
+                  color: `rgba(${ACCENT},0.95)`, marginBottom: "8px",
+                }}>
+                  Specification · IS 383:2016
+                </p>
+                <h3 style={{
+                  fontFamily: "'DM Serif Display',serif", fontSize: "20px",
+                  color: `rgba(${CREAM},0.92)`, marginBottom: "8px", lineHeight: 1.3,
+                }}>
+                  M-Sand, P-Sand, G-Sand: Every Type of Manufactured Sand Explained
+                </h3>
+                <p style={{
+                  fontFamily: "'DM Sans',sans-serif", fontSize: "14px",
+                  lineHeight: 1.6, color: `rgba(${CREAM},0.7)`,
+                }}>
+                  IS 383:2016 gradation zones, applications, source rock effects, and
+                  why the distinction matters on site.
+                </p>
+              </Link>
+              <Link
+                href="/journal/recycled-construction-materials-2026-manual"
+                style={{
+                  display: "block", padding: "20px 24px",
+                  border: `1px solid rgba(${CREAM},0.16)`,
+                  background: `rgba(${CREAM},0.03)`,
+                  borderRadius: "6px", textDecoration: "none",
+                }}
+              >
+                <p style={{
+                  fontFamily: "'DM Mono',monospace", fontSize: "9px",
+                  letterSpacing: "0.22em", textTransform: "uppercase",
+                  color: `rgba(${ACCENT},0.95)`, marginBottom: "8px",
+                }}>
+                  Materials · Specification · 2026
+                </p>
+                <h3 style={{
+                  fontFamily: "'DM Serif Display',serif", fontSize: "20px",
+                  color: `rgba(${CREAM},0.92)`, marginBottom: "8px", lineHeight: 1.3,
+                }}>
+                  Recycled Construction Materials: A 2026 Specifier's Manual
+                </h3>
+                <p style={{
+                  fontFamily: "'DM Sans',sans-serif", fontSize: "14px",
+                  lineHeight: 1.6, color: `rgba(${CREAM},0.7)`,
+                }}>
+                  The eight categories that carry the volume, code coverage, and
+                  the operational reality of specifying recycled materials at scale.
+                </p>
+              </Link>
             </div>
           </section>
 
