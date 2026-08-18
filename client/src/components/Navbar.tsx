@@ -12,16 +12,19 @@ const NAV_ITEMS = [
   { href: "/invest", label: "Invest" },
 ];
 
-/* Greenrock mark — faceted gem with regeneration arrow */
+/* Greenrock mark — three offset strata bands.
+   Replaces the diamond-with-an-up-arrow: an upward arrow inside a box
+   is universally read as "upload" or "increase," which is why it looked
+   like a stray UI control rather than a logo. These are sheared rock
+   layers — literally the material the company processes — with no
+   borrowed UI meaning. Identical geometry to the favicon set so the
+   nav, tab, and Google search result all show the same mark. */
 function GreenrockMark() {
   return (
     <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-      <polygon points="16,3 28,16 16,29 4,16"
-        fill="rgba(46,111,87,0.18)" stroke="#2E6F57" strokeWidth="1.5" strokeLinejoin="round" />
-      <polygon points="16,7 24,16 16,25 8,16"
-        fill="none" stroke="#2E6F57" strokeWidth="0.7" strokeOpacity="0.55" />
-      <path d="M16 21 L16 12 M12 16 L16 12 L20 16"
-        fill="none" stroke="#2E6F57" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M11 7 L26 7 L29 12 L14 12 Z"     fill="#2E6F57" fillOpacity="0.32" />
+      <path d="M8 14.5 L21 14.5 L24 19.5 L11 19.5 Z" fill="#2E6F57" fillOpacity="0.62" />
+      <path d="M5 22 L16 22 L19 27 L8 27 Z"     fill="#2E6F57" fillOpacity="0.95" />
     </svg>
   );
 }

@@ -9,18 +9,16 @@ type SiteFooterProps = {
 
 const EMAIL = "hello@greenrockinnovations.earth";
 
-/* Greenrock mark — faceted gem with regeneration arrow */
+/* Greenrock mark — three offset strata bands. Must stay identical to
+   the navbar version (components/Navbar.tsx) and the favicon set; only
+   the ink color differs by footer tone. */
 function GreenrockMark({ tone }: { tone: FooterTone }) {
-  const stroke = tone === "dark" ? "#9DD9B8" : "#2E6F57";
-  const fill = tone === "dark" ? "rgba(157,217,184,0.16)" : "rgba(46,111,87,0.16)";
+  const ink = tone === "dark" ? "#9DD9B8" : "#2E6F57";
   return (
     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-      <polygon points="16,3 28,16 16,29 4,16"
-        fill={fill} stroke={stroke} strokeWidth="1.5" strokeLinejoin="round" />
-      <polygon points="16,7 24,16 16,25 8,16"
-        fill="none" stroke={stroke} strokeWidth="0.7" strokeOpacity="0.55" />
-      <path d="M16 21 L16 12 M12 16 L16 12 L20 16"
-        fill="none" stroke={stroke} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M11 7 L26 7 L29 12 L14 12 Z"          fill={ink} fillOpacity="0.32" />
+      <path d="M8 14.5 L21 14.5 L24 19.5 L11 19.5 Z" fill={ink} fillOpacity="0.62" />
+      <path d="M5 22 L16 22 L19 27 L8 27 Z"          fill={ink} fillOpacity="0.95" />
     </svg>
   );
 }

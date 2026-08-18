@@ -1,31 +1,12 @@
-import { useEffect } from "react";
 import { useLocation } from "wouter";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
+import CustomerLogos from "@/components/CustomerLogos";
 
-/* ─── Custom cursor ─────────────────────────────────────────────────── */
-export function CustomCursor() {
-  const x = useMotionValue(-200);
-  const y = useMotionValue(-200);
-  const sx = useSpring(x, { stiffness: 120, damping: 20 });
-  const sy = useSpring(y, { stiffness: 120, damping: 20 });
-  useEffect(() => {
-    const m = (e: MouseEvent) => { x.set(e.clientX); y.set(e.clientY); };
-    window.addEventListener("mousemove", m);
-    return () => window.removeEventListener("mousemove", m);
-  }, [x, y]);
-  return (
-    <>
-      <motion.div className="fixed z-[9999] pointer-events-none top-0 left-0"
-        style={{ x: sx, y: sy, translateX: "-50%", translateY: "-50%", mixBlendMode: "difference" }}>
-        <div className="w-6 h-6 rounded-full border border-[#EDE8DF] opacity-40" />
-      </motion.div>
-      <motion.div className="fixed z-[9999] pointer-events-none top-0 left-0"
-        style={{ x, y, translateX: "-50%", translateY: "-50%" }}>
-        <div className="w-[4px] h-[4px] rounded-full bg-[#EDE8DF]" />
-      </motion.div>
-    </>
-  );
-}
+/* Removed: the trailing-dot custom cursor. Two spring-tracked divs
+   following the mouse on every frame is a 2018-era portfolio effect,
+   and it set cursor:none site-wide — so the native pointer (which
+   actually communicates what's clickable) was replaced with a laggy
+   decoration. Native cursor is both faster and clearer. */
 
 /* ─── Credential ticker ─────────────────────────────────────────────── */
 const TOP_TICKS = [
@@ -192,7 +173,7 @@ export default function Hero() {
                     fontFamily: "'DM Serif Display',serif",
                     fontStyle: line.italic ? "italic" : "normal",
                     fontWeight: 400,
-                    fontSize: "clamp(38px, 7.4vw, 128px)",
+                    fontSize: "clamp(34px, 5.4vw, 76px)",
                     lineHeight: 0.93,
                     letterSpacing: "-0.035em",
                     color: `rgba(237,232,223,${line.opacity})`,
@@ -272,9 +253,16 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Generous empty footer space — the negative space itself is
-              part of the composition now, not filled with a logo strip. */}
-          <div style={{ paddingBottom: "48px" }} />
+          {/* Customer proof strip — restored. Cutting it to give the
+              headline room was the wrong trade: these are the actual
+              client names (KNR, Malabar Cements, ULCCS...) and that
+              credibility earns its space on a B2B landing page more
+              than empty margin does. */}
+          <motion.div style={{ paddingBottom: "20px" }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+            transition={{ delay: 1.1, duration: 0.9 }}>
+            <CustomerLogos />
+          </motion.div>
         </div>
       </div>
     </>

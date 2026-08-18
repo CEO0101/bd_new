@@ -1,4 +1,4 @@
-import Hero, { CustomCursor } from "@/components/sections/Hero";
+import Hero from "@/components/sections/Hero";
 import Navbar from "@/components/Navbar";
 import { useSeo, faqJsonLd, SITE_ORIGIN } from "@/lib/useSeo";
 
@@ -78,9 +78,8 @@ export default function Home() {
   return (
     <div
       className="bg-[#09080A] text-[#EDE8DF] overflow-hidden"
-      style={{ height: "100dvh", maxHeight: "100dvh", cursor: "none" }}
+      style={{ height: "100dvh", maxHeight: "100dvh" }}
     >
-      <CustomCursor />
       <Navbar />
       <Hero />
     </div>

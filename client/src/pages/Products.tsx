@@ -209,7 +209,7 @@ export default function Products() {
                     fontFamily: "'DM Serif Display',serif",
                     fontStyle: line.italic ? "italic" : "normal",
                     fontWeight: 400,
-                    fontSize: "clamp(38px, 7.4vw, 128px)",
+                    fontSize: "clamp(34px, 5.4vw, 76px)",
                     lineHeight: 0.95,
                     letterSpacing: "-0.035em",
                     color: `rgba(${CREAM},${line.opacity})`,
