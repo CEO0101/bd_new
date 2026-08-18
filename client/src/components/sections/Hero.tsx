@@ -59,7 +59,7 @@ export function CredentialTicker() {
             style={{ borderRight: "1px solid rgba(237,232,223,0.06)" }}>
             <div className="w-[3px] h-[3px] rounded-full shrink-0"
               style={{ background: t.green ? "rgba(237,232,223,0.62)" : "rgba(237,232,223,0.28)" }} />
-            <span style={{ fontFamily: "'DM Mono',monospace", fontSize: "6.5px",
+            <span style={{ fontFamily: "'DM Mono',monospace", fontSize: "9px",
               letterSpacing: "0.22em", textTransform: "uppercase" as const,
               color: t.green ? "rgba(237,232,223,0.55)" : "rgba(237,232,223,0.3)",
               textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>
@@ -85,12 +85,21 @@ export default function Hero() {
 
         {/* ── Video — deferred to avoid blocking LCP ── */}
         <div className="absolute inset-0 z-0">
+          {/* poster= is the fix for the 1-3s blank hero on mobile. Deferring
+              the video (below) keeps it off the critical path, but it also
+              means there's NOTHING to look at until it arrives — on a phone
+              over mobile data that's seconds of empty screen, which is
+              where people bounce. The poster is a 58KB still from the video
+              itself: it paints essentially immediately, so the hero looks
+              complete from the first frame, and the video fades in over it
+              once it's ready. Same image, so there's no visible swap. */}
           <video
             autoPlay
             loop
             muted
             playsInline
             preload="none"
+            poster="/poster-home.jpg"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ opacity: 0.42, mixBlendMode: "luminosity" }}
             ref={(el: HTMLVideoElement | null) => {
@@ -99,12 +108,12 @@ export default function Hero() {
               // Switched to the -web variant: same 1280x720, ~1.1Mbps vs
               // ~2.0Mbps, 1.8MB vs 6.3MB. At 0.42 opacity + luminosity blend
               // the visual difference is imperceptible, but it's a third of
-              // the download — the video now actually appears fast instead
-              // of sitting blank for a couple seconds after idle fires.
+              // the download.
+              const load = () => { el.src = "/161071-822582138-web.mp4"; el.load(); };
               if ("requestIdleCallback" in window) {
-                requestIdleCallback(() => { el.src = "/161071-822582138-web.mp4"; el.load(); });
+                requestIdleCallback(load, { timeout: 2500 });
               } else {
-                setTimeout(() => { el.src = "/161071-822582138-web.mp4"; el.load(); }, 2000);
+                setTimeout(load, 1200);
               }
             }}
           />
@@ -131,7 +140,7 @@ export default function Hero() {
         {/* ── Side label ── */}
         <div className="absolute left-3 top-1/2 z-20 pointer-events-none hidden lg:block"
           style={{ transform: "translateY(-50%) rotate(180deg)", fontFamily: "'DM Mono',monospace",
-            fontSize: "6px", color: "rgba(237,232,223,0.07)", letterSpacing: "0.28em",
+            fontSize: "9px", color: "rgba(237,232,223,0.07)", letterSpacing: "0.28em",
             textTransform: "uppercase", writingMode: "vertical-rl" }}>
           Construction Materials · Karnataka · India
         </div>
@@ -151,7 +160,7 @@ export default function Hero() {
             transition={{ delay: 0.1, duration: 0.8 }}>
             <div className="flex items-center gap-3">
               <div className="h-[1px] w-3" style={{ background: "rgba(237,232,223,0.2)" }} />
-              <span style={{ fontFamily: "'DM Mono',monospace", fontSize: "6.5px",
+              <span style={{ fontFamily: "'DM Mono',monospace", fontSize: "9px",
                 letterSpacing: "0.28em", textTransform: "uppercase" as const,
                 color: "rgba(237,232,223,0.16)" }}>
                 Reclaimed Rock
@@ -161,8 +170,8 @@ export default function Hero() {
                 Karnataka
               </span>
             </div>
-            <span style={{ fontFamily: "'DM Mono',monospace", fontSize: "6.5px",
-              color: "rgba(237,232,223,0.08)", letterSpacing: "0.1em" }}>001 / 006</span>
+            <span style={{ fontFamily: "'DM Mono',monospace", fontSize: "9px",
+              color: "rgba(237,232,223,0.08)", letterSpacing: "0.16em" }}>001 / 006</span>
           </motion.div>
 
           {/* Headline + body — now the only thing on screen besides the kicker */}
@@ -200,10 +209,10 @@ export default function Hero() {
               transition={{ delay: 0.78, duration: 0.9 }}>
               <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "13px",
                 fontWeight: 400, color: "rgba(237,232,223,0.52)", lineHeight: 1.62,
-                letterSpacing: "0.005em" }}>
+                letterSpacing: "0.004em" }}>
                 Construction material made from reclaimed geological deposits.
               </p>
-              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "11.5px",
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "13px",
                 fontWeight: 300, color: "rgba(237,232,223,0.28)", lineHeight: 1.65,
                 marginTop: "6px" }}>
                 Built from long-settled, weathered rock deposits in agricultural land.
@@ -220,8 +229,8 @@ export default function Hero() {
               <motion.button
                 style={{
                   fontFamily: "'DM Mono',monospace",
-                  fontSize: "8px",
-                  letterSpacing: "0.18em",
+                  fontSize: "10px",
+                  letterSpacing: "0.16em",
                   textTransform: "uppercase" as const,
                   color: "#09080A",
                   background: "rgba(237,232,223,0.88)",
@@ -244,8 +253,8 @@ export default function Hero() {
                 onClick={() => setLocation("/about")}
                 style={{
                   fontFamily: "'DM Mono',monospace",
-                  fontSize: "8px",
-                  letterSpacing: "0.18em",
+                  fontSize: "10px",
+                  letterSpacing: "0.16em",
                   textTransform: "uppercase" as const,
                   color: "rgba(237,232,223,0.5)",
                   background: "rgba(237,232,223,0.04)",

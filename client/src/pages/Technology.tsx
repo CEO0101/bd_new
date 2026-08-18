@@ -136,14 +136,16 @@ export default function Technology() {
             muted
             playsInline
             preload="none"
+            poster="/poster-technology.jpg"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ opacity: 0.55 }}
             ref={(el: HTMLVideoElement | null) => {
               if (!el) return;
+              const load = () => { el.src = crusherAerialVideo; el.load(); };
               if ("requestIdleCallback" in window) {
-                requestIdleCallback(() => { el.src = crusherAerialVideo; el.load(); });
+                requestIdleCallback(load, { timeout: 2500 });
               } else {
-                setTimeout(() => { el.src = crusherAerialVideo; el.load(); }, 2000);
+                setTimeout(load, 1200);
               }
             }}
           />
@@ -195,7 +197,7 @@ export default function Technology() {
           style={{
             transform: "translateY(-50%) rotate(180deg)",
             fontFamily: "'DM Mono',monospace",
-            fontSize: "6px",
+            fontSize: "9px",
             color: `rgba(${CREAM},0.08)`,
             letterSpacing: "0.28em",
             textTransform: "uppercase",
@@ -225,7 +227,7 @@ export default function Technology() {
               <span
                 style={{
                   fontFamily: "'DM Mono',monospace",
-                  fontSize: "6.5px",
+                  fontSize: "9px",
                   letterSpacing: "0.28em",
                   textTransform: "uppercase" as const,
                   color: `rgba(${CREAM},0.18)`,
@@ -241,9 +243,9 @@ export default function Technology() {
             <span
               style={{
                 fontFamily: "'DM Mono',monospace",
-                fontSize: "6.5px",
+                fontSize: "9px",
                 color: `rgba(${CREAM},0.1)`,
-                letterSpacing: "0.1em",
+                letterSpacing: "0.16em",
               }}
             >
               002 / 006
@@ -268,7 +270,7 @@ export default function Technology() {
                       fontFamily: "'DM Serif Display',serif",
                       fontStyle: line.italic ? "italic" : "normal",
                       fontWeight: 400,
-                      fontSize: "clamp(32px, 5.2vw, 74px)",
+                      fontSize: "clamp(38px, 7.4vw, 128px)",
                       lineHeight: 0.93,
                       letterSpacing: "-0.035em",
                       color: `rgba(${CREAM},${line.opacity})`,
@@ -293,7 +295,7 @@ export default function Technology() {
                   fontWeight: 400,
                   color: `rgba(${CREAM},0.74)`,
                   lineHeight: 1.62,
-                  letterSpacing: "0.005em",
+                  letterSpacing: "0.004em",
                 }}
               >
                 Six purpose-built systems running in a single closed loop — super-primary crushing,
@@ -302,7 +304,7 @@ export default function Technology() {
               <p
                 style={{
                   fontFamily: "'DM Sans',sans-serif",
-                  fontSize: "11.5px",
+                  fontSize: "13px",
                   fontWeight: 300,
                   color: `rgba(${CREAM},0.56)`,
                   lineHeight: 1.65,
@@ -330,8 +332,8 @@ export default function Technology() {
                 }
                 style={{
                   fontFamily: "'DM Mono',monospace",
-                  fontSize: "8px",
-                  letterSpacing: "0.18em",
+                  fontSize: "10px",
+                  letterSpacing: "0.16em",
                   textTransform: "uppercase" as const,
                   color: PAGE_BG,
                   background: `rgba(${CREAM},0.88)`,
@@ -362,8 +364,8 @@ export default function Technology() {
                 }
                 style={{
                   fontFamily: "'DM Mono',monospace",
-                  fontSize: "8px",
-                  letterSpacing: "0.18em",
+                  fontSize: "10px",
+                  letterSpacing: "0.16em",
                   textTransform: "uppercase" as const,
                   color: `rgba(${CREAM},0.85)`,
                   background: "rgba(255,255,255,0.7)",
@@ -396,7 +398,7 @@ export default function Technology() {
             <span
               style={{
                 fontFamily: "'DM Mono',monospace",
-                fontSize: "6.5px",
+                fontSize: "9px",
                 letterSpacing: "0.28em",
                 textTransform: "uppercase" as const,
                 color: `rgba(${CREAM},0.22)`,
@@ -444,8 +446,8 @@ export default function Technology() {
               <span
                 style={{
                   fontFamily: "'DM Mono',monospace",
-                  fontSize: "6.5px",
-                  letterSpacing: "0.32em",
+                  fontSize: "9px",
+                  letterSpacing: "0.28em",
                   textTransform: "uppercase" as const,
                   color: `rgba(${ACCENT},0.8)`,
                 }}
@@ -458,7 +460,7 @@ export default function Technology() {
                   fontWeight: 400,
                   fontSize: "clamp(28px, 4vw, 52px)",
                   lineHeight: 1.05,
-                  letterSpacing: "-0.03em",
+                  letterSpacing: "-0.026em",
                   color: `rgba(${CREAM},0.95)`,
                   marginTop: "12px",
                   maxWidth: "680px",
@@ -511,8 +513,8 @@ export default function Technology() {
                   <span
                     style={{
                       fontFamily: "'DM Mono',monospace",
-                      fontSize: "7px",
-                      letterSpacing: "0.3em",
+                      fontSize: "9px",
+                      letterSpacing: "0.28em",
                       textTransform: "uppercase" as const,
                       color: `rgba(${ACCENT},0.78)`,
                       paddingTop: "6px",
@@ -525,7 +527,7 @@ export default function Technology() {
                       fontFamily: "'DM Serif Display',serif",
                       fontSize: "32px",
                       color: `rgba(${ACCENT},0.18)`,
-                      letterSpacing: "-0.02em",
+                      letterSpacing: "-0.018em",
                       lineHeight: 1,
                     }}
                   >
@@ -539,7 +541,7 @@ export default function Technology() {
                     fontWeight: 400,
                     fontSize: "22px",
                     lineHeight: 1.18,
-                    letterSpacing: "-0.022em",
+                    letterSpacing: "-0.026em",
                     color: `rgba(${CREAM},0.94)`,
                     marginBottom: "14px",
                   }}
@@ -559,7 +561,7 @@ export default function Technology() {
                 <p
                   style={{
                     fontFamily: "'DM Sans',sans-serif",
-                    fontSize: "12.5px",
+                    fontSize: "13px",
                     color: `rgba(${CREAM},0.74)`,
                     lineHeight: 1.65,
                     fontWeight: 400,
@@ -583,7 +585,7 @@ export default function Technology() {
             <p
               style={{
                 fontFamily: "'DM Mono',monospace",
-                fontSize: "8.5px",
+                fontSize: "10px",
                 letterSpacing: "0.28em",
                 textTransform: "uppercase" as const,
                 color: `rgba(${CREAM},0.64)`,
@@ -608,8 +610,8 @@ export default function Technology() {
               <span
                 style={{
                   fontFamily: "'DM Mono',monospace",
-                  fontSize: "6.5px",
-                  letterSpacing: "0.32em",
+                  fontSize: "9px",
+                  letterSpacing: "0.28em",
                   textTransform: "uppercase" as const,
                   color: `rgba(${ACCENT},0.8)`,
                 }}
@@ -620,9 +622,9 @@ export default function Technology() {
                 style={{
                   fontFamily: "'DM Serif Display',serif",
                   fontWeight: 400,
-                  fontSize: "clamp(26px, 3.6vw, 46px)",
+                  fontSize: "clamp(28px, 4vw, 52px)",
                   lineHeight: 1.05,
-                  letterSpacing: "-0.03em",
+                  letterSpacing: "-0.026em",
                   color: `rgba(${CREAM},0.94)`,
                   marginTop: "12px",
                   maxWidth: "640px",
@@ -704,8 +706,8 @@ export default function Technology() {
                 <span
                   style={{
                     fontFamily: "'DM Mono',monospace",
-                    fontSize: "7px",
-                    letterSpacing: "0.32em",
+                    fontSize: "9px",
+                    letterSpacing: "0.28em",
                     textTransform: "uppercase" as const,
                     color: `rgba(${ACCENT},0.85)`,
                   }}
@@ -717,7 +719,7 @@ export default function Technology() {
                     fontFamily: "'DM Serif Display',serif",
                     fontSize: "22px",
                     lineHeight: 1.1,
-                    letterSpacing: "-0.02em",
+                    letterSpacing: "-0.018em",
                     color: `rgba(${CREAM},0.92)`,
                     marginTop: "8px",
                   }}
@@ -727,7 +729,7 @@ export default function Technology() {
                 <p
                   style={{
                     fontFamily: "'DM Sans',sans-serif",
-                    fontSize: "12px",
+                    fontSize: "13px",
                     color: `rgba(${CREAM},0.7)`,
                     lineHeight: 1.6,
                     marginTop: "8px",

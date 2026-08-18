@@ -121,8 +121,8 @@ export default function CustomerLogos() {
           }} />
           <span style={{
             fontFamily: "'DM Mono',monospace",
-            fontSize: "6.5px",
-            letterSpacing: "0.38em",
+            fontSize: "9px",
+            letterSpacing: "0.28em",
             textTransform: "uppercase" as const,
             color: "rgba(237,232,223,0.35)",
             position: "relative",

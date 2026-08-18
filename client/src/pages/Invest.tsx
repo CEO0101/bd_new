@@ -33,12 +33,14 @@ export default function Invest() {
             loop
             playsInline
             preload="none"
+            poster="/poster-invest.jpg"
             ref={(el: HTMLVideoElement | null) => {
               if (!el) return;
+              const load = () => { el.src = landRecoveryVideo; el.load(); };
               if ("requestIdleCallback" in window) {
-                requestIdleCallback(() => { el.src = landRecoveryVideo; el.load(); });
+                requestIdleCallback(load, { timeout: 2500 });
               } else {
-                setTimeout(() => { el.src = landRecoveryVideo; el.load(); }, 2000);
+                setTimeout(load, 1200);
               }
             }}
           />

@@ -335,12 +335,14 @@ export default function About() {
           loop
           playsInline
           preload="none"
+          poster="/poster-about.jpg"
           ref={(el: HTMLVideoElement | null) => {
             if (!el) return;
+            const load = () => { el.src = aboutBackgroundVideo; el.load(); };
             if ("requestIdleCallback" in window) {
-              requestIdleCallback(() => { el.src = aboutBackgroundVideo; el.load(); });
+              requestIdleCallback(load, { timeout: 2500 });
             } else {
-              setTimeout(() => { el.src = aboutBackgroundVideo; el.load(); }, 2000);
+              setTimeout(load, 1200);
             }
           }}
         />

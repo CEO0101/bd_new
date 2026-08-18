@@ -58,7 +58,7 @@ export default function FaqSection({
           style={{
             fontFamily: "'DM Mono',monospace",
             fontSize: "9px",
-            letterSpacing: "0.32em",
+            letterSpacing: "0.28em",
             textTransform: "uppercase",
             color: `rgba(${t.accent},0.78)`,
           }}
@@ -71,7 +71,7 @@ export default function FaqSection({
             fontFamily: "'DM Serif Display',serif",
             fontWeight: 400,
             fontSize: "clamp(22px, 2.4vw, 32px)",
-            letterSpacing: "-0.025em",
+            letterSpacing: "-0.026em",
             color: t.question,
             marginTop: "10px",
           }}
@@ -106,7 +106,7 @@ export default function FaqSection({
             <span
               style={{
                 fontFamily: "'DM Mono',monospace",
-                fontSize: "14px",
+                fontSize: "15px",
                 color: `rgba(${t.accent},0.78)`,
                 flexShrink: 0,
               }}
@@ -117,7 +117,7 @@ export default function FaqSection({
           <p
             style={{
               fontFamily: "'DM Sans',sans-serif",
-              fontSize: "14px",
+              fontSize: "15px",
               lineHeight: 1.65,
               color: t.answer,
               marginTop: "10px",

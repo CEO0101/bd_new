@@ -97,9 +97,14 @@ export default function SiteFooter({ tone = "dark" }: SiteFooterProps) {
           <div className="lg:col-span-1">
             <div className="mb-8 flex items-center gap-3">
               <GreenrockMark tone={tone} />
-              <span className={`font-display text-lg font-bold tracking-tight uppercase ${style.brandText}`}>
-                GREENROCK
-                <span className="opacity-60 ml-2 text-sm font-mono tracking-[0.18em]">Innovations</span>
+              {/* Matches the navbar wordmark exactly — same font (mono),
+                  same casing, same weight/opacity split. Was serif-display
+                  "GREENROCK" + mono "Innovations" at two different sizes,
+                  which made the footer read as a different brand than the
+                  header on the same page. */}
+              <span className={`font-mono text-[13px] uppercase tracking-[0.16em] ${style.brandText}`}>
+                <span className="font-medium">Greenrock</span>
+                <span className="ml-[6px] font-normal opacity-55">Innovations</span>
               </span>
             </div>
             <p className={`max-w-sm text-sm leading-relaxed ${style.bodyText}`}>

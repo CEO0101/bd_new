@@ -28,9 +28,9 @@ function renderSection(s: Section, i: number) {
           style={{
             fontFamily: "'DM Serif Display',serif",
             fontWeight: 400,
-            fontSize: "clamp(20px, 1.9vw, 26px)",
+            fontSize: "clamp(22px, 2.4vw, 32px)",
             lineHeight: 1.25,
-            letterSpacing: "-0.01em",
+            letterSpacing: "-0.018em",
             textTransform: "none",
             color: `rgba(${CREAM},0.92)`,
             marginTop: "44px",
@@ -49,7 +49,7 @@ function renderSection(s: Section, i: number) {
             fontWeight: 400,
             fontSize: "18px",
             lineHeight: 1.3,
-            letterSpacing: "-0.005em",
+            letterSpacing: "-0.018em",
             textTransform: "none",
             color: `rgba(${CREAM},0.88)`,
             marginTop: "28px",
@@ -65,7 +65,7 @@ function renderSection(s: Section, i: number) {
           key={i}
           style={{
             fontFamily: "'DM Sans',sans-serif",
-            fontSize: "16px",
+            fontSize: "15px",
             fontWeight: 400,
             lineHeight: 1.7,
             color: `rgba(${CREAM},0.85)`,
@@ -82,9 +82,9 @@ function renderSection(s: Section, i: number) {
           style={{
             fontFamily: "'DM Serif Display',serif",
             fontStyle: "italic",
-            fontSize: "clamp(20px, 2.2vw, 26px)",
+            fontSize: "clamp(22px, 2.4vw, 32px)",
             lineHeight: 1.35,
-            letterSpacing: "-0.015em",
+            letterSpacing: "-0.018em",
             color: `rgba(${CREAM},0.88)`,
             borderLeft: `2px solid rgba(${ACCENT},0.55)`,
             padding: "8px 0 8px 24px",
@@ -226,7 +226,7 @@ function Article({ post }: { post: Post }) {
             <span style={{
               fontFamily: "'DM Mono',monospace",
               fontSize: "9px",
-              letterSpacing: "0.32em",
+              letterSpacing: "0.28em",
               textTransform: "uppercase" as const,
               color: `rgba(${ACCENT},0.78)`,
             }}>
@@ -261,9 +261,9 @@ function Article({ post }: { post: Post }) {
             style={{
               fontFamily: "'DM Serif Display',serif",
               fontWeight: 400,
-              fontSize: "clamp(34px, 4.6vw, 60px)",
+              fontSize: "clamp(28px, 4vw, 52px)",
               lineHeight: 1.05,
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.026em",
               color: `rgba(${CREAM},0.96)`,
               marginBottom: "20px",
             }}
@@ -280,7 +280,7 @@ function Article({ post }: { post: Post }) {
               fontStyle: "italic",
               fontSize: "20px",
               lineHeight: 1.5,
-              letterSpacing: "-0.012em",
+              letterSpacing: "-0.018em",
               color: `rgba(${CREAM},0.78)`,
               marginBottom: "48px",
               paddingBottom: "32px",
@@ -316,7 +316,7 @@ function Article({ post }: { post: Post }) {
               <span style={{
                 fontFamily: "'DM Mono',monospace",
                 fontSize: "9px",
-                letterSpacing: "0.32em",
+                letterSpacing: "0.28em",
                 textTransform: "uppercase" as const,
                 color: `rgba(${ACCENT},0.78)`,
               }}>
@@ -325,8 +325,8 @@ function Article({ post }: { post: Post }) {
               <h2 id="faq-heading" style={{
                 fontFamily: "'DM Serif Display',serif",
                 fontWeight: 400,
-                fontSize: "clamp(24px, 2.6vw, 36px)",
-                letterSpacing: "-0.025em",
+                fontSize: "clamp(22px, 2.4vw, 32px)",
+                letterSpacing: "-0.026em",
                 color: `rgba(${CREAM},0.94)`,
                 marginTop: "12px",
               }}>
@@ -343,7 +343,7 @@ function Article({ post }: { post: Post }) {
               >
                 <summary style={{
                   fontFamily: "'DM Sans',sans-serif",
-                  fontSize: "16px",
+                  fontSize: "15px",
                   fontWeight: 500,
                   color: `rgba(${CREAM},0.9)`,
                   cursor: "pointer",
@@ -356,7 +356,7 @@ function Article({ post }: { post: Post }) {
                   <span>{f.q}</span>
                   <span style={{
                     fontFamily: "'DM Mono',monospace",
-                    fontSize: "14px",
+                    fontSize: "15px",
                     color: `rgba(${ACCENT},0.85)`,
                   }}>+</span>
                 </summary>
@@ -378,7 +378,7 @@ function Article({ post }: { post: Post }) {
             <p style={{
               fontFamily: "'DM Mono',monospace",
               fontSize: "9px",
-              letterSpacing: "0.32em",
+              letterSpacing: "0.28em",
               textTransform: "uppercase" as const,
               color: `rgba(${ACCENT},0.85)`,
             }}>
@@ -400,7 +400,7 @@ function Article({ post }: { post: Post }) {
                 <a style={{
                   fontFamily: "'DM Mono',monospace",
                   fontSize: "10px",
-                  letterSpacing: "0.24em",
+                  letterSpacing: "0.22em",
                   textTransform: "uppercase" as const,
                   color: `rgba(${CREAM},0.92)`,
                   background: `rgba(${ACCENT},0.06)`,
@@ -417,7 +417,7 @@ function Article({ post }: { post: Post }) {
                 style={{
                   fontFamily: "'DM Mono',monospace",
                   fontSize: "10px",
-                  letterSpacing: "0.24em",
+                  letterSpacing: "0.22em",
                   textTransform: "uppercase" as const,
                   color: `rgba(${CREAM},0.7)`,
                   textDecoration: "none",

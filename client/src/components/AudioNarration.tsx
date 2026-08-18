@@ -204,7 +204,7 @@ export default function AudioNarration({ text, slug }: Props) {
 
         <div style={{ flex: 1, minWidth: "160px" }}>
           <div style={{
-            fontFamily: "'DM Mono',monospace", fontSize: "9px", letterSpacing: "0.24em",
+            fontFamily: "'DM Mono',monospace", fontSize: "9px", letterSpacing: "0.22em",
             textTransform: "uppercase", color: `rgba(${SAGE},0.85)`, marginBottom: "5px",
           }}>
             {state === "playing" ? "Now playing" : state === "paused" ? "Paused" : "Listen to this dispatch"}
@@ -226,7 +226,7 @@ export default function AudioNarration({ text, slug }: Props) {
           }}
           aria-label="Narration language"
           style={{
-            fontFamily: "'DM Mono',monospace", fontSize: "10px", letterSpacing: "0.08em",
+            fontFamily: "'DM Mono',monospace", fontSize: "10px", letterSpacing: "0.16em",
             textTransform: "uppercase", padding: "9px 14px",
             border: `1px solid rgba(${SAGE},0.25)`, background: "rgba(255,255,255,0.75)",
             color: `rgba(${CREAM},0.78)`, borderRadius: "8px", cursor: "pointer", flexShrink: 0,
@@ -255,7 +255,7 @@ export default function AudioNarration({ text, slug }: Props) {
 
       <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "16px", flexWrap: "wrap" }}>
         <span style={{
-          fontFamily: "'DM Mono',monospace", fontSize: "9px", letterSpacing: "0.2em",
+          fontFamily: "'DM Mono',monospace", fontSize: "9px", letterSpacing: "0.22em",
           textTransform: "uppercase", color: `rgba(${CREAM},0.45)`, marginRight: "4px",
         }}>Speed</span>
         {SPEEDS.map((s) => {
@@ -292,7 +292,7 @@ export default function AudioNarration({ text, slug }: Props) {
       )}
 
       <div style={{
-        marginTop: "14px", fontFamily: "'DM Sans',sans-serif", fontSize: "12px",
+        marginTop: "14px", fontFamily: "'DM Sans',sans-serif", fontSize: "13px",
         color: `rgba(${CREAM},0.62)`, lineHeight: 1.5,
       }}>
         {status}

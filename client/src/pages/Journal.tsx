@@ -51,16 +51,16 @@ export default function Journal() {
             <div className="flex items-center gap-3">
               <div className="h-[1px] w-3" style={{ background: `rgba(${ACCENT},0.5)` }} />
               <span style={{
-                fontFamily: "'DM Mono',monospace", fontSize: "6.5px",
-                letterSpacing: "0.32em", textTransform: "uppercase",
+                fontFamily: "'DM Mono',monospace", fontSize: "9px",
+                letterSpacing: "0.28em", textTransform: "uppercase",
                 color: `rgba(${ACCENT},0.85)`,
               }}>
                 Journal · Sustainable Construction Intelligence · Greenrock
               </span>
             </div>
             <span style={{
-              fontFamily: "'DM Mono',monospace", fontSize: "6.5px",
-              color: `rgba(${CREAM},0.16)`, letterSpacing: "0.1em"
+              fontFamily: "'DM Mono',monospace", fontSize: "9px",
+              color: `rgba(${CREAM},0.16)`, letterSpacing: "0.16em"
             }}>
               {POSTS.length.toString().padStart(2, "0")} dispatches
             </span>
@@ -80,7 +80,7 @@ export default function Journal() {
                     fontFamily: "'DM Serif Display',serif",
                     fontStyle: line.italic ? "italic" : "normal",
                     fontWeight: 400,
-                    fontSize: "clamp(34px, 5.2vw, 72px)",
+                    fontSize: "clamp(38px, 7.4vw, 128px)",
                     lineHeight: 0.95,
                     letterSpacing: "-0.035em",
                     color: `rgba(${CREAM},${line.opacity})`,
@@ -129,7 +129,7 @@ export default function Journal() {
                           <time dateTime={p.datePublished}>{p.dateDisplay}</time>
                         </p>
                         <p style={{
-                          fontFamily: "'DM Mono',monospace", fontSize: "8px",
+                          fontFamily: "'DM Mono',monospace", fontSize: "10px",
                           letterSpacing: "0.28em", textTransform: "uppercase" as const,
                           color: `rgba(${CREAM},0.56)`,
                           marginTop: "8px",
@@ -152,14 +152,14 @@ export default function Journal() {
                           fontFamily: "'DM Serif Display',serif", fontWeight: 400,
                           fontSize: "clamp(22px, 2.4vw, 32px)",
                           lineHeight: 1.12,
-                          letterSpacing: "-0.025em",
+                          letterSpacing: "-0.026em",
                           color: `rgba(${CREAM},0.94)`,
                           transition: "color 0.2s",
                         }}>
                           {p.title}
                         </h2>
                         <p style={{
-                          fontFamily: "'DM Sans',sans-serif", fontSize: "14px",
+                          fontFamily: "'DM Sans',sans-serif", fontSize: "15px",
                           color: `rgba(${CREAM},0.74)`, lineHeight: 1.6,
                           marginTop: "10px",
                           maxWidth: "640px",
@@ -171,9 +171,9 @@ export default function Journal() {
                       {/* Arrow */}
                       <div className="hidden md:block">
                         <span style={{
-                          fontFamily: "'DM Mono',monospace", fontSize: "11px",
+                          fontFamily: "'DM Mono',monospace", fontSize: "13px",
                           color: `rgba(${ACCENT},0.85)`,
-                          letterSpacing: "0.1em",
+                          letterSpacing: "0.16em",
                         }}>
                           Read →
                         </span>

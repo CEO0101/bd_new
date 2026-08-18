@@ -71,16 +71,22 @@ export default function Navbar() {
             now that there's no background tint to lean on. */}
         <Link href="/" className="flex items-center gap-[10px] no-underline">
           <GreenrockMark />
+          {/* Wordmark — single ink color, hierarchy by WEIGHT not COLOR.
+              The old version colored "INNOVATIONS" brand-green against a
+              cream "GREENROCK", which is the classic tell of a generated
+              logo: two competing colors at the same optical size, no
+              clear primary. Premium marks (Stripe, Linear, Vercel) hold
+              one color and separate the words with weight/opacity only. */}
           <span style={{
             fontFamily: "'DM Mono', monospace",
-            fontSize: "11.5px",
-            fontWeight: 500,
-            letterSpacing: "0.14em",
-            color: `rgba(${TXT},0.92)`,
+            fontSize: "13px",
+            letterSpacing: "0.16em",
+            color: `rgba(${TXT},0.95)`,
             textTransform: "uppercase",
             textShadow: light ? "none" : "0 1px 6px rgba(0,0,0,0.55)",
           }}>
-            Greenrock<span style={{ color: "#2E6F57", marginLeft: "5px" }}>Innovations</span>
+            <span style={{ fontWeight: 500 }}>Greenrock</span>
+            <span style={{ fontWeight: 400, opacity: 0.55, marginLeft: "6px" }}>Innovations</span>
           </span>
         </Link>
 
@@ -95,7 +101,7 @@ export default function Navbar() {
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "13px",
                 fontWeight: isActive(item.href) ? 500 : 400,
-                letterSpacing: "0.01em",
+                letterSpacing: "0.004em",
                 color: isActive(item.href)
                   ? `rgba(${TXT},0.95)`
                   : `rgba(${TXT},0.62)`,
@@ -116,7 +122,7 @@ export default function Navbar() {
               fontFamily: "'DM Mono', monospace",
               fontSize: "9px",
               fontWeight: 500,
-              letterSpacing: "0.14em",
+              letterSpacing: "0.16em",
               textTransform: "uppercase",
               color: isImpact ? "#09080A" : "#2E6F57",
               background: isImpact ? "#2E6F57" : "transparent",
@@ -149,7 +155,7 @@ export default function Navbar() {
                 ))}
                 <Link href="/impact-calculator"
                   style={{ fontFamily: "'DM Mono',monospace", fontSize: "9px",
-                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    letterSpacing: "0.16em", textTransform: "uppercase",
                     color: "#2E6F57", textDecoration: "none", marginTop: "8px" }}>
                   Impact Calculator
                 </Link>

@@ -47,21 +47,23 @@
       });
     </script>
 
-    <!-- Favicon — split: wordmark (mark + "GREENROCK INNOVATIONS" text) for
-         the browser tab/URL bar at small sizes (16-64px), mark-only at
-         large sizes (192/512px) which Google's search-results favicon
-         system picks because it always selects the LARGEST declared size.
-         So browser tab shows the full brand; Google search shows the
-         clean mark icon. -->
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/icon-apple-180.png" />
-    <meta name="msapplication-TileImage" content="/icon-192.png" />
-    <meta name="msapplication-TileColor" content="#09080A" />
+    <!-- Favicon — ONE mark at every size: the flat geometric mark (white
+         on brand-green tile), matching the navbar. Previously the large
+         sizes pointed at a glossy 3D logo render, and since Google's
+         search-results favicon always picks the LARGEST declared size,
+         that glossy version is what appeared in search — never matching
+         the clean tab icon. Every size is now generated from the same
+         source so tab, search, mobile home screen, and PWA all agree.
+         ?v=4 forces Google/browsers past the cached old icon. -->
+    <link rel="icon" href="/favicon.ico?v=4" sizes="any" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=4" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=4" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=4" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png?v=4" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png?v=4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon-apple-180.png?v=4" />
+    <meta name="msapplication-TileImage" content="/icon-192.png?v=4" />
+    <meta name="msapplication-TileColor" content="#2E6F57" />
     <meta name="theme-color" content="#09080A" />
 
     <!-- Open Graph -->

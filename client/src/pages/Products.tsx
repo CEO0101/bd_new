@@ -186,8 +186,8 @@ export default function Products() {
             <div className="flex items-center gap-3">
               <div className="h-[1px] w-3" style={{ background: `rgba(${ACCENT},0.5)` }} />
               <span style={{
-                fontFamily: "'DM Mono',monospace", fontSize: "6.5px",
-                letterSpacing: "0.32em", textTransform: "uppercase",
+                fontFamily: "'DM Mono',monospace", fontSize: "9px",
+                letterSpacing: "0.28em", textTransform: "uppercase",
                 color: `rgba(${ACCENT},0.85)`,
               }}>
                 Engineered outputs · BIS / MORTH referenced
@@ -209,7 +209,7 @@ export default function Products() {
                     fontFamily: "'DM Serif Display',serif",
                     fontStyle: line.italic ? "italic" : "normal",
                     fontWeight: 400,
-                    fontSize: "clamp(36px, 5.6vw, 78px)",
+                    fontSize: "clamp(38px, 7.4vw, 128px)",
                     lineHeight: 0.95,
                     letterSpacing: "-0.035em",
                     color: `rgba(${CREAM},${line.opacity})`,
@@ -239,15 +239,15 @@ export default function Products() {
           <section style={{ marginBottom: "120px" }}>
             <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
               <span style={{
-                fontFamily: "'DM Mono',monospace", fontSize: "6.5px",
-                letterSpacing: "0.32em", textTransform: "uppercase",
+                fontFamily: "'DM Mono',monospace", fontSize: "9px",
+                letterSpacing: "0.28em", textTransform: "uppercase",
                 color: `rgba(${ACCENT},0.85)`,
               }}>
                 B.01 — Output spec sheet
               </span>
               <span style={{
-                fontFamily: "'DM Mono',monospace", fontSize: "7px",
-                letterSpacing: "0.24em", textTransform: "uppercase",
+                fontFamily: "'DM Mono',monospace", fontSize: "9px",
+                letterSpacing: "0.22em", textTransform: "uppercase",
                 color: `rgba(${CREAM},0.56)`,
               }}>
                 Four output classes · Single closed loop
@@ -279,13 +279,13 @@ export default function Products() {
                         width: "34px", height: "34px", borderRadius: "8px",
                         background: `rgba(${ACCENT},0.12)`, border: `1px solid rgba(${ACCENT},0.25)`,
                         fontFamily: "'DM Mono',monospace", fontSize: "9px",
-                        letterSpacing: "0.04em", color: `rgba(${ACCENT},0.95)`, flexShrink: 0,
+                        letterSpacing: "0.02em", color: `rgba(${ACCENT},0.95)`, flexShrink: 0,
                       }}>
                         {o.code}
                       </span>
                       <h2 style={{
                         fontFamily: "'DM Serif Display',serif", fontWeight: 400,
-                        fontSize: "28px", letterSpacing: "-0.024em",
+                        fontSize: "28px", letterSpacing: "-0.026em",
                         color: `rgba(${CREAM},0.95)`, lineHeight: 1.1,
                       }}>
                         {o.name}
@@ -330,13 +330,13 @@ export default function Products() {
                         }}
                       >
                         <dt style={{
-                          fontFamily: "'DM Sans',sans-serif", fontSize: "12px",
+                          fontFamily: "'DM Sans',sans-serif", fontSize: "13px",
                           color: `rgba(${CREAM},0.7)`,
                         }}>
                           {k.label}
                         </dt>
                         <dd style={{
-                          fontFamily: "'DM Mono',monospace", fontSize: "11.5px",
+                          fontFamily: "'DM Mono',monospace", fontSize: "13px",
                           color: `rgba(${CREAM},0.88)`, letterSpacing: "0.02em",
                         }}>
                           {k.value}
@@ -351,8 +351,8 @@ export default function Products() {
                     paddingTop: "14px",
                   }}>
                     <p style={{
-                      fontFamily: "'DM Mono',monospace", fontSize: "8px",
-                      letterSpacing: "0.32em", textTransform: "uppercase" as const,
+                      fontFamily: "'DM Mono',monospace", fontSize: "10px",
+                      letterSpacing: "0.28em", textTransform: "uppercase" as const,
                       color: `rgba(${ACCENT},0.78)`,
                       marginBottom: "8px",
                     }}>
@@ -361,7 +361,7 @@ export default function Products() {
                     <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                       {o.apps.map((app) => (
                         <li key={app} style={{
-                          fontFamily: "'DM Sans',sans-serif", fontSize: "12.5px",
+                          fontFamily: "'DM Sans',sans-serif", fontSize: "13px",
                           color: `rgba(${CREAM},0.85)`, lineHeight: 1.7,
                         }}>
                           — {app}
@@ -378,15 +378,15 @@ export default function Products() {
           <section style={{ marginBottom: "120px" }}>
             <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
               <span style={{
-                fontFamily: "'DM Mono',monospace", fontSize: "6.5px",
-                letterSpacing: "0.32em", textTransform: "uppercase",
+                fontFamily: "'DM Mono',monospace", fontSize: "9px",
+                letterSpacing: "0.28em", textTransform: "uppercase",
                 color: `rgba(${ACCENT},0.85)`,
               }}>
                 B.02 — Use-case fit
               </span>
               <span style={{
-                fontFamily: "'DM Mono',monospace", fontSize: "7px",
-                letterSpacing: "0.24em", textTransform: "uppercase",
+                fontFamily: "'DM Mono',monospace", fontSize: "9px",
+                letterSpacing: "0.22em", textTransform: "uppercase",
                 color: `rgba(${CREAM},0.56)`,
               }}>
                 Primary · Secondary · Reference standard
@@ -450,8 +450,8 @@ export default function Products() {
                       <td style={{
                         padding: "16px 16px",
                         fontFamily: "'DM Mono',monospace",
-                        fontSize: "11px",
-                        letterSpacing: "0.04em",
+                        fontSize: "13px",
+                        letterSpacing: "0.02em",
                         color: `rgba(${ACCENT},0.8)`,
                       }}>{row.ref}</td>
                     </tr>
@@ -465,8 +465,8 @@ export default function Products() {
           <section style={{ marginBottom: "120px" }}>
             <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
               <span style={{
-                fontFamily: "'DM Mono',monospace", fontSize: "6.5px",
-                letterSpacing: "0.32em", textTransform: "uppercase",
+                fontFamily: "'DM Mono',monospace", fontSize: "9px",
+                letterSpacing: "0.28em", textTransform: "uppercase",
                 color: `rgba(${ACCENT},0.85)`,
               }}>
                 B.03 — Operating signals
@@ -485,21 +485,21 @@ export default function Products() {
                   }}
                 >
                   <span style={{
-                    fontFamily: "'DM Mono',monospace", fontSize: "8px",
-                    letterSpacing: "0.32em", textTransform: "uppercase" as const,
+                    fontFamily: "'DM Mono',monospace", fontSize: "10px",
+                    letterSpacing: "0.28em", textTransform: "uppercase" as const,
                     color: `rgba(${ACCENT},0.85)`,
                   }}>
                     {s.k}
                   </span>
                   <p style={{
                     fontFamily: "'DM Serif Display',serif", fontSize: "22px",
-                    letterSpacing: "-0.02em", color: `rgba(${CREAM},0.92)`,
+                    letterSpacing: "-0.018em", color: `rgba(${CREAM},0.92)`,
                     marginTop: "8px", lineHeight: 1.1,
                   }}>
                     {s.v}
                   </p>
                   <p style={{
-                    fontFamily: "'DM Sans',sans-serif", fontSize: "12px",
+                    fontFamily: "'DM Sans',sans-serif", fontSize: "13px",
                     color: `rgba(${CREAM},0.7)`, lineHeight: 1.6,
                     marginTop: "8px",
                   }}>
@@ -551,13 +551,13 @@ export default function Products() {
                 </p>
                 <h3 style={{
                   fontFamily: "'DM Serif Display',serif", fontWeight: 400,
-                  fontSize: "20px", textTransform: "none", letterSpacing: "-0.012em",
+                  fontSize: "20px", textTransform: "none", letterSpacing: "-0.018em",
                   color: `rgba(${CREAM},0.92)`, marginBottom: "10px", lineHeight: 1.35,
                 }}>
                   Inside Karnataka's Mineral Dispatch Permit System
                 </h3>
                 <p style={{
-                  fontFamily: "'DM Sans',sans-serif", fontSize: "14px",
+                  fontFamily: "'DM Sans',sans-serif", fontSize: "15px",
                   lineHeight: 1.6, color: `rgba(${CREAM},0.7)`,
                 }}>
                   Rule 3-C(4), KMMC royalty, the Khanijadmg portal, and the dispatch
@@ -583,13 +583,13 @@ export default function Products() {
                 </p>
                 <h3 style={{
                   fontFamily: "'DM Serif Display',serif", fontWeight: 400,
-                  fontSize: "20px", textTransform: "none", letterSpacing: "-0.012em",
+                  fontSize: "20px", textTransform: "none", letterSpacing: "-0.018em",
                   color: `rgba(${CREAM},0.92)`, marginBottom: "10px", lineHeight: 1.35,
                 }}>
                   M-Sand, P-Sand, G-Sand: Every Type of Manufactured Sand Explained
                 </h3>
                 <p style={{
-                  fontFamily: "'DM Sans',sans-serif", fontSize: "14px",
+                  fontFamily: "'DM Sans',sans-serif", fontSize: "15px",
                   lineHeight: 1.6, color: `rgba(${CREAM},0.7)`,
                 }}>
                   IS 383:2016 gradation zones, applications, source rock effects, and
@@ -615,13 +615,13 @@ export default function Products() {
                 </p>
                 <h3 style={{
                   fontFamily: "'DM Serif Display',serif", fontWeight: 400,
-                  fontSize: "20px", textTransform: "none", letterSpacing: "-0.012em",
+                  fontSize: "20px", textTransform: "none", letterSpacing: "-0.018em",
                   color: `rgba(${CREAM},0.92)`, marginBottom: "10px", lineHeight: 1.35,
                 }}>
                   Recycled Construction Materials: A 2026 Specifier's Manual
                 </h3>
                 <p style={{
-                  fontFamily: "'DM Sans',sans-serif", fontSize: "14px",
+                  fontFamily: "'DM Sans',sans-serif", fontSize: "15px",
                   lineHeight: 1.6, color: `rgba(${CREAM},0.7)`,
                 }}>
                   The eight categories that carry the volume, code coverage, and
@@ -634,15 +634,15 @@ export default function Products() {
           {/* ── Closing ──────────────────────────────────────────────── */}
           <section style={{ marginBottom: "60px", textAlign: "center" }}>
             <span style={{
-              fontFamily: "'DM Mono',monospace", fontSize: "7px",
-              letterSpacing: "0.36em", textTransform: "uppercase",
+              fontFamily: "'DM Mono',monospace", fontSize: "9px",
+              letterSpacing: "0.28em", textTransform: "uppercase",
               color: `rgba(${ACCENT},0.85)`,
             }}>
               Enquiries
             </span>
             <p style={{
               fontFamily: "'DM Serif Display',serif", fontStyle: "italic",
-              fontSize: "clamp(22px, 3vw, 36px)", lineHeight: 1.3,
+              fontSize: "clamp(22px, 2.4vw, 32px)", lineHeight: 1.3,
               color: `rgba(${CREAM},0.82)`,
               marginTop: "16px", maxWidth: "640px",
               marginLeft: "auto", marginRight: "auto",
@@ -656,7 +656,7 @@ export default function Products() {
                 display: "inline-block",
                 fontFamily: "'DM Mono',monospace",
                 fontSize: "10px",
-                letterSpacing: "0.24em",
+                letterSpacing: "0.22em",
                 textTransform: "uppercase" as const,
                 color: `rgba(${CREAM},0.92)`,
                 background: `rgba(${ACCENT},0.06)`,

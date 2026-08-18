@@ -78,7 +78,7 @@ export default function Impact() {
           <div className="overflow-hidden">
             <motion.h2
               className="font-display font-black uppercase leading-[0.85] tracking-[-0.03em] text-white"
-              style={{ fontSize: "clamp(3rem, 9vw, 9rem)" }}
+              style={{ fontSize: "clamp(3.2rem, 9vw, 9.5rem)" }}
               initial={{ y: "110%" }}
               whileInView={{ y: "0%" }}
               viewport={{ once: true }}
@@ -91,7 +91,7 @@ export default function Impact() {
             <motion.h2
               className="font-display font-black uppercase leading-[0.85] tracking-[-0.03em]"
               style={{
-                fontSize: "clamp(3rem, 9vw, 9rem)",
+                fontSize: "clamp(3.2rem, 9vw, 9.5rem)",
                 color: "transparent",
                 WebkitTextStroke: "1.5px rgba(255,255,255,0.8)",
               }}
@@ -184,7 +184,7 @@ function StatRow({ stat, i }: { stat: typeof STATS[0]; i: number }) {
       <div
         className="relative font-display font-black uppercase leading-none tracking-tighter select-none md:w-72 shrink-0"
         style={{
-          fontSize: "clamp(4rem, 10vw, 9rem)",
+          fontSize: "clamp(3.2rem, 9vw, 9.5rem)",
           color: i % 2 === 0 ? "white" : "transparent",
           WebkitTextStroke: i % 2 === 0 ? "none" : "1.5px rgba(255,255,255,0.85)",
         }}

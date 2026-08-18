@@ -353,7 +353,7 @@ export default function Process() {
               <div className="overflow-hidden mb-1">
                 <h2
                   className="font-display uppercase leading-[0.95] tracking-[-0.01em] text-white/90"
-                  style={{ fontSize: "clamp(2.4rem, 6vw, 6rem)", fontWeight: 400 }}
+                  style={{ fontSize: "clamp(28px, 4vw, 52px)", fontWeight: 400 }}
                 >
                   Closed-Loop
                 </h2>
@@ -362,7 +362,7 @@ export default function Process() {
                 <h2
                   className="font-display uppercase leading-[0.95] tracking-[-0.01em]"
                   style={{
-                    fontSize: "clamp(2.4rem, 6vw, 6rem)",
+                    fontSize: "clamp(28px, 4vw, 52px)",
                     fontWeight: 400,
                     color: "rgba(255,255,255,0.3)",
                   }}
