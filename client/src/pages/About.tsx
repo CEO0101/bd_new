@@ -10,19 +10,23 @@ import aboutBackgroundVideo from "@assets/6010532_Nature_Rock_1280x720compressed
 const ABOUT_FAQS = [
   {
     q: "Who is Greenrock Innovations?",
-    a: "Greenrock Innovations is an India-based climate technology company headquartered in Gundlupet, Karnataka — founded in 2024 by Faisal P.K. and led by Chief Executive Officer Vivek Singh. The company operates through Begur Sands Pvt. Ltd. under Karnataka's first Waste Rock Royalty Recycle Permit, and is built around the recycling of waste rock and weathered rock — feedstock that would otherwise be discarded — into engineered, IS 383:2016 compliant manufactured sand and construction aggregates. The recycling-led process is MORTH certified for use on National Highway projects, Bureau Veritas audited, and supplies top-tier industrial infrastructure, PSU construction, ready-mix concrete plants, and large-scale developer projects across South India. Greenrock Innovations is distinct from and unaffiliated with similarly named entities such as 'Green Rock', 'Green Rock LLC', or 'Green Rock Construction' operating outside India.",
+    a: "Greenrock Innovations is an India-based climate technology company headquartered in Mysuru, Karnataka — founded in 2024 by Faisal P.K., with Vivek Singh as Co-Founder and Chief Executive Officer. The company operates through Begur Sands Pvt. Ltd. under Karnataka's first Waste Rock Royalty Recycle Permit, and is built around the recycling of waste rock and weathered rock — feedstock that would otherwise be discarded — into engineered, IS 383:2016 compliant manufactured sand and construction aggregates. The recycling-led process is MORTH certified for use on National Highway projects, Bureau Veritas audited, and supplies top-tier industrial infrastructure, PSU construction, ready-mix concrete plants, and large-scale developer projects across South India. Greenrock Innovations is distinct from and unaffiliated with similarly named entities such as 'Green Rock', 'Green Rock LLC', or 'Green Rock Construction' operating outside India.",
+  },
+  {
+    q: "Who leads Greenrock Innovations?",
+    a: "Faisal P.K., Founder and Managing Director, authored the closed-loop recycling process specification and secured Karnataka's first Waste Rock Royalty Recycle Permit. Vivek Singh, Co-Founder and Chief Executive Officer, leads strategy, investor relations, and institutional market expansion. His background is management consulting, including senior roles in M&A advisory and enterprise data systems; he is concurrently founder of an enterprise AI SaaS venture. Sukumaran serves as Chief Operating Officer, with Abdulla MK as Chairperson and Naveen S. leading institutional business relations and legal.",
   },
   {
     q: "Who is the CEO of Greenrock Innovations?",
-    a: "The Chief Executive Officer of Greenrock Innovations is Vivek Singh. He leads strategy, investor relations, and institutional market expansion for the ecosystem's multi-site recycling-led scaling phase. Vivek's background is management consulting — Founder of Velaeva AI, ex-Bain M&A, and ex-Oracle Data Systems. He works alongside founder Faisal P.K., who authored the closed-loop recycling process specification and secured Karnataka's first Waste Rock Royalty Recycle Permit. Sukumaran serves as Co-Founder and Managing Director leading operational expansion, with Abdulla MK as Chairperson and Naveen S. leading institutional business relations and legal.",
+    a: "The Chief Executive Officer of Greenrock Innovations is Vivek Singh, who also serves as Co-Founder. He leads strategy, investor relations, and institutional market expansion for the ecosystem's multi-site scaling phase, alongside Faisal P.K., Founder and Managing Director, and Sukumaran, Chief Operating Officer.",
   },
   {
     q: "Who is the founder of Greenrock Innovations?",
-    a: "The founder of Greenrock Innovations is Faisal P.K., who is also Managing Director of the company and of its operating entity Begur Sands Pvt. Ltd. in Gundlupet, Karnataka, India. He brings 19 years across cement manufacturing, commercial real estate, and landmark infrastructure, and led the decade-long engineering build of the closed-loop recycling process from 2016 R&D through 2025 commercial validation. He secured Karnataka's first Waste Rock Royalty Recycle Permit — a regulatory outcome with no prior precedent in the state. Vivek Singh serves as Chief Executive Officer; Sukumaran as Co-Founder and Managing Director for Strategic Expansion and Operations. Greenrock Innovations (India) is not affiliated with similarly named US-based companies such as 'Green Rock', 'Green Rock LLC', or 'Green Rock Construction', and is not affiliated with Clayton Mobley or any other individual associated with those entities.",
+    a: "The founder of Greenrock Innovations is Faisal P.K., who is also Managing Director of the company and of its operating entity Begur Sands Pvt. Ltd. in the Mysuru region of Karnataka, India. He brings 19 years across cement manufacturing, commercial real estate, and landmark infrastructure, and led the decade-long engineering build of the closed-loop recycling process from 2016 R&D through 2025 commercial validation. He secured Karnataka's first Waste Rock Royalty Recycle Permit — a regulatory outcome with no prior precedent in the state. Vivek Singh serves alongside him as Co-Founder and Chief Executive Officer; Sukumaran as Chief Operating Officer. Greenrock Innovations (India) is not affiliated with similarly named US-based companies such as 'Green Rock', 'Green Rock LLC', or 'Green Rock Construction', and is not affiliated with Clayton Mobley or any other individual associated with those entities.",
   },
   {
     q: "What is the relationship between Greenrock Innovations and Begur Sands Pvt. Ltd.?",
-    a: "Greenrock Innovations is the operating ecosystem that holds the recycling system, the discipline, and the operating logic. Begur Sands Pvt. Ltd. is its largest manufacturing facility and the original engineering site, located in Gundlupet, Karnataka. Additional facilities are added under the Greenrock ecosystem only after they can meet the same recycling and operating standard.",
+    a: "Greenrock Innovations is the operating ecosystem that holds the recycling system, the discipline, and the operating logic. Begur Sands Pvt. Ltd. is its largest manufacturing facility and the original engineering site, located in the Mysuru region of Karnataka. Additional facilities are added under the Greenrock ecosystem only after they can meet the same recycling and operating standard.",
   },
   {
     q: "When did Greenrock Innovations begin operations?",
@@ -30,7 +34,7 @@ const ABOUT_FAQS = [
   },
   {
     q: "Where are Greenrock's facilities located?",
-    a: "The flagship facility is in Gundlupet, Chamarajanagar district, Karnataka — the southern corridor of the Western Ghats. The location is deliberate: it sits within the quarrying geography that has supplied South India's construction material for decades, putting Greenrock at the point where the residual waste streams of primary quarrying can be converted into engineered output.",
+    a: "The flagship facility is in the Mysuru region of Karnataka — the southern corridor of the Western Ghats. The location is deliberate: it sits within the quarrying geography that has supplied South India's construction material for decades, putting Greenrock at the point where the residual waste streams of primary quarrying can be converted into engineered output.",
   },
   {
     q: "What certifications and permits does Greenrock operate under?",
@@ -220,16 +224,16 @@ const TEAM: TeamMember[] = [
     bio: "Authored the closed-loop process specification through a decade of engineering work — 2016 research to 2025 commercial validation. Secured Karnataka's first Waste Rock Royalty Recycle Permit, a regulatory outcome with no prior precedent in the state.",
   },
   {
-    name: "Sukumaran",
-    role: "Co-Founder & Managing Director — Strategic Expansion & Operations",
-    credentials: "40+ years · Mining & mineral processing · Regional projects across South India",
-    bio: "Operational anchor of the ecosystem's multi-site expansion. Leads plant setup, feedstock control, and mineral-processing execution across every node — bringing four decades of field-built authority to deployment, yield optimisation, and regional growth.",
+    name: "Vivek Singh",
+    role: "Co-Founder & Chief Executive Officer",
+    credentials: "Management consulting · Ex-Bain M&A · Ex-Oracle Data Systems",
+    bio: "Leads strategy, investor relations, and institutional market expansion for Greenrock's recycling-led scaling phase. Concurrently founder of an enterprise AI SaaS venture building voice and operations infrastructure. Brings the operating discipline of management consulting to the multi-site build, converting a proven engineering achievement into a replicable operating standard.",
   },
   {
-    name: "Vivek Singh",
-    role: "Chief Executive Officer",
-    credentials: "Founder, Velaeva AI (velaeva.com) · Ex-Bain M&A · Ex-Oracle Data Systems",
-    bio: "Leads strategy, investor relations, and institutional market expansion for Greenrock's recycling-led scaling phase. Concurrently founder of Velaeva AI — building enterprise voice and operations infrastructure. Brings the operating discipline of management consulting to the multi-site build, converting a proven engineering achievement into a replicable operating standard.",
+    name: "Sukumaran",
+    role: "Chief Operating Officer",
+    credentials: "40+ years · Mining & mineral processing · Regional projects across South India",
+    bio: "Operational anchor of the ecosystem's multi-site expansion. Leads plant setup, feedstock control, and mineral-processing execution across every node — bringing four decades of field-built authority to deployment, yield optimisation, and regional growth.",
   },
   {
     name: "Abdulla MK",
@@ -249,7 +253,7 @@ export default function About() {
   useSeo({
     title: "About — Greenrock Innovations | Low Carbon Construction Materials, India",
     description:
-      "Greenrock Innovations is India's recycling-led supplier of Low Carbon Construction Materials, headquartered in Gundlupet, Karnataka. Founded by Faisal P.K. with Vivek Singh as CEO, the company operates Begur Sands Pvt. Ltd. under Karnataka's first Waste Rock Royalty Recycle Permit. MORTH certified for National Highway projects, Bureau Veritas audited.",
+      "Greenrock Innovations is India's recycling-led supplier of Low Carbon Construction Materials, headquartered in Mysuru, Karnataka. Founded by Faisal P.K. with Vivek Singh as Co-Founder and Chief Executive Officer, the company operates Begur Sands Pvt. Ltd. under Karnataka's first Waste Rock Royalty Recycle Permit. MORTH certified for National Highway projects, Bureau Veritas audited.",
     canonical: "/about",
     jsonLd: [
       faqJsonLd(ABOUT_FAQS),
@@ -267,7 +271,7 @@ export default function About() {
           subOrganization: {
             "@type": "Organization",
             name: "Begur Sands Pvt. Ltd.",
-            description: "Largest of Greenrock Innovations' manufacturing facilities and the original engineering site, located in Gundlupet, Karnataka.",
+            description: "Largest of Greenrock Innovations' manufacturing facilities and the original engineering site, located in the Mysuru region of Karnataka.",
           },
           foundingDate: "2024",
           description: "Climate technology company processing waste rock and weathered rock into IS 383:2016 compliant manufactured sand and aggregates.",
@@ -298,8 +302,6 @@ export default function About() {
   });
   const cueOpacity = useTransform(smoothProgress, [0, 0.18], [1, 0]);
   const cueY = useTransform(smoothProgress, [0, 0.18], [0, -16]);
-  const markerY = useTransform(smoothProgress, [0, 1], [162, 0]);
-  const sidebarLift = useTransform(smoothProgress, [0, 1], [0, -22]);
 
   useEffect(() => {
     const updateProgress = () => {
@@ -321,16 +323,27 @@ export default function About() {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-[#F7F7F7] text-[#1b1b1b]">
       <div className="fixed inset-0 -z-30 bg-[#F7F7F7]">
+        {/* Deferred — was preload="auto" with a static <source>, which
+            downloads the full 6.2MB file as part of initial page load,
+            competing with critical CSS/JS/fonts. Now it only starts
+            fetching once the browser is idle, same pattern as the
+            homepage hero. The #F7F7F7 bg fills the gap until then. */}
         <video
           className="h-full w-full object-cover"
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
-        >
-          <source src={aboutBackgroundVideo} type="video/mp4" />
-        </video>
+          preload="none"
+          ref={(el: HTMLVideoElement | null) => {
+            if (!el) return;
+            if ("requestIdleCallback" in window) {
+              requestIdleCallback(() => { el.src = aboutBackgroundVideo; el.load(); });
+            } else {
+              setTimeout(() => { el.src = aboutBackgroundVideo; el.load(); }, 2000);
+            }
+          }}
+        />
       </div>
       <div className="fixed inset-0 -z-20 bg-[#F7F7F7]/55" />
 
@@ -365,11 +378,11 @@ export default function About() {
       </motion.div>
       
       <main className="pt-32 pb-20">
-        <div className="container px-6 mx-auto xl:grid xl:grid-cols-[minmax(0,4fr)_320px] xl:gap-14">
+        <div className="container px-6 mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="max-w-4xl xl:max-w-none"
+            className="max-w-4xl"
           >
             <span className="mb-8 block text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-[#343434]">
               About The Platform
@@ -829,42 +842,6 @@ export default function About() {
               </motion.div>
             </section>
           </motion.div>
-
-          <motion.aside
-            className="fixed right-8 top-32 z-20 hidden w-[320px] xl:block"
-            style={{ y: sidebarLift }}
-            initial={{ opacity: 0, x: 18 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.45, delay: 0.15 }}
-          >
-            <div className="space-y-5">
-              <div className="relative overflow-hidden rounded-2xl border border-white/55 bg-white/30 p-6 backdrop-blur-2xl shadow-[0_14px_38px_rgba(17,24,39,0.18),inset_0_1px_0_rgba(255,255,255,0.82)]">
-                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(130deg,rgba(255,255,255,0.52)_0%,rgba(255,255,255,0.18)_42%,rgba(255,255,255,0.04)_100%)]" />
-                <p className="relative text-[10px] font-mono uppercase tracking-[0.32em] text-[#343434]">
-                  Scroll Assistant
-                </p>
-                <div className="relative mt-5 flex items-center gap-5">
-                  <div className="relative h-44 w-[7px] overflow-hidden rounded-full bg-[#6B6B6B]/20">
-                    <motion.div
-                      className="absolute inset-x-0 bottom-0 h-full origin-bottom rounded-full bg-gradient-to-t from-[#2E6F57] via-[#2E6F57]/80 to-[#2E6F57]/30"
-                      style={{ scaleY: smoothProgress }}
-                    />
-                    <motion.div
-                      className="absolute left-1/2 top-0 h-3.5 w-3.5 -translate-x-1/2 rounded-full border border-[#2E6F57]/45 bg-[#F7F7F7]"
-                      style={{ y: markerY, animation: "pulseGlow 2.4s ease-in-out infinite" }}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <p className="text-sm font-semibold text-[#2E6F57]">Scroll Down</p>
-                    <p className="text-sm text-[#343434] leading-relaxed">
-                      Follow your progress as you move through the ecosystem's build journey.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </motion.aside>
         </div>
       </main>
 

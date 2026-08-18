@@ -3,8 +3,9 @@ import Navbar from "@/components/Navbar";
 import Process from "@/components/sections/Process";
 import FaqSection from "@/components/FaqSection";
 import { useSeo, faqJsonLd, breadcrumbJsonLd } from "@/lib/useSeo";
-import miningVideo from "@/assets/videos/mining-extraction.mp4";
-import processVideo from "@/assets/videos/process-equipment.mp4";
+// Real facility footage (drone aerials + process shots), not stock.
+import crusherAerialVideo from "@/assets/videos/mysuru-crusher-aerial.mp4";
+import stockpileVideo from "@/assets/videos/mysuru-stockpile-dispatch.mp4";
 
 const TECH_FAQS = [
   {
@@ -39,7 +40,8 @@ const TECH_FAQS = [
 ─────────────────────────────────────────────────────────────────────── */
 const PAGE_BG = "#FFFFFF";
 const PAGE_BG_RGB = "255,255,255";
-const ACCENT = "85,85,85"; // sky-blue, used as rgba()
+const ACCENT = "46,111,87"; // brand green (#2E6F57) — matches the nav logo/CTA
+// and About page, instead of the gray this page had drifted to on its own.
 const CREAM = "20,19,15";
 
 /* ─── Equipment & control spec ───────────────────────────────────────── */
@@ -124,21 +126,35 @@ export default function Technology() {
       >
         {/* Video */}
         <div className="absolute inset-0 z-0">
+          {/* Deferred — was preload="auto" with a static <source>, eagerly
+              downloading the full 11.9MB file as part of initial page
+              load. Now it only fetches once the browser is idle. The
+              white gradient scrim below covers the gap until it loads. */}
           <video
             autoPlay
             loop
             muted
             playsInline
-            preload="auto"
+            preload="none"
             className="absolute inset-0 w-full h-full object-cover"
-            style={{ opacity: 0.34, mixBlendMode: "luminosity" }}
-          >
-            <source src={miningVideo} type="video/mp4" />
-          </video>
+            style={{ opacity: 0.55 }}
+            ref={(el: HTMLVideoElement | null) => {
+              if (!el) return;
+              if ("requestIdleCallback" in window) {
+                requestIdleCallback(() => { el.src = crusherAerialVideo; el.load(); });
+              } else {
+                setTimeout(() => { el.src = crusherAerialVideo; el.load(); }, 2000);
+              }
+            }}
+          />
+          {/* Softened from 0.94 — at full strength the white scrim erased the
+              video almost entirely, leaving a washed-out, unfinished-looking
+              hero. This keeps the quarry footage legible as an actual
+              background image while still holding contrast for the headline. */}
           <div
             className="absolute inset-0"
             style={{
-              background: `linear-gradient(130deg, rgba(${PAGE_BG_RGB},0.94) 0%, rgba(${PAGE_BG_RGB},0.62) 48%, rgba(${PAGE_BG_RGB},0.2) 100%)`,
+              background: `linear-gradient(130deg, rgba(${PAGE_BG_RGB},0.7) 0%, rgba(${PAGE_BG_RGB},0.42) 48%, rgba(${PAGE_BG_RGB},0.12) 100%)`,
             }}
           />
           {/* Bottom fade into the page bg so the next section blends seamlessly */}
@@ -334,6 +350,10 @@ export default function Technology() {
                 See the equipment
               </motion.button>
 
+              {/* Secondary — a low-contrast ghost fill (near-invisible border/bg)
+                  only reads on a solid dark backdrop. This hero is a light page
+                  over a busy photo, so it needs real glass definition: an
+                  opaque-enough white panel + dark text, not gray-on-gray. */}
               <motion.button
                 onClick={() =>
                   document
@@ -345,18 +365,19 @@ export default function Technology() {
                   fontSize: "8px",
                   letterSpacing: "0.18em",
                   textTransform: "uppercase" as const,
-                  color: `rgba(${ACCENT},0.85)`,
-                  background: `rgba(${ACCENT},0.05)`,
-                  border: `1px solid rgba(${ACCENT},0.18)`,
+                  color: `rgba(${CREAM},0.85)`,
+                  background: "rgba(255,255,255,0.7)",
+                  border: `1px solid rgba(${CREAM},0.18)`,
                   backdropFilter: "blur(16px)",
                   WebkitBackdropFilter: "blur(16px)",
                   padding: "11px 24px",
                   borderRadius: "3px",
                   cursor: "pointer",
+                  boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
                 }}
                 whileHover={{
-                  color: `rgba(${ACCENT},1)`,
-                  borderColor: `rgba(${ACCENT},0.35)`,
+                  background: "rgba(255,255,255,0.92)",
+                  borderColor: `rgba(${CREAM},0.3)`,
                 }}
                 transition={{ duration: 0.2 }}
               >
@@ -476,10 +497,11 @@ export default function Technology() {
                   delay: (ei % 3) * 0.06,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                whileHover={{ borderColor: `rgba(${ACCENT},0.32)` }}
+                whileHover={{ y: -3, borderColor: `rgba(${ACCENT},0.32)` }}
                 style={{
                   border: `1px solid rgba(${ACCENT},0.10)`,
                   background: `rgba(${ACCENT},0.025)`,
+                  borderRadius: "12px",
                   padding: "30px 28px 32px",
                   position: "relative",
                   transition: "border-color 0.25s ease",
@@ -606,7 +628,7 @@ export default function Technology() {
                   maxWidth: "640px",
                 }}
               >
-                The line, running.{" "}
+                Dispatch-ready.{" "}
                 <span style={{ color: `rgba(${CREAM},0.56)`, fontStyle: "italic" }}>
                   Unstaged.
                 </span>
@@ -621,8 +643,8 @@ export default function Technology() {
                 maxWidth: "320px",
               }}
             >
-              Filmed on the Gundlupet line — equipment-driven footage, no re-cuts. What you see is the
-              system doing its job.
+              Aerial footage of stockpiled output at the Mysuru facility — no re-cuts, no staging.
+              What you see is what leaves the gate.
             </p>
           </div>
 
@@ -635,7 +657,9 @@ export default function Technology() {
               position: "relative",
               border: `1px solid rgba(${ACCENT},0.14)`,
               background: `rgba(${ACCENT},0.025)`,
+              borderRadius: "14px",
               padding: "12px",
+              overflow: "hidden",
             }}
           >
             <video
@@ -645,9 +669,9 @@ export default function Technology() {
               playsInline
               preload="metadata"
               className="w-full h-auto block"
-              style={{ display: "block" }}
+              style={{ display: "block", borderRadius: "8px" }}
             >
-              <source src={processVideo} type="video/mp4" />
+              <source src={stockpileVideo} type="video/mp4" />
             </video>
           </motion.div>
 
@@ -721,7 +745,7 @@ export default function Technology() {
       <section style={{ padding: "0 52px 140px" }}>
         <div className="max-w-3xl mx-auto">
           <FaqSection
-            tone="dark-slate"
+            tone="light"
             eyebrow="B.04 — Frequently asked"
             title="Process, equipment, governance."
             faqs={TECH_FAQS}

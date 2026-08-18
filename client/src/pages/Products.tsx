@@ -33,7 +33,7 @@ const PRODUCT_FAQS = [
   },
   {
     q: "Where is Greenrock material produced and dispatched from?",
-    a: "From Greenrock's facility in Gundlupet, Chamarajanagar district, Karnataka — the southern corridor of the Western Ghats. The original engineering site is operated as Begur Sands Pvt. Ltd., now the largest of Greenrock's affiliated manufacturing facilities.",
+    a: "From Greenrock's facility in the Mysuru region of Karnataka — the southern corridor of the Western Ghats. The original engineering site is operated as Begur Sands Pvt. Ltd., now the largest of Greenrock's affiliated manufacturing facilities.",
   },
   {
     q: "What standards do the coarse aggregates meet?",
@@ -41,10 +41,10 @@ const PRODUCT_FAQS = [
   },
 ];
 
-/* ─── Page palette (matches Technology) ─────────────────────────────── */
+/* ─── Page palette (matches Technology + About + Navbar) ─────────────── */
 const PAGE_BG = "#FFFFFF";
 const CREAM = "20,19,15";
-const ACCENT = "85,85,85";
+const ACCENT = "46,111,87"; // brand green (#2E6F57)
 
 /* ─── Engineered output catalogue ───────────────────────────────────── */
 type Output = {
@@ -190,13 +190,9 @@ export default function Products() {
                 letterSpacing: "0.32em", textTransform: "uppercase",
                 color: `rgba(${ACCENT},0.85)`,
               }}>
-                Section 003 / 006 · Engineered outputs · BIS / MORTH referenced
+                Engineered outputs · BIS / MORTH referenced
               </span>
             </div>
-            <span style={{
-              fontFamily: "'DM Mono',monospace", fontSize: "6.5px",
-              color: `rgba(${CREAM},0.16)`, letterSpacing: "0.1em"
-            }}>003 / 006</span>
           </div>
 
           {/* ── Headline ─────────────────────────────────────────────── */}
@@ -258,7 +254,7 @@ export default function Products() {
               </span>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {OUTPUTS.map((o, oi) => (
                 <motion.article
                   key={o.code}
@@ -266,23 +262,30 @@ export default function Products() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.7, delay: (oi % 2) * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                  whileHover={{ y: -3, borderColor: `rgba(${ACCENT},0.35)` }}
                   style={{
-                    borderTop: `1px solid rgba(${ACCENT},0.25)`,
-                    paddingTop: "20px",
+                    border: `1px solid rgba(${ACCENT},0.14)`,
+                    background: `rgba(${ACCENT},0.03)`,
+                    borderRadius: "10px",
+                    padding: "28px",
+                    transition: "border-color 0.25s ease",
                   }}
                 >
-                  {/* Row 1: code + name + size */}
+                  {/* Row 1: code badge + name + size */}
                   <div className="flex items-baseline justify-between gap-4 mb-3 flex-wrap">
-                    <div className="flex items-baseline gap-4">
+                    <div className="flex items-center gap-4">
                       <span style={{
-                        fontFamily: "'DM Mono',monospace", fontSize: "10px",
-                        letterSpacing: "0.22em", color: `rgba(${ACCENT},0.85)`,
+                        display: "inline-flex", alignItems: "center", justifyContent: "center",
+                        width: "34px", height: "34px", borderRadius: "8px",
+                        background: `rgba(${ACCENT},0.12)`, border: `1px solid rgba(${ACCENT},0.25)`,
+                        fontFamily: "'DM Mono',monospace", fontSize: "9px",
+                        letterSpacing: "0.04em", color: `rgba(${ACCENT},0.95)`, flexShrink: 0,
                       }}>
                         {o.code}
                       </span>
                       <h2 style={{
                         fontFamily: "'DM Serif Display',serif", fontWeight: 400,
-                        fontSize: "30px", letterSpacing: "-0.024em",
+                        fontSize: "28px", letterSpacing: "-0.024em",
                         color: `rgba(${CREAM},0.95)`, lineHeight: 1.1,
                       }}>
                         {o.name}
@@ -309,7 +312,12 @@ export default function Products() {
                   </p>
 
                   {/* Spec rows */}
-                  <dl style={{ marginBottom: "20px" }}>
+                  <dl style={{
+                    marginBottom: "20px",
+                    background: `rgba(${CREAM},0.02)`,
+                    borderRadius: "8px",
+                    padding: "4px 14px",
+                  }}>
                     {o.key.map((k, ki) => (
                       <div
                         key={k.label}
@@ -385,16 +393,20 @@ export default function Products() {
               </span>
             </div>
 
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto" style={{
+              border: `1px solid rgba(${ACCENT},0.14)`,
+              borderRadius: "10px",
+              background: `rgba(${ACCENT},0.02)`,
+            }}>
               <table className="w-full min-w-[640px]" style={{ borderCollapse: "collapse" }}>
                 <thead>
-                  <tr style={{ borderBottom: `1px solid rgba(${ACCENT},0.35)` }}>
+                  <tr style={{ borderBottom: `1px solid rgba(${ACCENT},0.25)` }}>
                     {["Product", "Primary use", "Secondary use", "Reference"].map((h) => (
                       <th
                         key={h}
                         style={{
                           textAlign: "left",
-                          padding: "12px 16px 12px 0",
+                          padding: "16px 16px",
                           fontFamily: "'DM Mono',monospace",
                           fontSize: "9px",
                           letterSpacing: "0.28em",
@@ -408,28 +420,35 @@ export default function Products() {
                   </tr>
                 </thead>
                 <tbody>
-                  {FIT_MATRIX.map((row) => (
-                    <tr key={row.product} style={{ borderBottom: `1px solid rgba(${CREAM},0.06)` }}>
+                  {FIT_MATRIX.map((row, ri) => (
+                    <tr
+                      key={row.product}
+                      style={{
+                        borderBottom: ri === FIT_MATRIX.length - 1 ? "none" : `1px solid rgba(${CREAM},0.06)`,
+                        background: ri % 2 === 1 ? `rgba(${CREAM},0.015)` : "transparent",
+                        transition: "background 0.2s ease",
+                      }}
+                    >
                       <td style={{
-                        padding: "16px 16px 16px 0",
+                        padding: "16px 16px",
                         fontFamily: "'DM Serif Display',serif",
                         fontSize: "18px",
                         color: `rgba(${CREAM},0.92)`,
                       }}>{row.product}</td>
                       <td style={{
-                        padding: "16px 16px 16px 0",
+                        padding: "16px 16px",
                         fontFamily: "'DM Sans',sans-serif",
                         fontSize: "13px",
                         color: `rgba(${CREAM},0.86)`,
                       }}>{row.primary}</td>
                       <td style={{
-                        padding: "16px 16px 16px 0",
+                        padding: "16px 16px",
                         fontFamily: "'DM Sans',sans-serif",
                         fontSize: "13px",
                         color: `rgba(${CREAM},0.74)`,
                       }}>{row.secondary}</td>
                       <td style={{
-                        padding: "16px 0",
+                        padding: "16px 16px",
                         fontFamily: "'DM Mono',monospace",
                         fontSize: "11px",
                         letterSpacing: "0.04em",
@@ -454,13 +473,15 @@ export default function Products() {
               </span>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-10">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
               {SIGNALS.map((s) => (
                 <div
                   key={s.k}
                   style={{
-                    borderTop: `1px solid rgba(${ACCENT},0.25)`,
-                    paddingTop: "16px",
+                    border: `1px solid rgba(${ACCENT},0.14)`,
+                    background: `rgba(${ACCENT},0.025)`,
+                    borderRadius: "10px",
+                    padding: "20px",
                   }}
                 >
                   <span style={{
@@ -493,7 +514,7 @@ export default function Products() {
           <section style={{ marginBottom: "120px" }}>
             <div className="max-w-3xl">
               <FaqSection
-                tone="dark-slate"
+                tone="light"
                 eyebrow="B.04 — Frequently asked"
                 title="Specification, sourcing, dispatch."
                 faqs={PRODUCT_FAQS}
@@ -514,10 +535,11 @@ export default function Products() {
               <Link
                 href="/journal/karnataka-mineral-dispatch-permit-rule-3c4"
                 style={{
-                  display: "block", padding: "20px 24px", marginBottom: "12px",
-                  border: `1px solid rgba(${CREAM},0.16)`,
-                  background: `rgba(${CREAM},0.03)`,
-                  borderRadius: "6px", textDecoration: "none",
+                  display: "block", padding: "22px 26px", marginBottom: "14px",
+                  border: `1px solid rgba(${CREAM},0.14)`,
+                  background: `rgba(${CREAM},0.025)`,
+                  borderRadius: "10px", textDecoration: "none",
+                  transition: "border-color 0.25s ease, background 0.25s ease",
                 }}
               >
                 <p style={{
@@ -528,8 +550,9 @@ export default function Products() {
                   Compliance · Karnataka
                 </p>
                 <h3 style={{
-                  fontFamily: "'DM Serif Display',serif", fontSize: "20px",
-                  color: `rgba(${CREAM},0.92)`, marginBottom: "8px", lineHeight: 1.3,
+                  fontFamily: "'DM Serif Display',serif", fontWeight: 400,
+                  fontSize: "20px", textTransform: "none", letterSpacing: "-0.012em",
+                  color: `rgba(${CREAM},0.92)`, marginBottom: "10px", lineHeight: 1.35,
                 }}>
                   Inside Karnataka's Mineral Dispatch Permit System
                 </h3>
@@ -544,10 +567,11 @@ export default function Products() {
               <Link
                 href="/journal/manufactured-sand-types-complete-guide"
                 style={{
-                  display: "block", padding: "20px 24px", marginBottom: "12px",
-                  border: `1px solid rgba(${CREAM},0.16)`,
-                  background: `rgba(${CREAM},0.03)`,
-                  borderRadius: "6px", textDecoration: "none",
+                  display: "block", padding: "22px 26px", marginBottom: "14px",
+                  border: `1px solid rgba(${CREAM},0.14)`,
+                  background: `rgba(${CREAM},0.025)`,
+                  borderRadius: "10px", textDecoration: "none",
+                  transition: "border-color 0.25s ease, background 0.25s ease",
                 }}
               >
                 <p style={{
@@ -558,8 +582,9 @@ export default function Products() {
                   Specification · IS 383:2016
                 </p>
                 <h3 style={{
-                  fontFamily: "'DM Serif Display',serif", fontSize: "20px",
-                  color: `rgba(${CREAM},0.92)`, marginBottom: "8px", lineHeight: 1.3,
+                  fontFamily: "'DM Serif Display',serif", fontWeight: 400,
+                  fontSize: "20px", textTransform: "none", letterSpacing: "-0.012em",
+                  color: `rgba(${CREAM},0.92)`, marginBottom: "10px", lineHeight: 1.35,
                 }}>
                   M-Sand, P-Sand, G-Sand: Every Type of Manufactured Sand Explained
                 </h3>
@@ -574,10 +599,11 @@ export default function Products() {
               <Link
                 href="/journal/recycled-construction-materials-2026-manual"
                 style={{
-                  display: "block", padding: "20px 24px",
-                  border: `1px solid rgba(${CREAM},0.16)`,
-                  background: `rgba(${CREAM},0.03)`,
-                  borderRadius: "6px", textDecoration: "none",
+                  display: "block", padding: "22px 26px",
+                  border: `1px solid rgba(${CREAM},0.14)`,
+                  background: `rgba(${CREAM},0.025)`,
+                  borderRadius: "10px", textDecoration: "none",
+                  transition: "border-color 0.25s ease, background 0.25s ease",
                 }}
               >
                 <p style={{
@@ -588,8 +614,9 @@ export default function Products() {
                   Materials · Specification · 2026
                 </p>
                 <h3 style={{
-                  fontFamily: "'DM Serif Display',serif", fontSize: "20px",
-                  color: `rgba(${CREAM},0.92)`, marginBottom: "8px", lineHeight: 1.3,
+                  fontFamily: "'DM Serif Display',serif", fontWeight: 400,
+                  fontSize: "20px", textTransform: "none", letterSpacing: "-0.012em",
+                  color: `rgba(${CREAM},0.92)`, marginBottom: "10px", lineHeight: 1.35,
                 }}>
                   Recycled Construction Materials: A 2026 Specifier's Manual
                 </h3>

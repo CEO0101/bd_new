@@ -1,17 +1,45 @@
 import { useEffect, useRef, useState } from "react";
 import type { LucideIcon } from "lucide-react";
+import { AnimatePresence, motion, useSpring } from "framer-motion";
 import { ArrowRight, Droplets, Info, Landmark, Leaf, Minus, Plus, Recycle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
 import { useSeo, breadcrumbJsonLd } from "@/lib/useSeo";
 import { track } from "@/lib/analytics";
 
+/* ─── Smooth animated counter — springs toward the target value instead
+   of snapping, and formats with the same precision the caller asks for.
+   Keeps the calculator feeling alive on every keystroke. ─────────────── */
+function AnimatedNumber({ value, decimals = 0 }: { value: number; decimals?: number }) {
+  const spring = useSpring(value, { stiffness: 120, damping: 22, mass: 0.6 });
+  const [display, setDisplay] = useState(() => value.toLocaleString(undefined, { maximumFractionDigits: decimals }));
+
+  useEffect(() => {
+    spring.set(value);
+  }, [value, spring]);
+
+  useEffect(() => {
+    const unsub = spring.on("change", (v) => {
+      setDisplay(
+        Math.max(0, v).toLocaleString(undefined, {
+          maximumFractionDigits: decimals,
+        })
+      );
+    });
+    return unsub;
+  }, [spring, decimals]);
+
+  return <>{display}</>;
+}
+
 type CalculatorCardProps = {
   icon: LucideIcon;
   title: string;
-  value: string;
+  value: number;
+  decimals?: number;
   unit: string;
   subtitle: string;
+  delay?: number;
 };
 
 type LogicItem = {
@@ -25,23 +53,33 @@ type ContextualCard = {
   id: "carbon" | "water" | "land";
   icon: LucideIcon;
   title: string;
-  value: string;
+  valuePrefix: string;
+  valueNumber: number;
+  valueSuffix: string;
   gauge: number;
   context: string;
 };
 
-const CalculatorCard = ({ icon: Icon, title, value, unit, subtitle }: CalculatorCardProps) => (
-  <div className="rounded-xl border border-[#2E6F57]/15 bg-white/65 p-6 shadow-xl transition-all duration-500 hover:border-[#2E6F57]/40 hover:shadow-[0_15px_30px_rgba(46,111,87,0.12)]">
+const CalculatorCard = ({ icon: Icon, title, value, decimals = 0, unit, subtitle, delay = 0 }: CalculatorCardProps) => (
+  <motion.div
+    initial={{ opacity: 0, y: 14 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
+    whileHover={{ y: -3 }}
+    className="rounded-xl border border-[#2E6F57]/15 bg-white/65 p-6 shadow-xl transition-colors duration-500 hover:border-[#2E6F57]/40 hover:shadow-[0_15px_30px_rgba(46,111,87,0.12)]"
+  >
     <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-[#2E6F57]/25 bg-gradient-to-br from-white/70 to-white/30 text-[#16261C]/40 transition-colors">
       <Icon className="h-5 w-5" />
     </div>
     <h3 className="mb-1 text-xs font-mono font-bold uppercase tracking-widest text-[#16261C]/40">{title}</h3>
     <div className="flex items-baseline gap-2">
-      <span className="text-3xl font-display font-black tracking-tighter text-[#16261C]">{value}</span>
+      <span className="text-3xl font-display font-black tracking-tighter text-[#16261C] tabular-nums">
+        <AnimatedNumber value={value} decimals={decimals} />
+      </span>
       <span className="text-xs font-mono text-[#16261C]/40">{unit}</span>
     </div>
     <p className="mt-4 border-t border-[#2E6F57]/15 pt-3 text-xs leading-relaxed text-[#16261C]/40">{subtitle}</p>
-  </div>
+  </motion.div>
 );
 
 export default function ImpactCalculator() {
@@ -136,7 +174,9 @@ export default function ImpactCalculator() {
       id: "carbon",
       icon: Leaf,
       title: "Carbon Contextual Equivalent",
-      value: `~${Math.round(results.carbonTreeYears).toLocaleString()} tree-years`,
+      valuePrefix: "~",
+      valueNumber: Math.round(results.carbonTreeYears),
+      valueSuffix: " tree-years",
       gauge: tons === 0 ? 0 : Math.min(100, 28 + Math.log10(tons + 1) * 22),
       context:
         "Based on conservative benchmarks from material modelling and standard carbon uptake proxies (~20-25 kg CO2 per mature tree / year). This is a contextual equivalence, not a claim of planting, removal, or offsets.",
@@ -145,7 +185,9 @@ export default function ImpactCalculator() {
       id: "water",
       icon: Droplets,
       title: "Fresh Water Reuse Equivalent",
-      value: `~${Math.round(results.waterReuseLitres).toLocaleString()} litres`,
+      valuePrefix: "~",
+      valueNumber: Math.round(results.waterReuseLitres),
+      valueSuffix: " litres",
       gauge: results.waterReuseRatePct,
       context:
         "Calculated from Greenrock system design logic, where water reuse is an engineered outcome (60-70% reuse simulated across cycles). Displayed with intuitive gauges.",
@@ -154,7 +196,9 @@ export default function ImpactCalculator() {
       id: "land",
       icon: Landmark,
       title: "Land & Extraction Pressure",
-      value: `~${results.landPressureReductionPct.toFixed(0)}% reduced pressure`,
+      valuePrefix: "~",
+      valueNumber: results.landPressureReductionPct,
+      valueSuffix: "% reduced pressure",
       gauge: results.landPressureReductionPct,
       context:
         "Contextual indicator based on reduced reliance on river sand and new extraction. Expressed as a percentage relative to conventional baseline.",
@@ -167,18 +211,28 @@ export default function ImpactCalculator() {
 
       <main className="pb-16 pt-20">
         <div className="container mx-auto px-6">
-          <div className="mx-auto mb-12 max-w-4xl text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="mx-auto mb-12 max-w-4xl text-center"
+          >
             <h1 className="mb-6 text-4xl font-display font-black tracking-tighter text-[#16261C] uppercase md:text-6xl">
               Environmental <br /> <span className="font-light italic text-[#16261C]/20">Impact Calculator</span>
             </h1>
             <p className="text-lg leading-relaxed font-light text-[#16261C]/60">
               Measure the contextual impact of material supplied — translated into meaningful environmental equivalences.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid items-start gap-8 lg:grid-cols-3">
-            <div className="space-y-6 lg:col-span-1">
-              <div className="space-y-4 rounded-xl border border-[#2E6F57]/15 bg-white/55 p-6 shadow-xl">
+            <motion.div
+              initial={{ opacity: 0, x: -12 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="space-y-6 lg:col-span-1"
+            >
+              <div className="space-y-4 rounded-xl border border-[#2E6F57]/15 bg-white/55 p-6 shadow-xl transition-shadow duration-300 focus-within:shadow-[0_15px_30px_rgba(46,111,87,0.14)] focus-within:border-[#2E6F57]/30">
                 <div>
                   <label htmlFor="tons" className="mb-3 block text-sm font-mono font-bold tracking-widest text-[#16261C] uppercase">
                     Material Supplied
@@ -223,35 +277,40 @@ export default function ImpactCalculator() {
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             <div className="grid gap-4 md:grid-cols-2 lg:col-span-2">
               <CalculatorCard
                 icon={Landmark}
                 title="River Sand Saved"
-                value={results.sandSaved.toLocaleString()}
+                value={results.sandSaved}
                 unit="tons"
+                delay={0}
                 subtitle="Contextual replacement of conventional river sand demand through circular material supply."
               />
               <CalculatorCard
                 icon={Recycle}
                 title="Waste Diverted"
-                value={results.wasteDiverted.toLocaleString()}
+                value={results.wasteDiverted}
                 unit="tons"
+                delay={0.05}
                 subtitle="Industrial stone waste redirected from dumping pathways into usable construction outputs."
               />
               <CalculatorCard
                 icon={Droplets}
                 title="Fresh Water Intake Avoided"
-                value={results.waterSavedKL.toLocaleString(undefined, { maximumFractionDigits: 1 })}
+                value={results.waterSavedKL}
+                decimals={1}
                 unit="KL"
+                delay={0.1}
                 subtitle="Water demand reduced through looped reuse logic compared with conventional single-pass handling."
               />
               <CalculatorCard
                 icon={Leaf}
                 title="Land Pressure Reduction"
-                value={results.landPressureReductionPct.toFixed(0)}
+                value={results.landPressureReductionPct}
                 unit="%"
+                delay={0.15}
                 subtitle="Directional reduction in extraction pressure relative to conventional baseline dependency."
               />
             </div>
@@ -268,21 +327,34 @@ export default function ImpactCalculator() {
             </div>
 
             <div className="grid gap-5 lg:grid-cols-3">
-              {contextualCards.map((card) => {
+              {contextualCards.map((card, ci) => {
                 const Icon = card.icon;
                 return (
-                  <article key={card.id} className="rounded-2xl border border-[#2E6F57]/15 bg-white/55 p-6">
+                  <motion.article
+                    key={card.id}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-60px" }}
+                    transition={{ duration: 0.5, delay: ci * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                    whileHover={{ y: -3 }}
+                    className="rounded-2xl border border-[#2E6F57]/15 bg-white/55 p-6 transition-colors hover:border-[#2E6F57]/35"
+                  >
                     <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-[#2E6F57]/20 bg-white/55 text-[#16261C]/70">
                       <Icon className="h-5 w-5" />
                     </div>
                     <p className="text-[10px] font-mono uppercase tracking-[0.22em] text-[#16261C]/40">{card.title}</p>
-                    <p className="mt-2 text-2xl font-display font-black tracking-tight text-[#16261C] md:text-3xl">{card.value}</p>
+                    <p className="mt-2 text-2xl font-display font-black tracking-tight text-[#16261C] tabular-nums md:text-3xl">
+                      {card.valuePrefix}
+                      <AnimatedNumber value={card.valueNumber} />
+                      {card.valueSuffix}
+                    </p>
 
                     <div className="mt-4">
                       <div className="h-2 w-full overflow-hidden rounded-full bg-[#2E6F57]/12">
-                        <div
+                        <motion.div
                           className="h-full rounded-full bg-gradient-to-r from-[#2E6F57] via-[#5a9b7d] to-[#9cc4ad]"
-                          style={{ width: `${Math.max(0, Math.min(card.gauge, 100))}%` }}
+                          animate={{ width: `${Math.max(0, Math.min(card.gauge, 100))}%` }}
+                          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                         />
                       </div>
                       <p className="mt-1 text-[10px] font-mono uppercase tracking-[0.18em] text-[#16261C]/35">
@@ -291,7 +363,7 @@ export default function ImpactCalculator() {
                     </div>
 
                     <p className="mt-4 text-xs leading-relaxed text-[#16261C]/55">Context: {card.context}</p>
-                  </article>
+                  </motion.article>
                 );
               })}
             </div>
@@ -315,16 +387,30 @@ export default function ImpactCalculator() {
                         <p className="text-base font-display font-black tracking-tight text-[#16261C]">{item.title}</p>
                         <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#16261C]/45">{item.label}</p>
                       </div>
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#2E6F57]/20 bg-white/55 text-[#16261C]/70">
+                      <motion.span
+                        animate={{ rotate: isOpen ? 180 : 0 }}
+                        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                        className="flex h-8 w-8 items-center justify-center rounded-full border border-[#2E6F57]/20 bg-white/55 text-[#16261C]/70"
+                      >
                         {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
-                      </span>
+                      </motion.span>
                     </button>
 
-                    {isOpen ? (
-                      <div className="pb-4 pr-12 text-sm leading-relaxed text-[#16261C]/60">
-                        {item.content}
-                      </div>
-                    ) : null}
+                    <AnimatePresence initial={false}>
+                      {isOpen ? (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pb-4 pr-12 text-sm leading-relaxed text-[#16261C]/60">
+                            {item.content}
+                          </div>
+                        </motion.div>
+                      ) : null}
+                    </AnimatePresence>
                   </div>
                 );
               })}

@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "wouter";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import CustomerLogos from "@/components/CustomerLogos";
 
 /* ─── Custom cursor ─────────────────────────────────────────────────── */
 export function CustomCursor() {
@@ -37,30 +36,33 @@ const TOP_TICKS = [
   { label: "Zero Liquid Discharge",           green: false },
   { label: "DPIIT Startup India",             green: false },
   { label: "Enclosed Processing",             green: false },
-  { label: "Gundlupet · Est. 2015",           green: false },
+  { label: "Mysuru · Est. 2015",               green: false },
 ];
 
 export function CredentialTicker() {
   const all = [...TOP_TICKS, ...TOP_TICKS];
   return (
     <div className="fixed z-[99] left-0 right-0 overflow-hidden flex items-center"
-      style={{ top: "56px", height: "22px", borderBottom: "1px solid rgba(237,232,223,0.04)",
-        /* liquid glass */
-        background: "rgba(9,8,10,0.45)",
-        backdropFilter: "blur(12px) saturate(1.4)",
-        WebkitBackdropFilter: "blur(12px) saturate(1.4)",
+      style={{ top: "56px", height: "22px", borderBottom: "none",
+        /* Zero fill, matching the navbar fix — any tint at any opacity
+           still reads as "a bar." Blur alone still separates this row
+           from the video without adding black. */
+        background: "transparent",
+        backdropFilter: "blur(6px)",
+        WebkitBackdropFilter: "blur(6px)",
       }}>
       <motion.div className="flex whitespace-nowrap"
         animate={{ x: ["0%", "-50%"] }}
         transition={{ duration: 40, ease: "linear", repeat: Infinity, repeatType: "loop" }}>
         {all.map((t, i) => (
           <div key={i} className="inline-flex items-center gap-2 shrink-0 px-5"
-            style={{ borderRight: "1px solid rgba(237,232,223,0.04)" }}>
+            style={{ borderRight: "1px solid rgba(237,232,223,0.06)" }}>
             <div className="w-[3px] h-[3px] rounded-full shrink-0"
-              style={{ background: t.green ? "rgba(237,232,223,0.5)" : "rgba(237,232,223,0.15)" }} />
+              style={{ background: t.green ? "rgba(237,232,223,0.62)" : "rgba(237,232,223,0.28)" }} />
             <span style={{ fontFamily: "'DM Mono',monospace", fontSize: "6.5px",
               letterSpacing: "0.22em", textTransform: "uppercase" as const,
-              color: t.green ? "rgba(237,232,223,0.35)" : "rgba(237,232,223,0.14)" }}>
+              color: t.green ? "rgba(237,232,223,0.55)" : "rgba(237,232,223,0.3)",
+              textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>
               {t.label}
             </span>
           </div>
@@ -93,16 +95,29 @@ export default function Hero() {
             style={{ opacity: 0.42, mixBlendMode: "luminosity" }}
             ref={(el: HTMLVideoElement | null) => {
               if (!el) return;
-              // Load video only after page is interactive — doesn't block LCP
+              // Load video only after page is interactive — doesn't block LCP.
+              // Switched to the -web variant: same 1280x720, ~1.1Mbps vs
+              // ~2.0Mbps, 1.8MB vs 6.3MB. At 0.42 opacity + luminosity blend
+              // the visual difference is imperceptible, but it's a third of
+              // the download — the video now actually appears fast instead
+              // of sitting blank for a couple seconds after idle fires.
               if ("requestIdleCallback" in window) {
-                requestIdleCallback(() => { el.src = "/161071-822582138-loop.mp4"; el.load(); });
+                requestIdleCallback(() => { el.src = "/161071-822582138-web.mp4"; el.load(); });
               } else {
-                setTimeout(() => { el.src = "/161071-822582138-loop.mp4"; el.load(); }, 2000);
+                setTimeout(() => { el.src = "/161071-822582138-web.mp4"; el.load(); }, 2000);
               }
             }}
           />
+          {/* This is the actual source of the "black bar" — not the nav or
+              ticker's own background (both are already transparent), but
+              this gradient darkening the video most heavily exactly where
+              they sit (top-left, 0% stop). Cut hard, twice now, because
+              the first pass (0.94→0.74) still wasn't low enough to read
+              as "video" rather than "dark strip." Headline sits well
+              below the top edge, so it keeps its contrast from the 46%/
+              100% stops regardless of what the 0% stop is doing. */}
           <div className="absolute inset-0" style={{
-            background: "linear-gradient(130deg, rgba(9,8,10,0.94) 0%, rgba(9,8,10,0.6) 46%, rgba(9,8,10,0.15) 100%)"
+            background: "linear-gradient(130deg, rgba(9,8,10,0.32) 0%, rgba(9,8,10,0.5) 46%, rgba(9,8,10,0.15) 100%)"
           }} />
           <div className="absolute inset-x-0 bottom-0 h-40"
             style={{ background: "linear-gradient(to top, rgba(7,6,8,1), transparent)" }} />
@@ -121,11 +136,17 @@ export default function Hero() {
           Construction Materials · Karnataka · India
         </div>
 
-        {/* ── 3-zone layout ── */}
-        <div className="absolute inset-0 z-20 flex flex-col" style={{ padding: "0 52px" }}>
+        {/* ── 2-zone layout ──────────────────────────────────────────────
+             Was 3 zones with a customer-logo strip crammed into the
+             bottom — competing with the headline for space on a page
+             that has zero scroll (100dvh, overflow-hidden — this hero
+             IS the whole page). Cut to headline + kicker, sized to
+             actually dominate the screen the way a confident statement
+             should, instead of sharing it with four other elements. ── */}
+        <div className="absolute inset-0 z-20 flex flex-col" style={{ padding: "0 64px" }}>
 
-          {/* Zone 1 — Kicker */}
-          <motion.div className="flex items-center justify-between" style={{ paddingTop: "22px" }}
+          {/* Kicker */}
+          <motion.div className="flex items-center justify-between" style={{ paddingTop: "26px" }}
             initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             transition={{ delay: 0.1, duration: 0.8 }}>
             <div className="flex items-center gap-3">
@@ -144,10 +165,12 @@ export default function Hero() {
               color: "rgba(237,232,223,0.08)", letterSpacing: "0.1em" }}>001 / 006</span>
           </motion.div>
 
-          {/* Zone 2 — Headline + body */}
+          {/* Headline + body — now the only thing on screen besides the kicker */}
           <div className="flex-1 flex flex-col justify-center">
 
-            {/* Headline — all cream, no colour on display text */}
+            {/* Headline — nearly double the previous max size so it actually
+                fills the frame instead of sitting in the upper-left corner
+                of a mostly-empty screen. */}
             {[
               { text: "82% lower carbon.",         delay: 0.25, opacity: 1.0,   italic: false },
               { text: "MORTH certified construction.", delay: 0.39, opacity: 0.68,  italic: false },
@@ -160,7 +183,7 @@ export default function Hero() {
                     fontFamily: "'DM Serif Display',serif",
                     fontStyle: line.italic ? "italic" : "normal",
                     fontWeight: 400,
-                    fontSize: "clamp(32px, 5.2vw, 74px)",
+                    fontSize: "clamp(38px, 7.4vw, 128px)",
                     lineHeight: 0.93,
                     letterSpacing: "-0.035em",
                     color: `rgba(237,232,223,${line.opacity})`,
@@ -172,7 +195,7 @@ export default function Hero() {
             ))}
 
             {/* Body copy — no MORTH prefix, no redundancy */}
-            <motion.div style={{ marginTop: "22px", maxWidth: "480px" }}
+            <motion.div style={{ marginTop: "34px", maxWidth: "480px" }}
               initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.78, duration: 0.9 }}>
               <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "13px",
@@ -189,7 +212,7 @@ export default function Hero() {
             </motion.div>
 
             {/* Action row — two liquid glass buttons, no MORTH badge */}
-            <motion.div className="flex items-center gap-3 flex-wrap" style={{ marginTop: "24px" }}
+            <motion.div className="flex items-center gap-3 flex-wrap" style={{ marginTop: "32px" }}
               initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.92, duration: 0.8 }}>
 
@@ -240,12 +263,9 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Zone 3 — Customer logos */}
-          <motion.div style={{ paddingBottom: "24px" }}
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-            transition={{ delay: 1.1, duration: 0.9 }}>
-            <CustomerLogos />
-          </motion.div>
+          {/* Generous empty footer space — the negative space itself is
+              part of the composition now, not filled with a logo strip. */}
+          <div style={{ paddingBottom: "48px" }} />
         </div>
       </div>
     </>

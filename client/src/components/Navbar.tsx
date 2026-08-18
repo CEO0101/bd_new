@@ -46,15 +46,29 @@ export default function Navbar() {
   return (
     <motion.nav
       className="fixed top-0 left-0 right-0 z-50"
-      style={{ height: "56px" }}
+      style={{
+        height: "56px",
+        // Light pages (white bg): a real glass tint is required, otherwise
+        // dark nav text has nothing reliable to sit on against a busy
+        // photo — that was the original invisible-nav bug.
+        // Dark pages (video hero — Home, Invest): NO background color at
+        // all. Any black tint, even at low opacity, reads as "the nav has
+        // a black bar" — which is exactly the complaint. Pure
+        // backdrop-blur with zero fill still softens the video enough for
+        // text-shadow to carry legibility, without ever adding black.
+        background: light ? "rgba(255,255,255,0.6)" : "transparent",
+        backdropFilter: light ? "blur(20px) saturate(1.6)" : "blur(6px)",
+        WebkitBackdropFilter: light ? "blur(20px) saturate(1.6)" : "blur(6px)",
+        borderBottom: light ? `1px solid rgba(${TXT},0.06)` : "none",
+      }}
       initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
     >
-      {/* Fully transparent — no background, no border, no blur */}
       <div className="mx-auto h-full flex items-center justify-between px-8 md:px-12">
 
-        {/* Logo */}
+        {/* Logo — text-shadow (dark pages only) is what carries legibility
+            now that there's no background tint to lean on. */}
         <Link href="/" className="flex items-center gap-[10px] no-underline">
           <GreenrockMark />
           <span style={{
@@ -64,6 +78,7 @@ export default function Navbar() {
             letterSpacing: "0.14em",
             color: `rgba(${TXT},0.92)`,
             textTransform: "uppercase",
+            textShadow: light ? "none" : "0 1px 6px rgba(0,0,0,0.55)",
           }}>
             Greenrock<span style={{ color: "#2E6F57", marginLeft: "5px" }}>Innovations</span>
           </span>
@@ -82,10 +97,11 @@ export default function Navbar() {
                 fontWeight: isActive(item.href) ? 500 : 400,
                 letterSpacing: "0.01em",
                 color: isActive(item.href)
-                  ? `rgba(${TXT},0.9)`
-                  : `rgba(${TXT},0.45)`,
+                  ? `rgba(${TXT},0.95)`
+                  : `rgba(${TXT},0.62)`,
                 textDecoration: "none",
                 transition: "color 0.15s",
+                textShadow: light ? "none" : "0 1px 6px rgba(0,0,0,0.55)",
               }}
               className="nav-link"
             >
@@ -119,8 +135,8 @@ export default function Navbar() {
           <Sheet>
             <SheetTrigger className="inline-flex h-9 w-9 items-center justify-center"
               aria-label="Open navigation menu"
-              style={{ background: `rgba(${TXT},0.05)`, border: `1px solid rgba(${TXT},0.12)` }}>
-              <Menu className="h-4 w-4" style={{ color: `rgba(${TXT},0.6)` }} />
+              style={{ background: `rgba(${TXT},0.1)`, border: `1px solid rgba(${TXT},0.22)` }}>
+              <Menu className="h-4 w-4" style={{ color: `rgba(${TXT},0.85)` }} />
             </SheetTrigger>
             <SheetContent style={{ background: "rgba(9,8,10,0.97)", borderColor: "rgba(237,232,223,0.07)" }}>
               <div className="flex flex-col gap-4 pt-10">

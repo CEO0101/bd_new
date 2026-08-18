@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
-import miningVideo from "@/assets/videos/mining-extraction.mp4";
+// Real drone footage of land recovery at the Mysuru facility, not stock.
+import landRecoveryVideo from "@/assets/videos/mysuru-land-recovery.mp4";
 import { useSeo, breadcrumbJsonLd } from "@/lib/useSeo";
 
 export default function Invest() {
@@ -21,6 +22,10 @@ export default function Invest() {
 
       <main className="pt-20">
         <section className="relative min-h-[calc(100vh-5rem)] overflow-hidden">
+          {/* preload="none" with a static <source> still lets some browsers
+              begin a byte-range fetch once autoplay needs metadata.
+              Omitting src until idle guarantees zero network activity
+              until the page is actually interactive. */}
           <video
             className="absolute inset-0 h-full w-full object-cover opacity-35"
             autoPlay
@@ -28,9 +33,15 @@ export default function Invest() {
             loop
             playsInline
             preload="none"
-          >
-            <source src={miningVideo} type="video/mp4" />
-          </video>
+            ref={(el: HTMLVideoElement | null) => {
+              if (!el) return;
+              if ("requestIdleCallback" in window) {
+                requestIdleCallback(() => { el.src = landRecoveryVideo; el.load(); });
+              } else {
+                setTimeout(() => { el.src = landRecoveryVideo; el.load(); }, 2000);
+              }
+            }}
+          />
           <div className="absolute inset-0 bg-gradient-to-br from-black/78 via-black/62 to-black/78" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(168,195,177,0.2),transparent_42%),radial-gradient(circle_at_80%_75%,rgba(255,255,255,0.1),transparent_35%)]" />
 

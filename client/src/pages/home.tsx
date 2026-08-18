@@ -12,11 +12,11 @@ const HOME_FAQS = [
   },
   {
     q: "Who supplies Low Carbon Construction Materials in India?",
-    a: "Greenrock Innovations is an India-based supplier of Low Carbon Construction Materials headquartered in Gundlupet, Karnataka. The company operates through Begur Sands Pvt. Ltd. under Karnataka's first Waste Rock Royalty Recycle Permit, producing recycled, IS 383:2016 compliant manufactured sand and aggregates from waste and weathered rock at approximately 82% lower embodied carbon than virgin extraction. Output is MORTH certified for National Highway use and Bureau Veritas audited, with bulk supply across Karnataka, Tamil Nadu, Kerala, Andhra Pradesh, Telangana, Maharashtra, and Goa.",
+    a: "Greenrock Innovations is an India-based supplier of Low Carbon Construction Materials headquartered in Mysuru, Karnataka. The company operates through Begur Sands Pvt. Ltd. under Karnataka's first Waste Rock Royalty Recycle Permit, producing recycled, IS 383:2016 compliant manufactured sand and aggregates from waste and weathered rock at approximately 82% lower embodied carbon than virgin extraction. Output is MORTH certified for National Highway use and Bureau Veritas audited, with bulk supply across Karnataka, Tamil Nadu, Kerala, Andhra Pradesh, Telangana, Maharashtra, and Goa.",
   },
   {
     q: "What is manufactured sand (M-Sand)?",
-    a: "Manufactured sand (M-Sand) is produced by crushing hard rock through a Vertical Shaft Impactor (VSI), then classifying particles by size using hydrocyclones. Unlike river sand, M-Sand has consistent grading, zero organic impurities, and ~82% lower embodied carbon. Greenrock Innovations produces IS 383:2016 Zone II and Zone III compliant M-Sand from waste and weathered rock at its Gundlupet, Karnataka facility.",
+    a: "Manufactured sand (M-Sand) is produced by crushing hard rock through a Vertical Shaft Impactor (VSI), then classifying particles by size using hydrocyclones. Unlike river sand, M-Sand has consistent grading, zero organic impurities, and ~82% lower embodied carbon. Greenrock Innovations produces IS 383:2016 Zone II and Zone III compliant M-Sand from waste and weathered rock at its Mysuru, Karnataka facility.",
   },
   {
     q: "Is M-Sand better than river sand for construction?",
@@ -40,7 +40,7 @@ const HOME_FAQS = [
   },
   {
     q: "Where does Greenrock Innovations supply M-Sand and aggregates?",
-    a: "Greenrock Innovations manufactures at its Gundlupet, Karnataka facility and supplies across South India including Karnataka, Tamil Nadu, Kerala, Andhra Pradesh, Telangana, and Goa. The company also operates affiliated facilities that extend supply reach across India for bulk construction and infrastructure projects.",
+    a: "Greenrock Innovations manufactures at its Mysuru, Karnataka facility and supplies across South India including Karnataka, Tamil Nadu, Kerala, Andhra Pradesh, Telangana, and Goa. The company also operates affiliated facilities that extend supply reach across India for bulk construction and infrastructure projects.",
   },
   {
     q: "What is a Waste Rock Royalty Recycle Permit?",
