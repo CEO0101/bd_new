@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
 import AudioNarration from "@/components/AudioNarration";
+import FaqSection from "@/components/FaqSection";
 import NotFound from "@/pages/not-found";
 import { POSTS_BY_SLUG, type Section, type Post } from "@/content/journal";
 import {
@@ -17,7 +18,9 @@ import { track } from "@/lib/analytics";
 
 const PAGE_BG = "#FFFFFF";
 const CREAM = "20,19,15";
-const ACCENT = "85,85,85";
+// Brand green, matching Technology/Products/About. This was a neutral gray,
+// which made journal posts read as a different site than every other page.
+const ACCENT = "46,111,87";
 
 function renderSection(s: Section, i: number) {
   switch (s.type) {
@@ -306,72 +309,20 @@ function Article({ post }: { post: Post }) {
             {post.sections.map(renderSection)}
           </motion.div>
 
-          {/* FAQ — visible + structured */}
-          <section style={{ marginTop: "80px" }} aria-labelledby="faq-heading">
-            <div style={{
-              borderTop: `1px solid rgba(${ACCENT},0.32)`,
-              paddingTop: "32px",
-              marginBottom: "24px",
-            }}>
-              <span style={{
-                fontFamily: "'DM Mono',monospace",
-                fontSize: "9px",
-                letterSpacing: "0.28em",
-                textTransform: "uppercase" as const,
-                color: `rgba(${ACCENT},0.78)`,
-              }}>
-                Frequently asked questions
-              </span>
-              <h2 id="faq-heading" style={{
-                fontFamily: "'DM Serif Display',serif",
-                fontWeight: 400,
-                fontSize: "clamp(22px, 2.4vw, 32px)",
-                letterSpacing: "-0.026em",
-                color: `rgba(${CREAM},0.94)`,
-                marginTop: "12px",
-              }}>
-                What you'll likely be asked next.
-              </h2>
-            </div>
-            {post.faqs.map((f, fi) => (
-              <details
-                key={fi}
-                style={{
-                  borderBottom: `1px solid rgba(${CREAM},0.08)`,
-                  padding: "20px 0",
-                }}
-              >
-                <summary style={{
-                  fontFamily: "'DM Sans',sans-serif",
-                  fontSize: "15px",
-                  fontWeight: 500,
-                  color: `rgba(${CREAM},0.9)`,
-                  cursor: "pointer",
-                  listStyle: "none",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  gap: "16px",
-                }}>
-                  <span>{f.q}</span>
-                  <span style={{
-                    fontFamily: "'DM Mono',monospace",
-                    fontSize: "15px",
-                    color: `rgba(${ACCENT},0.85)`,
-                  }}>+</span>
-                </summary>
-                <p style={{
-                  fontFamily: "'DM Sans',sans-serif",
-                  fontSize: "15px",
-                  lineHeight: 1.65,
-                  color: `rgba(${CREAM},0.8)`,
-                  marginTop: "12px",
-                }}>
-                  {f.a}
-                </p>
-              </details>
-            ))}
-          </section>
+          {/* FAQ — visible + structured. Was a hand-rolled copy of FaqSection
+              that had already drifted (its own borders, its own open-state
+              behaviour, a static "+"). Using the shared component means the
+              accordion behaves identically here and on About/Products/
+              Technology, and only has to be fixed in one place. */}
+          <div style={{ marginTop: "80px" }}>
+            <FaqSection
+              eyebrow="Frequently asked questions"
+              title="What you'll likely be asked next."
+              faqs={post.faqs}
+              tone="light"
+              idPrefix="post-faq"
+            />
+          </div>
 
           {/* Sign-off */}
           <section style={{ marginTop: "80px", paddingTop: "32px", borderTop: `1px solid rgba(${ACCENT},0.18)` }}>
